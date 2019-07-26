@@ -10,18 +10,34 @@ export default URI => {
       throw new Error(`Error while trying to connect MongoDB ${err}`);
     }
     console.log(`Connected to MongoDB on port ${URI}`);
-
-    fs.readFile(path.join(__dirname, "../data/countries.json"), (err, data) => {
-      if (err) {
-        console.log("Problem with load data from countries.json");
-      }
-      CountryModel.insertMany(JSON.parse(data));
-    });
-    fs.readFile(path.join(__dirname, "../data/companies.json"), (err, data) => {
-      if (err) {
-        console.log("Problem with load data from companies.json");
-      }
-      CompanyModel.insertMany(JSON.parse(data));
+    CountryModel.deleteMany({}).then(() => {
+      CompanyModel.deleteMany({}).then(() => {
+        fs.readFile(
+          path.join(__dirname, "../data/countries.json"),
+          (err, data) => {
+            if (err) {
+              console.log("Problem with load data from countries.json");
+            }
+            CountryModel.insertMany(JSON.parse(data)).then(() => {
+              fs.readFile(
+                path.join(__dirname, "../data/companies.json"),
+                (err, data) => {
+                  if (err) {
+                    console.log("Problem with load data from companies.json");
+                  }
+                  CountryModel.findOne({ name: "PL" }).then(poland => {
+                    data = JSON.parse(data);
+                    for (let i = 0; i < data.length; i++) {
+                      data[i].country = poland._id;
+                    }
+                    CompanyModel.insertMany(data);
+                  });
+                }
+              );
+            });
+          }
+        );
+      });
     });
   });
 };

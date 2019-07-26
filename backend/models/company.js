@@ -4,6 +4,7 @@ import VehicleSchema from "./vehicle";
 import StaticCostSchema from "./staticCost";
 import CompanyBaseSchema from "./companyBase";
 import WorkerSchema from "./worker";
+import CountryModel from "./country";
 
 const CompanySchema = new mongoose.Schema(
   {
@@ -85,7 +86,8 @@ const CompanySchema = new mongoose.Schema(
     },
     country: {
       type: Schema.Types.ObjectId,
-      ref: "country"
+      ref: "country",
+      required: true
     },
     users: [
       {
