@@ -1,4 +1,4 @@
-import mongoose, { SchemaTypes } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const VehicleSchema = new mongoose.Schema({
   name: {
@@ -27,7 +27,7 @@ const VehicleSchema = new mongoose.Schema({
     required: true
   },
   fuel: {
-    type: SchemaTypes.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "fuel"
   },
   valueOfTruck: {
@@ -40,4 +40,4 @@ const VehicleSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model("vehicle", VehicleSchema);
+export default VehicleSchema;

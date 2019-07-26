@@ -33,4 +33,4 @@ const WorkerSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model("worker", WorkerSchema);
+export default WorkerSchema;

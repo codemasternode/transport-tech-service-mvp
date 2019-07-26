@@ -1,5 +1,9 @@
 import mongoose, { Schema } from "mongoose";
-import planTypes from '../enums/planTypes'
+import planTypes from "../enums/planTypes";
+import VehicleSchema from "./vehicle";
+import StaticCostSchema from "./staticCost";
+import CompanyBaseSchema from "./companyBase";
+import WorkerSchema from "./worker";
 
 const CompanySchema = new mongoose.Schema(
   {
@@ -23,7 +27,8 @@ const CompanySchema = new mongoose.Schema(
       type: Schema.Types.String,
       required: [true, "unique tax number can not be empty"],
       minlength: 6,
-      maxlength: 20
+      maxlength: 20,
+      trim: true
     },
     margin: {
       type: Schema.Types.Number,
@@ -88,30 +93,10 @@ const CompanySchema = new mongoose.Schema(
         ref: "user"
       }
     ],
-    staticCosts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "static_cost"
-      }
-    ],
-    vehicles: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "vehicle"
-      }
-    ],
-    companyBases: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "company_base"
-      }
-    ],
-    workers: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "worker"
-      }
-    ],
+    staticCosts: [StaticCostSchema],
+    vehicles: [VehicleSchema],
+    companyBases: [CompanyBaseSchema],
+    workers: [WorkerSchema],
     countries: [
       {
         type: Schema.Types.ObjectId,

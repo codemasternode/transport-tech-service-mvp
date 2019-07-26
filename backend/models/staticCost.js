@@ -33,4 +33,4 @@ const StaticCostSchema = new mongoose.Schema({
   }
 });
 
-export default mongoose.model("static_cost", StaticCostSchema);
+export default StaticCostSchema

@@ -1,4 +1,6 @@
-import mongoose, { SchemaTypes } from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import frequencyTypes from "../enums/frequencyType";
+import VehicleSchema from "./vehicle";
 
 const CompanyBaseSchema = new mongoose.Schema({
   name: {
@@ -21,7 +23,7 @@ const CompanyBaseSchema = new mongoose.Schema({
     required: true
   },
   country: {
-    type: SchemaTypes.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "country"
   },
   location: {
@@ -36,12 +38,7 @@ const CompanyBaseSchema = new mongoose.Schema({
       max: 90
     }
   },
-  vehicles: [
-    {
-      type: SchemaTypes.ObjectId,
-      ref: "vehicle"
-    }
-  ]
+  vehicles: [VehicleSchema]
 });
 
-export default mongoose.model("company_base", CompanyBaseSchema);
+export default CompanyBaseSchema;
