@@ -11,8 +11,11 @@ const PORT = process.env.PORT || 5000,
   Router = express.Router();
 
 mongodbConnection(MONGO_DB_URL);
-app.use("/company", companiesRoutes(Router));
-app.use("/vehicle", vehiclesRoutes(Router));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use("/api/company", companiesRoutes(Router));
+app.use("/api/vehicle", vehiclesRoutes(Router));
 
 app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);

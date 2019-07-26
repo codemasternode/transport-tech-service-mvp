@@ -99,6 +99,10 @@ const CompanySchema = new mongoose.Schema(
     vehicles: [VehicleSchema],
     companyBases: [CompanyBaseSchema],
     workers: [WorkerSchema],
+    createdAt: {
+      type: Date,
+      default: Date.now()
+    },
     countries: [
       {
         type: Schema.Types.ObjectId,
