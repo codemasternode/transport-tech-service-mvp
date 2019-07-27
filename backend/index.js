@@ -2,6 +2,7 @@ import express from "express";
 import mongodbConnection from "./config/db";
 import companiesRoutes from "./routes/companies";
 import vehiclesRoutes from "./routes/vehicles";
+import redisClient from "./config/redis";
 
 const PORT = process.env.PORT || 5000,
   MONGO_DB_URL =

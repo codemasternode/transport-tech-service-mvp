@@ -54,14 +54,14 @@ export async function postCompany(req, res) {
   }
   //sprawdzenie czy firma istnieje w CEIDG jeśli jest to podmiot PL,
   //jeśli zagraniczny to jest wymagane sprawdzenie ręczne
-  //jeżeli podmiot zagraniczny -> 206
+  //jeżeli podmiot zagraniczny -> 202
   const newCompany = new CompanyModel({ ...req.body, country: country._id });
   newCompany.save(err => {
     if (err) {
       return res.status(400).send({ err });
     }
     if (req.body.country !== "PL") {
-      return res.status(206).send({
+      return res.status(202).send({
         msg:
           "Your company has to be check by our service, don't worry, it should takes no longer than 24 hours"
       });
@@ -114,7 +114,7 @@ export async function putCompanyInfo(req, res) {
       );
       res.send({});
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.status(400).send({});
     }
   } else {
@@ -124,21 +124,106 @@ export async function putCompanyInfo(req, res) {
           _id: req.params.id
         },
         {
-          $set: req.body.update 
+          $set: req.body.update
         }
       );
       res.send({});
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.status(400).send({});
     }
   }
 }
 
-export async function deleteCompany(req, res) {
+export async function deleteCompanyByAdmin(req, res) {
+  if (!req.params.id) {
+    return res.status(400).send({});
+  }
+
+  if(req.body.message) {
+    //wyslij wiadomość do użytkownika
+  }
+
   const company = await CompanyModel.deleteOne({
     _id: req.params.id
   });
 
-  res.send(company);
+  res.send({});
 }
+
+export async function deleteCompanyByCompany(req,res) {
+  
+}
+
+export async function putTaxInfo(req, res) {
+  if (
+    !req.params.id ||
+    !req.body.update.taxNumber ||
+    !req.body.update.taxNumber.length === 0
+  ) {
+    return res.status(400).send({});
+  }
+
+  const company = await CompanyModel.findById(req.params.id);
+
+  if (!company) {
+    return res.status(404).send({});
+  }
+
+  //sprawdzenie danych w ceidg lub innym badziewiu
+  //zmiana nazwy firmy
+
+  try {
+    let updated = await CompanyModel.updateOne(
+      {
+        _id: req.params.id
+      },
+      {
+        $set: {
+          taxNumber: req.body.update.taxNumber
+        }
+      }
+    );
+  } catch (err) {
+    return res.status(400).send({});
+  }
+}
+
+export async function putPricingPlan(req, res) {
+  const { plan } = req.body;
+  if (!plan) {
+    return res.status(400).send({});
+  }
+
+  const company = await CompanyModel.findById(req.params.id);
+
+  if (!company) {
+    return res.status(404).send({});
+  }
+
+  if (plan === company.plan) {
+    return res.status(304).send({
+      msg: "Pricing without change"
+    });
+  }
+
+  try {
+    const updated = await CompanyModel.updateOne(
+      {
+        _id: req.params.id
+      },
+      {
+        $set: {
+          plan
+        }
+      }
+    );
+    res.send({});
+  } catch (err) {
+    return res.status(400).send({});
+  }
+}
+
+export async function putCompanyEmail(req, res) {}
+
+export async function putPaidDate(req, res) {}

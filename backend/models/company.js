@@ -8,6 +8,9 @@ import CountryModel from "./country";
 
 const CompanySchema = new mongoose.Schema(
   {
+    companyLogo: {
+      type: String
+    },
     nameOfCompany: {
       type: Schema.Types.String,
       required: [true, "the company name can not be empty"]
