@@ -2,6 +2,8 @@ import express from "express";
 import mongodbConnection from "./config/db";
 import companiesRoutes from "./routes/companies";
 import vehiclesRoutes from "./routes/vehicles";
+import mailer from './config/mailer'
+import dotenv from "dotenv/config";
 import redisClient from "./config/redis";
 
 const PORT = process.env.PORT || 5000,
@@ -10,7 +12,6 @@ const PORT = process.env.PORT || 5000,
     "mongodb://localhost:27017/transporttechservice",
   app = express(),
   Router = express.Router();
-
 mongodbConnection(MONGO_DB_URL);
 
 app.use(express.urlencoded({ extended: true }));

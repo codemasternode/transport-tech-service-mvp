@@ -1,6 +1,9 @@
 import CompanyModel from "../models/company";
 import CountryModel from "../models/country";
 import putCompanyInfoAllowModifiers from "../enums/putCompanyInfoAllowModifiers";
+import { setToDeleteCompanyStack } from "../config/redis";
+import { REDIS_INTERNAL_ERROR } from "../statuses/redisStatuses";
+import uuid from "uuid/v1";
 
 export function getCompanies(req, res) {
   const getAllCompanies = async function() {
@@ -140,7 +143,7 @@ export async function deleteCompanyByAdmin(req, res) {
     return res.status(400).send({});
   }
 
-  if(req.body.message) {
+  if (req.body.message) {
     //wyslij wiadomość do użytkownika
   }
 
@@ -151,8 +154,35 @@ export async function deleteCompanyByAdmin(req, res) {
   res.send({});
 }
 
-export async function deleteCompanyByCompany(req,res) {
-  
+export async function deleteCompanyByCompany(req, res) {
+  if (!req.params.id) {
+    return res.status(400).send({});
+  }
+
+  const company = await CompanyModel.findOne({
+    _id: req.params.id
+  });
+
+  if (!company) {
+    return res.status(404).send({});
+  }
+
+  const key = uuid();
+
+  setToDeleteCompanyStack(key, company.id)
+    .then(() => {
+      //wyślij email
+      res.send({
+        msg: "We send confirmation on your company email",
+        email: company.email
+      });
+    })
+    .catch(err => {
+      if (err === REDIS_INTERNAL_ERROR) {
+        return res.status(500).send({});
+      }
+      res.status(400).send({});
+    });
 }
 
 export async function putTaxInfo(req, res) {
