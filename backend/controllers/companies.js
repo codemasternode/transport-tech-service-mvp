@@ -63,6 +63,7 @@ export async function postCompany(req, res) {
     if (err) {
       return res.status(400).send({ err });
     }
+    //wysyłamy email z potwierdzeniem (email z req.body.email)
     if (req.body.country !== "PL") {
       return res.status(202).send({
         msg:
@@ -171,7 +172,7 @@ export async function deleteCompanyByCompany(req, res) {
 
   setToDeleteCompanyStack(key, company.id)
     .then(() => {
-      //wyślij email
+      //wyślij email potwierdzający usuwanie firmy
       res.send({
         msg: "We send confirmation on your company email",
         email: company.email
