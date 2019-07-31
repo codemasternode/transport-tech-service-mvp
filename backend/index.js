@@ -2,9 +2,10 @@ import express from "express";
 import mongodbConnection from "./config/db";
 import companiesRoutes from "./routes/companies";
 import vehiclesRoutes from "./routes/vehicles";
-import mailer from './config/mailer'
+import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
 import redisClient from "./config/redis";
+import staticCostsRoutes from "./routes/staticCosts";
 
 const PORT = process.env.PORT || 5000,
   MONGO_DB_URL =
@@ -16,8 +17,10 @@ mongodbConnection(MONGO_DB_URL);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api/static-costs", staticCostsRoutes(Router));
 app.use("/api/company", companiesRoutes(Router));
 app.use("/api/vehicle", vehiclesRoutes(Router));
+
 
 app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);

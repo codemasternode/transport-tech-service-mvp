@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import typesofReturn from "../enums/typeOfReturn";
 
 const WorkerSchema = new mongoose.Schema({
   name: {
@@ -17,14 +16,6 @@ const WorkerSchema = new mongoose.Schema({
   salary: {
     type: Number,
     required: true
-  },
-  returnValue: {
-    type: Number,
-    required: true
-  },
-  typeOfReturn: {
-    type: String,
-    enum: typesofReturn
   },
   returnedValue: {
     type: Number,

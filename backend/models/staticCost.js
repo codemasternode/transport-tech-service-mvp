@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import frequencyTypes from "../enums/frequencyType";
-import typesofReturn from "../enums/typeOfReturn";
 
 const StaticCostSchema = new mongoose.Schema({
   name: {
@@ -17,14 +16,6 @@ const StaticCostSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: frequencyTypes
-  },
-  returnValue: {
-    type: Number,
-    required: true
-  },
-  typeOfReturn: {
-    type: String,
-    enum: typesofReturn
   },
   returnedValue: {
     type: Number,
