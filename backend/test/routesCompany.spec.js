@@ -65,7 +65,7 @@ describe("create new company", function() {
     email: "admin@teachtechservice.com",
     country: "PL"
   };
-  it("should return 201 on Polish company", function(done) {
+  it("should return 201 on creating company", function(done) {
     chai
       .request(server)
       .post("/api/company")
@@ -127,5 +127,74 @@ describe("create new company", function() {
         validResponse(err, res, 400);
         done();
       });
+  });
+});
+
+describe("update company-info on existing company", function(done) {
+  let update = {
+    margin: 20
+  };
+
+  it("should return 200 on updating company", function(done) {
+    Company.find({}).then(companies => {
+      chai
+        .request(server)
+        .put(`/api/company/company-info/${companies[0]._id}`)
+        .send({ update })
+        .end((err, res) => {
+          validResponse(err, res, 200);
+          done();
+        });
+    });
+  });
+
+  it("should return 200 on correct country while update", function(done) {
+    Company.find({}).then(companies => {
+      chai
+        .request(server)
+        .put(`/api/company/company-info/${companies[0]._id}`)
+        .send({ update: { ...update, country: "PL" } })
+        .end((err, res) => {
+          validResponse(err, res, 200);
+          done();
+        });
+    });
+  });
+
+  it("should return 400 on unallowed property", function(done) {
+    Company.find({}).then(companies => {
+      chai
+        .request(server)
+        .put(`/api/company/company-info/${companies[0]._id}`)
+        .send({ update: { ...update, abc: "unallowe property" } })
+        .end((err, res) => {
+          validResponse(err, res, 400);
+          done();
+        });
+    });
+  });
+
+  it("should return 400 on missing company", function(done) {
+    chai
+      .request(server)
+      .put(`/api/company/company-info/notworking`)
+      .send({ update })
+      .end((err, res) => {
+        validResponse(err, res, 404);
+        done();
+      });
+  });
+
+  it("should return 400 on missing country while update", function(done) {
+    Company.find({}).then(companies => {
+      chai
+        .request(server)
+        .put(`/api/company/company-info/${companies[0]._id}`)
+        .send({ update: { ...update, country: "XD" } })
+        .end((err, res) => {
+          validResponse(err, res, 400);
+          done();
+        });
+    });
   });
 });

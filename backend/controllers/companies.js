@@ -90,6 +90,7 @@ export async function putCompanyInfo(req, res) {
     for (let i = 0; i < putCompanyInfoAllowModifiers.length; i++) {
       if (key === putCompanyInfoAllowModifiers[i]) {
         isInside = true;
+        break;
       }
     }
     if (!isInside) {
@@ -98,11 +99,16 @@ export async function putCompanyInfo(req, res) {
       });
     }
   }
-
-  const company = await CompanyModel.findById(req.params.id);
-
-  if (!company) {
-    return res.status(404).send({});
+  try {
+    const company = await CompanyModel.findById(req.params.id);
+    if (!company) {
+      return res.status(404).send({});
+    }
+  } catch (err) {
+    if (err instanceof CastError) {
+      return res.status(404).send({});
+    }
+    res.status(500).send({});
   }
 
   let country;
