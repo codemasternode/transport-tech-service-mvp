@@ -3,6 +3,7 @@ import CountryModel from "../models/country";
 import putCompanyInfoAllowModifiers from "../enums/putCompanyInfoAllowModifiers";
 import { setToDeleteCompanyStack } from "../config/redis";
 import { REDIS_INTERNAL_ERROR } from "../statuses/redisStatuses";
+import { CastError } from "mongoose";
 import uuid from "uuid/v1";
 
 export function getCompanies(req, res) {
@@ -34,16 +35,25 @@ export function getCompanies(req, res) {
       });
     })
     .catch(err => {
-      res.status(404).send({});
+      res.status(500).send({});
     });
 }
 
 export async function getCompanyById(req, res) {
-  const company = await CompanyModel.findById(req.params.id);
-  if (!company) {
-    return res.status(404).send({});
+  try {
+    const company = await CompanyModel.findById(req.params.id);
+    if (!company) {
+      return res.status(404).send({});
+    }
+    res.send(company);
+  } catch (err) {
+    if (err instanceof CastError) {
+      return res.status(404).send({
+        msg: "Wrong ID"
+      });
+    }
+    res.status(500).send({});
   }
-  res.send(company);
 }
 
 export async function postCompany(req, res) {
@@ -70,7 +80,7 @@ export async function postCompany(req, res) {
           "Your company has to be check by our service, don't worry, it should takes no longer than 24 hours"
       });
     }
-    res.status(201).send();
+    res.status(201).send({});
   });
 }
 
@@ -118,7 +128,6 @@ export async function putCompanyInfo(req, res) {
       );
       res.send({});
     } catch (error) {
-      console.log(error);
       return res.status(400).send({});
     }
   } else {
@@ -133,7 +142,6 @@ export async function putCompanyInfo(req, res) {
       );
       res.send({});
     } catch (error) {
-      console.log(error);
       return res.status(400).send({});
     }
   }
