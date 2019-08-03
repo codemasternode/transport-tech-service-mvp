@@ -1,3 +1,4 @@
+import express from "express";
 import {
   getCompanies,
   getCompanyById,
@@ -9,14 +10,16 @@ import {
   deleteCompanyByCompany
 } from "../controllers/companies";
 
-export default router => {
+const router = express.Router();
+
+export default () => {
   router.get("/page/:page", getCompanies);
   router.get("/:id", getCompanyById);
   router.post("/", postCompany);
   router.put("/company-info/:id", putCompanyInfo);
   router.put("/tax-info/:id", putTaxInfo);
-  router.put("/pricing-plan/:id", putPricingPlan)
+  router.put("/pricing-plan/:id", putPricingPlan);
   router.delete("/admin-delete/:id", deleteCompanyByAdmin);
-  router.delete("/company-delete/:id", deleteCompanyByCompany)
+  router.delete("/company-delete/:id", deleteCompanyByCompany);
   return router;
 };

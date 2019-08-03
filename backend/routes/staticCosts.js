@@ -1,3 +1,4 @@
+import express from "express";
 import {
   getStaticCostsByCompany,
   postStaticCost,
@@ -5,7 +6,9 @@ import {
   deleteStaticCost
 } from "../controllers/staticCosts";
 
-export default router => {
+const router = express.Router();
+
+export default () => {
   router.get("/:company_id", getStaticCostsByCompany);
   router.post("/:company_id", postStaticCost);
   router.put("/:company_id/:id", putStaticCost);

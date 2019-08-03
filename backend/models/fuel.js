@@ -6,8 +6,13 @@ const FuelSchema = new mongoose.Schema({
     required: true
   },
   price: {
-      type: Number,
-      required: true
+    type: Number,
+    required: true
+  },
+  unit: {
+    type: String,
+    required: true,
+    default: "l/100km"
   }
 });
 

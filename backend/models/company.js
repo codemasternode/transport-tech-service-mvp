@@ -100,7 +100,12 @@ const CompanySchema = new mongoose.Schema(
     ],
     staticCosts: [StaticCostSchema],
     vehicles: [VehicleSchema],
-    companyBases: [CompanyBaseSchema],
+    companyBases: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "companyBase"
+      }
+    ],
     workers: [WorkerSchema],
     createdAt: {
       type: Date,

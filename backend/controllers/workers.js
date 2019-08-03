@@ -1,9 +1,9 @@
 import Company from "../models/company";
 import { Types } from "mongoose";
 
-export async function getStaticCostsByCompany(req, res) {
+export async function getWorkerByCompany(req, res) {
   if (!req.params.company_id) {
-    return res.status(400).send({});
+      return res.status(400).send({});
   }
   const company = await Company.findById(req.params.company_id);
 
@@ -15,8 +15,7 @@ export async function getStaticCostsByCompany(req, res) {
     company
   });
 }
-
-export async function postStaticCost(req, res) {
+export async function postWorker(req, res) {
   console.log("asd");
   if (!req.params.company_id) {
     return res.status(400).send({});
@@ -24,7 +23,7 @@ export async function postStaticCost(req, res) {
 
   Company.updateOne(
     { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { staticCosts: req.body.staticCost } }
+    { $push: { workers: req.body.worker } }
   )
     .then(stat => {
       console.log(stat);
@@ -36,9 +35,9 @@ export async function postStaticCost(req, res) {
     });
 }
 
-export async function putStaticCost(req, res) {
+export async function putWorker(req, res) {
   const { company_id, id } = req.params;
-  console.log("static")
+
   if (!company_id || !id) {
     return res.status(400).send({});
   }
@@ -46,11 +45,11 @@ export async function putStaticCost(req, res) {
   Company.updateOne(
     {
       _id: new Types.ObjectId(company_id),
-      "staticCosts._id": new Types.ObjectId(id)
+      "workers._id": new Types.ObjectId(id)
     },
     {
       $set: {
-        "staticCosts.$[]": { ...req.body.staticCost, _id: req.params.id }
+        "workers.$[]": { ...req.body.vehicle, _id: req.params.id }
       }
     },
     { upsert: true }
@@ -64,7 +63,7 @@ export async function putStaticCost(req, res) {
     });
 }
 
-export async function deleteStaticCost(req, res) {
+export async function deleteWorker(req, res) {
   const { company_id, id } = req.params;
 
   if (!company_id || !id) {
@@ -77,7 +76,7 @@ export async function deleteStaticCost(req, res) {
     },
     {
       $pull: {
-        staticCosts: {
+        workers: {
           _id: id
         }
       }

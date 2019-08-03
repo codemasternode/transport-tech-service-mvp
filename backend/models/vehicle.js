@@ -28,7 +28,8 @@ const VehicleSchema = new mongoose.Schema({
   },
   fuel: {
     type: Schema.Types.ObjectId,
-    ref: "fuel"
+    ref: "fuel",
+    required: true
   },
   valueOfTruck: {
     type: Number,
