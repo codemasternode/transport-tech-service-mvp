@@ -49,7 +49,7 @@ export async function putWorker(req, res) {
     },
     {
       $set: {
-        "workers.$[]": { ...req.body.vehicle, _id: req.params.id }
+        "workers.$[]": { ...req.body.worker, _id: req.params.id }
       }
     },
     { upsert: true }
