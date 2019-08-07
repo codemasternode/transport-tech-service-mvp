@@ -5,7 +5,37 @@
         "surname": "Warzybok",
         "taxNumber": "6793184304",
         "plan": "Enterprise",
+<<<<<<< HEAD
         "email": "admin@teachtechservice.com"
+=======
+        "email": "admin@teachtechservice.com",
+        "staticCosts": [
+            {
+                "name": "Telefon",
+                "value": 800,
+                "frequency": "per month",
+                "returnedValue": 0
+            },
+            {
+                "name": "Internet",
+                "value": 550,
+                "frequency": "per week",
+                "returnedValue": 0
+            }
+        ],
+        "vehicles": [
+            {
+                "name": "Ciężarówka nr 1",
+                "combustion": 33,
+                "capacity": 24,
+                "dimensionsOfTheHold": "13.6x2.4x2.7",
+                "deprecationPerYear": 15,
+                "fuel": "",
+                "valueOfTruck": 400000,
+                "blankJourneys": 10
+            }
+        ]
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
     },
     {
         "nameOfCompany": "Transport Tech Service 2 ",

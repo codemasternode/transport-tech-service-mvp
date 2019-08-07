@@ -10,7 +10,10 @@
     "react-dom": "^16.8.6",
     "react-material-ui-form-validator": "^2.0.9",
     "react-phone-input-mui": "^2.9.4",
+<<<<<<< HEAD
     "react-router-dom": "^5.0.1",
+=======
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
     "react-scripts": "3.0.1"
   },
   "scripts": {

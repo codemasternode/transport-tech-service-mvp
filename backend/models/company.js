@@ -100,7 +100,16 @@ const CompanySchema = new mongoose.Schema(
     ],
     staticCosts: [StaticCostSchema],
     vehicles: [VehicleSchema],
+<<<<<<< HEAD
     companyBases: [CompanyBaseSchema],
+=======
+    companyBases: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "companyBase"
+      }
+    ],
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
     workers: [WorkerSchema],
     createdAt: {
       type: Date,

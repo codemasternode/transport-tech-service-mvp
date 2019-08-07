@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+<<<<<<< HEAD
 import typesofReturn from "../enums/typeOfReturn";
+=======
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
 
 const WorkerSchema = new mongoose.Schema({
   name: {
@@ -18,6 +21,7 @@ const WorkerSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+<<<<<<< HEAD
   returnValue: {
     type: Number,
     required: true
@@ -26,6 +30,8 @@ const WorkerSchema = new mongoose.Schema({
     type: String,
     enum: typesofReturn
   },
+=======
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
   returnedValue: {
     type: Number,
     required: true,

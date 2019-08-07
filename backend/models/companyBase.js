@@ -41,4 +41,8 @@ const CompanyBaseSchema = new mongoose.Schema({
   vehicles: [VehicleSchema]
 });
 
+<<<<<<< HEAD
 export default CompanyBaseSchema;
+=======
+export default mongoose.model("companyBase", CompanyBaseSchema);
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17

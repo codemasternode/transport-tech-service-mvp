@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-export async function getVehiclesByCompany(req, res) {
-    
-}
-
-export async function getVehicleById(req, res) {}
-
-export async function postVehicle(req, res) {}
-
-export async function putVehicle(req, res) {}
-
-export async function deleteVehicle(req, res) {}
-=======
 import Company from "../models/company";
 import { Types } from "mongoose";
 
-export async function getVehiclesByCompany(req, res) {
+export async function getStaticCostsByCompany(req, res) {
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
@@ -28,7 +15,8 @@ export async function getVehiclesByCompany(req, res) {
     company
   });
 }
-export async function postVehicle(req, res) {
+
+export async function postStaticCost(req, res) {
   console.log("asd");
   if (!req.params.company_id) {
     return res.status(400).send({});
@@ -36,7 +24,7 @@ export async function postVehicle(req, res) {
 
   Company.updateOne(
     { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { vehicles: req.body.vehicle } }
+    { $push: { staticCosts: req.body.staticCost } }
   )
     .then(stat => {
       console.log(stat);
@@ -48,9 +36,9 @@ export async function postVehicle(req, res) {
     });
 }
 
-export async function putVehicle(req, res) {
+export async function putStaticCost(req, res) {
   const { company_id, id } = req.params;
-  console.log("abc");
+  console.log("static")
   if (!company_id || !id) {
     return res.status(400).send({});
   }
@@ -58,11 +46,11 @@ export async function putVehicle(req, res) {
   Company.updateOne(
     {
       _id: new Types.ObjectId(company_id),
-      "vehicles._id": new Types.ObjectId(id)
+      "staticCosts._id": new Types.ObjectId(id)
     },
     {
       $set: {
-        "vehicles.$[]": { ...req.body.vehicle, _id: req.params.id }
+        "staticCosts.$[]": { ...req.body.staticCost, _id: req.params.id }
       }
     },
     { upsert: true }
@@ -72,12 +60,11 @@ export async function putVehicle(req, res) {
       res.send({});
     })
     .catch(err => {
-      console.log(err, "to tu");
       res.status(500).send({});
     });
 }
 
-export async function deleteVehicle(req, res) {
+export async function deleteStaticCost(req, res) {
   const { company_id, id } = req.params;
 
   if (!company_id || !id) {
@@ -90,7 +77,7 @@ export async function deleteVehicle(req, res) {
     },
     {
       $pull: {
-        vehicles: {
+        staticCosts: {
           _id: id
         }
       }
@@ -104,4 +91,3 @@ export async function deleteVehicle(req, res) {
       res.status(500).send({});
     });
 }
->>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17

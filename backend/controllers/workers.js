@@ -1,22 +1,9 @@
-<<<<<<< HEAD
-export async function getVehiclesByCompany(req, res) {
-    
-}
-
-export async function getVehicleById(req, res) {}
-
-export async function postVehicle(req, res) {}
-
-export async function putVehicle(req, res) {}
-
-export async function deleteVehicle(req, res) {}
-=======
 import Company from "../models/company";
 import { Types } from "mongoose";
 
-export async function getVehiclesByCompany(req, res) {
+export async function getWorkerByCompany(req, res) {
   if (!req.params.company_id) {
-    return res.status(400).send({});
+      return res.status(400).send({});
   }
   const company = await Company.findById(req.params.company_id);
 
@@ -28,7 +15,7 @@ export async function getVehiclesByCompany(req, res) {
     company
   });
 }
-export async function postVehicle(req, res) {
+export async function postWorker(req, res) {
   console.log("asd");
   if (!req.params.company_id) {
     return res.status(400).send({});
@@ -36,7 +23,7 @@ export async function postVehicle(req, res) {
 
   Company.updateOne(
     { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { vehicles: req.body.vehicle } }
+    { $push: { workers: req.body.worker } }
   )
     .then(stat => {
       console.log(stat);
@@ -48,9 +35,9 @@ export async function postVehicle(req, res) {
     });
 }
 
-export async function putVehicle(req, res) {
+export async function putWorker(req, res) {
   const { company_id, id } = req.params;
-  console.log("abc");
+
   if (!company_id || !id) {
     return res.status(400).send({});
   }
@@ -58,11 +45,11 @@ export async function putVehicle(req, res) {
   Company.updateOne(
     {
       _id: new Types.ObjectId(company_id),
-      "vehicles._id": new Types.ObjectId(id)
+      "workers._id": new Types.ObjectId(id)
     },
     {
       $set: {
-        "vehicles.$[]": { ...req.body.vehicle, _id: req.params.id }
+        "workers.$[]": { ...req.body.worker, _id: req.params.id }
       }
     },
     { upsert: true }
@@ -72,12 +59,11 @@ export async function putVehicle(req, res) {
       res.send({});
     })
     .catch(err => {
-      console.log(err, "to tu");
       res.status(500).send({});
     });
 }
 
-export async function deleteVehicle(req, res) {
+export async function deleteWorker(req, res) {
   const { company_id, id } = req.params;
 
   if (!company_id || !id) {
@@ -90,7 +76,7 @@ export async function deleteVehicle(req, res) {
     },
     {
       $pull: {
-        vehicles: {
+        workers: {
           _id: id
         }
       }
@@ -104,4 +90,3 @@ export async function deleteVehicle(req, res) {
       res.status(500).send({});
     });
 }
->>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
