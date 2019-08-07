@@ -1,9 +1,9 @@
 import "babel-polyfill";
 import chai, { assert } from "chai";
-import server from "../index";
+import server from "../src/index";
 import chaiHttp from "chai-http";
-import Company from "../models/company";
-import Country from "../models/country";
+import Company from "../src/models/company";
+import Country from "../src/models/country";
 import { Types } from "mongoose";
 
 const { expect } = chai;

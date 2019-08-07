@@ -5,6 +5,7 @@ import { setToDeleteCompanyStack } from "../config/redis";
 import { REDIS_INTERNAL_ERROR } from "../statuses/redisStatuses";
 import { CastError } from "mongoose";
 import uuid from "uuid/v1";
+import { loadTemplate } from "../config/mailer";
 
 export function getCompaniesByPage(req, res) {
   const getAllCompanies = async function() {
@@ -73,7 +74,27 @@ export async function postCompany(req, res) {
     if (err) {
       return res.status(400).send({ err });
     }
-    //wysyłamy email z potwierdzeniem (email z req.body.email)
+    let users = [
+      {
+        name: req.body.name,
+        email: req.body.email
+      }
+    ];
+    loadTemplate("confirmCreate", users)
+      .then(results => {
+        return Promise.all(
+          results.map(result => {
+            sendEmail({
+              to: result.context.email,
+              subject: result.email.subject,
+              html: result.email.html,
+              text: result.email.text
+            });
+          })
+        );
+      })
+
+    // sendEmail({ to: "arturgarlacz@teachtechservice.com", subject: "wwww", text: "WD", html: "s" })
     if (req.body.country !== "PL") {
       return res.status(202).send({
         msg:
@@ -187,6 +208,26 @@ export async function deleteCompanyByCompany(req, res) {
   setToDeleteCompanyStack(key, company.id)
     .then(() => {
       //wyślij email potwierdzający usuwanie firmy
+      console.log(req.body.email, req.body.name);
+      let users = [
+        {
+          name: req.body.name,
+          email: req.body.email
+        }
+      ];
+      loadTemplate("confirmDelete", users)
+        .then(results => {
+          return Promise.all(
+            results.map(result => {
+              sendEmail({
+                to: result.context.email,
+                subject: result.email.subject,
+                html: result.email.html,
+                text: result.email.text
+              });
+            })
+          );
+        })
       res.send({
         msg: "We send confirmation on your company email",
         email: company.email
@@ -272,3 +313,5 @@ export async function putPricingPlan(req, res) {
 export async function putCompanyEmail(req, res) {}
 
 export async function putPaidDate(req, res) {}
+
+export async function confirmEmail(req, res) {}

@@ -102,6 +102,11 @@ const CompanySchema = new mongoose.Schema(
       }
     ],
     staticCosts: [StaticCostSchema],
+    vehicles: {
+      type: Array,
+      default: []
+    },
+    companyBases: [CompanyBaseSchema],
     workers: [WorkerSchema],
     vehicles: {
       type: Array,

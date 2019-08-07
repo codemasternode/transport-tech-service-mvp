@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+<<<<<<< HEAD
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+=======
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,7 +10,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+<<<<<<< HEAD
+=======
 import Link from '@material-ui/core/Link';
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +22,11 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import ReactPhoneInput from 'react-phone-input-mui';
+<<<<<<< HEAD
+import SignUp from './Pages/RegisterPage';
+import SignIn from './Pages/LoginPage';
+=======
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
 
 const themes = createMuiTheme({
   palette: {
@@ -91,6 +103,19 @@ const useStyles = makeStyles(theme => ({
   // '.Mui-error'
 }));
 
+<<<<<<< HEAD
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={() => <h1>ELLO</h1>} />
+        <Route path="/signup/" component={SignUp} />
+        <Route path="/login/" component={SignIn} />
+      </Switch>
+    </BrowserRouter>
+
+  )
+=======
 
 
 const validateEmail = email => {
@@ -293,4 +318,5 @@ export default function SignUp() {
       </div>
     </ThemeProvider>
   );
+>>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
 }
