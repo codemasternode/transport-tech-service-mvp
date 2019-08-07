@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, mongo } from "mongoose";
 
 const VehicleSchema = new mongoose.Schema({
   name: {
@@ -37,8 +37,9 @@ const VehicleSchema = new mongoose.Schema({
   },
   blankJourneys: {
     type: Number,
-    required: true
+    required: true,
+    default: 10
   }
 });
 
-export default VehicleSchema;
+export default mongoose.model("vehicle", VehicleSchema);

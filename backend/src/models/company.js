@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import planTypes from "../enums/planTypes";
-import VehicleSchema from "./vehicle";
 import StaticCostSchema from "./staticCost";
 import CompanyBaseSchema from "./companyBase";
 import WorkerSchema from "./worker";
@@ -92,6 +91,10 @@ const CompanySchema = new mongoose.Schema(
       ref: "country",
       required: true
     },
+    createdAt: {
+      type: Date,
+      default: Date.now()
+    },
     users: [
       {
         type: Schema.Types.ObjectId,
@@ -99,24 +102,23 @@ const CompanySchema = new mongoose.Schema(
       }
     ],
     staticCosts: [StaticCostSchema],
-    vehicles: [VehicleSchema],
-    companyBases: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "companyBase"
-      }
-    ],
     workers: [WorkerSchema],
-    createdAt: {
-      type: Date,
-      default: Date.now()
+    vehicles: {
+      type: Array,
+      required: true,
+      default: []
     },
-    countries: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "country"
-      }
-    ]
+    companyBases: {
+      type: Array,
+      required: true,
+      default: []
+    },
+
+    countries: {
+      type: Array,
+      required: true,
+      default: []
+    }
   },
   { strict: false }
 );

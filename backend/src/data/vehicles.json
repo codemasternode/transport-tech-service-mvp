@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Truck 1",
+        "combustion": 28,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "7.80x2.40x2.40",
+        "deprecationPerYear": 15,
+        "valueOfTruck": 60000
+    },
+    {
+        "name": "Truck 2",
+        "combustion": 28,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "7.80x2.40x2.40",
+        "deprecationPerYear": 15,
+        "valueOfTruck": 60000
+    },
+    {
+        "name": "Truck 3",
+        "combustion": 28,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "7.80x2.40x2.40",
+        "deprecationPerYear": 15,
+        "valueOfTruck": 60000
+    }
+]

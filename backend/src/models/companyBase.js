@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import frequencyTypes from "../enums/frequencyType";
-import VehicleSchema from "./vehicle";
 
 const CompanyBaseSchema = new mongoose.Schema({
   name: {
@@ -10,16 +9,15 @@ const CompanyBaseSchema = new mongoose.Schema({
     maxlength: 50
   },
   street: {
-    type: Number,
+    type: String,
     required: true
   },
   postalCode: {
     type: String,
-    required: true,
-    enum: frequencyTypes
+    required: true
   },
   city: {
-    type: Number,
+    type: String,
     required: true
   },
   country: {
@@ -38,7 +36,11 @@ const CompanyBaseSchema = new mongoose.Schema({
       max: 90
     }
   },
-  vehicles: [VehicleSchema]
+  vehicles: {
+    type: Array,
+    required: true,
+    default: []
+  }
 });
 
 export default mongoose.model("companyBase", CompanyBaseSchema);

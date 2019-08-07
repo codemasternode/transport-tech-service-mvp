@@ -1,4 +1,5 @@
 import Company from "../models/company";
+import CompanyBase from '../models/companyBase'
 import { Types } from "mongoose";
 
 export async function getVehiclesByCompany(req, res) {

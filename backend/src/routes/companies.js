@@ -1,6 +1,7 @@
 import express from "express";
 import {
-  getCompanies,
+  confirmEmail,
+  getCompaniesByPage,
   getCompanyById,
   deleteCompanyByAdmin,
   postCompany,
@@ -13,7 +14,8 @@ import {
 const router = express.Router();
 
 export default () => {
-  router.get("/page/:page", getCompanies);
+  router.get("/confirm-email", confirmEmail);
+  router.get("/page/:page", getCompaniesByPage);
   router.get("/:id", getCompanyById);
   router.post("/", postCompany);
   router.put("/company-info/:id", putCompanyInfo);

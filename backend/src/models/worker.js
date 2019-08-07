@@ -21,6 +21,11 @@ const WorkerSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0
+  },
+  jobName: {
+    type: String,
+    default: "driver",
+    enum: ["driver", "service"]
   }
 });
 

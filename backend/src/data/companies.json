@@ -19,18 +19,6 @@
                 "frequency": "per week",
                 "returnedValue": 0
             }
-        ],
-        "vehicles": [
-            {
-                "name": "Ciężarówka nr 1",
-                "combustion": 33,
-                "capacity": 24,
-                "dimensionsOfTheHold": "13.6x2.4x2.7",
-                "deprecationPerYear": 15,
-                "fuel": "",
-                "valueOfTruck": 400000,
-                "blankJourneys": 10
-            }
         ]
     },
     {

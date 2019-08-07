@@ -3,6 +3,9 @@ import chai, { assert } from "chai";
 import server from "../index";
 import chaiHttp from "chai-http";
 import Company from "../models/company";
+import Country from "../models/country";
+import { Types } from "mongoose";
+
 const { expect } = chai;
 
 chai.use(chaiHttp);
@@ -30,7 +33,7 @@ describe("get one page of companies", function() {
 });
 
 describe("get company by id", function() {
-  it("should return company", function(done) {
+  it("should return 200", function(done) {
     Company.find({}).then(companies => {
       chai
         .request(server)
@@ -130,7 +133,7 @@ describe("create new company", function() {
   });
 });
 
-describe("update company-info on existing company", function(done) {
+describe("update company-info on existing company", function() {
   let update = {
     margin: 20
   };
@@ -198,3 +201,32 @@ describe("update company-info on existing company", function(done) {
     });
   });
 });
+
+describe("delete company by admin", function() {
+  let company = {
+    nameOfCompany: "Transport Tech Service 10 ",
+    name: "Marcin",
+    surname: "Warzybok",
+    taxNumber: "6793184304",
+    plan: "Enterprise",
+    email: "admin@teachtechservice.com",
+    _id: new Types.ObjectId()
+  };
+
+  it("should return 200 on delete", function(done) {
+    Country.find({ name: "PL" }).then(country => {
+      company.country = country._id;
+      console.log(company);
+      Company.create(company, function(savedCompany) {
+        console.log(savedCompany);
+        done();
+      });
+    });
+  });
+});
+
+describe("delete company by company", function() {});
+
+describe("update tax-info on existing company", function() {});
+
+describe("update company email", function() {});

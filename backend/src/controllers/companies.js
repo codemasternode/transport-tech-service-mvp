@@ -6,7 +6,7 @@ import { REDIS_INTERNAL_ERROR } from "../statuses/redisStatuses";
 import { CastError } from "mongoose";
 import uuid from "uuid/v1";
 
-export function getCompanies(req, res) {
+export function getCompaniesByPage(req, res) {
   const getAllCompanies = async function() {
     let companies = await CompanyModel.aggregate([
       {
