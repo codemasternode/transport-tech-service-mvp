@@ -231,7 +231,6 @@ export async function deleteCompanyByCompany(req, res) {
     .then(() => {
       //wyślij email potwierdzający usuwanie firmy
       console.log(req.body.email, req.body.name);
-
       let users = [
         {
           name: req.body.name,
