@@ -1,0 +1,56 @@
+[
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "plan": "Enterprise",
+        "email": "admin@teachtechservice.com",
+        "staticCosts": [
+            {
+                "name": "Telefon",
+                "value": 800,
+                "frequency": "per month",
+                "returnedValue": 0
+            },
+            {
+                "name": "Internet",
+                "value": 550,
+                "frequency": "per week",
+                "returnedValue": 0
+            }
+        ]
+    },
+    {
+        "nameOfCompany": "Transport Tech Service 2 ",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "plan": "Enterprise",
+        "email": "admi2n@teachtechservice.com"
+    },
+    {
+        "nameOfCompany": "Teach Tech Service",
+        "name": "Marcin 2",
+        "surname": "Warzybok 2",
+        "taxNumber": "6791184304",
+        "plan": "Enterprise",
+        "email": "admasdin@teachtechservice.com"
+    },
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "plan": "Enterprise",
+        "email": "admasdasdin@teachtechservice.com"
+    },
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "plan": "Enterprise",
+        "email": "a222dmin@teachtechservice.com"
+    }
+]
