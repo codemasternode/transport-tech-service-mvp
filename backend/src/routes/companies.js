@@ -20,7 +20,7 @@ export default () => {
   router.post("/", postCompany);
   router.put("/company-info/:id", putCompanyInfo);
   router.put("/tax-info/:id", putTaxInfo);
-  router.put("/pricing-plan/:id", putPricingPlan);
+  router.put("/pricing-plan/:email", putPricingPlan);
   router.delete("/admin-delete/:id", deleteCompanyByAdmin);
   router.delete("/company-delete/:id", deleteCompanyByCompany);
   return router;

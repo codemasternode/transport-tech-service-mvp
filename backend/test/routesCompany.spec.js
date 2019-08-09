@@ -7,7 +7,6 @@ import Country from "../src/models/country";
 import { Types } from "mongoose";
 import uuid from "uniqid";
 
-
 const { expect } = chai;
 
 chai.use(chaiHttp);
@@ -225,6 +224,65 @@ describe("delete company by admin", function() {
         done();
       });
     });
+  });
+});
+
+describe("update company pricing", function() {
+  it("should return 200", function(done) {
+    Company.updateOne(
+      {
+        email: "admin@teachtechservice.com"
+      },
+      { plan: "Basic" }
+    ).then(() => {
+      chai
+        .request(server)
+        .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
+        .send({ plan: "Pro" })
+        .end((err, res) => {
+          validResponse(err, res, 200);
+          done();
+        });
+    });
+  });
+  it("should return 304 on state without change", function(done) {
+    Company.updateOne(
+      {
+        email: "admin@teachtechservice.com"
+      },
+      {
+        plan: "Basic"
+      }
+    ).then(() => {
+      chai
+        .request(server)
+        .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
+        .send({ plan: "Pro" })
+        .end((err, res) => {
+          validResponse(err, res, 200);
+          done();
+        });
+    });
+  });
+  it("should return 404 on missing company", function(done) {
+    chai
+      .request(server)
+      .put(`/api/company/pricing-plan/abcdef@teachtechservice.com`)
+      .send({ plan: "Pro" })
+      .end((err, res) => {
+        validResponse(err, res, 404);
+        done();
+      });
+  });
+  it("should return 400 on missing plan", function(done) {
+    chai
+      .request(server)
+      .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
+      .send({})
+      .end((err, res) => {
+        validResponse(err, res, 400);
+        done();
+      });
   });
 });
 

@@ -71,7 +71,7 @@ export async function getCompanyById(req, res) {
 }
 
 export async function postCompany(req, res) {
-  console.log(req.body)
+  console.log(req.body);
   const country = await CountryModel.findOne({
     name: req.body.country
   });
@@ -86,7 +86,7 @@ export async function postCompany(req, res) {
   const newCompany = new CompanyModel({ ...req.body, country: country._id });
   newCompany.save(err => {
     if (err) {
-      console.log(err)
+      console.log(err);
       return res.status(400).send({ err });
     }
 
@@ -302,7 +302,7 @@ export async function putPricingPlan(req, res) {
     return res.status(400).send({});
   }
 
-  const company = await CompanyModel.findById(req.params.id);
+  const company = await CompanyModel.findOne({ email: req.params.email });
 
   if (!company) {
     return res.status(404).send({});
@@ -317,7 +317,7 @@ export async function putPricingPlan(req, res) {
   try {
     const updated = await CompanyModel.updateOne(
       {
-        _id: req.params.id
+        email: req.params.email
       },
       {
         $set: {
