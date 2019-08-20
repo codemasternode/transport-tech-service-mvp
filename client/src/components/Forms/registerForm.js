@@ -60,7 +60,7 @@ const useForm = initial => {
         errp: errp,
         errcp: errcp,
     })
-    const [isCheck, setCheckbox] = useState(false)
+    const [state, setState] = useState({ isCheck: false })
 
     const isFirstRun = useRef(true);
 
@@ -88,10 +88,9 @@ const useForm = initial => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
 
-    const handleCheckbox = name => e => {
-        console.log(e.target.checked, e.target.name)
-        setCheckbox({ [name]: e.target.checked })
-    }
+    const handleCheckbox = name => event => {
+        setState({ ...state, [name]: event.target.checked });
+    };
 
     const submitHandler = e => {
         e.preventDefault();
@@ -100,7 +99,7 @@ const useForm = initial => {
             console.log("SEND FRAJERA")
         }
     }
-    return [updateValue, submitHandler, errors, val, handleCheckbox, isCheck];
+    return [updateValue, submitHandler, errors, val, handleCheckbox, state];
 }
 
 export default useForm;

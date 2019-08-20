@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^4.0.0-rc.0",
+    "@material-ui/icons": "^4.2.1",
+    "material-ui-icons": "^1.0.0-beta.36",
     "mui-phone-input": "^1.0.4",
+    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-material-ui-form-validator": "^2.0.9",
     "react-phone-input-mui": "^2.9.4",
-<<<<<<< HEAD
     "react-router-dom": "^5.0.1",
-=======
->>>>>>> 2254e59d472b618a201ca487775dbb412e6fcd17
     "react-scripts": "3.0.1"
   },
   "scripts": {
