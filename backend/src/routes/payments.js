@@ -1,10 +1,10 @@
 import express from "express";
-import { redirectWithInfo } from "../controllers/payments";
+import { redirectWithInfo, acceptPayment } from "../controllers/payments";
 
 const router = express.Router();
 
 export default () => {
   router.post("/check", redirectWithInfo);
-  router.post("/check-payment")
+  router.post("/accept-payment", acceptPayment);
   return router;
 };

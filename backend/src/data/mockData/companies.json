@@ -1,0 +1,140 @@
+[
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "email": "admin@teachtechservice.com",
+        "staticCosts": [
+            {
+                "name": "Telefon",
+                "value": 800,
+                "frequency": "per month",
+                "returnedValue": 0
+            },
+            {
+                "name": "Internet",
+                "value": 550,
+                "frequency": "per week",
+                "returnedValue": 0
+            }
+        ],
+        "plan": {
+            "name": "Enterprise",
+            "vehicles": 10,
+            "companyBases": 2,
+            "users": 5
+        },
+        "workers": [
+            {
+                "name": "Marcin",
+                "lastname": "Warzybok",
+                "salary": 5300,
+                "jobName": "CEO"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 3300,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2500,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Kierowca"
+            },{
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Kierowca"
+            },
+            {
+                "name": "Jan",
+                "lastname": "Kowalski",
+                "salary": 2300,
+                "jobName": "Spedytor"
+            }
+        ]
+    },
+    {
+        "nameOfCompany": "Transport Tech Service 2 ",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "email": "admi2n@teachtechservice.com",
+        "plan": {
+            "name": "Enterprise",
+            "vehicles": 56,
+            "companyBases": 10,
+            "users": 10,
+            "price": 1200
+        }
+    },
+    {
+        "nameOfCompany": "Teach Tech Service",
+        "name": "Marcin 2",
+        "surname": "Warzybok 2",
+        "taxNumber": "6791184304",
+        "email": "admasdin@teachtechservice.com",
+        "plan": {
+            "name": "Basic",
+            "vehicles": 10,
+            "companyBases": 2,
+            "users": 5,
+            "price": 399
+        }
+    },
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "email": "admasdasdin@teachtechservice.com",
+        "plan": {
+            "name": "Pro",
+            "vehicles": 25,
+            "companyBases": 5,
+            "users": 15,
+            "price": 699
+        }
+    },
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "email": "a222dmin@teachtechservice.com",
+        "plan": {
+            "name": "Enterprise",
+            "vehicles": 112,
+            "companyBases": 5,
+            "users": 12,
+            "price": 1599
+        }
+    }
+]

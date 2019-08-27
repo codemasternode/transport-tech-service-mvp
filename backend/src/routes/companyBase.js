@@ -1,14 +1,11 @@
 
 import express from "express";
-import {} from "../controllers/companyBase";
+import { getBasesByCompany, createOrUpdateBase } from "../controllers/companyBase";
 
 const router = express.Router();
 
 export default () => {
-  router.get("/:company_id", getVehiclesByCompany);
-  router.get("/:id", getVehicleById);
-  router.post("/:company_id", postVehicle);
-  router.put("/:company_id/:id", putVehicle);
-  router.delete("/:company_id/:id", deleteVehicle);
+  router.get("/:company_id", getBasesByCompany);
+  router.post("/:company_id", createOrUpdateBase)
   return router;
 };
