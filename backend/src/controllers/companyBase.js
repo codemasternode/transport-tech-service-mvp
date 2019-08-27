@@ -61,7 +61,7 @@ export async function createOrUpdateBase(req, res) {
           }
         );
 
-        if(companyBaseStats.nModified === 0) {
+        if (companyBaseStats.nModified === 0) {
           throw { msg: "You don't modify CompanyBase" };
         }
 
@@ -108,6 +108,74 @@ export async function createOrUpdateBase(req, res) {
           throw { msg: "You don't modify companyBase in Company model" };
         }
       }
+      await session.commitTransaction();
+      session.endSession();
+      return true;
+    } catch (err) {
+      console.log(err);
+      await session.abortTransaction();
+      session.endSession();
+      throw err;
+    }
+  }
+}
+
+export async function overwriteCompanyBases(req, res) {
+  if (
+    !req.params.company_id ||
+    !Array.isArray(req.body.companyBases) ||
+    req.body.companyBases.length === 0
+  ) {
+    return res.status(400).send({});
+  }
+
+  const company = await Company.findById(req.params.company_id);
+
+  if (!company) {
+    return res.status(404).send({});
+  }
+
+  const companyBasesToRemove = company.companyBases.filter(value => {
+    return value._id;
+  });
+
+  console.log(companyBasesToRemove);
+
+  execute()
+    .then(() => {
+      res.send({});
+    })
+    .catch(err => {
+      res.status(400).send({ err });
+    });
+
+  async function execute() {
+    const session = await CompanyBase.startSession();
+    session.startTransaction();
+    try {
+      const companyBaseStats = await CompanyBase.deleteMany(
+        {
+          _id: {
+            $in: companyBasesToRemove
+          }
+        },
+        { session }
+      );
+
+      const companyBases = await CompanyBase.insertMany(req.body.companyBases);
+
+      const companyStats = await Company.updateOne(
+        {
+          _id: req.params.company_id
+        },
+        {
+          $set: {
+            companyBases
+          }
+        },
+        { session }
+      );
+
       await session.commitTransaction();
       session.endSession();
       return true;
