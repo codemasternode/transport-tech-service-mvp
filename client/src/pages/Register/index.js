@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import ReactPhoneInput from 'react-phone-input-mui';
-import useForm from '../components/Forms/Register/registerForm';
+import useForm from '../../components/Forms/registerForm';
 
 const themes = createMuiTheme({
     palette: {
@@ -85,10 +85,11 @@ const useStyles = makeStyles(theme => ({
     // '.Mui-error'
 }));
 
-export default function SignIn() {
+export default function Register() {
     const classes = useStyles();
-    const [updateValue, submitHandler, errors, val] = useForm({});
+    const [updateValue, submitHandler, errors, val, handleCheckbox, isCheck] = useForm({});
     console.log(val)
+    // const [isCheck, setCheckbox] = useState(false)
 
     return (
         <ThemeProvider theme={themes}>
@@ -102,7 +103,37 @@ export default function SignIn() {
                         </Typography>
                         <form className={classes.form} noValidate onSubmit={submitHandler}>
                             <Grid container spacing={2}>
-                                
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        autoComplete="fname"
+                                        name="firstName"
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="firstName"
+                                        label="Imie"
+                                        autoFocus
+                                        onChange={updateValue}
+                                        error={errors.length !== 0 && val.errfn}
+                                        className={classes.tts_input}
+                                    />
+                                    {errors.length !== 0 && errors.map(err => err.firstName ? <FormHelperText className={true ? 'tts-labelField' : 'tts_labelField_d'} error={errors.length !== 0 ? true : false}>{err.firstName}</FormHelperText> : "")}
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        id="lastName"
+                                        label="Nazwisko"
+                                        name="lastName"
+                                        autoComplete="lname"
+                                        onChange={updateValue}
+                                        error={errors.length !== 0 && val.errln}
+                                        className={classes.tts_input}
+                                    />
+                                    {errors && errors.map(err => err.lastName ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.lastName}</FormHelperText> : "")}
+                                </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="outlined"
@@ -122,34 +153,73 @@ export default function SignIn() {
                                         variant="outlined"
                                         required
                                         fullWidth
+                                        id="nip"
+                                        label="NIP"
+                                        name="nip"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
                                         name="password"
                                         label="Password"
                                         type="password"
                                         id="password"
+                                        onChange={updateValue}
+                                        error={val.errp}
                                         autoComplete="current-password"
+                                    />
+                                    {errors && errors.map(err => err.password ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.password}</FormHelperText> : null)}
+
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        name="confirmPassword"
+                                        label="Potwierdź hasło"
+                                        type="password"
+                                        id="confirmPassword"
+                                        onChange={updateValue}
+                                        error={val.errcp}
+                                        autoComplete="current-password"
+                                    />
+                                    {errors && errors.map(err => err.confirmPassword ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.confirmPassword}</FormHelperText> : null)}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        hintText="Phone"
+                                        floatingLabelText="Phone"
+                                        name="phone"
+                                        fullWidth
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                        control={<Checkbox value="isCheck" color="primary" name="isCheck" onChange={handleCheckbox('isCheck')} checked={isCheck} />}
                                         label="I want to receive inspiration, marketing promotions and updates via email."
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid className={classes.submit_label}><Button
-                                type="submit"
-                                disabled={errors ? true : false}
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                            >
-                                Wyślij
-          </Button></Grid>
+                            <Grid className={classes.submit_label}>
+                                <Button
+                                    type="submit"
+                                    disabled={val.errfn && val.errln && val.errem ? true : false}
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Wyślij
+                                </Button>
+                            </Grid>
                             <Grid container justify="flex-end">
                                 <Grid item>
-                                    <Link href="#" variant="body2">
-                                        Already have an account? Sign in
-              </Link>
+                                    <Link href="/login" variant="body2">
+                                        Masz już konto? Zaloguj się
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </form>
