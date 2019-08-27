@@ -1,6 +1,6 @@
 import Company from "../models/company";
 import CompanyBase from "../models/companyBase";
-import { Types } from "mongoose";
+import { Types, Schema } from "mongoose";
 
 export async function getBasesByCompany(req, res) {
   if (!req.params.company_id) {
@@ -49,7 +49,7 @@ export async function createOrUpdateBase(req, res) {
 
     try {
       if (req.body._id) {
-        const A = await CompanyBase.updateOne(
+        const companyBaseStats = await CompanyBase.updateOne(
           { _id: req.body._id },
           {
             $set: {
@@ -61,36 +61,41 @@ export async function createOrUpdateBase(req, res) {
           }
         );
 
+        if(companyBaseStats.nModified === 0) {
+          throw { msg: "You don't modify CompanyBase" };
+        }
+
         const generateSetParam = {};
         for (let key in req.body) {
-          generateSetParam["companyBases.$[element]." + key] = req.body[key];
+          if (key !== "_id") {
+            generateSetParam["companyBases.$[element]." + key] = req.body[key];
+          }
         }
         console.log(generateSetParam);
 
-        const B = await Company.updateOne(
+        const companyStats = await Company.updateOne(
           {
             _id: req.params.company_id
           },
           {
-            $set: {
-              "companyBases.$[element].street": "ul.Małapolska 123"
-            }
+            $set: generateSetParam
           },
           {
-            arrayFilters: [
-              { "element._id": ObjectId("5d652c6b2af78e6889a2458d") }
-            ],
+            arrayFilters: [{ "element._id": new Types.ObjectId(req.body._id) }],
             session
           }
         );
+        if (companyStats.nModified === 0) {
+          throw { msg: "You don't modify companyBase in Company model" };
+        }
       } else {
         const [companyBase] = await CompanyBase.create([{ ...req.body }], {
           session
         });
         console.log(companyBase);
-        const B = await Company.updateOne(
+        const stats = await Company.updateOne(
           {
-            _id: req.params._id
+            _id: req.params.company_id
           },
           {
             $push: { companyBases: companyBase }
@@ -99,12 +104,15 @@ export async function createOrUpdateBase(req, res) {
             session
           }
         );
-        console.log(B);
+        if (stats.nModified === 0) {
+          throw { msg: "You don't modify companyBase in Company model" };
+        }
       }
       await session.commitTransaction();
       session.endSession();
       return true;
     } catch (err) {
+      console.log(err);
       await session.abortTransaction();
       session.endSession();
       throw err;
