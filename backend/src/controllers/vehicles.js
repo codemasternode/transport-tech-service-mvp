@@ -8,14 +8,13 @@ export async function getVehiclesByCompany(req, res) {
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
-  const company = await Company.findById(req.params.company_id);
 
-  if (!company) {
-    return res.status(404).send({});
-  }
+  const vehicles = await Company.distinct("companyBases.vehicles", {
+    _id: new Types.ObjectId(req.params.company_id)
+  });
 
   res.send({
-    vehicles: company.vehicles
+    vehicles
   });
 }
 
@@ -191,7 +190,7 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
     }
   }
 
-  console.log(vehiclesToRemove)
+  console.log(vehiclesToRemove);
 
   execute()
     .then(() => {
