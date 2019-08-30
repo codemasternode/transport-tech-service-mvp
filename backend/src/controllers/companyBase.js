@@ -1,6 +1,6 @@
 import Company from "../models/company";
 import CompanyBase from "../models/companyBase";
-import { Types, Schema } from "mongoose";
+import { Types } from "mongoose";
 
 export async function getBasesByCompany(req, res) {
   if (!req.params.company_id) {
@@ -30,9 +30,9 @@ export async function createOrUpdateBase(req, res) {
   }
 
   if (company.plan.companyBases === company.companyBases.length) {
-    return res
-      .status(400)
-      .send({ msg: "You reached max number of company bases" });
+    return res.status(400).send({
+      msg: `You reached max number of company bases: ${company.plan.companyBases}`
+    });
   }
 
   execute()
@@ -133,6 +133,14 @@ export async function overwriteCompanyBases(req, res) {
 
   if (!company) {
     return res.status(404).send({});
+  }
+
+  if (req.body.companyBases.length > company.plan.companyBases) {
+    return res
+      .status(400)
+      .send({
+        msg: `You reached max number of company bases: ${company.plan.companyBases}`
+      });
   }
 
   const companyBasesToRemove = company.companyBases.filter(value => {

@@ -16,13 +16,13 @@ export default async URI => {
     console.log(`Connected to MongoDB on port ${URI}`);
   });
 
-  const data = await loadData([
-    "mockData/companies.json", //0
-    "mockData/vehicles.json", // 1
-    "mockData/companyBases.json", //2
-    "default/countries.json", //3
-    "default/fuels.json" // 4
-  ]);
+  // const data = await loadData([
+  //   "mockData/companies.json", //0
+  //   "mockData/vehicles.json", // 1
+  //   "mockData/companyBases.json", //2
+  //   "default/countries.json", //3
+  //   "default/fuels.json" // 4
+  // ]);
 
   // await Promise.all([
   //   Country.deleteMany({}),
@@ -48,16 +48,15 @@ export default async URI => {
   //   companyBases[i].country = savedCountries[0]._id;
   // }
   // companyBases[0].vehicles = savedVehicles;
-
+  // companyBases[1].vehicles = [savedVehicles[0]]
   // const savedCompanyBases = await CompanyBase.insertMany(companyBases);
-
   // const companies = data[0];
 
   // for (let i = 0; i < companies.length; i++) {
   //   companies[i].country = savedCountries[0]._id;
   //   companies[i].countries = [savedCountries[0]._id, savedCountries[1]._id];
   // }
-  // companies[0].companyBases = savedCompanyBases;
-
+  // companies[0].companyBases = [savedCompanyBases[0],savedCompanyBases[3],savedCompanyBases[4]];
+  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]]
   // await Company.insertMany(companies);
 };
