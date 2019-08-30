@@ -199,33 +199,31 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
       const savedVehicles = await Vehicle.insertMany([...vehicles], {
         session
       });
+
       const setCompanyBase = {};
       const arrayFilters = [];
-
-      const groupByCompanyBases = [];
 
       for (let i = 0; i < vehicles.length; i++) {
         vehicles[i]._id = savedVehicles[i]._id;
         for (let k = 0; k < vehicles[i].companyBasesId.length; k++) {
           let couped = { ...vehicles[i] };
           delete couped.companyBasesId;
-          if (setCompanyBase[`filter${vehicles[i].companyBasesId[k]}`]) {
-            setCompanyBase[`filter${vehicles[i].companyBasesId[k]}`].push(
-              couped
-            );
+          if (setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`]) {
+            setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`].push(couped);
           } else {
-            setCompanyBase[`filter${vehicles[i].companyBasesId[k]}`] = [couped];
+            setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`] = [couped];
           }
-          let isInside = false
-          for(let m = 0; m < arrayFilters.length; m++) {
-            if(arrayFilters[m][`filter${vehicles[i].companyBasesId[k]}._id`]) {
-              isInside = true
+          let isInside = false;
+          for (let m = 0; m < arrayFilters.length; m++) {
+            if (arrayFilters[m][`filter${vehicles[i].companyBasesId[k]}._id`]) {
+              isInside = true;
             }
           }
-          if(!isInside) {
+          if (!isInside) {
             arrayFilters.push({
-              [`filter${vehicles[i].companyBasesId[k]}._id`]: vehicles[i]
-                .companyBasesId[k]
+              [`filter${vehicles[i].companyBasesId[k]}._id`]: new Types.ObjectId(
+                vehicles[i].companyBasesId[k]
+              )
             });
           }
         }
@@ -234,6 +232,7 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
       console.log(setCompanyBase);
       console.log(arrayFilters);
 
+      console.log(req.params.company_id);
       const companyStats = await Company.updateOne(
         { _id: req.params.company_id },
         {
