@@ -142,7 +142,25 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
   }
 
   const vehicles = [];
+  const setCompanyBase = {};
+  const arrayFilters = [];
+
   for (let i = 0; i < req.body.companyBases.length; i++) {
+    if (!req.body.companyBases[i].vehicles) {
+      return res.status(400).send({
+        msg: "You don't have vehicles property"
+      });
+    }
+    if (req.body.companyBases[i].vehicles.length === 0) {
+      setCompanyBase[
+        `companyBases.$[filter${req.body.companyBases[i]._id}].vehicles`
+      ] = [];
+      arrayFilters.push({
+        [`filter${req.body.companyBases[i]._id}._id`]: new Types.ObjectId(
+          req.body.companyBases[i]._id
+        )
+      });
+    }
     for (let k = 0; k < req.body.companyBases[i].vehicles.length; k++) {
       let isInside = false;
       for (let m = 0; m < vehicles.length; m++) {
@@ -200,18 +218,23 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
         session
       });
 
-      const setCompanyBase = {};
-      const arrayFilters = [];
-
       for (let i = 0; i < vehicles.length; i++) {
         vehicles[i]._id = savedVehicles[i]._id;
         for (let k = 0; k < vehicles[i].companyBasesId.length; k++) {
           let couped = { ...vehicles[i] };
           delete couped.companyBasesId;
-          if (setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`]) {
-            setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`].push(couped);
+          if (
+            setCompanyBase[
+              `companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`
+            ]
+          ) {
+            setCompanyBase[
+              `companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`
+            ].push(couped);
           } else {
-            setCompanyBase[`companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`] = [couped];
+            setCompanyBase[
+              `companyBases.$[filter${vehicles[i].companyBasesId[k]}].vehicles`
+            ] = [couped];
           }
           let isInside = false;
           for (let m = 0; m < arrayFilters.length; m++) {
@@ -229,10 +252,9 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
         }
       }
 
-      console.log(setCompanyBase);
-      console.log(arrayFilters);
+      console.log(setCompanyBase)
+      console.log(arrayFilters)
 
-      console.log(req.params.company_id);
       const companyStats = await Company.updateOne(
         { _id: req.params.company_id },
         {
@@ -243,7 +265,6 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
           session
         }
       );
-      console.log(companyStats);
 
       await session.commitTransaction();
       session.endSession();
