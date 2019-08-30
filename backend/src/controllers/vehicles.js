@@ -148,7 +148,7 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
   for (let i = 0; i < req.body.companyBases.length; i++) {
     if (!req.body.companyBases[i].vehicles) {
       return res.status(400).send({
-        msg: "You don't have vehicles property"
+        msg: "You don't have vehicles property in one of the objects"
       });
     }
     if (req.body.companyBases[i].vehicles.length === 0) {
@@ -191,6 +191,8 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
     }
   }
 
+  console.log(vehiclesToRemove)
+
   execute()
     .then(() => {
       res.send({});
@@ -214,9 +216,13 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
         { session }
       );
 
+      console.log(vehicleStats, 217);
+
       const savedVehicles = await Vehicle.insertMany([...vehicles], {
         session
       });
+
+      console.log(savedVehicles);
 
       for (let i = 0; i < vehicles.length; i++) {
         vehicles[i]._id = savedVehicles[i]._id;
@@ -252,9 +258,6 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
         }
       }
 
-      console.log(setCompanyBase)
-      console.log(arrayFilters)
-
       const companyStats = await Company.updateOne(
         { _id: req.params.company_id },
         {
@@ -280,7 +283,6 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
 
 export async function putVehicle(req, res) {
   const { company_id, id } = req.params;
-  console.log("abc");
   if (!company_id || !id) {
     return res.status(400).send({});
   }

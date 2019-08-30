@@ -47,7 +47,7 @@ export default async URI => {
   // for (let i = 0; i < companyBases.length; i++) {
   //   companyBases[i].country = savedCountries[0]._id;
   // }
-  // companyBases[0].vehicles = savedVehicles;
+  // companyBases[0].vehicles = [savedVehicles[1], savedVehicles[2], savedVehicles[3]];
   // companyBases[1].vehicles = [savedVehicles[0]]
   // const savedCompanyBases = await CompanyBase.insertMany(companyBases);
   // const companies = data[0];
