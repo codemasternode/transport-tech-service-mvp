@@ -66,18 +66,6 @@
                 "lastname": "Kowalski",
                 "salary": 2300,
                 "jobName": "Kierowca"
-            },
-            {
-                "name": "Jan",
-                "lastname": "Kowalski",
-                "salary": 2300,
-                "jobName": "Kierowca"
-            },
-            {
-                "name": "Jan",
-                "lastname": "Kowalski",
-                "salary": 2300,
-                "jobName": "Spedytor"
             }
         ]
     },

@@ -26,18 +26,22 @@ export async function postStaticCost(req, res) {
     return res.status(404).send({});
   }
 
-  Company.updateOne(
-    { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { staticCosts: req.body.staticCost } }
-  )
-    .then(stat => {
-      console.log(stat);
-      res.send({});
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send({});
-    });
+  let companyStats;
+
+  try {
+    companyStats = await Company.updateOne(
+      { _id: new Types.ObjectId(req.params.company_id) },
+      { $push: { staticCosts: req.body.staticCost } }
+    );
+  } catch (err) {
+    return res.status(400).send({});
+  }
+
+  if (companyStats.n === 0) {
+    return res.status(404).send({});
+  }
+
+  res.send({});
 }
 
 export async function overwriteStaticCosts(req, res) {
@@ -46,7 +50,6 @@ export async function overwriteStaticCosts(req, res) {
   }
 
   let companyStats;
-  console.log(req.body.staticCosts)
   try {
     companyStats = await Company.update(
       { _id: new Types.ObjectId(req.params.company_id) },
@@ -60,10 +63,10 @@ export async function overwriteStaticCosts(req, res) {
     return res.status(400).send({});
   }
 
-  if(companyStats.n === 0) {
+  if (companyStats.n === 0) {
     return res.status(404).send({
       msg: "Company doesn't exists"
-    })
+    });
   }
 
   res.send({});

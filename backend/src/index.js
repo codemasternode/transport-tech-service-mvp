@@ -20,10 +20,10 @@ mongodbConnection(MONGO_DB_URL);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/company-bases", companyBasesRoutes())
-app.use("/api/vehicle", vehiclesRoutes());
+app.use("/api/vehicles", vehiclesRoutes());
 app.use("/api/static-costs", staticCostsRoutes());
 app.use("/api/company", companiesRoutes());
-app.use("/api/worker", workersRoutes());
+app.use("/api/workers", workersRoutes());
 app.use("/api/payments", paymentsRoutes());
 
 
