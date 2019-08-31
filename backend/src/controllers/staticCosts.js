@@ -12,14 +12,18 @@ export async function getStaticCostsByCompany(req, res) {
   }
 
   res.send({
-    company
+    staticCosts: company.staticCosts
   });
 }
 
 export async function postStaticCost(req, res) {
-  console.log("asd");
   if (!req.params.company_id) {
     return res.status(400).send({});
+  }
+  const company = await Company.findById(req.params.company_id);
+
+  if (!company) {
+    return res.status(404).send({});
   }
 
   Company.updateOne(
@@ -36,9 +40,38 @@ export async function postStaticCost(req, res) {
     });
 }
 
+export async function overwriteStaticCosts(req, res) {
+  if (!req.params.company_id || !Array.isArray(req.body.staticCosts)) {
+    return res.status(400).send({});
+  }
+
+  let companyStats;
+  console.log(req.body.staticCosts)
+  try {
+    companyStats = await Company.update(
+      { _id: new Types.ObjectId(req.params.company_id) },
+      {
+        $set: {
+          staticCosts: req.body.staticCosts
+        }
+      }
+    );
+  } catch (err) {
+    return res.status(400).send({});
+  }
+
+  if(companyStats.n === 0) {
+    return res.status(404).send({
+      msg: "Company doesn't exists"
+    })
+  }
+
+  res.send({});
+}
+
 export async function putStaticCost(req, res) {
   const { company_id, id } = req.params;
-  console.log("static")
+  console.log("static");
   if (!company_id || !id) {
     return res.status(400).send({});
   }
