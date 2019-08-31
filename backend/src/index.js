@@ -5,7 +5,8 @@ import vehiclesRoutes from "./routes/vehicles";
 import staticCostsRoutes from "./routes/staticCosts";
 import workersRoutes from "./routes/workers";
 import paymentsRoutes from "./routes/payments";
-import companyBasesRoutes from './routes/companyBase'
+import companyBasesRoutes from "./routes/companyBase";
+import usersRoutes from "./routes/users";
 import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
 import redisClient from "./config/redis";
@@ -19,13 +20,13 @@ mongodbConnection(MONGO_DB_URL);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/api/company-bases", companyBasesRoutes())
+app.use("/api/company-bases", companyBasesRoutes());
 app.use("/api/vehicles", vehiclesRoutes());
 app.use("/api/static-costs", staticCostsRoutes());
 app.use("/api/company", companiesRoutes());
 app.use("/api/workers", workersRoutes());
+app.use("/api/users", usersRoutes());
 app.use("/api/payments", paymentsRoutes());
-
 
 app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);

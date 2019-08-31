@@ -51,7 +51,7 @@ export async function overwriteStaticCosts(req, res) {
 
   let companyStats;
   try {
-    companyStats = await Company.update(
+    companyStats = await Company.updateOne(
       { _id: new Types.ObjectId(req.params.company_id) },
       {
         $set: {

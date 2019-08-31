@@ -1,1 +1,1 @@
-export default ["user", "admin", "root"];
+export default ["user", "admin"];

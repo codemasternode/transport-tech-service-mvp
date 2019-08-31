@@ -7,6 +7,7 @@ import CompanyBase from "../models/companyBase";
 import Fuel from "../models/fuel";
 import Country from "../models/country";
 import Vehicle from "../models/vehicle";
+import User from "../models/user";
 
 export default async URI => {
   mongoose.connect(URI, { useNewUrlParser: true, replicaSet: "rs0" }, err => {
@@ -21,7 +22,8 @@ export default async URI => {
   //   "mockData/vehicles.json", // 1
   //   "mockData/companyBases.json", //2
   //   "default/countries.json", //3
-  //   "default/fuels.json" // 4
+  //   "default/fuels.json", // 4
+  //   "mockData/users.json" //5
   // ]);
 
   // await Promise.all([
@@ -29,36 +31,53 @@ export default async URI => {
   //   Fuel.deleteMany({}),
   //   Vehicle.deleteMany({}),
   //   Company.deleteMany({}),
-  //   CompanyBase.deleteMany({})
+  //   CompanyBase.deleteMany({}),
+  //   User.deleteMany({})
   // ]);
 
-  // const [savedCountries, savedFuels] = await Promise.all([
-  //   Country.insertMany(data[3]),
-  //   Fuel.insertMany(data[4])
+  // const [savedCountries, savedFuels, savedUsers] = await Promise.all([
+  //   Country.create(data[3]),
+  //   Fuel.create(data[4]),
+  //   User.create(data[5])
   // ]);
 
   // const vehicles = data[1];
   // for (let i = 0; i < vehicles.length; i++) {
   //   vehicles[i].fuel = savedFuels[2];
   // }
-  // const savedVehicles = await Vehicle.insertMany(vehicles);
+  // const savedVehicles = await Vehicle.create(vehicles);
 
   // const companyBases = data[2];
   // for (let i = 0; i < companyBases.length; i++) {
   //   companyBases[i].country = savedCountries[0]._id;
   // }
-  // companyBases[0].vehicles = [savedVehicles[1], savedVehicles[2], savedVehicles[3]];
-  // companyBases[3].vehicles = [savedVehicles[1], savedVehicles[2]]
-  // companyBases[1].vehicles = [savedVehicles[0]]
-  // companyBases[2].vehicles = [savedVehicles[0]]
-  // const savedCompanyBases = await CompanyBase.insertMany(companyBases);
+
+  // companyBases[0].vehicles = [
+  //   savedVehicles[1],
+  //   savedVehicles[2],
+  //   savedVehicles[3]
+  // ];
+
+  // companyBases[3].vehicles = [savedVehicles[1], savedVehicles[2]];
+  // companyBases[1].vehicles = [savedVehicles[0]];
+  // companyBases[2].vehicles = [savedVehicles[0]];
+
+  // const savedCompanyBases = await CompanyBase.create(companyBases);
   // const companies = data[0];
 
   // for (let i = 0; i < companies.length; i++) {
   //   companies[i].country = savedCountries[0]._id;
   //   companies[i].countries = [savedCountries[0]._id, savedCountries[1]._id];
   // }
-  // companies[0].companyBases = [savedCompanyBases[0],savedCompanyBases[3],savedCompanyBases[4]];
-  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]]
-  // await Company.insertMany(companies);
+  // companies[0].companyBases = [
+  //   savedCompanyBases[0],
+  //   savedCompanyBases[3],
+  //   savedCompanyBases[4]
+  // ];
+
+  // companies[0].users = [savedUsers[0], savedUsers[1], savedUsers[2]];
+  // companies[1].users = [savedUsers[3]];
+
+  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]];
+  // await Company.create(companies);
 };

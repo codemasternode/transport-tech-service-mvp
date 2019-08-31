@@ -50,7 +50,7 @@ export async function overwriteWorkers(req, res) {
   console.log(req.body.workers)
   let companyStats;
   try {
-    companyStats = await Company.update(
+    companyStats = await Company.updateOne(
       { _id: new Types.ObjectId(req.params.company_id) },
       {
         $set: {

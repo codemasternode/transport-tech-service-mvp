@@ -18,7 +18,7 @@ export async function getBasesByCompany(req, res) {
 }
 
 export async function createOrUpdateBase(req, res) {
-  console.log(req.params.company_id);
+  
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
