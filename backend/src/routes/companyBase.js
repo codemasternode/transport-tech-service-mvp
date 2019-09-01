@@ -8,8 +8,8 @@ import {
 const router = express.Router();
 
 export default () => {
+  router.post("/overwrite/:company_id", overwriteCompanyBases);
   router.get("/:company_id", getBasesByCompany);
   router.post("/:company_id", createOrUpdateBase);
-  router.post("/overwrite/:company_id", overwriteCompanyBases);
   return router;
 };

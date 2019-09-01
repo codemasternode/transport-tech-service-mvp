@@ -1,5 +1,6 @@
 import Company from "../models/company";
 import CompanyBase from "../models/companyBase";
+import Vehicle from "../models/vehicle";
 import { Types } from "mongoose";
 
 export async function getBasesByCompany(req, res) {
@@ -28,7 +29,12 @@ export async function createOrUpdateBase(req, res) {
     return res.status(400).send({});
   }
 
-  const company = await Company.findById(req.params.company_id);
+  let company;
+  try {
+    company = await Company.findById(req.params.company_id);
+  } catch (err) {
+    return res.status(400).send({ err });
+  }
 
   if (!company) {
     return res.status(404).send({});
@@ -53,12 +59,36 @@ export async function createOrUpdateBase(req, res) {
     session.startTransaction();
 
     try {
+      const vehiclesToRemove = [];
+
+      for (let i = 0; i < company.companyBases.length; i++) {
+        if (company.companyBases[i]._id === req.body._id) {
+          vehiclesToRemove = company.companyBases[i].vehicles.map(value => {
+            return value._id;
+          });
+          break;
+        }
+      }
+
+      const deleteStats = await Vehicle.deleteMany(
+        {
+          _id: { $in: vehiclesToRemove }
+        },
+        { session }
+      );
+
+      let vehicles = [];
+      if (req.body.vehicles && req.body.vehicles.length > 0) {
+        vehicles = await Vehicle.create(req.body.vehicles, { session });
+      }
+
       if (req.body._id) {
         const companyBaseStats = await CompanyBase.updateOne(
           { _id: req.body._id },
           {
             $set: {
-              ...req.body
+              ...req.body,
+              vehicles
             }
           },
           {
@@ -76,7 +106,7 @@ export async function createOrUpdateBase(req, res) {
             generateSetParam["companyBases.$[element]." + key] = req.body[key];
           }
         }
-        console.log(generateSetParam);
+        generateSetParam["companyBases.$[element].vehicles"] = vehicles;
 
         const companyStats = await Company.updateOne(
           {
@@ -94,10 +124,13 @@ export async function createOrUpdateBase(req, res) {
           throw { msg: "You don't modify companyBase in Company model" };
         }
       } else {
-        const [companyBase] = await CompanyBase.create([{ ...req.body }], {
-          session
-        });
-        console.log(companyBase);
+        const [companyBase] = await CompanyBase.create(
+          [{ ...req.body, vehicles }],
+          {
+            session
+          }
+        );
+
         const stats = await Company.updateOne(
           {
             _id: req.params.company_id
