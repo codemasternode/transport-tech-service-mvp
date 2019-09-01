@@ -71,7 +71,6 @@ export async function getCompanyById(req, res) {
 }
 
 export async function postCompany(req, res) {
-  console.log(req.body);
   const country = await CountryModel.findOne({
     name: req.body.country
   });
@@ -86,7 +85,6 @@ export async function postCompany(req, res) {
   const newCompany = new CompanyModel({ ...req.body, country: country._id });
   newCompany.save(err => {
     if (err) {
-      console.log(err);
       return res.status(400).send({ err });
     }
 
@@ -94,8 +92,6 @@ export async function postCompany(req, res) {
       expireAt = new Date();
     expireAt.setDate(expireAt.getDate() + 1);
     setToConfirmEmailStack(code, req.body.email);
-    console.log(code);
-    console.log(`${process.env.URL}/api/company/confirm-email/${code}`);
     let users = [
       {
         name: req.body.name,
@@ -230,7 +226,6 @@ export async function deleteCompanyByCompany(req, res) {
   setToDeleteCompanyStack(key, company.id)
     .then(() => {
       //wyślij email potwierdzający usuwanie firmy
-      console.log(req.body.email, req.body.name);
       let users = [
         {
           name: req.body.name,
@@ -342,7 +337,6 @@ export async function confirmEmail(req, res) {
 
   getFromConfirmEmailStack(req.params.codeConfirm)
     .then(response => {
-      console.log(response);
       CompanyModel.updateOne(
         {
           email: response.message
@@ -357,7 +351,6 @@ export async function confirmEmail(req, res) {
       });
     })
     .catch(err => {
-      console.log(err);
       if (err === NOT_FOUND_KEY) {
         res.redirect("/registration/checkEmail?ok=NOT_FOUND_KEY");
       } else {

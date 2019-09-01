@@ -1,9 +1,9 @@
 import "babel-polyfill";
 import chai, { assert } from "chai";
-import server from "../src/index";
+import server from "../../src/index";
 import chaiHttp from "chai-http";
-import Company from "../src/models/company";
-import Country from "../src/models/country";
+import Company from "../../src/models/company";
+import Country from "../../src/models/country";
 import { Types } from "mongoose";
 import uuid from "uniqid";
 
@@ -95,7 +95,7 @@ describe("create new company", function() {
       });
   });
 
-  it("should return 400 on missing required property", function(done) {
+  it("should return 400 on missing required property (email)", function(done) {
     let { email, ...wrongCompany } = company;
     chai
       .request(server)
@@ -218,9 +218,7 @@ describe("delete company by admin", function() {
   it("should return 200 on delete", function(done) {
     Country.find({ name: "PL" }).then(country => {
       company.country = country._id;
-      console.log(company);
       Company.create(company, function(savedCompany) {
-        console.log(savedCompany);
         done();
       });
     });

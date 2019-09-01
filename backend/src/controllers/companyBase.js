@@ -6,7 +6,13 @@ export async function getBasesByCompany(req, res) {
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
-  const company = await Company.findById(req.params.company_id);
+
+  let company;
+  try {
+    company = await Company.findById(req.params.company_id);
+  } catch (err) {
+    return res.status(400).send({ err });
+  }
 
   if (!company) {
     return res.status(404).send({});
@@ -18,7 +24,6 @@ export async function getBasesByCompany(req, res) {
 }
 
 export async function createOrUpdateBase(req, res) {
-  
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
@@ -136,11 +141,9 @@ export async function overwriteCompanyBases(req, res) {
   }
 
   if (req.body.companyBases.length > company.plan.companyBases) {
-    return res
-      .status(400)
-      .send({
-        msg: `You reached max number of company bases: ${company.plan.companyBases}`
-      });
+    return res.status(400).send({
+      msg: `You reached max number of company bases: ${company.plan.companyBases}`
+    });
   }
 
   const companyBasesToRemove = company.companyBases.filter(value => {
