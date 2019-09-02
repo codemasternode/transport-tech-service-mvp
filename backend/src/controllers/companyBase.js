@@ -183,8 +183,6 @@ export async function overwriteCompanyBases(req, res) {
     return value._id;
   });
 
-  console.log(companyBasesToRemove);
-
   execute()
     .then(() => {
       res.send({});

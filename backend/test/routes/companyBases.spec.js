@@ -8,6 +8,7 @@ import CompanyBase from "../../src/models/companyBase";
 import Country from "../../src/models/country";
 import { Types } from "mongoose";
 import uuid from "uniqid";
+import { isEqual } from "../../src/helpers/object";
 
 const { expect } = chai;
 
@@ -161,5 +162,79 @@ describe("create or update company base", function() {
 
         done();
       });
+  });
+
+  it("should return 200 on update existing company base", function(done) {
+    const vehiclesNames = [
+      `Updated Truck ${uuid()}`,
+      `Updated Truck ${uuid()}`
+    ];
+    const companyBaseName = `Updated Company Base ${uuid()}`;
+
+    const toUpdate = {
+      ...companyBase,
+      name: companyBaseName,
+      vehicles: [
+        {
+          name: vehiclesNames[0],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        },
+        {
+          name: vehiclesNames[1],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        }
+      ]
+    };
+
+    Company.findOne({
+      _id: new Types.ObjectId(companyId)
+    }).then(company => {
+      const companyBaseId = company.companyBases[0]._id;
+      toUpdate._id = companyBaseId;
+      chai
+        .request(server)
+        .post(`/api/company-bases/${companyId}`)
+        .send(toUpdate)
+        .end(async (err, res) => {
+          validResponse(err, res, 200);
+
+          const company = await Company.findOne({
+            _id: new Types.ObjectId(companyId)
+          });
+
+          const companyBase = await CompanyBase.findOne({
+            name: companyBaseName
+          });
+          assert(
+            companyBase,
+            `You don't update company base: ${companyBaseName}`
+          );
+
+          const vehicles = await Vehicle.find({
+            name: {
+              $in: vehiclesNames
+            }
+          });
+
+          assert(vehicles.length === 2, "You don't insert vehicles");
+          assert(
+            vehiclesNames.includes(companyBase.vehicles[0].name) &&
+              vehiclesNames.includes(companyBase.vehicles[1].name),
+            "You don't update company bases vehicles in CompanyBase model"
+          );
+
+          done();
+        });
+    });
   });
 });
