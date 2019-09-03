@@ -20,7 +20,8 @@ function validResponse(err, res, status) {
   expect(res).to.be.json;
   expect(res.body).to.be.an("object");
 }
-const companyId = "5d6ba1d4b46b9b35d4878643"; //choose company_id with companyBases
+const companyId = "5d6ed24d8c333c46bf516f3f"; //choose company_id with companyBases
+
 describe("get company bases by company_id", function() {
   it("should return 200", function(done) {
     chai
@@ -233,6 +234,160 @@ describe("create or update company base", function() {
             "You don't update company bases vehicles in CompanyBase model"
           );
 
+          done();
+        });
+    });
+  });
+
+  it("should return 400 on update not existing company base", function(done) {
+    const vehiclesNames = [
+      `Updated Truck ${uuid()}`,
+      `Updated Truck ${uuid()}`
+    ];
+    const companyBaseName = `Updated Company Base ${uuid()}`;
+
+    const toUpdate = {
+      ...companyBase,
+      name: companyBaseName,
+      vehicles: [
+        {
+          name: vehiclesNames[0],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        },
+        {
+          name: vehiclesNames[1],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        }
+      ]
+    };
+
+    Company.findOne({
+      _id: new Types.ObjectId(companyId)
+    }).then(company => {
+      const companyBaseId = company.companyBases[0]._id;
+      toUpdate._id = "5d6ed7033131281e46d6eb35";
+      chai
+        .request(server)
+        .post(`/api/company-bases/${companyId}`)
+        .send(toUpdate)
+        .end(async (err, res) => {
+          validResponse(err, res, 400);
+          done();
+        });
+    });
+  });
+
+  it("should return 400 on update not existing company base with wrong id", function(done) {
+    const vehiclesNames = [
+      `Updated Truck ${uuid()}`,
+      `Updated Truck ${uuid()}`
+    ];
+    const companyBaseName = `Updated Company Base ${uuid()}`;
+
+    const toUpdate = {
+      ...companyBase,
+      name: companyBaseName,
+      vehicles: [
+        {
+          name: vehiclesNames[0],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        },
+        {
+          name: vehiclesNames[1],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        }
+      ]
+    };
+
+    Company.findOne({
+      _id: new Types.ObjectId(companyId)
+    }).then(company => {
+      const companyBaseId = company.companyBases[0]._id;
+      toUpdate._id = "aaaaa";
+      chai
+        .request(server)
+        .post(`/api/company-bases/${companyId}`)
+        .send(toUpdate)
+        .end(async (err, res) => {
+          validResponse(err, res, 400);
+          done();
+        });
+    });
+  });
+
+  it("should return 200 on update some fields", function(done) {
+    const vehiclesNames = [
+      `Updated Truck ${uuid()}`,
+      `Updated Truck ${uuid()}`
+    ];
+
+    const toUpdate = {
+      location: {
+        lng: Math.floor(Math.random() * 10 + 1),
+        lat: Math.floor(Math.random() * 10 + 1)
+      }
+    };
+
+    Company.findOne({
+      _id: new Types.ObjectId(companyId)
+    }).then(company => {
+      const companyBaseId = company.companyBases[0]._id;
+      toUpdate._id = companyBaseId;
+      chai
+        .request(server)
+        .post(`/api/company-bases/${companyId}`)
+        .send(toUpdate)
+        .end(async (err, res) => {
+          validResponse(err, res, 200);
+
+          const company = await Company.findOne({
+            _id: new Types.ObjectId(companyId)
+          });
+
+          const companyBase = await CompanyBase.findOne({
+            _id: new Types.ObjectId(companyBaseId)
+          });
+
+          assert(companyBase, `You don't update company base`);
+          expect(companyBase).to.have.property("name")
+          assert(
+            companyBase.location.lng === toUpdate.location.lng &&
+              companyBase.location.lat === toUpdate.location.lat,
+            "You don't modify company base in CompanyBase model"
+          );
+
+          for (let i = 0; i < company.companyBases.length; i++) {
+            if (company.companyBases[i]._id === companyBaseId) {
+              assert(
+                company.companyBases[i].location.lng ===
+                  toUpdate.location.lng &&
+                  company.companyBases[i].location.lat ===
+                    toUpdate.location.lat,
+                "You don't modify company base in Company model"
+              );
+              expect(companyBase).to.eql(company.companyBases[i])
+            }
+          }
           done();
         });
     });
