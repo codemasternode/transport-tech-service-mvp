@@ -56,8 +56,23 @@ export async function postVehicle(req, res) {
       _id: new Types.ObjectId(req.params.company_id)
     })
   ]);
+
   if (!company || req.body.companyBases.length !== companyBases.length) {
     return res.status(404).send({});
+  }
+
+  for (let i = 0; i < req.body.companyBases.length; i++) {
+    let isInside = false;
+    for (let k = 0; k < company.companyBases.length; k++) {
+      if (req.body.companyBases[i] === company.companyBases[k]._id) {
+        isInside = true;
+      }
+    }
+    if (!isInside) {
+      return res.status(400).send({
+        err: "You are trying to update non existing company base"
+      });
+    }
   }
 
   if (statDistinct.length === company.plan.vehicles) {
