@@ -46,7 +46,7 @@ describe("get company bases by company_id", function() {
       });
   });
 
-  it("should return 400 on wrong company id", function(done) {
+  it("should return 400 on wrong company with invalid ObjectId", function(done) {
     chai
       .request(server)
       .get(`/api/company-bases/abc`)
@@ -68,7 +68,7 @@ describe("get company bases by company_id", function() {
 });
 
 describe("create or update company base", function() {
-  it("should return 400 on wrong company id", function(done) {
+  it("should return 400 on wrong company with invalid ObjectId", function(done) {
     chai
       .request(server)
       .post(`/api/company-bases/abc`)
@@ -287,7 +287,7 @@ describe("create or update company base", function() {
     });
   });
 
-  it("should return 400 on update not existing company base with wrong id", function(done) {
+  it("should return 400 on update not existing company base with invalid ObjectId", function(done) {
     const vehiclesNames = [
       `Updated Truck ${uuid()}`,
       `Updated Truck ${uuid()}`

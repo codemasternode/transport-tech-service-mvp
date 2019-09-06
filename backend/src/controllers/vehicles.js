@@ -9,9 +9,14 @@ export async function getVehiclesByCompany(req, res) {
     return res.status(400).send({});
   }
 
-  const vehicles = await Company.distinct("companyBases.vehicles", {
-    _id: new Types.ObjectId(req.params.company_id)
-  });
+  let vehicles;
+  try {
+    vehicles = await Company.distinct("companyBases.vehicles", {
+      _id: new Types.ObjectId(req.params.company_id)
+    });
+  } catch (err) {
+    return res.status(400).send({ err });
+  }
 
   res.send({
     vehicles
@@ -23,7 +28,12 @@ export async function getVehiclesWithCompanyBases(req, res) {
     return res.status(400).send({});
   }
 
-  const company = await Company.findById(req.params.company_id);
+  let company;
+  try {
+    company = await Company.findById(req.params.company_id);
+  } catch (err) {
+    return res.status(400).send(err);
+  }
 
   if (!company) {
     return res.status(404).send({});
@@ -35,19 +45,18 @@ export async function getVehiclesWithCompanyBases(req, res) {
 }
 
 export async function postVehicle(req, res) {
-  if (!req.params.company_id || !req.params.companyBase_id) {
+  if (!req.params.company_id) {
     return res.status(400).send({});
   }
 
-  const [company, companyBase, statDistinct] = await Promise.all([
+  const [company, companyBases, statDistinct] = await Promise.all([
     Company.findById(req.params.company_id),
-    CompanyBase.findById(req.params.companyBase_id),
+    CompanyBase.find({ _id: { $in: req.body.companyBases } }),
     Company.distinct("companyBases.vehicles._id", {
-      _id: ObjectId("5d66b17b3601e93520b36908")
+      _id: new Types.ObjectId(req.params.company_id)
     })
   ]);
-
-  if (!company) {
+  if (!company || req.body.companyBases.length !== companyBases.length) {
     return res.status(404).send({});
   }
 
@@ -60,63 +69,71 @@ export async function postVehicle(req, res) {
   execute();
 
   async function execute() {
-    const session = Vehicle.startSession();
+    const session = await Vehicle.startSession();
     session.startTransaction();
-
     try {
       const [vehicle] = await Vehicle.create([{ ...req.body }], { session });
-
-      const cbStats = await CompanyBase.updateOne(
+      const cbStats = await CompanyBase.update(
         {
-          _id: req.params.companyBase_id
+          _id: {
+            $in: req.body.companyBases
+          }
         },
         {
           $push: {
             vehicles: vehicle
           }
         },
-        { session }
+        { session, multi: true }
       );
 
-      if (cbStats.nModified === 0) {
+      if (
+        cbStats.nModified === 0 ||
+        cbStats.n !== req.body.companyBases.length
+      ) {
         throw { msg: "You don't modify vehicle in CompanyBase model" };
+      }
+
+      const $push = {};
+      const arrayFilters = [];
+
+      for (let i = 0; i < req.body.companyBases.length; i++) {
+        $push[`companyBases.$[filter${i}].vehicles`] = vehicle;
+        arrayFilters.push({
+          [`filter${i}._id`]: new Types.ObjectId(req.body.companyBases[i])
+        });
       }
 
       const cStats = await Company.updateOne(
         {
-          _id: req.params.company_id,
-          "companyBases._id": req.params.companyBase_id
+          _id: new Types.ObjectId(req.params.company_id)
         },
         {
-          $push: {
-            "companyBases.$.vehicles": vehicle
-          }
+          $push
+        },
+        {
+          arrayFilters,
+          session
         }
       );
-
-      if (cStats.nModified === 0) {
-        throw { msg: "You don't modify vehicle in CompanyBase model" };
+      console.log(cStats);
+      if (
+        cStats.nModified === 0 ||
+        cbStats.n !== req.body.companyBases.length
+      ) {
+        throw { msg: "You don't modify vehicle in Company model" };
       }
+
+      await session.commitTransaction();
+      session.endSession();
+      res.send({});
     } catch (error) {
-      console.log(err);
+      console.log(error);
       await session.abortTransaction();
       session.endSession();
-      throw err;
+      return res.status(400).send({ error });
     }
   }
-
-  Company.updateOne(
-    { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { vehicles: req.body.vehicle } }
-  )
-    .then(stat => {
-      console.log(stat);
-      res.send({});
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send({});
-    });
 }
 
 export async function overwriteVehiclesWithCompanyBases(req, res) {

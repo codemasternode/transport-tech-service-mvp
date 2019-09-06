@@ -19,7 +19,7 @@ export default async URI => {
     if (err) {
       throw new Error(`Error while trying to connect MongoDB ${err}`);
     }
-    console.log(`Connected to MongoDB on port ${URI}`);
+    console.log(`Connected to MongoDB`);
   });
 
   // const data = await loadData([

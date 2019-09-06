@@ -33,7 +33,7 @@ describe("get one page of companies", function() {
   });
 });
 
-describe("get company by id", function() {
+describe("get company by ObjectId", function() {
   it("should return 200", function(done) {
     Company.find({}).then(companies => {
       chai
