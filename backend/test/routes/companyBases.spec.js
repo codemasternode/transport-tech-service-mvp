@@ -20,7 +20,7 @@ function validResponse(err, res, status) {
   expect(res).to.be.json;
   expect(res.body).to.be.an("object");
 }
-const companyId = "5d6ed24d8c333c46bf516f3f"; //choose company_id with companyBases
+const companyId = "5d729abd52024204f53a09bd"; //choose company_id with companyBases
 
 describe("get company bases by company_id", function() {
   it("should return 200", function(done) {
@@ -79,6 +79,16 @@ describe("create or update company base", function() {
   });
 
   it("should return 404 on non existing company", function(done) {
+    chai
+      .request(server)
+      .post("/api/company-bases/5d6ba203660fda8674725a89")
+      .end((err, res) => {
+        validResponse(err, res, 404);
+        done();
+      });
+  });
+
+  it("should return 404 on non existing company base", function(done) {
     chai
       .request(server)
       .post("/api/company-bases/5d6ba203660fda8674725a89")
@@ -239,6 +249,55 @@ describe("create or update company base", function() {
     });
   });
 
+  it("should return 400 on update foregin company base", function(done) {
+    const vehiclesNames = [
+      `Updated Truck ${uuid()}`,
+      `Updated Truck ${uuid()}`
+    ];
+    const companyBaseName = `Updated Company Base ${uuid()}`;
+
+    const toUpdate = {
+      ...companyBase,
+      name: companyBaseName,
+      vehicles: [
+        {
+          name: vehiclesNames[0],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        },
+        {
+          name: vehiclesNames[1],
+          combustion: 28,
+          capacity: 9000,
+          dimensionsOfTheHold: "7.80x2.40x2.40",
+          deprecationPerYear: 15,
+          valueOfTruck: 60000,
+          fuel: "5d6ba1d3b46b9b35d4878635"
+        }
+      ]
+    };
+
+    Company.findOne({
+      _id: new Types.ObjectId(companyId)
+    }).then(company => {
+      const companyBaseId = company.companyBases[0]._id;
+      toUpdate._id = "5d729abd52024204f53a09ba"; //foreign company base _id
+      chai
+        .request(server)
+        .post(`/api/company-bases/${companyId}`)
+        .send(toUpdate)
+        .end(async (err, res) => {
+          validResponse(err, res, 400);
+          expect(JSON.parse(res.text).err).to.eql('You are trying to update non existing company base');
+          done();
+        });
+    });
+  });
+
   it("should return 400 on update not existing company base", function(done) {
     const vehiclesNames = [
       `Updated Truck ${uuid()}`,
@@ -369,7 +428,7 @@ describe("create or update company base", function() {
           });
 
           assert(companyBase, `You don't update company base`);
-          expect(companyBase).to.have.property("name")
+          expect(companyBase).to.have.property("name");
           assert(
             companyBase.location.lng === toUpdate.location.lng &&
               companyBase.location.lat === toUpdate.location.lat,
@@ -385,7 +444,7 @@ describe("create or update company base", function() {
                     toUpdate.location.lat,
                 "You don't modify company base in Company model"
               );
-              expect(companyBase).to.eql(company.companyBases[i])
+              expect(companyBase).to.eql(company.companyBases[i]);
             }
           }
           done();

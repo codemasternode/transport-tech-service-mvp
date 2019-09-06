@@ -28,8 +28,12 @@ app.use("/api/workers", workersRoutes());
 app.use("/api/users", usersRoutes());
 app.use("/api/payments", paymentsRoutes());
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);
+});
+
+process.on("exit", () => {
+  server.close();
 });
 
 export default app;

@@ -20,7 +20,7 @@ function validResponse(err, res, status) {
   expect(res).to.be.json;
   expect(res.body).to.be.an("object");
 }
-const companyId = "5d6ed24d8c333c46bf516f3f"; //choose company_id with companyBases
+const companyId = "5d729abd52024204f53a09bd"; //choose company_id with companyBases
 
 describe("get vehicles by company", function() {
   it("should return 200", function(done) {
@@ -95,8 +95,7 @@ describe("create vehicle", function() {
       .request(server)
       .get(`/api/vehicles/${companyId}/`)
       .end((err, res) => {
-        validResponse(err, res, 200);
-        expect(res.body.companyBases).to.be.an("array");
+        validResponse(err, res, 404);
         done();
       });
   });

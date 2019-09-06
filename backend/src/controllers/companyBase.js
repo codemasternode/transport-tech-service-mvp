@@ -40,20 +40,19 @@ export async function createOrUpdateBase(req, res) {
     return res.status(404).send({});
   }
 
-  if(req.body._id) {
-    for(let i = 0; i < company.companyBases.length; i++) {
-      let isInside = false
-      if(company.companyBases[i]._id === req.body._id) {
-        isInside = true
-      }
-      if(!isInside) {
-        return res.status(400).send({
-          err: "You are trying to update non existing company base"
-        })
+  if (req.body._id) {
+    let isInside = false;
+    for (let i = 0; i < company.companyBases.length; i++) {
+      if (company.companyBases[i]._id.toString() === req.body._id) {
+        isInside = true;
       }
     }
+    if (!isInside) {
+      return res.status(400).send({
+        err: "You are trying to update non existing company base"
+      });
+    }
   }
-
 
   if (company.plan.companyBases === company.companyBases.length) {
     return res.status(400).send({

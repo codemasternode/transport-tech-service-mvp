@@ -65,7 +65,13 @@ describe("create new company", function() {
     name: "Marcin",
     surname: "Warzybok",
     taxNumber: "6793184304",
-    plan: "Enterprise",
+    plan: {
+      name: "Enterprise",
+      vehicles: 56,
+      companyBases: 10,
+      users: 10,
+      price: 1200
+    },
     country: "PL"
   };
   it("should return 201 on creating company", function(done) {
@@ -210,7 +216,13 @@ describe("delete company by admin", function() {
     name: "Marcin",
     surname: "Warzybok",
     taxNumber: "6793184304",
-    plan: "Enterprise",
+    plan: {
+      name: "Enterprise",
+      vehicles: 56,
+      companyBases: 10,
+      users: 10,
+      price: 1200
+    },
     email: "admin@teachtechservice.com",
     _id: new Types.ObjectId()
   };
@@ -231,12 +243,28 @@ describe("update company pricing", function() {
       {
         email: "admin@teachtechservice.com"
       },
-      { plan: "Basic" }
+      {
+        plan: {
+          name: "Enterprise",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
+      }
     ).then(() => {
       chai
         .request(server)
         .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
-        .send({ plan: "Pro" })
+        .send({
+          plan: {
+            name: "Enterprise",
+            vehicles: 56,
+            companyBases: 10,
+            users: 10,
+            price: 1200
+          }
+        })
         .end((err, res) => {
           validResponse(err, res, 200);
           done();
@@ -249,13 +277,27 @@ describe("update company pricing", function() {
         email: "admin@teachtechservice.com"
       },
       {
-        plan: "Basic"
+        plan: {
+          name: "Basic",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
       }
     ).then(() => {
       chai
         .request(server)
         .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
-        .send({ plan: "Pro" })
+        .send({
+          plan: {
+            name: "Enterprise",
+            vehicles: 56,
+            companyBases: 10,
+            users: 10,
+            price: 1200
+          }
+        })
         .end((err, res) => {
           validResponse(err, res, 200);
           done();
@@ -266,7 +308,15 @@ describe("update company pricing", function() {
     chai
       .request(server)
       .put(`/api/company/pricing-plan/abcdef@teachtechservice.com`)
-      .send({ plan: "Pro" })
+      .send({
+        plan: {
+          name: "Enterprise",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
+      })
       .end((err, res) => {
         validResponse(err, res, 404);
         done();

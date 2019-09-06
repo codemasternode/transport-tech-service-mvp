@@ -21,9 +21,9 @@
         ],
         "plan": {
             "name": "Enterprise",
-            "vehicles": 10,
-            "companyBases": 2,
-            "users": 5
+            "vehicles": 200,
+            "companyBases": 200,
+            "users": 100
         },
         "workers": [
             {
