@@ -1,25 +1,14 @@
 import nodemailer from "nodemailer";
 import hbs from "nodemailer-express-handlebars";
 import dotenv from "dotenv/config";
-const EmailTemplate = require('email-templates').EmailTemplate;
+const EmailTemplate = require("email-templates").EmailTemplate;
 import path from "path";
 
-const options = {
-  viewEngine: {
-    extname: ".hbs",
-    layoutsDir: "emailsTemplates/templates/",
-    defaultLayout: "template",
-    partialsDir: "emailsTemplates/partials/"
-  },
-  viewPath: "emailsTemplates/templates/",
-  extName: ".hbs"
-};
-
-const fromEmail = `transport-tech-service-notifications <${process.env.EMAIL_ADDRESS_MAILER}>`;
+const fromEmail = `transport-tech-service-notifications <${
+  process.env.EMAIL_ADDRESS_MAILER
+}>`;
 
 let transporter;
-
-console.log(process.env.EMAIL_ADDRESS_MAILER, process.env.PASSSWORD_MAILER, 24);
 
 async function start() {
   transporter = nodemailer.createTransport({
@@ -44,28 +33,10 @@ async function start() {
 
 start();
 
-export function sendEmail({ to, subject, html, text }) {
-  return new Promise((resolve, reject) => {
-    transporter.sendMail(
-      {
-        fromEmail,
-        to,
-        subject,
-        html,
-        text
-      },
-      (err, info) => {
-        if (err) {
-          reject(err);
-        }
-        resolve();
-      }
-    );
-  });
-}
-
 export function loadTemplate(templateName, contexts) {
-  console.log(path.join(__dirname, "../emailsTemplates/templates", templateName));
+  console.log(
+    path.join(__dirname, "../emailsTemplates/templates", templateName)
+  );
   let template = new EmailTemplate(
     path.join(__dirname, "../emailsTemplates/templates", templateName)
   );

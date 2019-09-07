@@ -5,3 +5,7 @@ export async function redirectWithInfo(req, res) {
     res.redirect("/checkPayment?statuss=FAIL");
   }
 }
+
+export async function acceptPayment(req, res) {
+    
+}

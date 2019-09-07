@@ -52,12 +52,6 @@ const CompanySchema = new mongoose.Schema(
       min: 1,
       max: 100
     },
-    plan: {
-      type: Schema.Types.String,
-      enum: planTypes,
-      required: [true, "plan can not be empty"],
-      default: "Basic"
-    },
     isSuspended: {
       type: Schema.Types.Boolean,
       required: [true, "suspended can not be empty"],
@@ -76,9 +70,6 @@ const CompanySchema = new mongoose.Schema(
       maxlength: 50,
       unique: true
     },
-    paidDate: {
-      type: Date
-    },
     endDateSubscription: {
       type: Date
     },
@@ -87,15 +78,21 @@ const CompanySchema = new mongoose.Schema(
       default: false,
       required: true
     },
+    createdAt: {
+      type: Date,
+      default: Date.now()
+    },
     country: {
       type: Schema.Types.ObjectId,
       ref: "country",
       required: true
     },
-    createdAt: {
-      type: Date,
-      default: Date.now()
-    },
+    countries: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "country"
+      }
+    ],
     users: [
       {
         type: Schema.Types.ObjectId,
@@ -103,32 +100,19 @@ const CompanySchema = new mongoose.Schema(
       }
     ],
     staticCosts: [StaticCostSchema],
-    vehicles: {
-      type: Array,
-      default: []
-    },
-    companyBases: [CompanyBaseSchema],
     workers: [WorkerSchema],
-    vehicles: {
-      type: Array,
-      required: true,
-      default: []
-    },
     companyBases: {
       type: Array,
-      required: true,
-      default: []
-    },
-
-    countries: {
-      type: Array,
-      required: true,
-      default: []
+      default: [],
+      required: true
     },
     isConfirmed: {
       type: Boolean,
       default: false,
       required: true
+    },
+    plan: {
+      type: Object
     }
   },
   { strict: false }

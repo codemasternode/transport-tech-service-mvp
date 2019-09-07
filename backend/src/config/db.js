@@ -1,137 +1,88 @@
 import mongoose from "mongoose";
 import fs from "fs";
 import path from "path";
-import CountryModel from "../models/country";
-import CompanyModel from "../models/company";
-import VehicleModel from "../models/vehicle";
-import FuelModel from "../models/fuel";
+import { loadData } from "../services/loadData";
+import Company from "../models/company";
 import CompanyBase from "../models/companyBase";
+import Fuel from "../models/fuel";
+import Country from "../models/country";
+import Vehicle from "../models/vehicle";
+import User from "../models/user";
 
-export default URI => {
-  mongoose.connect(URI, { useNewUrlParser: true }, err => {
+export default async URI => {
+  const dbOptions = {
+    poolSize: 4,
+    useNewUrlParser: true
+  };
+
+  mongoose.connect(URI, dbOptions, err => {
     if (err) {
       throw new Error(`Error while trying to connect MongoDB ${err}`);
     }
-    console.log(`Connected to MongoDB on port ${URI}`);
-    // CompanyBase.deleteMany({}).then(() => {
-    //   VehicleModel.deleteMany({}).then(() => {
-    //     FuelModel.deleteMany({}).then(() => {
-    //       CountryModel.deleteMany({}).then(() => {
-    //         CompanyModel.deleteMany({}).then(() => {
-    //           fs.readFile(
-    //             path.join(__dirname, "../data/companyBases.json"),
-    //             (err, basesData) => {
-    //               if (err) {
-    //                 console.log(
-    //                   "Problem with load data from companyBases.json"
-    //                 );
-    //               }
-    //               fs.readFile(
-    //                 path.join(__dirname, "../data/vehicles.json"),
-    //                 (err, vehiclesData) => {
-    //                   if (err) {
-    //                     console.log(
-    //                       "Problem with load data from vehicles.json"
-    //                     );
-    //                   }
-    //                   fs.readFile(
-    //                     path.join(__dirname, "../data/countries.json"),
-    //                     (err, countriesData) => {
-    //                       if (err) {
-    //                         console.log(
-    //                           "Problem with load data from countries.json"
-    //                         );
-    //                       }
-    //                       fs.readFile(
-    //                         path.join(__dirname, "../data/fuels.json"),
-    //                         (err, fuelsData) => {
-    //                           if (err) {
-    //                             console.log(
-    //                               "Problem with load data from fuels.json"
-    //                             );
-    //                           }
-    //                           FuelModel.insertMany(JSON.parse(fuelsData)).then(
-    //                             fuels => {
-    //                               CountryModel.insertMany(
-    //                                 JSON.parse(countriesData)
-    //                               ).then(countries => {
-    //                                 fs.readFile(
-    //                                   path.join(
-    //                                     __dirname,
-    //                                     "../data/companies.json"
-    //                                   ),
-    //                                   (err, data) => {
-    //                                     if (err) {
-    //                                       console.log(
-    //                                         "Problem with load data from companies.json"
-    //                                       );
-    //                                     }
-    //                                     let convertedVehicles = JSON.parse(
-    //                                       vehiclesData
-    //                                     );
-    //                                     for (
-    //                                       let k = 0;
-    //                                       k < convertedVehicles.length;
-    //                                       k++
-    //                                     ) {
-    //                                       convertedVehicles[k].fuel =
-    //                                         fuels[0]._id;
-    //                                     }
-    //                                     VehicleModel.insertMany(
-    //                                       convertedVehicles
-    //                                     ).then(vehicles => {
-    //                                       CountryModel.findOne({
-    //                                         name: "PL"
-    //                                       }).then(poland => {
-    //                                         let companyBases = JSON.parse(
-    //                                           basesData
-    //                                         );
-
-    //                                         for (
-    //                                           let m = 0;
-    //                                           m < companyBases.length;
-    //                                           m++
-    //                                         ) {
-    //                                           companyBases[
-    //                                             m
-    //                                           ].vehicles = vehicles;
-    //                                           companyBases[m].country =
-    //                                             poland._id;
-    //                                         }
-    //                                         CompanyBase.insertMany(
-    //                                           companyBases
-    //                                         ).then(companyBases => {
-    //                                           data = JSON.parse(data);
-    //                                           data[0].vehicles = vehicles;
-    //                                           data[0].companyBases = companyBases;
-    //                                           for (
-    //                                             let i = 0;
-    //                                             i < data.length;
-    //                                             i++
-    //                                           ) {
-    //                                             data[i].country = poland._id;
-    //                                           }
-    //                                           CompanyModel.insertMany(data);
-    //                                         });
-    //                                       });
-    //                                     });
-    //                                   }
-    //                                 );
-    //                               });
-    //                             }
-    //                           );
-    //                         }
-    //                       );
-    //                     }
-    //                   );
-    //                 }
-    //               );
-    //             }
-    //           );
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
+    console.log(`Connected to MongoDB`);
   });
+
+  // const data = await loadData([
+  //   "mockData/companies.json", //0
+  //   "mockData/vehicles.json", // 1
+  //   "mockData/companyBases.json", //2
+  //   "default/countries.json", //3
+  //   "default/fuels.json", // 4
+  //   "mockData/users.json" //5
+  // ]);
+
+  // await Promise.all([
+  //   Country.deleteMany({}),
+  //   Fuel.deleteMany({}),
+  //   Vehicle.deleteMany({}),
+  //   Company.deleteMany({}),
+  //   CompanyBase.deleteMany({}),
+  //   User.deleteMany({})
+  // ]);
+
+  // const [savedCountries, savedFuels, savedUsers] = await Promise.all([
+  //   Country.create(data[3]),
+  //   Fuel.create(data[4]),
+  //   User.create(data[5])
+  // ]);
+
+  // const vehicles = data[1];
+  // for (let i = 0; i < vehicles.length; i++) {
+  //   vehicles[i].fuel = savedFuels[2];
+  // }
+  // const savedVehicles = await Vehicle.create(vehicles);
+
+  // const companyBases = data[2];
+  // for (let i = 0; i < companyBases.length; i++) {
+  //   companyBases[i].country = savedCountries[0]._id;
+  // }
+
+  // companyBases[0].vehicles = [
+  //   savedVehicles[1],
+  //   savedVehicles[2],
+  //   savedVehicles[3]
+  // ];
+
+  // companyBases[3].vehicles = [savedVehicles[1], savedVehicles[2]];
+  // companyBases[1].vehicles = [savedVehicles[0]];
+  // companyBases[2].vehicles = [savedVehicles[0]];
+
+  // const savedCompanyBases = await CompanyBase.create(companyBases);
+  // const companies = data[0];
+
+  // for (let i = 0; i < companies.length; i++) {
+  //   companies[i].country = savedCountries[0]._id;
+  //   companies[i].countries = [savedCountries[0]._id, savedCountries[1]._id];
+  // }
+  // companies[0].companyBases = [
+  //   savedCompanyBases[0],
+  //   savedCompanyBases[3],
+  //   savedCompanyBases[4]
+  // ];
+
+  // companies[0].users = [savedUsers[0], savedUsers[1], savedUsers[2]];
+  // companies[1].users = [savedUsers[3]];
+
+  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]];
+  // await Company.create(companies);
 };

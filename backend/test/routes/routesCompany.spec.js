@@ -1,9 +1,9 @@
 import "babel-polyfill";
 import chai, { assert } from "chai";
-import server from "../src/index";
+import server from "../../src/index";
 import chaiHttp from "chai-http";
-import Company from "../src/models/company";
-import Country from "../src/models/country";
+import Company from "../../src/models/company";
+import Country from "../../src/models/country";
 import { Types } from "mongoose";
 import uuid from "uniqid";
 
@@ -33,7 +33,7 @@ describe("get one page of companies", function() {
   });
 });
 
-describe("get company by id", function() {
+describe("get company by ObjectId", function() {
   it("should return 200", function(done) {
     Company.find({}).then(companies => {
       chai
@@ -65,7 +65,13 @@ describe("create new company", function() {
     name: "Marcin",
     surname: "Warzybok",
     taxNumber: "6793184304",
-    plan: "Enterprise",
+    plan: {
+      name: "Enterprise",
+      vehicles: 56,
+      companyBases: 10,
+      users: 10,
+      price: 1200
+    },
     country: "PL"
   };
   it("should return 201 on creating company", function(done) {
@@ -95,7 +101,7 @@ describe("create new company", function() {
       });
   });
 
-  it("should return 400 on missing required property", function(done) {
+  it("should return 400 on missing required property (email)", function(done) {
     let { email, ...wrongCompany } = company;
     chai
       .request(server)
@@ -210,7 +216,13 @@ describe("delete company by admin", function() {
     name: "Marcin",
     surname: "Warzybok",
     taxNumber: "6793184304",
-    plan: "Enterprise",
+    plan: {
+      name: "Enterprise",
+      vehicles: 56,
+      companyBases: 10,
+      users: 10,
+      price: 1200
+    },
     email: "admin@teachtechservice.com",
     _id: new Types.ObjectId()
   };
@@ -218,9 +230,7 @@ describe("delete company by admin", function() {
   it("should return 200 on delete", function(done) {
     Country.find({ name: "PL" }).then(country => {
       company.country = country._id;
-      console.log(company);
       Company.create(company, function(savedCompany) {
-        console.log(savedCompany);
         done();
       });
     });
@@ -233,12 +243,28 @@ describe("update company pricing", function() {
       {
         email: "admin@teachtechservice.com"
       },
-      { plan: "Basic" }
+      {
+        plan: {
+          name: "Enterprise",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
+      }
     ).then(() => {
       chai
         .request(server)
         .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
-        .send({ plan: "Pro" })
+        .send({
+          plan: {
+            name: "Enterprise",
+            vehicles: 56,
+            companyBases: 10,
+            users: 10,
+            price: 1200
+          }
+        })
         .end((err, res) => {
           validResponse(err, res, 200);
           done();
@@ -251,13 +277,27 @@ describe("update company pricing", function() {
         email: "admin@teachtechservice.com"
       },
       {
-        plan: "Basic"
+        plan: {
+          name: "Basic",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
       }
     ).then(() => {
       chai
         .request(server)
         .put(`/api/company/pricing-plan/admin@teachtechservice.com`)
-        .send({ plan: "Pro" })
+        .send({
+          plan: {
+            name: "Enterprise",
+            vehicles: 56,
+            companyBases: 10,
+            users: 10,
+            price: 1200
+          }
+        })
         .end((err, res) => {
           validResponse(err, res, 200);
           done();
@@ -268,7 +308,15 @@ describe("update company pricing", function() {
     chai
       .request(server)
       .put(`/api/company/pricing-plan/abcdef@teachtechservice.com`)
-      .send({ plan: "Pro" })
+      .send({
+        plan: {
+          name: "Enterprise",
+          vehicles: 56,
+          companyBases: 10,
+          users: 10,
+          price: 1200
+        }
+      })
       .end((err, res) => {
         validResponse(err, res, 404);
         done();

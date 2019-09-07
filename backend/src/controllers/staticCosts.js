@@ -12,33 +12,69 @@ export async function getStaticCostsByCompany(req, res) {
   }
 
   res.send({
-    company
+    staticCosts: company.staticCosts
   });
 }
 
 export async function postStaticCost(req, res) {
-  console.log("asd");
   if (!req.params.company_id) {
     return res.status(400).send({});
   }
+  const company = await Company.findById(req.params.company_id);
 
-  Company.updateOne(
-    { _id: new Types.ObjectId(req.params.company_id) },
-    { $push: { staticCosts: req.body.staticCost } }
-  )
-    .then(stat => {
-      console.log(stat);
-      res.send({});
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send({});
+  if (!company) {
+    return res.status(404).send({});
+  }
+
+  let companyStats;
+
+  try {
+    companyStats = await Company.updateOne(
+      { _id: new Types.ObjectId(req.params.company_id) },
+      { $push: { staticCosts: req.body.staticCost } }
+    );
+  } catch (err) {
+    return res.status(400).send({});
+  }
+
+  if (companyStats.n === 0) {
+    return res.status(404).send({});
+  }
+
+  res.send({});
+}
+
+export async function overwriteStaticCosts(req, res) {
+  if (!req.params.company_id || !Array.isArray(req.body.staticCosts)) {
+    return res.status(400).send({});
+  }
+
+  let companyStats;
+  try {
+    companyStats = await Company.updateOne(
+      { _id: new Types.ObjectId(req.params.company_id) },
+      {
+        $set: {
+          staticCosts: req.body.staticCosts
+        }
+      }
+    );
+  } catch (err) {
+    return res.status(400).send({});
+  }
+
+  if (companyStats.n === 0) {
+    return res.status(404).send({
+      msg: "Company doesn't exists"
     });
+  }
+
+  res.send({});
 }
 
 export async function putStaticCost(req, res) {
   const { company_id, id } = req.params;
-  console.log("static")
+  console.log("static");
   if (!company_id || !id) {
     return res.status(400).send({});
   }
