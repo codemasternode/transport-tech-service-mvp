@@ -1,0 +1,24 @@
+.root {
+    flex-grow: 1;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #f2f2f2 70%, #232f3e 30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 80% !important;
+
+    &__database {
+        height: 100%;
+        position: relative;
+    }
+
+    &__map {
+        height: 100%;
+        width: 100%;
+        min-height: 50vh;
+        position: relative;
+    }
+}

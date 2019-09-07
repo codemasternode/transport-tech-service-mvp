@@ -9,6 +9,9 @@ import NotFound from "./pages/NotFound";
 import PricingPlan from "./pages/PricingPlan/index";
 import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
+import DatabaseDashboard from "./pages/DatabaseDashboard";
+import EmployeeDashboard from "./pages/EmployeeDashboard";
+import CostsDashboard from "./pages/CostsDashboard";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 
@@ -43,6 +46,27 @@ export const routes = [
     component: PricingPlan
   },
   {
+    name: "Database configuration",
+    path: "/database-dashboard",
+    isPrivate: false,
+    isAdmin: false,
+    component: DatabaseDashboard
+  },
+  {
+    name: "New employee",
+    path: "/employee-dashboard",
+    isPrivate: false,
+    isAdmin: false,
+    component: EmployeeDashboard
+  },
+  {
+    name: "Costs Panel",
+    path: "/costs-panel",
+    isPrivate: false,
+    isAdmin: false,
+    component: CostsDashboard
+  },
+  {
     name: "profile",
     path: "/profile",
     isPrivate: true,
@@ -52,8 +76,8 @@ export const routes = [
   {
     name: "admin",
     path: "/admin-dashboard",
-    isPrivate: true,
-    isAdmin: true,
+    isPrivate: false,
+    isAdmin: false,
     component: AdminDashboard
   }
 ];

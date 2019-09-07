@@ -5,26 +5,36 @@ import UsersTable from "../../components/UsersTable";
 const users = [
   {
     name: "Marcin",
-    surname: "Warzybok"
+    surname: "Warzybok",
+    email: "mw@gmail.com",
+    password: "qwer123"
+  },
+  {
+    name: "Artur",
+    surname: "Garlacz",
+    email: "mw@gmail.com",
+    password: "qwer123"
+
   },
   {
     name: "Marcin",
-    surname: "Warzybok"
+    surname: "Warzybok",
+    email: "mw@gmail.com",
+    password: "qwer123"
+
   },
   {
     name: "Marcin",
-    surname: "Warzybok"
-  },
-  {
-    name: "Marcin",
-    surname: "Warzybok"
+    surname: "Warzybok",
+    email: "mw@gmail.com",
+    password: "qwer123"
+
   }
 ]
 
 function AdminDashboard() {
   return (
     <React.Fragment>
-      <h1>AdminDashboard</h1>
       <UsersTable users={users} />
     </React.Fragment>
   );
