@@ -124,5 +124,19 @@
             "users": 12,
             "price": 1599
         }
+    },
+    {
+        "nameOfCompany": "Transport Tech Service",
+        "name": "Marcin",
+        "surname": "Warzybok",
+        "taxNumber": "6793184304",
+        "email": "aasdadsasd@teachtechservice.com",
+        "plan": {
+            "name": "Enterprise",
+            "vehicles": 112,
+            "companyBases": 5,
+            "users": 12,
+            "price": 1599
+        }
     }
 ]

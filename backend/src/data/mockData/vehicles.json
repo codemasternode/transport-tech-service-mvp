@@ -30,5 +30,29 @@
         "dimensionsOfTheHold": "8.00x2.50x2.45",
         "deprecationPerYear": 18,
         "valueOfTruck": 60000
+    },
+    {
+        "name": "Truck 5",
+        "combustion": 29,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "8.00x2.50x2.45",
+        "deprecationPerYear": 18,
+        "valueOfTruck": 60000
+    },
+    {
+        "name": "Truck 6",
+        "combustion": 29,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "8.00x2.50x2.45",
+        "deprecationPerYear": 18,
+        "valueOfTruck": 60000
+    },
+    {
+        "name": "Truck 7",
+        "combustion": 29,
+        "capacity": 9000,
+        "dimensionsOfTheHold": "8.00x2.50x2.45",
+        "deprecationPerYear": 18,
+        "valueOfTruck": 60000
     }
 ]

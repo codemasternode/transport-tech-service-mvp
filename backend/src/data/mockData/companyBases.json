@@ -48,5 +48,25 @@
             "lng": 50.017440,
             "lat": 20.033522
         }
+    },
+    {
+        "name": "Tech Parking 6",
+        "street": "ul.Bieżanowska 258B",
+        "postalCode": "30-856",
+        "city": "Cracow",
+        "location": {
+            "lng": 50.017440,
+            "lat": 20.033522
+        }
+    },
+    {
+        "name": "Tech Parking 7",
+        "street": "ul.Bieżanowska 258B",
+        "postalCode": "30-856",
+        "city": "Cracow",
+        "location": {
+            "lng": 50.017440,
+            "lat": 20.033522
+        }
     }
 ]

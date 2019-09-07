@@ -22,14 +22,14 @@ export default async URI => {
     console.log(`Connected to MongoDB`);
   });
 
-  // const data = await loadData([
-  //   "mockData/companies.json", //0
-  //   "mockData/vehicles.json", // 1
-  //   "mockData/companyBases.json", //2
-  //   "default/countries.json", //3
-  //   "default/fuels.json", // 4
-  //   "mockData/users.json" //5
-  // ]);
+  const data = await loadData([
+    "mockData/companies.json", //0
+    "mockData/vehicles.json", // 1
+    "mockData/companyBases.json", //2
+    "default/countries.json", //3
+    "default/fuels.json", // 4
+    "mockData/users.json" //5
+  ]);
 
   // await Promise.all([
   //   Country.deleteMany({}),
@@ -66,6 +66,7 @@ export default async URI => {
   // companyBases[3].vehicles = [savedVehicles[1], savedVehicles[2]];
   // companyBases[1].vehicles = [savedVehicles[0]];
   // companyBases[2].vehicles = [savedVehicles[0]];
+  // companyBases[5].vehicles = [savedVehicles[6]]
 
   // const savedCompanyBases = await CompanyBase.create(companyBases);
   // const companies = data[0];
@@ -79,10 +80,12 @@ export default async URI => {
   //   savedCompanyBases[3],
   //   savedCompanyBases[4]
   // ];
+  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]];
+  // companies[4].companyBases = [savedCompanyBases[5], savedCompanyBases[6]]
 
   // companies[0].users = [savedUsers[0], savedUsers[1], savedUsers[2]];
   // companies[1].users = [savedUsers[3]];
 
-  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]];
+  
   // await Company.create(companies);
 };
