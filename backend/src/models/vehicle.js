@@ -14,13 +14,24 @@ const VehicleSchema = new mongoose.Schema({
     min: 1
   },
   capacity: {
-    type: Number,
-    required: true,
-    min: 1
+    type: Number
   },
-  dimensionsOfTheHold: {
-    type: String,
-    required: true
+  volume: {
+    type: Number
+  },
+  dimensions: {
+    length: {
+      type: Number,
+      required: true
+    },
+    width: {
+      type: Number,
+      required: true
+    },
+    height: {
+      type: Number,
+      required: true
+    }
   },
   deprecationPerYear: {
     type: Number,
@@ -39,6 +50,10 @@ const VehicleSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 10
+  },
+  type: {
+    type: String,
+    required: true
   }
 });
 

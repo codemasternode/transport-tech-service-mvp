@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import fs from "fs";
 import path from "path";
+import uuid from "uuid/v1";
 import { loadData } from "../services/loadData";
 import Company from "../models/company";
 import CompanyBase from "../models/companyBase";
@@ -24,68 +25,122 @@ export default async URI => {
 
   const data = await loadData([
     "mockData/companies.json", //0
-    "mockData/vehicles.json", // 1
-    "mockData/companyBases.json", //2
-    "default/countries.json", //3
-    "default/fuels.json", // 4
-    "mockData/users.json" //5
+    "mockData/companyBases.json", //1
+    "default/countries.json", //2
+    "default/fuels.json", // 3
+    "mockData/users.json" //4
   ]);
 
-  // await Promise.all([
-  //   Country.deleteMany({}),
-  //   Fuel.deleteMany({}),
-  //   Vehicle.deleteMany({}),
-  //   Company.deleteMany({}),
-  //   CompanyBase.deleteMany({}),
-  //   User.deleteMany({})
-  // ]);
+  await Promise.all([
+    Country.deleteMany({}),
+    Fuel.deleteMany({}),
+    Vehicle.deleteMany({}),
+    Company.deleteMany({}),
+    CompanyBase.deleteMany({}),
+    User.deleteMany({})
+  ]);
 
-  // const [savedCountries, savedFuels, savedUsers] = await Promise.all([
-  //   Country.create(data[3]),
-  //   Fuel.create(data[4]),
-  //   User.create(data[5])
-  // ]);
+  const [savedCountries, savedFuels, savedUsers] = await Promise.all([
+    Country.create(data[2]),
+    Fuel.create(data[3]),
+    User.create(data[4])
+  ]);
 
-  // const vehicles = data[1];
-  // for (let i = 0; i < vehicles.length; i++) {
-  //   vehicles[i].fuel = savedFuels[2];
-  // }
-  // const savedVehicles = await Vehicle.create(vehicles);
+  const vehiclesTypes = [
+    () => {
+      return {
+        type: "ciągnik z naczepą jumbo",
+        dimensions: {
+          length: Number((Math.random() * 4 + 13).toFixed(2)),
+          width: Number((Math.random() * 2 + 2.3).toFixed(2)),
+          height: Number((Math.random() * 1 + 2.5).toFixed(2))
+        },
+        deprecationPerYear: Math.floor(Math.random() * 5 + 10),
+        valueOfTruck: Math.floor(Math.random() * 150000 + 80000),
+        combustion: Math.floor(Math.random() * 4 + 30),
+        capacity: Math.floor(Math.random() * 8 + 16)
+      };
+    },
+    () => {
+      return {
+        type: "ciągnik z naczepą duży tir",
+        dimensions: {
+          length: Number((Math.random() * 5 + 15).toFixed(2)),
+          width: Number((Math.random() * 1 + 2.4).toFixed(2)),
+          height: Number((Math.random() * 1 + 2.6).toFixed(2))
+        },
+        deprecationPerYear: Math.floor(Math.random() * 5 + 10),
+        valueOfTruck: Math.floor(Math.random() * 150000 + 100000),
+        combustion: Math.floor(Math.random() * 4 + 33),
+        capacity: Math.floor(Math.random() * 6 + 20)
+      };
+    },
+    () => {
+      return {
+        type: "8 tonowa solówka",
+        dimensions: {
+          length: Number((Math.random() * 2 + 8).toFixed(2)),
+          width: Number((Math.random() * 1 + 2.3).toFixed(2)),
+          height: Number((Math.random() * 1 + 2.5).toFixed(2))
+        },
+        deprecationPerYear: Math.floor(Math.random() * 5 + 10),
+        valueOfTruck: Math.floor(Math.random() * 35000 + 50000),
+        combustion: Math.floor(Math.random() * 6 + 20),
+        capacity: Math.floor(Math.random() * 1 + 7)
+      };
+    },
+    () => {
+      const volume = Math.floor(Math.random() * 5000 + 30000);
+      return {
+        type: `Cysterna ${Math.floor(volume / 100) * 100}`,
+        dimensions: {
+          length: Number((Math.random() * 2 + 8).toFixed(2)),
+          width: Number((Math.random() * 1 + 2.3).toFixed(2)),
+          height: Number((Math.random() * 1 + 2.5).toFixed(2))
+        },
+        deprecationPerYear: Math.floor(Math.random() * 5 + 10),
+        valueOfTruck: Math.floor(Math.random() * 35000 + 50000),
+        combustion: Math.floor(Math.random() * 6 + 20),
+        volume: volume
+      };
+    }
+  ];
 
-  // const companyBases = data[2];
-  // for (let i = 0; i < companyBases.length; i++) {
-  //   companyBases[i].country = savedCountries[0]._id;
-  // }
+  const companies = data[0];
+  const companyBases = data[1];
 
-  // companyBases[0].vehicles = [
-  //   savedVehicles[1],
-  //   savedVehicles[2],
-  //   savedVehicles[3]
-  // ];
-
-  // companyBases[3].vehicles = [savedVehicles[1], savedVehicles[2]];
-  // companyBases[1].vehicles = [savedVehicles[0]];
-  // companyBases[2].vehicles = [savedVehicles[0]];
-  // companyBases[5].vehicles = [savedVehicles[6]]
-
-  // const savedCompanyBases = await CompanyBase.create(companyBases);
-  // const companies = data[0];
-
-  // for (let i = 0; i < companies.length; i++) {
-  //   companies[i].country = savedCountries[0]._id;
-  //   companies[i].countries = [savedCountries[0]._id, savedCountries[1]._id];
-  // }
-  // companies[0].companyBases = [
-  //   savedCompanyBases[0],
-  //   savedCompanyBases[3],
-  //   savedCompanyBases[4]
-  // ];
-  // companies[1].companyBases = [savedCompanyBases[2], savedCompanyBases[1]];
-  // companies[4].companyBases = [savedCompanyBases[5], savedCompanyBases[6]]
-
-  // companies[0].users = [savedUsers[0], savedUsers[1], savedUsers[2]];
-  // companies[1].users = [savedUsers[3]];
-
-  
-  // await Company.create(companies);
+  for (let i = 0; i < companies.length; i++) {
+    companies[i].companyBases = [];
+    let counter = 0;
+    for (let g = 0; g < companyBases.length; g++) {
+      if (companies[i].nameOfCompany === companyBases[g].nameOfCompany) {
+        counter++;
+      }
+    }
+    for (let k = 0; k < companyBases.length; k++) {
+      if (companies[i].nameOfCompany === companyBases[k].nameOfCompany) {
+        companyBases[k].vehicles = [];
+        for (
+          let m = 0;
+          m < Math.floor(companies[i].plan.vehicles / (counter + 1));
+          m++
+        ) {
+          const d = Math.random();
+          const prepareVehicle = {
+            name: `Truck ${uuid()}`,
+            fuel: savedFuels[d < 0.4 ? 0 : d < 0.7 ? 1 : 2]._id,
+            ...vehiclesTypes[d < 0.5 ? 0 : d < 0.7 ? 1 : d < 0.8 ? 2 : 3]()
+          };
+          const vehicle = await Vehicle.create(prepareVehicle);
+          companyBases[k].vehicles.push(vehicle);
+        }
+        const companyBase = await CompanyBase.create(companyBases[k]);
+        companies[i].companyBases.push(companyBase);
+      }
+    }
+    const PL = await Country.findOne({ name: "PL" });
+    companies[i].country = PL;
+    companies[i].countries = [PL];
+    await Company.create(companies[i]);
+  }
 };
