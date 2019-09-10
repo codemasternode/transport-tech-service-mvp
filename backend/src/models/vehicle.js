@@ -38,8 +38,7 @@ const VehicleSchema = new mongoose.Schema({
     required: true
   },
   fuel: {
-    type: Schema.Types.ObjectId,
-    ref: "fuel",
+    type: String,
     required: true
   },
   valueOfTruck: {
@@ -54,6 +53,25 @@ const VehicleSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true
+  },
+  averageDistancePerMonth: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  range: {
+    maxRange: {
+      type: Number
+    },
+    minRange: {
+      type: Number,
+      default: 0
+    }
+  },
+  margin: {
+    type: Number,
+    required: true,
+    min: 0
   }
 });
 

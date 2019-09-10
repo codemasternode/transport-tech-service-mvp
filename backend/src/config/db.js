@@ -33,16 +33,37 @@ export default async URI => {
 
   await Promise.all([
     Country.deleteMany({}),
-    Fuel.deleteMany({}),
     Vehicle.deleteMany({}),
     Company.deleteMany({}),
     CompanyBase.deleteMany({}),
     User.deleteMany({})
   ]);
 
-  const [savedCountries, savedFuels, savedUsers] = await Promise.all([
+  const savedFuels = [];
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  const end = new Date(start.getTime());
+  end.setHours(23, 59, 59, 999);
+
+  for (let i = 0; i < data[3].length; i++) {
+    const fuel = await Fuel.findOne({
+      name: data[3][i].name,
+      date: {
+        $gte: start,
+        $lte: end
+      }
+    });
+    if (!fuel) {
+      const fuel = await Fuel.create(data[3][i]);
+      savedFuels.push(fuel);
+    } else {
+      savedFuels.push(fuel);
+    }
+  }
+
+  const [savedCountries, savedUsers] = await Promise.all([
     Country.create(data[2]),
-    Fuel.create(data[3]),
     User.create(data[4])
   ]);
 
@@ -58,7 +79,15 @@ export default async URI => {
         deprecationPerYear: Math.floor(Math.random() * 5 + 10),
         valueOfTruck: Math.floor(Math.random() * 150000 + 80000),
         combustion: Math.floor(Math.random() * 4 + 30),
-        capacity: Math.floor(Math.random() * 8 + 16)
+        capacity: Math.floor(Math.random() * 8 + 16),
+        averageDistancePerMonth: Math.floor(Math.random() * 10000 + 14000),
+        range: {
+          minRange:
+            Math.random() < 0.5 ? null : Math.floor(Math.random() * 15 + 5),
+          maxRange:
+            Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
+        },
+        margin: Math.floor(Math.random() * 5 + 6)
       };
     },
     () => {
@@ -72,7 +101,15 @@ export default async URI => {
         deprecationPerYear: Math.floor(Math.random() * 5 + 10),
         valueOfTruck: Math.floor(Math.random() * 150000 + 100000),
         combustion: Math.floor(Math.random() * 4 + 33),
-        capacity: Math.floor(Math.random() * 6 + 20)
+        capacity: Math.floor(Math.random() * 6 + 20),
+        averageDistancePerMonth: Math.floor(Math.random() * 10000 + 15000),
+        range: {
+          minRange:
+            Math.random() < 0.5 ? null : Math.floor(Math.random() * 15 + 5),
+          maxRange:
+            Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
+        },
+        margin: Math.floor(Math.random() * 5 + 6)
       };
     },
     () => {
@@ -86,7 +123,15 @@ export default async URI => {
         deprecationPerYear: Math.floor(Math.random() * 5 + 10),
         valueOfTruck: Math.floor(Math.random() * 35000 + 50000),
         combustion: Math.floor(Math.random() * 6 + 20),
-        capacity: Math.floor(Math.random() * 1 + 7)
+        capacity: Math.floor(Math.random() * 1 + 7),
+        averageDistancePerMonth: Math.floor(Math.random() * 4000 + 7000),
+        range: {
+          minRange:
+            Math.random() < 0.8 ? null : Math.floor(Math.random() * 10 + 2),
+          maxRange:
+            Math.random() < 0.05 ? null : Math.floor(Math.random() * 1000 + 900)
+        },
+        margin: Math.floor(Math.random() * 7 + 8)
       };
     },
     () => {
@@ -101,7 +146,16 @@ export default async URI => {
         deprecationPerYear: Math.floor(Math.random() * 5 + 10),
         valueOfTruck: Math.floor(Math.random() * 35000 + 50000),
         combustion: Math.floor(Math.random() * 6 + 20),
-        volume: volume
+        volume,
+        averageDistancePerMonth: Math.floor(Math.random() * 8000 + 7000),
+        range: {
+          minRange: Math.random() < 0.8 ? null : Math.floor(Math.random() * 4),
+          maxRange:
+            Math.random() < 0.05
+              ? null
+              : Math.floor(Math.random() * 3000 + 1000)
+        },
+        margin: Math.floor(Math.random() * 7 + 8)
       };
     }
   ];
@@ -128,7 +182,7 @@ export default async URI => {
           const d = Math.random();
           const prepareVehicle = {
             name: `Truck ${uuid()}`,
-            fuel: savedFuels[d < 0.4 ? 0 : d < 0.7 ? 1 : 2]._id,
+            fuel: savedFuels[d < 0.4 ? 0 : d < 0.7 ? 1 : 2].name,
             ...vehiclesTypes[d < 0.5 ? 0 : d < 0.7 ? 1 : d < 0.8 ? 2 : 3]()
           };
           const vehicle = await Vehicle.create(prepareVehicle);
