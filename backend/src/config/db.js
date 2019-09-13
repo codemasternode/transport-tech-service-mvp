@@ -67,10 +67,24 @@ export default async URI => {
     User.create(data[4])
   ]);
 
+  const semiTrailers = [
+    "Chłodnia",
+    "Firanka",
+    "Wywrotka",
+    "Cysterna chemiczna",
+    "Cysterna gazowa",
+    "Cysterna paliwowa",
+    "Silos",
+    "Platforma",
+    "Niskopodwoziowy",
+    "Mega"
+  ];
+
   const vehiclesTypes = [
     () => {
+      let los = Math.random();
       return {
-        type: "ciągnik z naczepą jumbo",
+        type: los < 0.4 ? semiTrailers[1] : semiTrailers[0],
         dimensions: {
           length: Number((Math.random() * 4 + 13).toFixed(2)),
           width: Number((Math.random() * 2 + 2.3).toFixed(2)),
@@ -92,7 +106,7 @@ export default async URI => {
     },
     () => {
       return {
-        type: "ciągnik z naczepą duży tir",
+        type: semiTrailers[9],
         dimensions: {
           length: Number((Math.random() * 5 + 15).toFixed(2)),
           width: Number((Math.random() * 1 + 2.4).toFixed(2)),
@@ -113,8 +127,14 @@ export default async URI => {
       };
     },
     () => {
+      let los = Math.random();
       return {
-        type: "8 tonowa solówka",
+        type:
+          los < 0.2
+            ? semiTrailers[0]
+            : los < 0.5
+            ? semiTrailers[1]
+            : semiTrailers[2],
         dimensions: {
           length: Number((Math.random() * 2 + 8).toFixed(2)),
           width: Number((Math.random() * 1 + 2.3).toFixed(2)),
@@ -135,9 +155,17 @@ export default async URI => {
       };
     },
     () => {
+      let los = Math.random();
       const volume = Math.floor(Math.random() * 5000 + 30000);
       return {
-        type: `Cysterna ${Math.floor(volume / 100) * 100}`,
+        type:
+          los < 0.1
+            ? semiTrailers[3]
+            : los < 0.2
+            ? semiTrailers[4]
+            : los < 0.7
+            ? semiTrailers[5]
+            : semiTrailers[6],
         dimensions: {
           length: Number((Math.random() * 2 + 8).toFixed(2)),
           width: Number((Math.random() * 1 + 2.3).toFixed(2)),
@@ -157,6 +185,29 @@ export default async URI => {
         },
         margin: Math.floor(Math.random() * 7 + 8)
       };
+    },
+    () => {
+      let los = Math.random();
+      return {
+        type: los < 0.4 ? semiTrailers[7] : semiTrailers[8],
+        dimensions: {
+          length: Number((Math.random() * 5 + 15).toFixed(2)),
+          width: Number((Math.random() * 1 + 3.2).toFixed(2)),
+          height: Number((Math.random() * 3 + 2.6).toFixed(2))
+        },
+        deprecationPerYear: Math.floor(Math.random() * 5 + 10),
+        valueOfTruck: Math.floor(Math.random() * 150000 + 100000),
+        combustion: Math.floor(Math.random() * 4 + 33),
+        capacity: Math.floor(Math.random() * 6 + 20),
+        averageDistancePerMonth: Math.floor(Math.random() * 10000 + 15000),
+        range: {
+          minRange:
+            Math.random() < 0.5 ? null : Math.floor(Math.random() * 15 + 5),
+          maxRange:
+            Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
+        },
+        margin: Math.floor(Math.random() * 5 + 6)
+      };
     }
   ];
 
@@ -171,6 +222,7 @@ export default async URI => {
         counter++;
       }
     }
+    let sumAvgKmPerMonth = 0;
     for (let k = 0; k < companyBases.length; k++) {
       if (companies[i].nameOfCompany === companyBases[k].nameOfCompany) {
         companyBases[k].vehicles = [];
@@ -183,8 +235,11 @@ export default async URI => {
           const prepareVehicle = {
             name: `Truck ${uuid()}`,
             fuel: savedFuels[d < 0.4 ? 0 : d < 0.7 ? 1 : 2].name,
-            ...vehiclesTypes[d < 0.5 ? 0 : d < 0.7 ? 1 : d < 0.8 ? 2 : 3]()
+            ...vehiclesTypes[
+              d < 0.5 ? 0 : d < 0.7 ? 1 : d < 0.8 ? 2 : d < 0.9 ? 3 : 4
+            ]()
           };
+          sumAvgKmPerMonth += prepareVehicle.averageDistancePerMonth;
           const vehicle = await Vehicle.create(prepareVehicle);
           companyBases[k].vehicles.push(vehicle);
         }
@@ -195,6 +250,7 @@ export default async URI => {
     const PL = await Country.findOne({ name: "PL" });
     companies[i].country = PL;
     companies[i].countries = [PL];
+    companies[i].sumAvgKmPerMonth = sumAvgKmPerMonth;
     await Company.create(companies[i]);
   }
 };

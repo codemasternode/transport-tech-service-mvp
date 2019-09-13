@@ -40,7 +40,8 @@ db.vehicles.aggregate([
             }
           ]
         }
-      ]
+      ],
+      type: "Chłodnia"
     }
   },
   {
@@ -102,6 +103,32 @@ db.vehicles.aggregate([
           "$fuel.price"
         ]
       }
+    }
+  },
+  {
+    $lookup: {
+      from: "companies",
+      let: {
+        vehicleId: "$_id"
+      },
+      pipeline: [
+        {
+          $unwind: "$companyBases"
+        },
+        {
+          $match: {
+            $expr: {
+              $in: ["$$vehicleId", "$companyBases.vehicles._id"]
+            }
+          }
+        }
+      ],
+      as: "company"
+    }
+  },
+  {
+    $project: {
+      "company.companyBases": 0
     }
   },
   {

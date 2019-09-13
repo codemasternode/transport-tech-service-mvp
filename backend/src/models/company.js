@@ -113,6 +113,14 @@ const CompanySchema = new mongoose.Schema(
     },
     plan: {
       type: Object
+    },
+    sumAvgKmPerMonth: {
+      type: Number,
+      default: 0
+    },
+    sumCostsPerMonth: {
+      type: Number,
+      default: 0
     }
   },
   { strict: false }
