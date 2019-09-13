@@ -83,6 +83,12 @@ export default async URI => {
   const vehiclesTypes = [
     () => {
       let los = Math.random();
+      let additional = {};
+      if (Math.random() < 0.8) {
+        additional.maxFreeTime = Math.floor(Math.random() * 12);
+        additional.pricePerHourWaiting = Math.floor(Math.random() * 30 + 20);
+      }
+
       return {
         type: los < 0.4 ? semiTrailers[1] : semiTrailers[0],
         dimensions: {
@@ -101,10 +107,16 @@ export default async URI => {
           maxRange:
             Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
         },
-        margin: Math.floor(Math.random() * 5 + 6)
+        margin: Math.floor(Math.random() * 5 + 6),
+        waitingTimeParams: additional
       };
     },
     () => {
+      let additional = {};
+      if (Math.random() < 0.8) {
+        additional.maxFreeTime = Math.floor(Math.random() * 12);
+        additional.pricePerHourWaiting = Math.floor(Math.random() * 30 + 20);
+      }
       return {
         type: semiTrailers[9],
         dimensions: {
@@ -123,11 +135,17 @@ export default async URI => {
           maxRange:
             Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
         },
-        margin: Math.floor(Math.random() * 5 + 6)
+        margin: Math.floor(Math.random() * 5 + 6),
+        waitingTimeParams: additional
       };
     },
     () => {
       let los = Math.random();
+      let additional = {};
+      if (Math.random() < 0.8) {
+        additional.maxFreeTime = Math.floor(Math.random() * 12);
+        additional.pricePerHourWaiting = Math.floor(Math.random() * 30 + 20);
+      }
       return {
         type:
           los < 0.2
@@ -151,11 +169,17 @@ export default async URI => {
           maxRange:
             Math.random() < 0.05 ? null : Math.floor(Math.random() * 1000 + 900)
         },
-        margin: Math.floor(Math.random() * 7 + 8)
+        margin: Math.floor(Math.random() * 7 + 8),
+        waitingTimeParams: additional
       };
     },
     () => {
       let los = Math.random();
+      let additional = {};
+      if (Math.random() < 0.8) {
+        additional.maxFreeTime = Math.floor(Math.random() * 12);
+        additional.pricePerHourWaiting = Math.floor(Math.random() * 30 + 20);
+      }
       const volume = Math.floor(Math.random() * 5000 + 30000);
       return {
         type:
@@ -183,11 +207,17 @@ export default async URI => {
               ? null
               : Math.floor(Math.random() * 3000 + 1000)
         },
-        margin: Math.floor(Math.random() * 7 + 8)
+        margin: Math.floor(Math.random() * 7 + 8),
+        waitingTimeParams: additional
       };
     },
     () => {
       let los = Math.random();
+      let additional = {};
+      if (Math.random() < 0.8) {
+        additional.maxFreeTime = Math.floor(Math.random() * 12);
+        additional.pricePerHourWaiting = Math.floor(Math.random() * 30 + 20);
+      }
       return {
         type: los < 0.4 ? semiTrailers[7] : semiTrailers[8],
         dimensions: {
@@ -206,7 +236,8 @@ export default async URI => {
           maxRange:
             Math.random() < 0.3 ? null : Math.floor(Math.random() * 3000 + 6000)
         },
-        margin: Math.floor(Math.random() * 5 + 6)
+        margin: Math.floor(Math.random() * 5 + 6),
+        waitingTimeParams: additional
       };
     }
   ];
@@ -223,6 +254,8 @@ export default async URI => {
       }
     }
     let sumAvgKmPerMonth = 0;
+    let sumCostsPerMonth = 0;
+
     for (let k = 0; k < companyBases.length; k++) {
       if (companies[i].nameOfCompany === companyBases[k].nameOfCompany) {
         companyBases[k].vehicles = [];
@@ -247,10 +280,72 @@ export default async URI => {
         companies[i].companyBases.push(companyBase);
       }
     }
+
+    const costs = [];
+    for (let m = 0; m < companies[i].plan.vehicles; m++) {
+      const d = Math.random();
+      const cost = {
+        name: `Cost ${uuid()}`,
+        value: Math.floor(Math.random() * 100 + 300),
+        returnedValue: 0
+      };
+      sumCostsPerMonth += cost.value;
+      costs.push(cost);
+    }
+
+    for (let m = 0; m < companies[i].plan.companyBases; m++) {
+      const d = Math.floor(Math.random() * 3 + 6);
+      for (let g = 0; g < d; g++) {
+        const cost = {
+          name: `Cost ${uuid()}`,
+          value: Math.floor(Math.random() * 1000 + 100),
+          returnedValue: 0
+        };
+        sumCostsPerMonth += cost.value;
+        costs.push(cost);
+      }
+    }
+    const workers = [];
+    for (let m = 0; m < Math.floor((companies[i].plan.vehicles * 3) / 4); m++) {
+      const worker = {
+        name: `Name ${uuid()}`,
+        lastname: `Lastname ${uuid()}`,
+        salary: Math.floor(Math.random() * 2000 + 3000),
+        jobName: `Job Name ${uuid()}`
+      };
+      workers.push(worker);
+      sumCostsPerMonth += worker.salary;
+    }
+
+    for (let m = 0; m < companies[i].plan.companyBases; m++) {
+      for (
+        let j = 0;
+        j <
+        Math.floor(
+          (companies[i].plan.vehicles * 3) /
+            4 /
+            Math.floor(Math.random() * 7 + 5)
+        );
+        j++
+      ) {
+        const worker = {
+          name: `Name ${uuid()}`,
+          lastname: `Lastname ${uuid()}`,
+          salary: Math.floor(Math.random() * 1000 + 2500),
+          jobName: `Job Name ${uuid()}`
+        };
+        workers.push(worker);
+        sumCostsPerMonth += worker.salary;
+      }
+    }
+
     const PL = await Country.findOne({ name: "PL" });
     companies[i].country = PL;
     companies[i].countries = [PL];
+    companies[i].staticCosts = costs;
     companies[i].sumAvgKmPerMonth = sumAvgKmPerMonth;
+    companies[i].sumCostsPerMonth = sumCostsPerMonth;
+    companies[i].workers = workers;
     await Company.create(companies[i]);
   }
 };

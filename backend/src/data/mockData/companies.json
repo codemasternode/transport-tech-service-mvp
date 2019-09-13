@@ -5,20 +5,6 @@
         "surname": "Kowalski",
         "taxNumber": "6793184304",
         "email": "admin@teachtechservice.com",
-        "staticCosts": [
-            {
-                "name": "Telefon",
-                "value": 800,
-                "frequency": "per month",
-                "returnedValue": 0
-            },
-            {
-                "name": "Internet",
-                "value": 550,
-                "frequency": "per week",
-                "returnedValue": 0
-            }
-        ],
         "plan": {
             "name": "Enterprise",
             "vehicles": 100,
