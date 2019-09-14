@@ -5,6 +5,7 @@ import vehiclesRoutes from "./routes/vehicles";
 import staticCostsRoutes from "./routes/staticCosts";
 import workersRoutes from "./routes/workers";
 import paymentsRoutes from "./routes/payments";
+import roadRoutes from "./routes/road";
 import companyBasesRoutes from "./routes/companyBase";
 import usersRoutes from "./routes/users";
 import mailer from "./config/mailer";
@@ -27,6 +28,7 @@ app.use("/api/company", companiesRoutes());
 app.use("/api/workers", workersRoutes());
 app.use("/api/users", usersRoutes());
 app.use("/api/payments", paymentsRoutes());
+app.use("/api/distance", roadRoutes());
 
 const server = app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);

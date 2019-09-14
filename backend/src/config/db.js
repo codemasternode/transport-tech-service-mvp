@@ -256,9 +256,11 @@ export default async URI => {
     let sumAvgKmPerMonth = 0;
     let sumCostsPerMonth = 0;
 
+    let rememberSome = [];
     for (let k = 0; k < companyBases.length; k++) {
       if (companies[i].nameOfCompany === companyBases[k].nameOfCompany) {
         companyBases[k].vehicles = [];
+
         for (
           let m = 0;
           m < Math.floor(companies[i].plan.vehicles / (counter + 1));
@@ -274,7 +276,14 @@ export default async URI => {
           };
           sumAvgKmPerMonth += prepareVehicle.averageDistancePerMonth;
           const vehicle = await Vehicle.create(prepareVehicle);
+          if (m === 0 || m === 1) {
+            rememberSome.push(vehicle);
+          }
           companyBases[k].vehicles.push(vehicle);
+        }
+        companyBases[k].vehicles.push(...rememberSome);
+        if (!companyBases[k].vehicles) {
+          companyBases[k].vehicles = [];
         }
         const companyBase = await CompanyBase.create(companyBases[k]);
         companies[i].companyBases.push(companyBase);
