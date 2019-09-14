@@ -88,6 +88,17 @@ export default withRouter(({ history }) => {
         })
     }
 
+    const isRenderList = () => {
+        if (state.data.length === 0) {
+            return <h5 style={{ margin: '10px' }}>Nie wybrałeś żadnej bazy firmy</h5>
+        } else {
+            return (
+                state.data.map((item, key) => (
+                    <NewCostPlan length={state.data.length} data={item} id={key} handleRemoveOrder={handleRemoveOrder} />
+                ))
+            )
+        }
+    }
 
     console.log(state)
 
@@ -108,19 +119,13 @@ export default withRouter(({ history }) => {
                         <Grid container justify="center"
                             direction="row"
                             alignItems="center">
-                            <Grid item xs={12} sm={4}>
-                                <Paper className={classes.paper && classes.paperNewOrder}>
-                                    {
-                                        state.data.length > 0 ? state.data.map((item, key) => (
-                                            <NewCostPlan data={item} id={key} handleRemoveOrder={handleRemoveOrder} />
-                                        )) : null
-                                    }
-                                </Paper>
-
-
+                            <Grid item xs={12} sm={4} className="container__database" >
+                                <div className="container__database__list" style={{ minHeight: '450px' }}>
+                                    {isRenderList()}
+                                </div>
                             </Grid>
                             <Grid item xs={12} sm={8}>
-                                <Paper className={classes.paper}>
+                                <Paper className={classes.paper} style={{ margin: '10px' }}>
                                     <form className={classes.container} noValidate autoComplete="off">
                                         <Grid container spacing={3}>
                                             <Grid item xs={12}>
@@ -202,7 +207,7 @@ export default withRouter(({ history }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} style={{ width: '100%' }}>
+                    <Grid item xs={12} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <div >
                             Użytkownicy: {state.data.length}
                             <Button variant="contained" className={classes.button} onClick={nextStep}>
@@ -212,7 +217,7 @@ export default withRouter(({ history }) => {
                     </Grid>
                 </Grid>
             </Container>
-        </div>
+        </div >
 
 
     );

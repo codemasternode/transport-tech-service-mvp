@@ -44,7 +44,6 @@ function TableElement({ type, data, id, handleRemoveUser, handleAddUser }) {
                             }
 
                         </CardContent>
-
                     </CardActionArea>
 
                 </Card>

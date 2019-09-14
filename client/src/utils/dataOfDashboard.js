@@ -17,7 +17,7 @@ export const frequencies = [
     },
 ]
 
-const currName = { "USD": "$", "EUR": "€", "PLN": "zł" }
+export const currName = { "USD": "$", "EUR": "€", "PLN": "zł" }
 
 export const currencies = [
     {
@@ -34,4 +34,4 @@ export const currencies = [
     },
 ];
 
-export default (currName)
+

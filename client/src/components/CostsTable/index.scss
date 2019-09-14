@@ -1,12 +1,11 @@
 .root {
     flex-grow: 1;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #f2f2f2 70%, #232f3e 30%);
+    // background: linear-gradient(to bottom, #f2f2f2 70%, #232f3e 30%);
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
+    }
 .overlay {
     position: absolute;
     top: 0;
