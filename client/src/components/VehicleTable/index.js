@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Link, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import TableBase from './newTable';
+import TableBase from './baseTable';
 import { frequencies, currencies, currName } from '../../utils/dataOfDashboard';
 import './index.scss';
 
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function VehicleTable({data, }) {
+export default function VehicleTable({ data, }) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         name: 'Pojazd 1',
@@ -55,6 +55,7 @@ export default function VehicleTable({data, }) {
         lenght: 12,
         width: 12,
         height: 12,
+        emptyVehicle: 10,
     })
 
     const [state, setState] = React.useState({
@@ -96,6 +97,10 @@ export default function VehicleTable({data, }) {
         }
     }
 
+    const isRenderTable = () => {
+
+    }
+
     return (
 
         <div className="root">
@@ -104,86 +109,10 @@ export default function VehicleTable({data, }) {
                     {isRenderList()}
                 </Grid>
                 <Grid item xs={12} sm={8}>
-                    <Paper className={classes.paper}>
-                        <form className={classes.container} noValidate autoComplete="off">
-                            <Grid container spacing={3}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        id="standard-name"
-                                        label="Nazwa"
-                                        className={classes.textField}
-                                        value={values.name}
-                                        onChange={handleChange('name')}
-                                        margin="normal"
-                                        variant="outlined"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        id="standard-value"
-                                        label={`Wartość ${currName[values.currency]}`}
-                                        className={classes.textField}
-                                        value={values.valuePrice}
-                                        onChange={handleChange('valuePrice')}
-                                        margin="normal"
-                                        variant="outlined"
-                                    />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField
-                                        id="standard-select-currency"
-                                        select
-                                        label="Waluta"
-                                        className={classes.textField}
-                                        value={values.currency}
-                                        onChange={handleChange('currency')}
-                                        SelectProps={{
-                                            MenuProps: {
-                                                className: classes.menu,
-                                            },
-                                        }}
-                                        helperText="Wybierz walutę płatności"
-                                        margin="normal"
-                                        variant="outlined"
-                                    >
-                                        {currencies.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.value}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                    <TextField
-                                        id="standard-select-frequency"
-                                        select
-                                        label="Częstotliwość"
-                                        className={classes.textField}
-                                        value={values.frequency}
-                                        onChange={handleChange('frequency')}
-                                        SelectProps={{
-                                            MenuProps: {
-                                                className: classes.menu,
-                                            },
-                                        }}
-                                        helperText="Wybierz okres płatności"
-                                        margin="normal"
-                                        variant="outlined"
-                                    >
-                                        {frequencies.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.value}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Grid>
-                            </Grid>
-                            <Button variant="contained" className={classes.button} onClick={handleAddOrder}>
-                                Dodaj
-                            </Button>
-                        </form>
-                    </Paper>
+                    {}
+                    <Button variant="contained" className={classes.button} onClick={handleAddOrder}>
+                        Dodaj
+                    </Button>
                 </Grid>
             </Grid>
         </div>
