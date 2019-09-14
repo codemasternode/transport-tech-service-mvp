@@ -135,162 +135,17 @@ db.vehicles.aggregate([
   }
 ]);
 
-a = {
-  $sum: [
-    {
-      $multiply: [
-        {
-          $sin: {
-            $divide: [
-              {
-                $divide: [
-                  {
-                    $multiply: [
-                      {
-                        $subtract: [50.019825, 50.059515] //[lat2, lat1]
-                      },
-                      PI
-                    ]
-                  },
-                  180
-                ]
-              },
-              2
-            ]
-          }
-        },
-        {
-          $sin: {
-            $divide: [
-              {
-                $divide: [
-                  {
-                    $multiply: [
-                      {
-                        $subtract: [50.019825, 50.059515] //[lat2, lat1]
-                      },
-                      PI
-                    ]
-                  },
-                  180
-                ]
-              },
-              2
-            ]
-          }
-        }
-      ]
-    },
-    {
-      $multiply: [
-        {
-          $multiply: [
-            {
-              $sin: {
-                $divide: [
-                  {
-                    $divide: [
-                      {
-                        $multiply: [
-                          {
-                            $subtract: [20.004478, 19.92246] //[lon2, lon1]
-                          },
-                          PI
-                        ]
-                      },
-                      180
-                    ]
-                  },
-                  2
-                ]
-              }
-            },
-            {
-              $sin: {
-                $divide: [
-                  {
-                    $divide: [
-                      {
-                        $multiply: [
-                          {
-                            $subtract: [20.004478, 19.92246] //[lon2, lon1]
-                          },
-                          PI
-                        ]
-                      },
-                      180
-                    ]
-                  },
-                  2
-                ]
-              }
-            }
-          ]
-        },
-        {
-          $multiply: [
-            {
-              $cos: {
-                $divide: [
-                  {
-                    $multiply: [
-                      50.059515, //lat1
-                      PI
-                    ]
-                  },
-                  180
-                ]
-              }
-            },
-            {
-              $cos: {
-                $divide: [
-                  {
-                    $multiply: [
-                      50.019825, //lat2
-                      PI
-                    ]
-                  },
-                  180
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
-};
-
-dLat = {
-  $divide: [
-    {
-      $multiply: [
-        {
-          $subtract: [50.019825, 50.059515] //[lat2, lat1]
-        },
-        PI
-      ]
-    },
-    180
-  ]
-};
-
-dLon = {
-  $divide: [
-    {
-      $multiply: [
-        {
-          $subtract: [20.004478, 19.92246] //[lon2, lon1]
-        },
-        PI
-      ]
-    },
-    180
-  ]
-};
 
 const PI = Math.PI;
+const point1 = {
+  lat: 50.059515,
+  lng: 19.92246
+};
+
+const point2 = {
+  lat: 50.019825,
+  lng: 20.004478
+};
 
 db.vehicles.aggregate([
   {
@@ -304,136 +159,144 @@ db.vehicles.aggregate([
               {
                 $atan2: [
                   {
-                    $sum: [
-                      {
-                        $multiply: [
-                          {
-                            $sin: {
-                              $divide: [
+                    $sqrt: {
+                      $sum: [
+                        {
+                          $multiply: [
+                            {
+                              $sin: {
+                                $divide: [
+                                  {
+                                    $divide: [
+                                      {
+                                        $multiply: [
+                                          {
+                                            $subtract: [point2.lat, point1.lat] //[lat2, lat1]
+                                          },
+                                          PI
+                                        ]
+                                      },
+                                      180
+                                    ]
+                                  },
+                                  2
+                                ]
+                              }
+                            },
+                            {
+                              $sin: {
+                                $divide: [
+                                  {
+                                    $divide: [
+                                      {
+                                        $multiply: [
+                                          {
+                                            $subtract: [point2.lat, point1.lat] //[lat2, lat1]
+                                          },
+                                          PI
+                                        ]
+                                      },
+                                      180
+                                    ]
+                                  },
+                                  2
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          $multiply: [
+                            {
+                              $multiply: [
                                 {
-                                  $divide: [
-                                    {
-                                      $multiply: [
-                                        {
-                                          $subtract: [50.019825, 50.059515] //[lat2, lat1]
-                                        },
-                                        PI
-                                      ]
-                                    },
-                                    180
-                                  ]
+                                  $sin: {
+                                    $divide: [
+                                      {
+                                        $divide: [
+                                          {
+                                            $multiply: [
+                                              {
+                                                $subtract: [
+                                                  point2.lng,
+                                                  point1.lng
+                                                ] //[lon2, lon1]
+                                              },
+                                              PI
+                                            ]
+                                          },
+                                          180
+                                        ]
+                                      },
+                                      2
+                                    ]
+                                  }
                                 },
-                                2
+                                {
+                                  $sin: {
+                                    $divide: [
+                                      {
+                                        $divide: [
+                                          {
+                                            $multiply: [
+                                              {
+                                                $subtract: [
+                                                  point2.lng,
+                                                  point1.lng
+                                                ] //[lon2, lon1]
+                                              },
+                                              PI
+                                            ]
+                                          },
+                                          180
+                                        ]
+                                      },
+                                      2
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              $multiply: [
+                                {
+                                  $cos: {
+                                    $divide: [
+                                      {
+                                        $multiply: [
+                                          point1.lat, //lat1
+                                          PI
+                                        ]
+                                      },
+                                      180
+                                    ]
+                                  }
+                                },
+                                {
+                                  $cos: {
+                                    $divide: [
+                                      {
+                                        $multiply: [
+                                          point2.lat, //lat2
+                                          PI
+                                        ]
+                                      },
+                                      180
+                                    ]
+                                  }
+                                }
                               ]
                             }
-                          },
-                          {
-                            $sin: {
-                              $divide: [
-                                {
-                                  $divide: [
-                                    {
-                                      $multiply: [
-                                        {
-                                          $subtract: [50.019825, 50.059515] //[lat2, lat1]
-                                        },
-                                        PI
-                                      ]
-                                    },
-                                    180
-                                  ]
-                                },
-                                2
-                              ]
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        $multiply: [
-                          {
-                            $multiply: [
-                              {
-                                $sin: {
-                                  $divide: [
-                                    {
-                                      $divide: [
-                                        {
-                                          $multiply: [
-                                            {
-                                              $subtract: [20.004478, 19.92246] //[lon2, lon1]
-                                            },
-                                            PI
-                                          ]
-                                        },
-                                        180
-                                      ]
-                                    },
-                                    2
-                                  ]
-                                }
-                              },
-                              {
-                                $sin: {
-                                  $divide: [
-                                    {
-                                      $divide: [
-                                        {
-                                          $multiply: [
-                                            {
-                                              $subtract: [20.004478, 19.92246] //[lon2, lon1]
-                                            },
-                                            PI
-                                          ]
-                                        },
-                                        180
-                                      ]
-                                    },
-                                    2
-                                  ]
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            $multiply: [
-                              {
-                                $cos: {
-                                  $divide: [
-                                    {
-                                      $multiply: [
-                                        50.059515, //lat1
-                                        PI
-                                      ]
-                                    },
-                                    180
-                                  ]
-                                }
-                              },
-                              {
-                                $cos: {
-                                  $divide: [
-                                    {
-                                      $multiply: [
-                                        50.019825, //lat2
-                                        PI
-                                      ]
-                                    },
-                                    180
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
+                          ]
+                        }
+                      ]
+                    }
                   },
                   {
                     $sqrt: {
                       $subtract: [
                         1,
-                        (a = {
+                        {
                           $sum: [
                             {
                               $multiply: [
@@ -446,8 +309,8 @@ db.vehicles.aggregate([
                                             $multiply: [
                                               {
                                                 $subtract: [
-                                                  50.019825,
-                                                  50.059515
+                                                  point2.lat,
+                                                  point1.lat
                                                 ] //[lat2, lat1]
                                               },
                                               PI
@@ -469,8 +332,8 @@ db.vehicles.aggregate([
                                             $multiply: [
                                               {
                                                 $subtract: [
-                                                  50.019825,
-                                                  50.059515
+                                                  point2.lat,
+                                                  point1.lat
                                                 ] //[lat2, lat1]
                                               },
                                               PI
@@ -498,8 +361,8 @@ db.vehicles.aggregate([
                                                 $multiply: [
                                                   {
                                                     $subtract: [
-                                                      20.004478,
-                                                      19.92246
+                                                      point2.lng,
+                                                      point1.lng
                                                     ] //[lon2, lon1]
                                                   },
                                                   PI
@@ -521,8 +384,8 @@ db.vehicles.aggregate([
                                                 $multiply: [
                                                   {
                                                     $subtract: [
-                                                      20.004478,
-                                                      19.92246
+                                                      point2.lng,
+                                                      point1.lng
                                                     ] //[lon2, lon1]
                                                   },
                                                   PI
@@ -544,7 +407,7 @@ db.vehicles.aggregate([
                                         $divide: [
                                           {
                                             $multiply: [
-                                              50.059515, //lat1
+                                              point1.lat, //lat1
                                               PI
                                             ]
                                           },
@@ -557,7 +420,7 @@ db.vehicles.aggregate([
                                         $divide: [
                                           {
                                             $multiply: [
-                                              50.019825, //lat2
+                                              point2.lat, //lat2
                                               PI
                                             ]
                                           },
@@ -570,7 +433,7 @@ db.vehicles.aggregate([
                               ]
                             }
                           ]
-                        })
+                        }
                       ]
                     }
                   }
