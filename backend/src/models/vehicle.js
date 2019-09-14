@@ -14,21 +14,31 @@ const VehicleSchema = new mongoose.Schema({
     min: 1
   },
   capacity: {
-    type: Number,
-    required: true,
-    min: 1
+    type: Number
   },
-  dimensionsOfTheHold: {
-    type: String,
-    required: true
+  volume: {
+    type: Number
+  },
+  dimensions: {
+    length: {
+      type: Number,
+      required: true
+    },
+    width: {
+      type: Number,
+      required: true
+    },
+    height: {
+      type: Number,
+      required: true
+    }
   },
   deprecationPerYear: {
     type: Number,
     required: true
   },
   fuel: {
-    type: Schema.Types.ObjectId,
-    ref: "fuel",
+    type: String,
     required: true
   },
   valueOfTruck: {
@@ -39,6 +49,39 @@ const VehicleSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 10
+  },
+  type: {
+    type: String,
+    required: true
+  },
+  averageDistancePerMonth: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  range: {
+    maxRange: {
+      type: Number
+    },
+    minRange: {
+      type: Number,
+      default: 0
+    }
+  },
+  margin: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  waitingTimeParams: {
+    maxFreeTime: {
+      type: Number,
+      min: 0
+    },
+    pricePerHourWaiting: {
+      type: Number,
+      min: 0
+    }
   }
 });
 

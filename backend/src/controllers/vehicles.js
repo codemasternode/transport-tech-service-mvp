@@ -49,13 +49,19 @@ export async function postVehicle(req, res) {
     return res.status(400).send({});
   }
 
-  const [company, companyBases, statDistinct] = await Promise.all([
-    Company.findById(req.params.company_id),
-    CompanyBase.find({ _id: { $in: req.body.companyBases } }),
-    Company.distinct("companyBases.vehicles._id", {
-      _id: new Types.ObjectId(req.params.company_id)
-    })
-  ]);
+  let company, companyBases, statDistinct;
+
+  try {
+    [company, companyBases, statDistinct] = await Promise.all([
+      Company.findById(req.params.company_id),
+      CompanyBase.find({ _id: { $in: req.body.companyBases } }),
+      Company.distinct("companyBases.vehicles._id", {
+        _id: new Types.ObjectId(req.params.company_id)
+      })
+    ]);
+  } catch (err) {
+    return res.status(400).send({ err: err.toString() });
+  }
 
   if (!company || req.body.companyBases.length !== companyBases.length) {
     return res.status(404).send({});
@@ -64,7 +70,7 @@ export async function postVehicle(req, res) {
   for (let i = 0; i < req.body.companyBases.length; i++) {
     let isInside = false;
     for (let k = 0; k < company.companyBases.length; k++) {
-      if (req.body.companyBases[i] === company.companyBases[k]._id) {
+      if (req.body.companyBases[i] === company.companyBases[k]._id.toString()) {
         isInside = true;
       }
     }
@@ -74,8 +80,7 @@ export async function postVehicle(req, res) {
       });
     }
   }
-
-  if (statDistinct.length === company.plan.vehicles) {
+  if (statDistinct.length >= company.plan.vehicles) {
     return res.status(400).send({
       msg: `Your plan reached max number of vehicles: ${company.plan.vehicles}`
     });
@@ -131,7 +136,6 @@ export async function postVehicle(req, res) {
           session
         }
       );
-      console.log(cStats);
       if (
         cStats.nModified === 0 ||
         cbStats.n !== req.body.companyBases.length
@@ -143,7 +147,6 @@ export async function postVehicle(req, res) {
       session.endSession();
       res.send({});
     } catch (error) {
-      console.log(error);
       await session.abortTransaction();
       session.endSession();
       return res.status(400).send({ error });
@@ -160,7 +163,13 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
     return res.status(400).send({});
   }
 
-  const company = await Company.findById(req.params.company_id);
+  let company;
+
+  try {
+    company = await Company.findById(req.params.company_id);
+  } catch (err) {
+    return res.status(400).send({ msg: "Wrong ID" });
+  }
 
   if (!company) {
     return res.status(404).send({ msg: "Your company doesn't exist" });
@@ -180,6 +189,19 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
     if (!req.body.companyBases[i].vehicles) {
       return res.status(400).send({
         msg: "You don't have vehicles property in one of the objects"
+      });
+    }
+    let isInside = false;
+    for (let m = 0; m < company.companyBases.length; m++) {
+      if (
+        company.companyBases[m]._id.toString() === req.body.companyBases[i]._id
+      ) {
+        isInside = true;
+      }
+    }
+    if (!isInside) {
+      return res.status(400).send({
+        msg: "You are trying to update non existing vehicle"
       });
     }
     if (req.body.companyBases[i].vehicles.length === 0) {
@@ -222,14 +244,12 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
     }
   }
 
-  console.log(vehiclesToRemove);
 
   execute()
     .then(() => {
       res.send({});
     })
     .catch(err => {
-      console.log(err);
       res.status(400).send({ err });
     });
 
@@ -247,13 +267,9 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
         { session }
       );
 
-      console.log(vehicleStats, 217);
-
       const savedVehicles = await Vehicle.insertMany([...vehicles], {
         session
       });
-
-      console.log(savedVehicles);
 
       for (let i = 0; i < vehicles.length; i++) {
         vehicles[i]._id = savedVehicles[i]._id;
@@ -304,7 +320,6 @@ export async function overwriteVehiclesWithCompanyBases(req, res) {
       session.endSession();
       return true;
     } catch (err) {
-      console.log(err);
       await session.abortTransaction();
       session.endSession();
       throw err;
@@ -331,11 +346,9 @@ export async function putVehicle(req, res) {
     { upsert: true }
   )
     .then(stat => {
-      console.log(stat);
       res.send({});
     })
     .catch(err => {
-      console.log(err, "to tu");
       res.status(500).send({});
     });
 }
@@ -360,7 +373,6 @@ export async function deleteVehicle(req, res) {
     }
   )
     .then(stat => {
-      console.log(stat);
       res.send({});
     })
     .catch(err => {

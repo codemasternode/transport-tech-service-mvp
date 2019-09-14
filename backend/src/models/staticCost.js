@@ -12,11 +12,6 @@ const StaticCostSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  frequency: {
-    type: String,
-    required: true,
-    enum: frequencyTypes
-  },
   returnedValue: {
     type: Number,
     required: true,
