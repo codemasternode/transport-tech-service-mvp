@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Link, Grid, Typography, Container } from '@material-ui/core';
+import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Grid, Typography, Container } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         flexGrow: 1,
-        height: '100vh',
+        minHeight: '100vh',
         background: 'linear-gradient(top, #f2f2f2 70%, #232f3e 30%)',
         display: 'flex',
         justifyContent: 'center',
@@ -101,7 +102,7 @@ export default function Login() {
                                         onChange={updateValue}
                                         autoComplete="email"
                                     />
-                                    {errors && errors.map(err => err.email ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.email}</FormHelperText> : null)}
+                                    <FormHelperText error={errors.length !== 0 ? true : false}>{errors && errors.map(err => err.email ? err.email : null)}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -116,7 +117,7 @@ export default function Login() {
                                         onChange={updateValue}
                                         autoComplete="current-password"
                                     />
-                                    {errors && errors.map(err => err.password ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.password}</FormHelperText> : null)}
+                                    <FormHelperText error={errors.length !== 0 ? true : false}>{errors && errors.map(err => err.password ? err.password : null)}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControlLabel
@@ -136,8 +137,8 @@ export default function Login() {
                             </Button></Grid>
                             <Grid container justify="flex-end">
                                 <Grid item>
-                                    <Link href="/register" variant="body2">
-                                        Already have an account? Sign in
+                                    <Link to="/register" variant="body2">
+                                        Nie masz konta? Dołącz do nas!
                                     </Link>
                                 </Grid>
                             </Grid>

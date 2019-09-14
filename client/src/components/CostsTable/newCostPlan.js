@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { Button, CssBaseline, FormControlLabel, FormHelperText, Checkbox, Link, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
+import React from 'react';
+import { Button, CardContent, Card, CardActions, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        height: 'auto',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     button: {
         backgroundColor: '#ff9900',
+    },
+    viewCard: {
+        margin: '10px 0',
     }
 
 }));
 
-const NewCostPlan = ({ data,id, handleRemoveOrder }) => {
+const NewCostPlan = ({ data, id, handleRemoveOrder, length }) => {
     const classes = useStyles();
     console.log(data)
     return (
-        <Grid container spacing={12}>
-            <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                    <p>Nazwa {data.name} </p>
-                    <p>Wartość {data.valuePrice} </p>
-                    <p>Waluta {data.currency} </p>
-                    <p>Częstotliwość {data.frequency} </p>
-                    <Button variant="contained" className={classes.button} onClick={() => handleRemoveOrder(id)}>
-                                Dodaj
-                    </Button>
-                </Paper>
-            </Grid>
-
-        </Grid>
+        <Card className={classes.viewCard}>
+            <CardContent>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    {id + 1}/{length}
+                </Typography>
+                <Typography variant="h5" component="h3">
+                    {data.title}
+                </Typography>
+                <br />
+                Nazwa {data.name} <br />
+                Wartość {data.valuePrice} <br />
+                Waluta {data.currency} <br />
+                Częstotliwość {data.frequency}<br />
+            </CardContent>
+            <CardActions>
+                <Button size="small" className={classes.button} onClick={() => handleRemoveOrder(id)}>Usuń</Button>
+            </CardActions>
+        </Card>
 
     );
 }

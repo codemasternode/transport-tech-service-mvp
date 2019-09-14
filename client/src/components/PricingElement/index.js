@@ -69,7 +69,8 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function PricingElement() {
+export default function PricingElement({ data, handleChoosePlan }) {
+    // console.log(props)
     const classes = useStyles();
     const [visible, setVisible] = React.useState({
         checked1: false,
@@ -110,10 +111,12 @@ export default function PricingElement() {
         }
     }
 
+
     const selectProduct = key => {
         if (key === 0) {
             setVisible({ ...visible, checked1: true, checked2: false, checked3: false })
             setValid({ valid: true, num: 0 })
+
         } else if (key === 1) {
             setVisible({ ...visible, checked2: true, checked1: false, checked3: false })
             setValid({ valid: true, num: 1 })
@@ -128,15 +131,15 @@ export default function PricingElement() {
         <div className={classes.root} ref={root}>
             <CssBaseline />
             <Container maxWidth="sm" component="main" className={classes.heroContent}>
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Pricing
-                </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" component="p">
                     <img src="../../logo.png" alt="logo" style={{ width: '60px' }} />
                 </Typography>
+                <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
+                    Pricing
+                </Typography>
             </Container>
             <Container maxWidth="md" component="main" className="mt-50">
-                <Grid container spacing={5} alignItems="flex-end" style={{ height: '55vh' }}>
+                <Grid container spacing={5} alignItems="flex-end" style={{ minHeight: '55vh' }}>
                     {tiers.map((tier, key) => (
                         // Enterprise card is full width at sm breakpoint
                         <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -150,28 +153,24 @@ export default function PricingElement() {
                                 }
                             }}
                                 onMouseLeave={() => {
-                                    console.log(key, valid.valid, valid.num)
                                     if (valid.valid && valid.num === 0) {
-                                        console.log("EEE")
-
                                         setVisible({ ...visible, checked1: true, checked3: false, checked2: false })
                                     } else if (valid.valid && valid.num === 1) {
-                                        console.log("EEE")
-
                                         setVisible({ ...visible, checked2: true, checked1: false, checked3: false })
                                     } else if (valid.valid && valid.num === 2) {
-                                        console.log("EEE")
                                         setVisible({ ...visible, checked3: true, checked1: false, checked2: false })
                                     } else {
-                                        console.log("EEEW")
                                         setVisible({ ...visible, checked1: false, checked2: false, checked3: false })
                                     }
-
+                                    // selectProduct(key) 
                                 }}
-                                onClick={() => selectProduct(key)}
-                                style={valid.valid && valid.num === key ? { transform: 'scale(1.1)', boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.9),0px 1px 1px 0px rgba(0,0,0,0.44),0px 2px 1px -1px rgba(0,0,0,0.42)' } : { transform: 'scale(1)' }}
+                                onClick={() => {
+                                    selectProduct(key)
+                                    handleChoosePlan(key)
+                                }}
+                                // style={valid.valid && valid.num === key ? { transform: 'scale(1.1)', boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.9),0px 1px 1px 0px rgba(0,0,0,0.44),0px 2px 1px -1px rgba(0,0,0,0.42)' } : { transform: 'scale(1)' }}
+                                style={data.plan === tier.title ? { transform: 'scale(1.07)', boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.9),0px 1px 1px 0px rgba(0,0,0,0.44),0px 2px 1px -1px rgba(0,0,0,0.42)' } : { transform: 'scale(1)' }}
                             >
-
                                 <CardContent style={{ minHeight: '100%' }}>
                                     <div className={classes.cardPricing}>
                                         <Typography component="h2" variant="h3" color="textPrimary">
@@ -200,13 +199,13 @@ export default function PricingElement() {
                                     subheader={tier.subheader}
                                     titleTypographyProps={{ align: 'center' }}
                                     subheaderTypographyProps={{ align: 'center' }}
-
                                     className={classes.cardHeader}
                                 />
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
+                <h3>{data.plan}</h3>
             </Container>
         </div>
 

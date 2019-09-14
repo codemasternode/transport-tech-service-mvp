@@ -17,6 +17,7 @@
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.8.6",
     "react-geocode": "^0.1.2",
+    "react-google-autocomplete": "^1.1.2",
     "react-material-ui-form-validator": "^2.0.9",
     "react-phone-input-mui": "^2.9.4",
     "react-router-dom": "^5.0.1",

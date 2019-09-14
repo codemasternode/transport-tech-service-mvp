@@ -1,21 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { Button, CssBaseline, TextField, FormHelperText, Grid, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import ReactPhoneInput from 'react-phone-input-mui';
 import useForm from '../../components/Forms/registerForm';
+import { Link, Redirect } from 'react-router-dom'
 
 const themes = createMuiTheme({
     palette: {
@@ -33,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
         flexGrow: 1,
-        height: '100vh',
+        minHeight: '100vh',
         background: 'linear-gradient(top, #f2f2f2 70%, #232f3e 30%)',
         display: 'flex',
         justifyContent: 'center',
@@ -81,16 +70,21 @@ const useStyles = makeStyles(theme => ({
     },
     tts_labelField_d: {
         opacity: 0
+    },
+    spacingElement: {
+        height: '20px',
+        width: '100%'
+    },
+    flexGrid: {
+
     }
-    // '.Mui-error'
+
 }));
 
 export default function Register() {
     const classes = useStyles();
-    const [updateValue, submitHandler, errors, val, handleCheckbox, isCheck] = useForm({});
-    console.log(val)
-    // const [isCheck, setCheckbox] = useState(false)
-
+    const [updateValue, submitHandler, errors, val] = useForm({});
+    console.log(errors)
     return (
         <ThemeProvider theme={themes}>
             <div className={classes.root}>
@@ -103,7 +97,7 @@ export default function Register() {
                         </Typography>
                         <form className={classes.form} noValidate onSubmit={submitHandler}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} sm={6} className={classes.flexGrid}>
                                     <TextField
                                         autoComplete="fname"
                                         name="firstName"
@@ -117,7 +111,11 @@ export default function Register() {
                                         error={errors.length !== 0 && val.errfn}
                                         className={classes.tts_input}
                                     />
-                                    {errors.length !== 0 && errors.map(err => err.firstName ? <FormHelperText className={true ? 'tts-labelField' : 'tts_labelField_d'} error={errors.length !== 0 ? true : false}>{err.firstName}</FormHelperText> : "")}
+                                    <FormHelperText className={'tts-labelField'} error={true}>{errors && errors.length > 0 ? errors.map((i, k) => {
+                                        if (i.firstName) { return i.firstName; }
+                                        return "";
+                                    }) : ""}</FormHelperText>
+
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
@@ -132,7 +130,10 @@ export default function Register() {
                                         error={errors.length !== 0 && val.errln}
                                         className={classes.tts_input}
                                     />
-                                    {errors && errors.map(err => err.lastName ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.lastName}</FormHelperText> : "")}
+                                    <FormHelperText className={'tts-labelField'} error={true}>{errors && errors.length > 0 ? errors.map((i, k) => {
+                                        if (i.lastName) { return i.lastName; }
+                                        return "";
+                                    }) : ""}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -146,7 +147,10 @@ export default function Register() {
                                         onChange={updateValue}
                                         autoComplete="email"
                                     />
-                                    {errors && errors.map(err => err.email ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.email}</FormHelperText> : null)}
+                                    <FormHelperText className={'tts-labelField'} error={true}>{errors && errors.length > 0 ? errors.map((i, k) => {
+                                        if (i.email) { return i.email; }
+                                        return "";
+                                    }) : ""}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -157,6 +161,7 @@ export default function Register() {
                                         label="NIP"
                                         name="nip"
                                     />
+                                    <br /><br />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -171,8 +176,10 @@ export default function Register() {
                                         error={val.errp}
                                         autoComplete="current-password"
                                     />
-                                    {errors && errors.map(err => err.password ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.password}</FormHelperText> : null)}
-
+                                    <FormHelperText className={'tts-labelField'} error={true}>{errors && errors.length > 0 ? errors.map((i, k) => {
+                                        if (i.password) { return i.password; }
+                                        return "";
+                                    }) : ""}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -187,7 +194,10 @@ export default function Register() {
                                         error={val.errcp}
                                         autoComplete="current-password"
                                     />
-                                    {errors && errors.map(err => err.confirmPassword ? <FormHelperText error={errors.length !== 0 ? true : false}>{err.confirmPassword}</FormHelperText> : null)}
+                                    <FormHelperText className={'tts-labelField'} error={true}>{errors && errors.length > 0 ? errors.map((i, k) => {
+                                        if (i.confirmPassword) { return i.confirmPassword; }
+                                        return "";
+                                    }) : ""}</FormHelperText>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -195,12 +205,6 @@ export default function Register() {
                                         floatingLabelText="Phone"
                                         name="phone"
                                         fullWidth
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <FormControlLabel
-                                        control={<Checkbox value="isCheck" color="primary" name="isCheck" onChange={handleCheckbox('isCheck')} checked={isCheck} />}
-                                        label="I want to receive inspiration, marketing promotions and updates via email."
                                     />
                                 </Grid>
                             </Grid>
@@ -217,15 +221,16 @@ export default function Register() {
                             </Grid>
                             <Grid container justify="flex-end">
                                 <Grid item>
-                                    <Link href="/login" variant="body2">
+                                    <Link to="/login" variant="body2">
                                         Masz już konto? Zaloguj się
                                     </Link>
+
+
                                 </Grid>
                             </Grid>
                         </form>
                     </div>
                 </Container>
-
             </div>
         </ThemeProvider>
     );

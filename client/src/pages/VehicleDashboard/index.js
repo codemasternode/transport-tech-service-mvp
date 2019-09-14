@@ -1,22 +1,17 @@
-import React from "react";
-import "./index.scss";
-import PricingElement from '../../components/PricingElement'
+import React from 'react';
+import VehicleTable from '../../components/VehicleTable/index';
 import { DashboardWindowContextConsumer } from '../../components/provider/dashboard/CreateDashboardContext'
 
-function PricingPlan() {
+export default function VehicleDashboard() {
     return (
         <DashboardWindowContextConsumer>
             {
-                ({ data, handleChoosePlan }) => (
+                ({ data }) => (
                     <React.Fragment>
-                        <PricingElement data={data} handleChoosePlan={handleChoosePlan} />
+                        <VehicleTable data={data} />
                     </React.Fragment>
                 )
             }
         </DashboardWindowContextConsumer>
     );
 }
-
-export default PricingPlan;
-
-

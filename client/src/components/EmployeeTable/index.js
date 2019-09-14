@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Button, CssBaseline, TextField, CircularProgress, FormControlLabel, FormHelperText, Checkbox, Link, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TableElement from './TableElement';
-import currName from '../../utils/dataOfDashboard'
-import currencies from '../../utils/dataOfDashboard'
+import { frequencies, currencies } from '../../utils/dataOfDashboard';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
 import './index.scss'
@@ -17,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         minHeight: '100vh',
-        background: 'linear-gradient(top, #f2f2f2 70%, #232f3e 30%)',
+        backgroundColor: '#ffffff',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -111,7 +110,7 @@ export default withRouter(({ history }) => {
         })
     }
 
-    const val = currName[values.currency]
+    console.log(currencies)
 
     return (
         <div className={classes.root}>
@@ -225,9 +224,9 @@ export default withRouter(({ history }) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} style={{ width: '100%' }}>
+                    <Grid item xs={12} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <div >
-                            Użytkownicy: {state.data.length}
+                            Użytkownicy: {state.data.length}<br/>
                             <Button variant="contained" className={classes.button} onClick={nextStep}>
                                 Dalej
                             </Button>

@@ -1,18 +1,33 @@
+$break-small: 320px;
+$break-medium: 560px;
+$break-large: 1200px;
+
 .root {
     flex-grow: 1;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #f2f2f2 70%, #232f3e 30%);
+    background-color: "#ffffff";
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    width: 80% !important;
 
     &__database {
-        height: 100%;
+        height: auto;
         position: relative;
+
+        &__list {
+            height: 100%;
+            padding: 0 10px;
+            overflow-y: scroll;
+            max-height: 450px;
+
+            @media screen and (max-width: $break-medium) {
+                margin: 20px 0;
+                font-size: 12px;
+            }
+        }
     }
 
     &__map {
@@ -20,5 +35,11 @@
         width: 100%;
         min-height: 50vh;
         position: relative;
+
+        &__inner {
+            top: 0;
+            left: 0;
+
+        }
     }
 }
