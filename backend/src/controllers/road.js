@@ -623,6 +623,7 @@ export async function getRoadOffers(req, res) {
 
     const end = new Date(start.getTime());
     end.setHours(23, 59, 59, 999);
+    
     const companies = await Vehicle.aggregate([
       {
         $match: {
@@ -1196,6 +1197,7 @@ export async function getRoadOffers(req, res) {
         }
       }
     ]);
+    console.log(companies)
     for (let i = 0; i < companies.length; i++) {
       const vehicles = search(
         companies[i].vehicles,
