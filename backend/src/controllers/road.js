@@ -1,8 +1,9 @@
 import Vehicle from "../models/vehicle";
-import {getDistanceFromLatLonInKm} from '../services/geoservices'
+import { getDistanceFromLatLonInKm } from "../services/geoservices";
 
 export async function getRoadOffers(req, res) {
   const criteria = req.body.criteria;
+  const PI = Math.PI;
   const start = new Date();
   start.setHours(0, 0, 0, 0);
 
@@ -10,9 +11,11 @@ export async function getRoadOffers(req, res) {
   end.setHours(23, 59, 59, 999);
   if (req.body.operation === "single") {
     const { length, width, height, capacity, type, waitingTime } = criteria;
+    const { points, distanceToDrive } = req.body;
     const offers = await Vehicle.aggregate([
       {
         $match: {
+          type,
           "dimensions.length": {
             $gte: length
           },
@@ -24,8 +27,7 @@ export async function getRoadOffers(req, res) {
           },
           capacity: {
             $gte: capacity
-          },
-          type
+          }
         }
       },
       {
@@ -39,6 +41,319 @@ export async function getRoadOffers(req, res) {
               $match: {
                 $expr: { $in: ["$$vehicleId", "$vehicles._id"] }
               }
+            },
+            {
+              $addFields: {
+                distance: {
+                  $let: {
+                    vars: {
+                      lat2: "$location.lat",
+                      lng2: "$location.lng",
+                      lat1: points[0].lat,
+                      lng1: points[0].lng
+                    },
+                    in: {
+                      $multiply: [
+                        6371,
+                        {
+                          $multiply: [
+                            2,
+                            {
+                              $atan2: [
+                                {
+                                  $sqrt: {
+                                    $sum: [
+                                      {
+                                        $multiply: [
+                                          {
+                                            $sin: {
+                                              $divide: [
+                                                {
+                                                  $divide: [
+                                                    {
+                                                      $multiply: [
+                                                        {
+                                                          $subtract: [
+                                                            "$$lat2",
+                                                            "$$lat1"
+                                                          ] //[lat2, lat1]
+                                                        },
+                                                        PI
+                                                      ]
+                                                    },
+                                                    180
+                                                  ]
+                                                },
+                                                2
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            $sin: {
+                                              $divide: [
+                                                {
+                                                  $divide: [
+                                                    {
+                                                      $multiply: [
+                                                        {
+                                                          $subtract: [
+                                                            "$$lat2",
+                                                            "$$lat1"
+                                                          ] //[lat2, lat1]
+                                                        },
+                                                        PI
+                                                      ]
+                                                    },
+                                                    180
+                                                  ]
+                                                },
+                                                2
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        $multiply: [
+                                          {
+                                            $multiply: [
+                                              {
+                                                $sin: {
+                                                  $divide: [
+                                                    {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            {
+                                                              $subtract: [
+                                                                "$$lng2",
+                                                                "$$lng1"
+                                                              ] //[lon2, lon1]
+                                                            },
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    },
+                                                    2
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                $sin: {
+                                                  $divide: [
+                                                    {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            {
+                                                              $subtract: [
+                                                                "$$lng2",
+                                                                "$$lng1"
+                                                              ] //[lon2, lon1]
+                                                            },
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    },
+                                                    2
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            $multiply: [
+                                              {
+                                                $cos: {
+                                                  $divide: [
+                                                    {
+                                                      $multiply: [
+                                                        "$$lat1", //lat1
+                                                        PI
+                                                      ]
+                                                    },
+                                                    180
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                $cos: {
+                                                  $divide: [
+                                                    {
+                                                      $multiply: [
+                                                        "$$lat2", //lat2
+                                                        PI
+                                                      ]
+                                                    },
+                                                    180
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  $sqrt: {
+                                    $subtract: [
+                                      1,
+                                      {
+                                        $sum: [
+                                          {
+                                            $multiply: [
+                                              {
+                                                $sin: {
+                                                  $divide: [
+                                                    {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            {
+                                                              $subtract: [
+                                                                "$$lat2",
+                                                                "$$lat1"
+                                                              ] //[lat2, lat1]
+                                                            },
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    },
+                                                    2
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                $sin: {
+                                                  $divide: [
+                                                    {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            {
+                                                              $subtract: [
+                                                                "$$lat2",
+                                                                "$$lat1"
+                                                              ] //[lat2, lat1]
+                                                            },
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    },
+                                                    2
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            $multiply: [
+                                              {
+                                                $multiply: [
+                                                  {
+                                                    $sin: {
+                                                      $divide: [
+                                                        {
+                                                          $divide: [
+                                                            {
+                                                              $multiply: [
+                                                                {
+                                                                  $subtract: [
+                                                                    "$$lng2",
+                                                                    "$$lng1"
+                                                                  ] //[lon2, lon1]
+                                                                },
+                                                                PI
+                                                              ]
+                                                            },
+                                                            180
+                                                          ]
+                                                        },
+                                                        2
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    $sin: {
+                                                      $divide: [
+                                                        {
+                                                          $divide: [
+                                                            {
+                                                              $multiply: [
+                                                                {
+                                                                  $subtract: [
+                                                                    "$$lng2",
+                                                                    "$$lng1"
+                                                                  ] //[lon2, lon1]
+                                                                },
+                                                                PI
+                                                              ]
+                                                            },
+                                                            180
+                                                          ]
+                                                        },
+                                                        2
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                $multiply: [
+                                                  {
+                                                    $cos: {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            "$$lat1", //lat1
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    }
+                                                  },
+                                                  {
+                                                    $cos: {
+                                                      $divide: [
+                                                        {
+                                                          $multiply: [
+                                                            "$$lat2", //lat2
+                                                            PI
+                                                          ]
+                                                        },
+                                                        180
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
             }
           ],
           as: "companyBases"
@@ -46,6 +361,11 @@ export async function getRoadOffers(req, res) {
       },
       {
         $unwind: "$companyBases"
+      },
+      {
+        $sort: {
+          "companyBases.distance": 1
+        }
       },
       {
         $lookup: {
@@ -110,6 +430,122 @@ export async function getRoadOffers(req, res) {
       },
       {
         $addFields: {
+          distance: {
+            $sum: [distanceToDrive, "$companyBases.distance"]
+          }
+        }
+      },
+      {
+        $match: {
+          $expr: {
+            $and: [
+              {
+                $or: [
+                  {
+                    $eq: ["$range.minRange", null]
+                  },
+                  {
+                    $lte: ["$range.minRange", "$distance"]
+                  }
+                ]
+              },
+              {
+                $or: [
+                  {
+                    $eq: ["$range.maxRange", null]
+                  },
+                  {
+                    $gte: ["$range.maxRange", "$distance"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        $addFields: {
+          fullCost: {
+            $multiply: [
+              {
+                $divide: [
+                  {
+                    $sum: [100, "$company.margin"]
+                  },
+                  100
+                ]
+              },
+              {
+                $sum: [
+                  {
+                    $divide: [
+                      {
+                        $multiply: [
+                          {
+                            $multiply: [
+                              {
+                                $multiply: [
+                                  "$distance",
+                                  {
+                                    $divide: [
+                                      {
+                                        $sum: [100, "$blankJourneys"]
+                                      },
+                                      100
+                                    ]
+                                  }
+                                ]
+                              },
+                              "$fuel.price"
+                            ]
+                          },
+                          "$combustion"
+                        ]
+                      },
+                      100
+                    ]
+                  },
+
+                  {
+                    $sum: [
+                      {
+                        $multiply: [
+                          {
+                            $divide: [
+                              {
+                                $multiply: [
+                                  "$valueOfTruck",
+                                  {
+                                    $divide: ["$deprecationPerYear", 100]
+                                  }
+                                ]
+                              },
+                              12
+                            ]
+                          },
+                          {
+                            $divide: ["$distance", "$averageDistancePerMonth"]
+                          }
+                        ]
+                      },
+                      {
+                        $multiply: [
+                          {
+                            $divide: ["$distance", "$company.sumAvgKmPerMonth"]
+                          },
+                          "$company.sumCostsPerMonth"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        $addFields: {
           waitingCost: {
             $multiply: [
               {
@@ -138,6 +574,18 @@ export async function getRoadOffers(req, res) {
           waitingCost: {
             $ne: null
           }
+        }
+      },
+      {
+        $addFields: {
+          fullCost: {
+            $sum: ["$fullCost", "$waitingCost"]
+          }
+        }
+      },
+      {
+        $sort: {
+          fullCost: 1
         }
       }
     ]);

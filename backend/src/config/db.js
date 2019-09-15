@@ -90,7 +90,7 @@ export default async URI => {
       }
 
       return {
-        type: los < 0.4 ? semiTrailers[1] : semiTrailers[0],
+        type: los < 0.7 ? semiTrailers[1] : semiTrailers[0],
         dimensions: {
           length: Number((Math.random() * 4 + 13).toFixed(2)),
           width: Number((Math.random() * 2 + 2.3).toFixed(2)),
