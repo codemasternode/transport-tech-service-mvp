@@ -93,7 +93,22 @@ export default withRouter(({ data, history }) => {
     }
 
     const isRenderTable = () => {
-
+        if (data.bases.length === 0) {
+            return (
+                <React.Fragment>
+                    {/* <h5>Nie wybrałeś żadnej bazy firmy</h5> */}
+                    {/* <Button variant="contained" className={classes.button}>
+                        <Link to="/database-dashboard">Wróć</Link>
+                    </Button> */}
+                </React.Fragment>
+            )
+        } else {
+            return (
+                data.bases.map((item, key) => (
+                    <NewTable />
+                ))
+            )
+        }
     }
 
     const nextStep = () => {
@@ -111,14 +126,26 @@ export default withRouter(({ data, history }) => {
         <div className="root">
             <Grid container spacing={3} style={{ width: "70%" }}>
                 <Grid item xs={12} sm={4}>
-                    {isRenderList()}
+                    <div style={{ maxHeight: '450px', minHeight: '450px', overflowY: 'scroll', overflowX: 'hidden' }}>
+                        {isRenderList()}
+                    </div>
                 </Grid>
                 <Grid item xs={12} sm={8}>
-                    <NewTable />
-                    <br/>
+                    <div style={{ maxHeight: '450px', minHeight: '450px', overflowY: 'scroll', overflowX: 'hidden' }}>
+                        {isRenderTable()}
+                    </div>
+                    <br />
                     <Button variant="contained" className={classes.button} >
                         Dodaj
                     </Button>
+                </Grid>
+                <Grid item xs={12} style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                    <div >
+                        Użytkownicy: {data.employees.length}<br />
+                        <Button variant="contained" className={classes.button} onClick={nextStep}>
+                            Dalej
+                            </Button>
+                    </div>
                 </Grid>
             </Grid>
         </div>

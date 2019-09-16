@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         margin: theme.spacing(2)
+    },
+    viewCard: {
+        margin: '10px 0'
     }
 
 }));
