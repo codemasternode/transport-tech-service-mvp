@@ -14,11 +14,10 @@ function DashboardWindowProvider(props) {
         bases: [],
         maxBases: 2,
         vehicle: [],
+        costs: [],
+        employees: [],
         mapError: ""
     })
-
-
-
 
     const clickOnMap = (t, map, coord) => {
 
@@ -101,8 +100,58 @@ function DashboardWindowProvider(props) {
         })
     }
 
+    const handleAdding = (name, values) => {
+        console.log(name, values)
+        if (name === "employee") {
+            let employees = state.employees;
+            employees.push({ firstName: values.firstName, lastName: values.lastName, currency: values.currency, sallary: values.sallary, position: values.position })
+            setState({
+                ...state,
+                employees
+            })
+        } else if (name === "costs") {
+            let costs = state.costs;
+            costs.push({ name: values.name, currency: values.currency, valuePrice: values.valuePrice, frequency: values.frequency })
+            setState({
+                ...state,
+                costs
+            })
+        }
+
+    }
+
+
+    const handleRemoving = (name, id) => {
+        console.log(id)
+        if (name === "employee") {
+            let employees = state.employees.filter((item, key) => {
+                console.log(id, key)
+                if (id !== key) { return item }
+            })
+            setState({ ...state, employees })
+        } else if (name === "costs") {
+            let costs = state.costs.filter((item, key) => {
+                console.log(id, key)
+                if (id !== key) { return item }
+            })
+            setState({ ...state, costs })
+        }
+
+
+    }
+
+    const handleRemoveCosts = () => {
+
+    }
+
+    const handleAddCosts = () => {
+
+    }
+
+
+
     return (
-        <DashboardWindowContext.Provider value={{ data: state, clickOnMap, handleRemoveBase, handleChoosePlan }} >
+        <DashboardWindowContext.Provider value={{ data: state, clickOnMap, handleRemoveBase, handleChoosePlan, handleAdding, handleRemoving }} >
             {
                 props.children
             }

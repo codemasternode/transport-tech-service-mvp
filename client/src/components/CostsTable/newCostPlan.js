@@ -32,7 +32,7 @@ const NewCostPlan = ({ data, id, handleRemoveOrder, length }) => {
                 Częstotliwość {data.frequency}<br />
             </CardContent>
             <CardActions>
-                <Button size="small" className={classes.button} onClick={() => handleRemoveOrder(id)}>Usuń</Button>
+                <Button size="small" className={classes.button} onClick={() => handleRemoveOrder("costs",id)}>Usuń</Button>
             </CardActions>
         </Card>
 

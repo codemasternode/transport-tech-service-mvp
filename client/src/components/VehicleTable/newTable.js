@@ -15,9 +15,29 @@ const useStyles = makeStyles(theme => ({
 
 function NewTable({ data, id, length }) {
     const classes = useStyles();
+
+    const [values, setValues] = React.useState({
+        name: 'Pojazd 1',
+        valueOfVehicle: "250000",
+        petrol: "ON",
+        combustion: 22,
+        capacity: 8000,
+        amortization: 15,
+        lenght: 12,
+        width: 12,
+        height: 12,
+        emptyVehicle: 10,
+    })
+
+    
     const [state, setState] = React.useState({
         checkValue: false,
     })
+
+    const handleChange = name => event => {
+        setValues({ ...values, [name]: event.target.value });
+    };
+
     return (
         <Paper className={classes.paper}>
                         <form className={classes.container} noValidate autoComplete="off">

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Link, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
+import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TableBase from './baseTable';
+import NewTable from './newTable';
 import { frequencies, currencies, currName } from '../../utils/dataOfDashboard';
+import { withRouter, Link } from "react-router-dom";
 import './index.scss';
 
 const useStyles = makeStyles(theme => ({
@@ -43,36 +45,21 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function VehicleTable({ data, }) {
+export default withRouter(({ data, history }) => {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        name: 'Pojazd 1',
-        valueOfVehicle: "250000",
-        petrol: "ON",
-        combustion: 22,
-        capacity: 8000,
-        amortization: 15,
-        lenght: 12,
-        width: 12,
-        height: 12,
-        emptyVehicle: 10,
-    })
 
     const [state, setState] = React.useState({
         data: [],
+        waitForRes: false
     })
 
-    const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
-    };
+    // const handleAddOrder = () => {
+    //     let data = state.data;
+    //     data.push({ name: values.name, currency: values.currency, valuePrice: values.valuePrice, frequency: values.frequency })
+    //     setState({ data })
+    //     console.log(state)
 
-    const handleAddOrder = () => {
-        let data = state.data;
-        data.push({ name: values.name, currency: values.currency, valuePrice: values.valuePrice, frequency: values.frequency })
-        setState({ data })
-        console.log(state)
-
-    }
+    // }
 
     const handleRemoveOrder = (id) => {
         console.log(id)
@@ -87,7 +74,15 @@ export default function VehicleTable({ data, }) {
 
     const isRenderList = () => {
         if (data.bases.length === 0) {
-            return <h5>Nie wybrałeś żadnej bazy firmy</h5>
+            return (
+
+                <React.Fragment>
+                    <h5>Nie wybrałeś żadnej bazy firmy</h5>
+                    <Button variant="contained" className={classes.button}>
+                        <Link to="/database-dashboard">Wróć</Link>
+                    </Button>
+                </React.Fragment>
+            )
         } else {
             return (
                 data.bases.map((item, key) => (
@@ -101,6 +96,16 @@ export default function VehicleTable({ data, }) {
 
     }
 
+    const nextStep = () => {
+        setState({ ...state, waitForRes: true, })
+        // axios.post('/api/newEmployee', { data: data.plan }).then((response) => {
+        //     setVisible({ ...visible, waitForRes: false, })
+        // }, (err) => {
+        //     console.log(err)
+        // })
+        history.push('/costs-dashboard')
+    }
+
     return (
 
         <div className="root">
@@ -109,8 +114,9 @@ export default function VehicleTable({ data, }) {
                     {isRenderList()}
                 </Grid>
                 <Grid item xs={12} sm={8}>
-                    {}
-                    <Button variant="contained" className={classes.button} onClick={handleAddOrder}>
+                    <NewTable />
+                    <br/>
+                    <Button variant="contained" className={classes.button} >
                         Dodaj
                     </Button>
                 </Grid>
@@ -118,4 +124,4 @@ export default function VehicleTable({ data, }) {
         </div>
 
     );
-}
+})

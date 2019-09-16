@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { CssBaseline, Card, CardContent, CardHeader, Grid, Typography, Container, Collapse } from '@material-ui/core';
+import React, { useEffect, useRef } from 'react';
+import { CssBaseline, Card, CardContent, CardHeader, Grid, Typography, Container, Collapse, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import tiers from '../../utils/tiers';
+import { withRouter } from "react-router-dom";
+import axios from 'axios';
+
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -69,17 +72,18 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function PricingElement({ data, handleChoosePlan }) {
+export default withRouter(({ history, data, handleChoosePlan }) => {
     // console.log(props)
     const classes = useStyles();
     const [visible, setVisible] = React.useState({
         checked1: false,
         checked2: false,
         checked3: false,
+        waitForRes: false,
     });
     const [valid, setValid] = React.useState({
         num: 0,
-        checked: false
+        checked: false,
     })
     const root = useRef(null)
     useEffect(() => {
@@ -125,6 +129,16 @@ export default function PricingElement({ data, handleChoosePlan }) {
             setValid({ valid: true, num: 2 })
         }
         console.log(valid)
+    }
+
+    const nextStep = () => {
+        setVisible({ ...visible, waitForRes: true, })
+        // axios.post('/api/newEmployee', { data: data.plan }).then((response) => {
+        //     setVisible({ ...visible, waitForRes: false, })
+        // }, (err) => {
+        //     console.log(err)
+        // })
+        history.push('/database-dashboard')
     }
 
     return (
@@ -205,10 +219,14 @@ export default function PricingElement({ data, handleChoosePlan }) {
                         </Grid>
                     ))}
                 </Grid>
-                <h3>{data.plan}</h3>
+
+                <div >
+                    <h3>{data.plan}</h3>
+                    <Button variant="contained" className={classes.button} onClick={nextStep}>
+                        Dalej
+                            </Button>
+                </div>
             </Container>
         </div>
-
-
     );
-}
+})

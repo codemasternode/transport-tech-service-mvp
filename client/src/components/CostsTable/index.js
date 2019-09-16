@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 const currName = { "USD": "$", "EUR": "€", "PLN": "zł" }
 
-export default withRouter(({ history }) => {
+export default withRouter(({ history, data, handleAddOrder, handleRemoving }) => {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
@@ -60,41 +60,24 @@ export default withRouter(({ history }) => {
         setValues({ ...values, [name]: event.target.value });
     };
 
-    const handleAddOrder = () => {
-        let data = state.data;
-        data.push({ name: values.name, currency: values.currency, valuePrice: values.valuePrice, frequency: values.frequency })
-        setState({ data })
-        console.log(state)
-
-    }
-
-    const handleRemoveOrder = (id) => {
-        console.log(id)
-
-        let data = state.data.filter((item, key) => {
-            console.log(id, key)
-            if (id !== key) { return item }
-        })
-        setState({ data })
-    }
-
     const nextStep = () => {
         setState({ ...state, waitForRes: true, })
-        axios.post('/api/newEmployee', { data: state.data }).then((response) => {
-            setState({ ...state, waitForRes: false, })
-            history.push('/employee-dashboard')
-        }, (err) => {
-            console.log(err)
-        })
+        // axios.post('/api/newEmployee', { data: state.data }).then((response) => {
+        //     setState({ ...state, waitForRes: false, })
+        // }, (err) => {
+        //     console.log(err)
+        // })
+        history.push('/employee-dashboard')
+
     }
 
     const isRenderList = () => {
-        if (state.data.length === 0) {
+        if (data.costs.length === 0) {
             return <h5 style={{ margin: '10px' }}>Nie wybrałeś żadnej bazy firmy</h5>
         } else {
             return (
-                state.data.map((item, key) => (
-                    <NewCostPlan length={state.data.length} data={item} id={key} handleRemoveOrder={handleRemoveOrder} />
+                data.costs.map((item, key) => (
+                    <NewCostPlan length={data.costs.length} data={item} id={key} handleRemoveOrder={handleRemoving} />
                 ))
             )
         }
@@ -199,9 +182,12 @@ export default withRouter(({ history }) => {
                                                 </TextField>
                                             </Grid>
                                         </Grid>
-                                        <Button variant="contained" className={classes.button} onClick={handleAddOrder}>
+                                        <Button variant="contained" className={classes.button} onClick={() => {
+                                            handleAddOrder("costs", values)
+                                        }
+                                        }>
                                             Dodaj
-                            </Button>
+                                        </Button>
                                     </form>
                                 </Paper>
                             </Grid>
@@ -209,17 +195,15 @@ export default withRouter(({ history }) => {
                     </Grid>
                     <Grid item xs={12} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <div >
-                            Użytkownicy: {state.data.length}
+                            Ilość: {data.costs.length}
                             <Button variant="contained" className={classes.button} onClick={nextStep}>
                                 Dalej
-                </Button>
+                            </Button>
                         </div>
                     </Grid>
                 </Grid>
             </Container>
         </div >
-
-
     );
 
 })

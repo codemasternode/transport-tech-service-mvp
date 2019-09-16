@@ -5,6 +5,7 @@ import Autocomplete from 'react-google-autocomplete';
 import Geocode from "react-geocode";
 import DatabaseElement from './DatabaseElement'
 import './index.scss'
+import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
 Geocode.setApiKey("AIzaSyCbxWM2sqqiQoxXyR1maA_9dzro72-vKOw");
@@ -84,12 +85,14 @@ export class MapContainer extends React.Component {
 
     nextStep = () => {
         this.setState({ ...this.state, waitForRes: true, })
-        axios.post('/api/newEmployee', { data: this.state.data }).then((response) => {
-            this.setState({ ...this.state, waitForRes: false, })
-            this.props.history.push('/admin-dashboard')
-        }, (err) => {
-            console.log(err)
-        })
+        // axios.post('/api/newEmployee', { data: this.state.data }).then((response) => {
+        //     this.setState({ ...this.state, waitForRes: false, })
+        // }, (err) => {
+        //     console.log(err)
+        // })
+
+        this.props.history.push('/vehicle-dashboard')
+
     }
 
     render() {
@@ -172,6 +175,6 @@ export class MapContainer extends React.Component {
     }
 }
 //AIzaSyBZssu9GKb1kEysTsAEJs2zX9L6wlhf88c
-export default GoogleApiWrapper({
+export default withRouter(GoogleApiWrapper({
     apiKey: ("AIzaSyDwQl8QdFAuyJF3KGe1wcju_Ozl1_lVDuY")
-})(MapContainer)
+})(MapContainer))

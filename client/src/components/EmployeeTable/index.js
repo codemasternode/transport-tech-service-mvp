@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default withRouter(({ history }) => {
+export default withRouter(({ history, data, handleAddEmployees, handleRemoving }) => {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
@@ -76,38 +76,18 @@ export default withRouter(({ history }) => {
         setValues({ ...values, [name]: event.target.value });
     };
 
-    const handleAddEmployee = () => {
-        let data = state.data;
-        data.push({ firstName: values.firstName, lastName: values.lastName, currency: values.currency, sallary: values.sallary, position: values.position })
-        setState({ ...state, data })
-        setValues({
-            firstName: '',
-            lastName: '',
-            sallary: 4500,
-            currency: 'PLN',
-            position: ''
-        })
-        console.log(state)
-    }
 
-    const handleRemoveEmployee = (id) => {
-        console.log(id)
-
-        let data = state.data.filter((item, key) => {
-            console.log(id, key)
-            if (id !== key) { return item }
-        })
-        setState({ ...state, data })
-    }
 
     const nextStep = () => {
         setState({ ...state, waitForRes: true, })
-        axios.post('/api/newEmployee', { data: state.data }).then((response) => {
-            setState({ ...state, waitForRes: false, })
-            history.push('/admin-dashboard')
-        }, (err) => {
-            console.log(err)
-        })
+        // axios.post('/api/newEmployee', { data: state.data }).then((response) => {
+        //     setState({ ...state, waitForRes: false, })
+        // }, (err) => {
+        //     console.log(err)
+        // })
+
+        history.push('/admin-dashboard')
+
     }
 
     console.log(currencies)
@@ -132,14 +112,12 @@ export default withRouter(({ history }) => {
                             <Grid item xs={12} sm={4} className={classes.grid_item} >
                                 <div className={classes.paperNewOrder}>
                                     <div>
-
                                         {
-                                            state.data.length > 0 ? state.data.map((item, key) => (
-                                                <TableElement data={item} id={key} handleRemoveEmployee={handleRemoveEmployee} />
+                                            data.employees.length > 0 ? data.employees.map((item, key) => (
+                                                <TableElement data={item} id={key} handleRemoving={handleRemoving} />
                                             )) : null
                                         }
                                     </div>
-
                                 </div>
 
                             </Grid>
@@ -216,7 +194,17 @@ export default withRouter(({ history }) => {
                                                 />
                                             </Grid>
                                         </Grid>
-                                        <Button variant="contained" className={classes.button} onClick={handleAddEmployee}>
+                                        <Button variant="contained" className={classes.button} onClick={() => {
+                                            handleAddEmployees("employee",values)
+                                            setValues({
+                                                firstName: '',
+                                                lastName: '',
+                                                sallary: 4500,
+                                                currency: 'PLN',
+                                                position: ''
+                                            })
+                                        }
+                                        }>
                                             Dodaj
                             </Button>
                                     </form>
@@ -226,7 +214,7 @@ export default withRouter(({ history }) => {
                     </Grid>
                     <Grid item xs={12} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <div >
-                            Użytkownicy: {state.data.length}<br/>
+                            Użytkownicy: {data.employees.length}<br />
                             <Button variant="contained" className={classes.button} onClick={nextStep}>
                                 Dalej
                             </Button>

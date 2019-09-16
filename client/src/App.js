@@ -70,7 +70,7 @@ export const routes = [
   },
   {
     name: "Costs Panel",
-    path: "/costs-panel",
+    path: "/costs-dashboard",
     isPrivate: false,
     isAdmin: false,
     component: CostsDashboard

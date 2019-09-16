@@ -4,13 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        height: 'auto',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     button: {
         backgroundColor: '#ff9900',
     },
@@ -20,9 +13,8 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const TableElement = ({ data, id, handleRemoveEmployee }) => {
+const TableElement = ({ data, id, handleRemoving }) => {
     const classes = useStyles();
-    console.log(data)
     return (
         <Grid container spacing={12}>
             <Grid item xs={12}>
@@ -36,7 +28,7 @@ const TableElement = ({ data, id, handleRemoveEmployee }) => {
                                 <strong>Waluta:</strong> {data.currency}<br />
                                 <strong>Stanowisko:</strong> {data.position}<br />
                             </Typography>
-                            <Button variant="contained" className={classes.button} onClick={() => handleRemoveEmployee(id)}>
+                            <Button variant="contained" className={classes.button} onClick={() => handleRemoving("employee", id)}>
                                 USUŃ
                         </Button>
                         </CardContent>
