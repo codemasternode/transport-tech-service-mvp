@@ -615,7 +615,23 @@ export async function getRoadOffers(req, res) {
         }
       }
     ]);
-    res.send({ offers });
+    const distinctVehicles = [];
+    for (let i = 0; i < offers.length; i++) {
+      let isInside = false;
+      for (let m = 0; m < distinctVehicles.length; m++) {
+        if (
+          distinctVehicles[m]._id.toString() == offers[i]._id.toString() &&
+          distinctVehicles[m].companyBases._id.toString() ==
+            offers[i].companyBases._id.toString()
+        ) {
+          isInside = true;
+        }
+      }
+      if (!isInside) {
+        distinctVehicles.push(offers[i]);
+      }
+    }
+    res.send({ offers: distinctVehicles });
   } else {
     const PI = Math.PI;
     const start = new Date();
@@ -623,7 +639,7 @@ export async function getRoadOffers(req, res) {
 
     const end = new Date(start.getTime());
     end.setHours(23, 59, 59, 999);
-    
+
     const companies = await Vehicle.aggregate([
       {
         $match: {
@@ -1197,7 +1213,7 @@ export async function getRoadOffers(req, res) {
         }
       }
     ]);
-    console.log(companies)
+    console.log(companies);
     for (let i = 0; i < companies.length; i++) {
       const vehicles = search(
         companies[i].vehicles,
