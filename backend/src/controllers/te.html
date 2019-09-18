@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const input = "tgaactatgataataagtttaggatacgcaaaatgttaaagctatgttccctagtga";
+      console.log(input.length);
+      const tripleArr = [];
+
+      let count = 0;
+      for (let i = 0; i < input.length; i++) {
+        if (count === 3) {
+          count = 0;
+          console.log(input[i]);
+          tripleArr.push(input[i]);
+        } else {
+          console.log(input[i]);
+          tripleArr[tripleArr.length - 1] += input[i];
+        }
+        count++;
+      }
+      console.log(tripleArr);
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@ import Vehicle from "../models/vehicle";
 import { search } from "../services/subsetsum";
 
 export async function getRoadOffers(req, res) {
-  const requireKeys = [
+  const requireKeysCapacity = [
     "length",
     "width",
     "height",
@@ -10,20 +10,23 @@ export async function getRoadOffers(req, res) {
     "type",
     "waitingTime"
   ];
-  for (let i = 0; i < requireKeys.length; i++) {
-    if (!req.body.criteria[requireKeys[i]]) {
-      return res.status(400).send({
-        err: `Missing ${requireKeys[i]}`
-      });
-    }
-  }
+  const requireKeysVolume = ["volume", "type", "waitingTime"];
+
+  const vehiclesWithVolume = [
+    "Cysterna chemiczna",
+    "Cysterna gazowa",
+    "Cysterna paliwowa",
+    "Silos"
+  ];
+
   const {
     length,
     width,
     height,
     capacity,
     type,
-    waitingTime
+    waitingTime,
+    volume
   } = req.body.criteria;
   const { points, distanceToDrive } = req.body;
   if (points.length !== 2) {
@@ -38,6 +41,13 @@ export async function getRoadOffers(req, res) {
   const end = new Date(start.getTime());
   end.setHours(23, 59, 59, 999);
   if (req.body.operation === "single") {
+    for (let i = 0; i < requireKeysCapacity.length; i++) {
+      if (!req.body.criteria[requireKeysCapacity[i]]) {
+        return res.status(400).send({
+          err: `Missing ${requireKeysCapacity[i]}`
+        });
+      }
+    }
     const offers = await Vehicle.aggregate([
       {
         $match: {
@@ -633,6 +643,13 @@ export async function getRoadOffers(req, res) {
     }
     res.send({ offers: distinctVehicles });
   } else {
+    for (let i = 0; i < requireKeysVolume.length; i++) {
+      if (!req.body.criteria[requireKeysVolume[i]]) {
+        return res.status(400).send({
+          err: `Missing ${requireKeysVolume[i]}`
+        });
+      }
+    }
     const PI = Math.PI;
     const start = new Date();
     start.setHours(0, 0, 0, 0);
@@ -640,7 +657,7 @@ export async function getRoadOffers(req, res) {
     const end = new Date(start.getTime());
     end.setHours(23, 59, 59, 999);
 
-    const companies = await Vehicle.aggregate([
+    let companies = await Vehicle.aggregate([
       {
         $match: {
           type
@@ -1195,7 +1212,9 @@ export async function getRoadOffers(req, res) {
       {
         $addFields: {
           fullCost: {
-            $sum: ["$fullCost", "$waitingCost"]
+            $ceil: {
+              $sum: ["$fullCost", "$waitingCost"]
+            }
           }
         }
       },
@@ -1213,19 +1232,73 @@ export async function getRoadOffers(req, res) {
         }
       }
     ]);
-    console.log(companies);
+
     for (let i = 0; i < companies.length; i++) {
-      const vehicles = search(
-        companies[i].vehicles,
-        { length, width, height },
-        capacity
-      );
-      if (!vehicles) {
-        companies.splice(i, 1);
-        continue;
+      const distinctVehicles = [];
+      for (let m = 0; m < companies[i].vehicles.length; m++) {
+        let isInside = false;
+        for (let g = 0; g < distinctVehicles.length; g++) {
+          if (
+            distinctVehicles[g]._id.toString() ===
+            companies[i].vehicles[m]._id.toString()
+          ) {
+            isInside = true;
+            if (
+              distinctVehicles[g].fullCost > companies[i].vehicles[m].fullCost
+            ) {
+              distinctVehicles.push(companies[i].vehicles[m]);
+            }
+          }
+        }
+        if (!isInside) {
+          distinctVehicles.push(companies[i].vehicles[m]);
+        }
       }
-      companies[i].company = vehicles[0].company;
-      companies[i].vehicles = vehicles;
+      companies[i].vehicles = distinctVehicles;
+    }
+    const toRemove = [];
+    if (vehiclesWithVolume.includes(type)) {
+      for (let i = 0; i < companies.length; i++) {
+        const vehicles = search(
+          companies[i].vehicles,
+          undefined,
+          volume,
+          "volume"
+        );
+
+        if (!vehicles) {
+          toRemove.push(companies[i]._id.toString());
+        } else {
+          companies[i].company = vehicles[0].company;
+          companies[i].vehicles = vehicles || [];
+        }
+      }
+    } else {
+      for (let i = 0; i < companies.length; i++) {
+        const vehicles = search(
+          companies[i].vehicles,
+          { length, width, height },
+          capacity,
+          "capacity"
+        );
+        if (!vehicles) {
+          toRemove.push(companies[i]._id.toString());
+        } else {
+          companies[i].company = vehicles[0].company;
+          companies[i].vehicles = vehicles || [];
+        }
+      }
+    }
+
+    companies = companies.filter(value => {
+      return toRemove.includes(value._id.toString()) === false;
+    });
+
+    for (let i = 0; i < companies.length; i++) {
+      let sum = 0;
+      for (let m = 0; m < companies[i].vehicles.length; m++) {
+        sum += companies[i].vehicles[m].volume;
+      }
     }
     res.send({ offers: companies });
   }
