@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, CardActionArea, CardHeader, CardMedia, Card, CardContent, Grid, Typography, Container, Paper, MenuItem, CardActions } from '@material-ui/core';
+import { Button, CardActionArea, CardHeader, CardMedia, Card, CardContent, Grid, Typography, Container, Paper, MenuItem, CardActions, FormHelperText, FormControl, Select, InputLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { AddCircle, RemoveCircleSharp } from '@material-ui/icons';
 
@@ -11,23 +11,23 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(2)
     },
     viewCard: {
-        margin: '10px 0'
+        margin: 10
     }
 
 }));
 
-function TableBase({ data, id, length }) {
+function TableBase({ allData, data, id, length, handleAddVehicle }) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         checkValue: false,
     })
     return (
-        <Card className={classes.viewCard}>
+        <Card className={classes.viewCard} onClick={(e) => handleAddVehicle(e, data.title, id)} style={allData.activeBase === id ? { backgroundColor: 'rgba(179,0,255,.6)' } : null}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {id + 1}/{length}
                 </Typography>
-                <Typography variant="h5" component="h5">
+                <Typography variant="p" component="h5">
                     {data.title}
                 </Typography>
                 <br />
@@ -39,7 +39,6 @@ function TableBase({ data, id, length }) {
                 </Typography>
             </CardContent>
         </Card>
-
     );
 }
 

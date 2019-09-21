@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Grid, Typography, Container, Paper, MenuItem } from '@material-ui/core';
+import { Button, CssBaseline, TextField, FormControlLabel, FormHelperText, Checkbox, Grid, Typography, Container, Paper, MenuItem, TableSortLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TableBase from './baseTable';
 import NewTable from './newTable';
@@ -45,21 +45,13 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default withRouter(({ data, history }) => {
+export default withRouter(({ data, history, handleAddVehicle, handleChangeBase, handleNewForm, handleAdding }) => {
     const classes = useStyles();
 
     const [state, setState] = React.useState({
         data: [],
         waitForRes: false
     })
-
-    // const handleAddOrder = () => {
-    //     let data = state.data;
-    //     data.push({ name: values.name, currency: values.currency, valuePrice: values.valuePrice, frequency: values.frequency })
-    //     setState({ data })
-    //     console.log(state)
-
-    // }
 
     const handleRemoveOrder = (id) => {
         console.log(id)
@@ -86,29 +78,26 @@ export default withRouter(({ data, history }) => {
         } else {
             return (
                 data.bases.map((item, key) => (
-                    <TableBase data={item} key={key} id={key} length={data.bases.length} />
+                    <TableBase allData={data} handleChangeBase={handleChangeBase} handleAddVehicle={handleAddVehicle} data={item} key={key} id={key} length={data.bases.length} />
                 ))
             )
         }
     }
 
+    // const addNewForm = () => {
+    //     let useFull = state.useFull
+    //     useFull.push("2")
+    //     console.log(useFull)
+    //     setState({ ...state, useFull })
+    // }
+
     const isRenderTable = () => {
-        if (data.bases.length === 0) {
-            return (
-                <React.Fragment>
-                    {/* <h5>Nie wybrałeś żadnej bazy firmy</h5> */}
-                    {/* <Button variant="contained" className={classes.button}>
-                        <Link to="/database-dashboard">Wróć</Link>
-                    </Button> */}
-                </React.Fragment>
-            )
-        } else {
-            return (
-                data.bases.map((item, key) => (
-                    <NewTable />
-                ))
-            )
-        }
+        return (
+            data.useFull.map((item, key) => (
+                <NewTable key={key} handleAdding={handleAdding} handleChangeBase={handleChangeBase} allData={data} id={key} />
+            ))
+        )
+
     }
 
     const nextStep = () => {
@@ -131,11 +120,11 @@ export default withRouter(({ data, history }) => {
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={8}>
-                    <div style={{ maxHeight: '450px', minHeight: '450px', overflowY: 'scroll', overflowX: 'hidden' }}>
+                    <div style={{ maxHeight: '450px', minHeight: '450px', overflowY: 'scroll', overflowX: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {isRenderTable()}
                     </div>
                     <br />
-                    <Button variant="contained" className={classes.button} >
+                    <Button variant="contained" className={classes.button} onClick={handleNewForm}>
                         Dodaj
                     </Button>
                 </Grid>

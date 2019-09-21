@@ -58,16 +58,9 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'baseline',
         marginBottom: theme.spacing(2),
     },
-    footer: {
-        borderTop: `1px solid ${theme.palette.divider}`,
-        marginTop: theme.spacing(8),
-        paddingTop: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
-        [theme.breakpoints.up('sm')]: {
-            paddingTop: theme.spacing(6),
-            paddingBottom: theme.spacing(6),
-        },
-    },
+    button: {
+        backgroundColor: '#ff9900',
+    }
 }));
 
 
@@ -153,7 +146,7 @@ export default withRouter(({ history, data, handleChoosePlan }) => {
                 </Typography>
             </Container>
             <Container maxWidth="md" component="main" className="mt-50">
-                <Grid container spacing={5} alignItems="flex-end" style={{ minHeight: '55vh' }}>
+                <Grid container spacing={5} alignItems="flex-end" style={{ minHeight: '55vh', margin: 0 }}>
                     {tiers.map((tier, key) => (
                         // Enterprise card is full width at sm breakpoint
                         <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -221,10 +214,9 @@ export default withRouter(({ history, data, handleChoosePlan }) => {
                 </Grid>
 
                 <div >
-                    <h3>{data.plan}</h3>
                     <Button variant="contained" className={classes.button} onClick={nextStep}>
                         Dalej
-                            </Button>
+                    </Button>
                 </div>
             </Container>
         </div>

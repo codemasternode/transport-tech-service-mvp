@@ -6,9 +6,9 @@ export default function VehicleDashboard() {
     return (
         <DashboardWindowContextConsumer>
             {
-                ({ data }) => (
+                ({ data, handleChangeBase, handleAddVehicle, handleNewForm, handleAdding }) => (
                     <React.Fragment>
-                        <VehicleTable data={data} />
+                        <VehicleTable data={data} handleChangeBase={handleChangeBase} handleAddVehicle={handleAddVehicle} handleNewForm={handleNewForm} handleAdding={handleAdding} />
                     </React.Fragment>
                 )
             }
