@@ -63,10 +63,10 @@ function NewTable({ allData, handleChangeBase, id, handleAdding }) {
         setValues({ ...values, [name]: event.target.value });
     };
     useEffect(() => {
-        console.log(allData)
+        // console.log(allData)
         var active = false
         if (allData.basesAndVehicles.length > 0) {
-            console.log("WWWW")
+            // console.log("WWWW")
             allData.basesAndVehicles.map((item, key) => {
                 if (item.id === allData.activeBase) {
                     console.log(item)
@@ -83,12 +83,13 @@ function NewTable({ allData, handleChangeBase, id, handleAdding }) {
 
         }
         console.log(active)
-        console.log("YEAAA")
+        // console.log("YEAAA")
         setState({ ...state, active })
     }, [allData.basesAndVehicles, id, allData.activeBase, allData])
     return (
         <ThemeProvider theme={theme}>
             <Paper className={classes.outter} onClick={(e) => {
+                handleAdding("vehicle", values, id)
                 handleChangeBase(e, values, id)
                 setState({
                     ...state,
@@ -219,7 +220,9 @@ function NewTable({ allData, handleChangeBase, id, handleAdding }) {
                                     />
                                 </Grid>
                             </Grid>
-                            <CheckCircle onClick={() => { handleAdding("vehicle", values, id) }} color={state.checkValue ? "secondary" : "primary"}></CheckCircle>
+                            <CheckCircle
+                                // onClick={() => { handleAdding("vehicle", values, id) }} 
+                                color={state.checkValue ? "secondary" : "primary"}></CheckCircle>
                         </Grid>
                     </Grid>
                 </form>

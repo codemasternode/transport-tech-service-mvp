@@ -101,38 +101,6 @@ function DashboardWindowProvider(props) {
     }
 
     const handleChangeBase = (e, values, id) => {
-        // console.log(id)
-        // console.log(state.basesAndVehicles)
-        // let data = state.basesAndVehicles;
-        // if (data.length === 0) {
-        //     console.log("Za pierwszyyym")
-
-        //     let tab = []
-        //     let tabVehicle = []
-        //     tabVehicle.push(id)
-        //     tab.push(state.activeBase, tabVehicle)
-        //     data.push(tab)
-        // } else {
-        //     console.log(data)
-        //     data.map((item, key) => {
-        //         console.log(item[0] === state.activeBase, item[0], data)
-        //         if (item[0] === state.activeBase) {
-        //             console.log("Znaleziony!!!", state.activeBase, item)
-        //             // console.log(item[0])
-        //             item[1].push(id)
-        //             return item
-        //         } else {
-        //             console.log("Nowy!!!")
-        //             // let tab = []
-        //             // let tabVehicle = []
-        //             // tabVehicle.push(id)
-        //             // tab.push(state.activeBase, tabVehicle)
-        //             // data.push(tab)
-        //         }
-        //         // console.log(item[0] === state.activeBase)
-        //     })
-        // }
-        let counter = 0;
         let data = state.basesAndVehicles;
         if (data.length === 0) {
             console.log("Za pierwszyyym")
@@ -140,53 +108,25 @@ function DashboardWindowProvider(props) {
             let tab = []
             let tabVehicle = []
             tabVehicle.push(id)
-            // json[state.activeBase] = tabVehicle
-
-            // tab.push(state.activeBase, tabVehicle)
             data.push({ id: state.activeBase, vehicles: tabVehicle })
         } else {
-            console.log(data)
-            // data.map((item, key) => {
-            //     console.log(item)
-            //     if (item[state.activeBase]) {
-            //         counter++;
-            //         console.log("Znaleziony!!!", state.activeBase, item)
-            //         if (!item[state.activeBase].includes(id)) {
-            //             item[state.activeBase].push(id)
-            //             return item
-            //         }
-            //         // console.log(item[0])
-            //         return item
-
-            //     } else {
-            //         counter++;
-            //         let json = {}
-            //         let tab = []
-            //         let tabVehicle = []
-            //         tabVehicle.push(id)
-            //         json[state.activeBase] = tabVehicle
-            //         // tab.push(state.activeBase, tabVehicle)
-            //         data.push(json)
-            //     }
-            //     console.log("Nowy!!!")
-            //     // let tab = []
-            //     // let tabVehicle = []
-            //     // tabVehicle.push(id)
-            //     // tab.push(state.activeBase, tabVehicle)
-            //     // data.push(tab)
-
-            //     // console.log(item[0] === state.activeBase)
-            // })
+            // console.log(data)
             data.map((item, key) => {
                 if (item.id === state.activeBase) {
                     console.log("Znaleziony!!!", state.activeBase, item)
                     if (!item.vehicles.includes(id)) {
+                        console.log("XDD")
+
                         item.vehicles.push(id)
                         return item
-                    }
-                    // console.log(item[0])
-                    return item
+                    } else {
+                        let vehicles = item.vehicles.filter((i, k) => {
+                            return (i !== id)
+                        })
+                        item.vehicles = vehicles
+                        return item
 
+                    }
                 } else if (item.id !== state.activeBase && key === data.length - 1) {
                     console.log("/")
                     let tabVehicle = []
@@ -275,7 +215,7 @@ function DashboardWindowProvider(props) {
         setState({ ...state, useFull })
     }
 
-
+    console.log(state)
     return (
         <DashboardWindowContext.Provider value={{ data: state, clickOnMap, handleRemoveBase, handleChoosePlan, handleAdding, handleRemoving, handleChangeBase, handleAddVehicle, handleNewForm }} >
             {
