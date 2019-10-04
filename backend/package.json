@@ -33,6 +33,7 @@
     "nodemailer-express-handlebars": "^3.1.0",
     "pug": "^2.0.4",
     "redis": "^2.8.0",
+    "saslprep": "^1.0.3",
     "uniqid": "^5.0.3",
     "uuid": "^3.3.2"
   },

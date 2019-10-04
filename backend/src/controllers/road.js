@@ -8,10 +8,15 @@ export async function getRoadOffers(req, res) {
     "height",
     "capacity",
     "type",
-    "waitingTime"
+    "waitingTime",
+    "isDimensionsRequired"
   ];
-  const requireKeysVolume = ["volume", "type", "waitingTime"];
-
+  const requireKeysVolume = [
+    "volume",
+    "type",
+    "waitingTime",
+    "isDimensionsRequired"
+  ];
   const vehiclesWithVolume = [
     "Cysterna chemiczna",
     "Cysterna gazowa",
@@ -29,7 +34,7 @@ export async function getRoadOffers(req, res) {
     volume
   } = req.body.criteria;
   const { points, distanceToDrive } = req.body;
-  if (points.length !== 2) {
+  if (!points || points.length !== 2) {
     return res.status(400).send({
       err: "There is no points"
     });
@@ -42,29 +47,47 @@ export async function getRoadOffers(req, res) {
   end.setHours(23, 59, 59, 999);
   if (req.body.operation === "single") {
     for (let i = 0; i < requireKeysCapacity.length; i++) {
-      if (!req.body.criteria[requireKeysCapacity[i]]) {
+      if (req.body.criteria[requireKeysCapacity[i]] == undefined) {
         return res.status(400).send({
           err: `Missing ${requireKeysCapacity[i]}`
         });
       }
     }
+    let $match = {};
+    if (vehiclesWithVolume.includes(type)) {
+      $match = {
+        type,
+        volume: {
+          $gte: volume
+        }
+      };
+    } else if (req.body.criteria.isDimensionsRequired) {
+      $match = {
+        type,
+        "dimensions.length": {
+          $gte: length
+        },
+        "dimensions.width": {
+          $gte: width
+        },
+        "dimensions.height": {
+          $gte: height
+        },
+        capacity: {
+          $gte: capacity
+        }
+      };
+    } else {
+      $match = {
+        type,
+        capacity: {
+          $gte: capacity
+        }
+      };
+    }
     const offers = await Vehicle.aggregate([
       {
-        $match: {
-          type,
-          "dimensions.length": {
-            $gte: length
-          },
-          "dimensions.width": {
-            $gte: width
-          },
-          "dimensions.height": {
-            $gte: height
-          },
-          capacity: {
-            $gte: capacity
-          }
-        }
+        $match
       },
       {
         $lookup: {
@@ -644,7 +667,7 @@ export async function getRoadOffers(req, res) {
     res.send({ offers: distinctVehicles });
   } else {
     for (let i = 0; i < requireKeysVolume.length; i++) {
-      if (!req.body.criteria[requireKeysVolume[i]]) {
+      if (req.body.criteria[requireKeysVolume[i]] == undefined) {
         return res.status(400).send({
           err: `Missing ${requireKeysVolume[i]}`
         });
