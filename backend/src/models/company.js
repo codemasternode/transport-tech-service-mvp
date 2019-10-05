@@ -121,7 +121,8 @@ const CompanySchema = new mongoose.Schema(
     sumCostsPerMonth: {
       type: Number,
       default: 0
-    }
+    },
+    statistics: [Date]
   },
   { strict: false }
 );

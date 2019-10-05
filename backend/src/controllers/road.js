@@ -1,4 +1,6 @@
 import Vehicle from "../models/vehicle";
+import Company from "../models/company";
+import { Types } from "mongoose";
 import { search } from "../services/subsetsum";
 
 export async function getRoadOffers(req, res) {
@@ -665,6 +667,38 @@ export async function getRoadOffers(req, res) {
       }
     }
     res.send({ offers: distinctVehicles });
+    const companyStatIDS = [];
+    for (let i = 0; i < distinctVehicles.length; i++) {
+      let isInside = false;
+      for (let m = 0; m < companyStatIDS.length; m++) {
+        if (
+          companyStatIDS[m].toString() ===
+          distinctVehicles[i].company._id.toString()
+        ) {
+          isInside = true;
+        }
+      }
+      if (!isInside) {
+        companyStatIDS.push(
+          new Types.ObjectId(distinctVehicles[i].company._id)
+        );
+      }
+    }
+    await Company.update(
+      {
+        _id: {
+          $in: companyStatIDS
+        }
+      },
+      {
+        $push: {
+          statistics: new Date()
+        }
+      },
+      {
+        multi: true
+      }
+    );
   } else {
     for (let i = 0; i < requireKeysVolume.length; i++) {
       if (req.body.criteria[requireKeysVolume[i]] == undefined) {
@@ -1324,5 +1358,34 @@ export async function getRoadOffers(req, res) {
       }
     }
     res.send({ offers: companies });
+    const companyStatIDS = [];
+    for (let i = 0; i < companies.length; i++) {
+      let isInside = false;
+      for (let m = 0; m < companyStatIDS.length; m++) {
+        if (
+          companyStatIDS[m].toString() === companies[i].company._id.toString()
+        ) {
+          isInside = true;
+        }
+      }
+      if (!isInside) {
+        companyStatIDS.push(new Types.ObjectId(companies[i].company._id));
+      }
+    }
+    await Company.update(
+      {
+        _id: {
+          $in: companyStatIDS
+        }
+      },
+      {
+        $push: {
+          statistics: new Date()
+        }
+      },
+      {
+        multi: true
+      }
+    );
   }
 }
