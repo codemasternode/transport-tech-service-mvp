@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Benzyna Pb98",
+        "price": 5.44
+    },
+    {
+        "name": "Benzyna Pb95",
+        "price": 5.14
+    },
+    {
+        "name": "Olej napędowy",
+        "price": 5.08
+    },
+    {
+        "name": "Olej napędowy +",
+        "price": 5.32
+    },
+    {
+        "name": "LPG",
+        "price": 2,
+        "unit": "m3"
+    }
+]
