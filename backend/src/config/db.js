@@ -69,16 +69,16 @@ export default async URI => {
   // ]);
 
   // const semiTrailers = [
-  //   "Chłodnia",
-  //   "Firanka",
-  //   "Wywrotka",
-  //   "Cysterna chemiczna",
-  //   "Cysterna gazowa",
-  //   "Cysterna paliwowa",
-  //   "Silos",
-  //   "Platforma",
-  //   "Niskopodwoziowy",
-  //   "Mega"
+  // "Chłodnia",
+  // "Firanka",
+  // "Wywrotka",
+  // "Cysterna chemiczna",
+  // "Cysterna gazowa",
+  // "Cysterna paliwowa",
+  // "Silos",
+  // "Platforma",
+  // "Niskopodwoziowy",
+  // "Mega"
   // ];
 
   // const vehiclesTypes = [
