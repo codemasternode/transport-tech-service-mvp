@@ -2,6 +2,7 @@ import express from "express";
 import mongodbConnection from "./config/db";
 import roadRoutes from "./routes/road";
 import webStatsRoutes from "./routes/websiteStats";
+import contactRoutes from './routes/contact'
 import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/distance", roadRoutes());
 app.use("/api/webStatsRoutes", webStatsRoutes());
+app.use("/api/contact", contactRoutes())
 
 const server = app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);

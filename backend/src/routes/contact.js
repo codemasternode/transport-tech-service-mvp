@@ -1,3 +1,4 @@
+import express from "express";
 import { contactToUs } from "../controllers/contact";
 
 const router = express.Router();

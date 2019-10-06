@@ -25,12 +25,17 @@ export async function contactToUs(req, res) {
 
   loadTemplate("contactToUs", [
     { name, surname, email, phone, taxNumber, description }
-  ]).then(result => {
-    sendEmail({
-      to: "marcinwarzybok@outlook.com",
-      subject: `New Customer ${name} ${surname}`,
-      html: result.email.html,
-      text: result.email.text
+  ])
+    .then(result => {
+      sendEmail({
+        to: "marcinwarzybok@outlook.com",
+        subject: `New Customer ${name} ${surname}`,
+        html: result[0].email.html,
+        text: result[0].email.text
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-  });
+  res.send({});
 }
