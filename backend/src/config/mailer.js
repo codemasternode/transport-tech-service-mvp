@@ -4,9 +4,7 @@ import dotenv from "dotenv/config";
 const EmailTemplate = require("email-templates").EmailTemplate;
 import path from "path";
 
-const fromEmail = `transport-tech-service-notifications <${
-  process.env.EMAIL_ADDRESS_MAILER
-}>`;
+const fromEmail = `transport-tech-service-notifications <${process.env.EMAIL_ADDRESS_MAILER}>`;
 
 let transporter;
 
@@ -33,6 +31,26 @@ async function start() {
 
 start();
 
+export function sendEmail({ to, subject, html, text }) {
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(
+      {
+        fromEmail,
+        to,
+        subject,
+        html,
+        text
+      },
+      (err, info) => {
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      }
+    );
+  });
+}
+
 export function loadTemplate(templateName, contexts) {
   console.log(
     path.join(__dirname, "../emailsTemplates/templates", templateName)
@@ -44,6 +62,10 @@ export function loadTemplate(templateName, contexts) {
     contexts.map(context => {
       return new Promise((resolve, reject) => {
         template.render(context, (err, result) => {
+<<<<<<< HEAD
+=======
+          console.log(result, 65)
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
           if (err) reject(err);
           else
             resolve({

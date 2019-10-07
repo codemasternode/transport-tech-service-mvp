@@ -5,11 +5,21 @@ import { search } from "../services/subsetsum";
 
 export async function getRoadOffers(req, res) {
   const requireKeysCapacity = [
+<<<<<<< HEAD
+=======
+    "capacity",
+    "type",
+    "waitingTime"
+  ];
+
+  const requireKeysCapacityWithDim = [
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
     "length",
     "width",
     "height",
     "capacity",
     "type",
+<<<<<<< HEAD
     "waitingTime",
     "isDimensionsRequired"
   ];
@@ -19,6 +29,17 @@ export async function getRoadOffers(req, res) {
     "waitingTime",
     "isDimensionsRequired"
   ];
+=======
+    "waitingTime"
+  ];
+
+  const requireKeysVolume = [
+    "volume",
+    "type",
+    "waitingTime"
+  ];
+
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
   const vehiclesWithVolume = [
     "Cysterna chemiczna",
     "Cysterna gazowa",
@@ -48,6 +69,7 @@ export async function getRoadOffers(req, res) {
   const end = new Date(start.getTime());
   end.setHours(23, 59, 59, 999);
   if (req.body.operation === "single") {
+<<<<<<< HEAD
     for (let i = 0; i < requireKeysCapacity.length; i++) {
       if (req.body.criteria[requireKeysCapacity[i]] == undefined) {
         return res.status(400).send({
@@ -57,13 +79,35 @@ export async function getRoadOffers(req, res) {
     }
     let $match = {};
     if (vehiclesWithVolume.includes(type)) {
+=======
+    let $match = {};
+    if (vehiclesWithVolume.includes(type)) {
+      for (let i = 0; i < requireKeysVolume.length; i++) {
+        if (req.body.criteria[requireKeysVolume[i]] == undefined) {
+          return res.status(400).send({
+            err: `Missing ${requireKeysVolume[i]}`
+          });
+        }
+      }
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
       $match = {
         type,
         volume: {
           $gte: volume
         }
       };
+<<<<<<< HEAD
     } else if (req.body.criteria.isDimensionsRequired) {
+=======
+    } else {
+      for (let i = 0; i < requireKeysCapacityWithDim.length; i++) {
+        if (req.body.criteria[requireKeysCapacityWithDim[i]] == undefined) {
+          return res.status(400).send({
+            err: `Missing ${requireKeysCapacityWithDim[i]}`
+          });
+        }
+      }
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
       $match = {
         type,
         "dimensions.length": {
@@ -79,6 +123,7 @@ export async function getRoadOffers(req, res) {
           $gte: capacity
         }
       };
+<<<<<<< HEAD
     } else {
       $match = {
         type,
@@ -86,6 +131,8 @@ export async function getRoadOffers(req, res) {
           $gte: capacity
         }
       };
+=======
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
     }
     const offers = await Vehicle.aggregate([
       {
@@ -700,6 +747,7 @@ export async function getRoadOffers(req, res) {
       }
     );
   } else {
+<<<<<<< HEAD
     for (let i = 0; i < requireKeysVolume.length; i++) {
       if (req.body.criteria[requireKeysVolume[i]] == undefined) {
         return res.status(400).send({
@@ -707,6 +755,26 @@ export async function getRoadOffers(req, res) {
         });
       }
     }
+=======
+    if (vehiclesWithVolume.includes(type)) {
+      for (let i = 0; i < requireKeysVolume.length; i++) {
+        if (req.body.criteria[requireKeysVolume[i]] == undefined) {
+          return res.status(400).send({
+            err: `Missing ${requireKeysVolume[i]}`
+          });
+        }
+      }
+    } else {
+      for (let i = 0; i < requireKeysCapacityWithDim.length; i++) {
+        if (req.body.criteria[requireKeysCapacityWithDim[i]] == undefined) {
+          return res.status(400).send({
+            err: `Missing ${requireKeysCapacityWithDim[i]}`
+          });
+        }
+      }
+    }
+
+>>>>>>> 216439d07b61d38330eae241f43fe765be282b55
     const PI = Math.PI;
     const start = new Date();
     start.setHours(0, 0, 0, 0);
