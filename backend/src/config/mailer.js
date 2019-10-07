@@ -62,10 +62,7 @@ export function loadTemplate(templateName, contexts) {
     contexts.map(context => {
       return new Promise((resolve, reject) => {
         template.render(context, (err, result) => {
-<<<<<<< HEAD
-=======
           console.log(result, 65)
->>>>>>> 216439d07b61d38330eae241f43fe765be282b55
           if (err) reject(err);
           else
             resolve({
