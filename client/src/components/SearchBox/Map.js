@@ -82,7 +82,7 @@ const MapDirectionsRenderer = (props) => {
 
 
 const Map = withScriptjs(
-    withGoogleMap(props => (
+    withGoogleMap(React.memo((props) => (
         <GoogleMap
             defaultCenter={props.defaultCenter}
             defaultZoom={props.defaultZoom}
@@ -98,6 +98,7 @@ const Map = withScriptjs(
             />
         </GoogleMap>
     ))
+    )
 );
 
 export default Map;

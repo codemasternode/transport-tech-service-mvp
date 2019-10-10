@@ -17,7 +17,7 @@ export default async URI => {
     useUnifiedTopology: true
   };
 
-  mongoose.connect(URI, dbOptions, err => {
+  mongoose.connect(`mongodb://localhost:27017/tt111`, dbOptions, err => {
     if (err) {
       throw new Error(`Error while trying to connect MongoDB ${err}`);
     }

@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import mongodbConnection from "./config/db";
 import roadRoutes from "./routes/road";
 import webStatsRoutes from "./routes/websiteStats";
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 5000,
   app = express();
 mongodbConnection(MONGO_DB_URL);
 
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/distance", roadRoutes());

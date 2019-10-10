@@ -1,14 +1,3 @@
-const typesOfSearch = ["Chłodnia",
-    "Firanka",
-    "Wywrotka",
-    "Cysterna chemiczna",
-    "Cysterna gazowa",
-    "Cysterna paliwowa",
-    "Silos",
-    "Platforma",
-    "Niskopodwoziowy",
-    "Mega"]
-
 const labelsOfSearchInputs = [
     { label: "Typ pojazdu", value: "type" },
     { label: "Waga (t)", value: "type" },
@@ -18,4 +7,4 @@ const labelsOfSearchInputs = [
     { label: "Wysokość (m)", value: "type" },
 ]
 
-export default (typesOfSearch, labelsOfSearchInputs);
+export default labelsOfSearchInputs;

@@ -30,7 +30,7 @@ export const routes = [
 export default function App() {
   return (
     <Router>
-      <Nav />
+      {/* <Nav /> */}
       <Switch>
         {routes.map((value, index) =>
           value.isExact ? (

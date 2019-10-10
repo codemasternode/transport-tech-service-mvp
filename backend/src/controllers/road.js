@@ -31,7 +31,7 @@ export async function getRoadOffers(req, res) {
     "Cysterna paliwowa",
     "Silos"
   ];
-
+  console.log(req.body)
   const {
     length,
     width,
