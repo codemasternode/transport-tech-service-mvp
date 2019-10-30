@@ -1,125 +1,162 @@
 [
     {
-        "name": "PL"
+        "countryCode": "PL",
+        "countryName": "Poland"
     },
     {
-        "name": "AL"
+        "countryCode": "AL",
+        "countryName": "Albania"
     },
     {
-        "name": "AD"
+        "countryCode": "AD",
+        "countryName": "Andorra"
     },
     {
-        "name": "AT"
+        "countryCode": "AT",
+        "countryName": "Austria"
     },
     {
-        "name": "BE"
+        "countryCode": "BE",
+        "countryName": "Belgium"
     },
     {
-        "name": "BY"
+        "countryCode": "BA",
+        "countryName": "Bosnia and Herzegovina"
     },
     {
-        "name": "BA"
+        "countryCode": "BG",
+        "countryName": "Bulgaria"
     },
     {
-        "name": "BG"
+        "countryCode": "CY",
+        "countryName": "Cyprus"
     },
     {
-        "name": "HR"
+        "countryCode": "HR",
+        "countryName": "Croatia"
     },
     {
-        "name": "ME"
+        "countryCode": "ME",
+        "countryName": "Montenegro"
     },
     {
-        "name": "CZ"
+        "countryCode": "CZ",
+        "countryName": "Czechia"
     },
     {
-        "name": "DK"
+        "countryCode": "DK",
+        "countryName": "Denmark"
     },
     {
-        "name": "EE"
+        "countryCode": "EE",
+        "countryName": "Estonia"
     },
     {
-        "name": "FI"
+        "countryCode": "FI",
+        "countryName": "Finland"
     },
     {
-        "name": "FR"
+        "countryCode": "FR",
+        "countryName": "France"
     },
     {
-        "name": "GR"
+        "countryCode": "GI",
+        "countryName": "Gibraltar"
     },
     {
-        "name": "ES"
+        "countryCode": "ES",
+        "countryName": "Spain"
     },
     {
-        "name": "NL"
+        "countryCode": "NL",
+        "countryName": "Netherlands"
     },
     {
-        "name": "IE"
+        "countryCode": "IE",
+        "countryName": "Ireland"
     },
     {
-        "name": "LI"
+        "countryCode": "LI",
+        "countryName": "Liechtenstein"
     },
     {
-        "name": "LT"
+        "countryCode": "LT",
+        "countryName": "Lithuania"
     },
     {
-        "name": "LU"
+        "countryCode": "LU",
+        "countryName": "Luxembourg"
     },
     {
-        "name": "LV"
+        "countryCode": "LV",
+        "countryName": "Latvia"
     },
     {
-        "name": "MK"
+        "countryCode": "MK",
+        "countryName": "North Macedonia"
     },
     {
-        "name": "MT"
+        "countryCode": "MT",
+        "countryName": "Malta"
     },
     {
-        "name": "MD"
+        "countryCode": "MD",
+        "countryName": "Moldova"
     },
     {
-        "name": "DE"
+        "countryCode": "DE",
+        "countryName": "Germany"
     },
     {
-        "name": "NO"
+        "countryCode": "NO",
+        "countryName": "Norway"
     },
     {
-        "name": "PT"
+        "countryCode": "PT",
+        "countryName": "Portugal"
     },
     {
-        "name": "RO"
+        "countryCode": "RO",
+        "countryName": "Romania"
     },
     {
-        "name": "SM"
+        "countryCode": "SM",
+        "countryName": "San Marino"
     },
     {
-        "name": "XS"
+        "countryCode": "SE",
+        "countryName": "Sweden"
     },
     {
-        "name": "SK"
+        "countryCode": "SK",
+        "countryName": "Slovakia"
     },
     {
-        "name": "SI"
+        "countryCode": "SI",
+        "countryName": "Slovenia"
     },
     {
-        "name": "CH"
+        "countryCode": "CH",
+        "countryName": "Switzerland"
     },
     {
-        "name": "SE"
+        "countryCode": "VA",
+        "countryName": "Vatican City"
     },
     {
-        "name": "UA"
+        "countryCode": "HU",
+        "countryName": "Hungary"
     },
     {
-        "name": "VA"
+        "countryCode": "UK",
+        "countryName": "UK"
     },
     {
-        "name": "HU"
+        "countryCode": "IT",
+        "countryName": "Italy"
     },
     {
-        "name": "GB"
-    },
-    {
-        "name": "IT"
+        "countryCode": "TR",
+        "countryName": "Turkey"
     }
 ]

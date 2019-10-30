@@ -16,9 +16,6 @@ const VehicleSchema = new mongoose.Schema({
   capacity: {
     type: Number
   },
-  volume: {
-    type: Number
-  },
   dimensions: {
     length: {
       type: Number,
@@ -37,18 +34,9 @@ const VehicleSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  fuel: {
-    type: String,
-    required: true
-  },
   valueOfTruck: {
     type: Number,
     required: true
-  },
-  blankJourneys: {
-    type: Number,
-    required: true,
-    default: 10
   },
   type: {
     type: String,
@@ -82,6 +70,47 @@ const VehicleSchema = new mongoose.Schema({
       type: Number,
       min: 0
     }
+  },
+  fuel: {
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    unit: {
+      type: String,
+      required: true,
+      default: "l/100km"
+    },
+    date: {
+      type: Date,
+      required: true,
+      default: new Date()
+    }
+  },
+  countries: [
+    {
+      type: String
+    }
+  ],
+  sumKmPerMonth: {
+    type: Number,
+    default: 0
+  },
+  sumCostPerMonth: {
+    type: Number,
+    default: 0
+  },
+  monthCosts: {
+    type: Number,
+    default: 0
+  },
+  salary: {
+    type: Number,
+    default: 0
   }
 });
 

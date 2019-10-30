@@ -45,13 +45,6 @@ const CompanySchema = new mongoose.Schema(
       default: 10,
       min: 1
     },
-    defaultBlankJourneys: {
-      type: Schema.Types.Number,
-      required: [true, "the blank journeys can not be empty"],
-      default: 10,
-      min: 1,
-      max: 100
-    },
     isSuspended: {
       type: Schema.Types.Boolean,
       required: [true, "suspended can not be empty"],
@@ -89,8 +82,7 @@ const CompanySchema = new mongoose.Schema(
     },
     countries: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "country"
+        type: String
       }
     ],
     users: [
@@ -114,7 +106,7 @@ const CompanySchema = new mongoose.Schema(
     plan: {
       type: Object
     },
-    sumAvgKmPerMonth: {
+    sumKmPerMonth: {
       type: Number,
       default: 0
     },

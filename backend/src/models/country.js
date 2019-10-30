@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
 
 const CountrySchema = new mongoose.Schema({
-  name: {
+  countryName: {
     type: String,
     required: true,
-    unique: true,
     default: "PL"
+  },
+  countryCode: {
+    type: String,
+    required: true,
+    default: "Poland"
   }
 });
 

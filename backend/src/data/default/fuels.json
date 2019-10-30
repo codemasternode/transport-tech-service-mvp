@@ -14,10 +14,5 @@
     {
         "name": "Olej napędowy +",
         "price": 5.32
-    },
-    {
-        "name": "LPG",
-        "price": 2,
-        "unit": "m3"
     }
 ]
