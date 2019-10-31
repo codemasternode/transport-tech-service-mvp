@@ -1,11 +1,19 @@
 import Vehicle from "../models/vehicle";
 import Palette from "../models/palletes";
 import axios from "axios";
+import googleMaps from "@google/maps";
+import "dotenv/config";
+
 import {
-  createDistanceGoogleMapsURL,
+  createDistanceGoogleMapsRequest,
   getCountryFromAddress,
   getCountryNameByReverseGeocoding
 } from "../services/geoservices";
+
+const googleMapsClient = googleMaps.createClient({
+  key: process.env.GOOGLE_API,
+  Promise: Promise
+});
 
 export async function getRoadOffers(req, res) {
   if (req.body.typeOfSearch === "Palette") {
@@ -49,46 +57,28 @@ export async function getRoadOffers(req, res) {
       });
     }
 
-    async function getRoad() {
-      const url = createDistanceGoogleMapsURL(points);
-      try {
-        const directionsResponse = await axios({
-          url
-        });
-        return directionsResponse.data;
-      } catch (err) {
-        console.log(err);
-        return res.status(500).send({
-          msg: "Problem with connection to Google Maps Services"
-        });
-      }
-    }
-
-    const road = await getRoad();
-    const waypoints = road.routes[0].legs;
+    const road = await googleMapsClient
+      .directions(createDistanceGoogleMapsRequest(points))
+      .asPromise();
+    
+    const waypoints = road.json.routes[0].legs;
     let distance = 0;
     let time = 0;
     const listOfCountries = [];
-    const listOfCounriesToGeocode = []
     for (let i = 0; i < waypoints.length; i++) {
       distance += waypoints[i].distance.value;
       time += waypoints[i].duration.value;
-      listOfCountries.push(getCountryFromAddress(waypoints[i].start_address));
-      const mapPoints = waypoints[i].steps
-      let prevCalculateKM = 0
-      let customDistanceCounter = 0
-      for(let k = 0; k < mapPoints.length; k++) {
-        if(customDistanceCounter - 1000000 > prevCalculateKM) {
-          listOfCounriesToGeocode.push(getCountryNameByReverseGeocoding())
-          prevCalculateKM = customDistanceCounter
-        }
-        customDistanceCounter += mapPoints[k].distance.value
-      } 
+      if(!listOfCountries.includes(getCountryFromAddress(waypoints[i].start_address))) {
+        listOfCountries.push(getCountryFromAddress(waypoints[i].start_address));
+      }
+      if(!listOfCountries.includes(getCountryFromAddress(waypoints[i].end_address))) {
+        listOfCountries.push(getCountryFromAddress(waypoints[i].end_address));
+      }
     }
-    console.log(listOfCountries)
     distance = distance / 1000;
     time = Math.round(time / 60 / 60);
-    res.send({ road });
+    const vehicles = await getVehicles()
+    res.send({ vehicles });
     async function getVehicles() {
       const vehicles = await Vehicle.aggregate([
         {
@@ -98,6 +88,9 @@ export async function getRoadOffers(req, res) {
             },
             "range.maxRange": {
               $gte: distanceToDrive
+            },
+            countries: {
+              $all: listOfCountries
             }
           }
         },
@@ -176,6 +169,7 @@ export async function getRoadOffers(req, res) {
           }
         }
       ]);
+      return vehicles
     }
   }
 }

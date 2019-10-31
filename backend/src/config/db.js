@@ -42,7 +42,17 @@ export default async URI => {
   //   Palette.deleteMany({})
   // ]);
 
-  // const nearestCountry = ["GE", "CZ", "SK", "LT"];
+  // const nearestCountry = [
+  //   "Poland",
+  //   "Germany",
+  //   "France",
+  //   "UK",
+  //   "Czechia",
+  //   "Switzerland",
+  //   "Slovenia",
+  //   "Slovakia",
+  //   "Latvia"
+  // ];
   // const nearestCountrySaved = [];
   // const [savedPalettes] = await Promise.all([Palette.create(data[5])]);
   // const [savedCountries] = await Promise.all([Country.create(data[2])]);

@@ -1,0 +1,2166 @@
+[
+    {
+        "nameOfRoad": "A1",
+        "route": [
+            {
+                "start": "Rusocin",
+                "end": "Nowa wieś",
+                "mainDirection": "South",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "numberOfAxles"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rusocin",
+                                    "cost": 8.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowo",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziąc",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 4.70
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rusocin",
+                                    "cost": 8.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowo",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziąc",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 4.70
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rusocin",
+                                    "cost": 8.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowo",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziąc",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 4.70
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "start": "Nowa wieś",
+                "end": "Rusocin",
+                "mainDirection": "North",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "numberOfAxles"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowa Wieś",
+                                    "cost": 4.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziądz",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowa",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 8.30
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowa Wieś",
+                                    "cost": 4.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziądz",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowa",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 8.30
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 4,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowa Wieś",
+                                    "cost": 4.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lubicz",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Turzno",
+                                    "cost": 10.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Lisewo",
+                                    "cost": 7.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Grudziądz",
+                                    "cost": 3.70
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowe Marzy",
+                                    "cost": 6.80
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Warlubie",
+                                    "cost": 8.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kopytkowa",
+                                    "cost": 9.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Pelpin",
+                                    "cost": 5.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Swarożyń",
+                                    "cost": 3.30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Stanisławie",
+                                    "cost": 8.30
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "nameOfRoad": "A2",
+        "route": [
+            {
+                "start": "Świecko",
+                "end": "Konin",
+                "mainDirection": "West",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "numberOfAxles"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 13
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 17
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 4,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 27
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 46
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "start": "Konin",
+                "end": "Świecko",
+                "mainDirection": "East",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "numberOfAxles"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 13
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 17
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 4,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 46
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 27
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "nameOfRoad": "A4",
+        "route": [
+            {
+                "start": "Sośnica",
+                "end": "Krajków",
+                "mainDirection": "North",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "capacity",
+                        "emissionLevel"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 13
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 17
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 4,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Konin Modła",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komornika",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 27
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 46
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "start": "Konin",
+                "end": "Świecko",
+                "mainDirection": "East",
+                "pricingPlan": {
+                    "basedOnProperty": [
+                        "numberOfAxles"
+                    ],
+                    "plans": [
+                        {
+                            "name": "Kategoria 2",
+                            "requirePropertyValue": 2,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 13
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "requirePropertyValue": 3,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 30
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 17
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 20
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 47
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Kategoria 4",
+                            "requirePropertyValue": 4,
+                            "paymentPoints": [
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Świecko",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Rzepin",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Torzym",
+                                    "cost": 15
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Jordanowo",
+                                    "cost": 11
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Trzciel",
+                                    "cost": 7
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nowy Tomyśl",
+                                    "cost": 46
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Buk",
+                                    "cost": 27
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Zachód",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Komorniki",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Dębina",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Krzesiny",
+                                    "cost": 0
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Poznań Wschód",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Września",
+                                    "cost": 31
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Słupca",
+                                    "cost": 73
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Sługocin",
+                                    "cost": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

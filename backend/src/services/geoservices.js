@@ -1,4 +1,10 @@
 import Axios from "axios";
+import googleMaps from "@google/maps";
+
+const googleMapsClient = googleMaps.createClient({
+  key: process.env.GOOGLE_API,
+  Promise: Promise
+});
 
 export function getDistanceFromLatLonInKm(point1, point2) {
   var R = 6371; // Radius of the earth in km
@@ -19,37 +25,35 @@ function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-export function createDistanceGoogleMapsURL(points) {
-  const origin = points[0];
-  const destination = points[points.length - 1];
-  let baseURL = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.lat}, ${origin.lng}&destination=${destination.lat},${destination.lng}&key=${process.env.GOOGLE_API}&mode=driving`;
+export function createDistanceGoogleMapsRequest(points) {
+  let distanceConfigObj = {
+    origin: `${points[0].lat},${points[0].lng}`,
+    destination: `${points[points.length - 1].lat},${points[points.length - 1].lng}`
+  };
   if (points.length === 2) {
-    return baseURL;
+    return distanceConfigObj;
   } else {
-    baseURL += "&waypoints=";
+    distanceConfigObj.waypoints = [];
     for (let i = 1; i < points.length - 1; i++) {
-      if (i === points.length - 2) {
-        baseURL += `${points[i].lat},${points[i].lng}`;
-      } else {
-        baseURL += `${points[i].lat},${points[i].lng}|`;
-      }
+      distanceConfigObj.waypoints.push(`${points[i].lat},${points[i].lng}`);
     }
-    return baseURL;
+    return distanceConfigObj;
   }
 }
 
-export async function getCountryNameByReverseGeocoding(lat,lng) {
-  const baseURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_API}&result_type=country`
-  try {
-    const address = await Axios({
-      url: baseURL
-    })
-    return address
-  }catch(err) {
-    throw new Error("Problem with Geocoding location")
-  }
+export function getCountryNameByReverseGeocoding(lat, lng) {
+  return new Promise((resolve, reject) => {
+    googleMapsClient
+      .reverseGeocode({ latlng: `${lat},${lng}`, result_type: "country" })
+      .asPromise()
+      .then(response => {
+        resolve(response.json.results[0].formatted_address);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 }
-
 
 export function getCountryFromAddress(address) {
   address = address.split(",").reverse();

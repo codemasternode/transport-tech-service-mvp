@@ -9,13 +9,8 @@ import dotenv from "dotenv/config";
 
 const PORT = process.env.PORT || 5000,
   MONGO_DB_URL =
-<<<<<<< HEAD
     process.env.MONGO_DB_URL || `mongodb://localhost:27017/tts`,
     //`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@localhost:27018,localhost:27019,localhost:27017/transporttechservice?replicaSet=rs0`,
-=======
-    process.env.MONGO_DB_URL ||
-    `mongodb://localhost:27017/transporttechservice`,
->>>>>>> acfd720a6f53ef752f7908ffda2781e5b531ca05
   app = express();
 mongodbConnection(MONGO_DB_URL);
 
