@@ -7,13 +7,16 @@
                 "end": "Nowa wieś",
                 "mainDirection": "South",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "numberOfAxles"
-                    ],
+                   
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "requirePropertyValue": [
+                                2
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -107,7 +110,12 @@
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
+                            "requirePropertyValue": [
+                                3
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -201,7 +209,12 @@
                         },
                         {
                             "name": "Kategoria 4",
-                            "requirePropertyValue": 3,
+                            "requirePropertyValue": [
+                                3
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -301,13 +314,16 @@
                 "end": "Rusocin",
                 "mainDirection": "North",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "numberOfAxles"
-                    ],
+                    
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "requirePropertyValue": [
+                                2
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -401,7 +417,12 @@
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
+                            "requirePropertyValue": [
+                                3
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -495,7 +516,12 @@
                         },
                         {
                             "name": "Kategoria 4",
-                            "requirePropertyValue": 4,
+                            "requirePropertyValue": [
+                                4
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -600,13 +626,16 @@
                 "end": "Konin",
                 "mainDirection": "West",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "numberOfAxles"
-                    ],
+                   
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "requirePropertyValue": [
+                                2
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -732,7 +761,12 @@
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
+                            "requirePropertyValue": [
+                                3
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -858,7 +892,12 @@
                         },
                         {
                             "name": "Kategoria 4",
-                            "requirePropertyValue": 4,
+                            "requirePropertyValue": [
+                                4
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -990,13 +1029,16 @@
                 "end": "Świecko",
                 "mainDirection": "East",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "numberOfAxles"
-                    ],
+                    
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "requirePropertyValue": [
+                                2
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -1122,7 +1164,12 @@
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
+                            "requirePropertyValue": [
+                                3
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -1248,7 +1295,12 @@
                         },
                         {
                             "name": "Kategoria 4",
-                            "requirePropertyValue": 4,
+                            "requirePropertyValue": [
+                                "higher than 4"
+                            ],
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
@@ -1385,21 +1437,22 @@
                 "end": "Krajków",
                 "mainDirection": "North",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "capacity",
-                        "emissionLevel"
-                    ],
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "basedOnProperty": [
+                                "capacity"
+                            ],
+                            "requirePropertyValue": [
+                                "lower than 3.5"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Konin Modła",
+                                    "name": "Żernica Gliwice",
                                     "cost": 0
                                 },
                                 {
@@ -1407,31 +1460,7 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Sługocin",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Słupca",
-                                    "cost": 13
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
+                                    "name": "Bojków",
                                     "cost": 0
                                 },
                                 {
@@ -1439,7 +1468,7 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Poznań Krzesiny",
+                                    "name": "Ostropa",
                                     "cost": 0
                                 },
                                 {
@@ -1447,349 +1476,339 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
+                                    "name": "Kleszczów",
+                                    "cost": 0.80
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Poznań Komornika",
-                                    "cost": 0
+                                    "name": "Łany",
+                                    "cost": 0.90
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Poznań Zachód",
-                                    "cost": 11
+                                    "name": "Nogowczyce",
+                                    "cost": 0.60
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Buk",
-                                    "cost": 20
+                                    "name": "Olszowa",
+                                    "cost": 2.10
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 7
+                                    "name": "Łany",
+                                    "cost": 0.90
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Trzciel",
-                                    "cost": 11
+                                    "name": "Nogowczyce",
+                                    "cost": 0.60
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Jordanowo",
-                                    "cost": 15
+                                    "name": "Olszowa",
+                                    "cost": 2.10
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Torzym",
-                                    "cost": 7
+                                    "name": "Gogolin",
+                                    "cost": 0.80
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Rzepin",
-                                    "cost": 0
+                                    "name": "Dąbrówka",
+                                    "cost": 2.10
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Prądy",
+                                    "cost": 2.90
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Przylesie",
+                                    "cost": 1.50
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Brzezimierz",
+                                    "cost": 1.40
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Krajków",
+                                    "cost": 1.10
                                 }
                             ]
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Konin Modła",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Sługocin",
-                                    "cost": 47
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Słupca",
-                                    "cost": 20
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
-                                    "cost": 47
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Krzesiny",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Komornika",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Zachód",
-                                    "cost": 17
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Buk",
-                                    "cost": 30
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Trzciel",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Jordanowo",
-                                    "cost": 15
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Torzym",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Rzepin",
-                                    "cost": 0
-                                }
-                            ]
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 2"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.40
                         },
                         {
-                            "name": "Kategoria 4",
-                            "requirePropertyValue": 4,
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Konin Modła",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Sługocin",
-                                    "cost": 73
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Słupca",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
-                                    "cost": 73
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Krzesiny",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Komornika",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Zachód",
-                                    "cost": 27
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Buk",
-                                    "cost": 46
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Trzciel",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Jordanowo",
-                                    "cost": 15
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Torzym",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Rzepin",
-                                    "cost": 0
-                                }
-                            ]
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 2"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.53
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 3"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.35
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 3"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.46
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 4"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.28
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 4"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.37
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 5"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.20
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 5"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.27
                         }
                     ]
                 }
             },
             {
-                "start": "Konin",
-                "end": "Świecko",
-                "mainDirection": "East",
+                "start": "Krajków",
+                "end": "Sośnica",
+                "mainDirection": "South",
                 "pricingPlan": {
-                    "basedOnProperty": [
-                        "numberOfAxles"
-                    ],
                     "plans": [
                         {
                             "name": "Kategoria 2",
-                            "requirePropertyValue": 2,
+                            "basedOnProperty": [
+                                "capacity"
+                            ],
+                            "requirePropertyValue": [
+                                "lower than 3.5"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Świecko",
+                                    "name": "Krajków",
+                                    "cost": 1.1
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Brzezimierz",
+                                    "cost": 1.4
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Przylesie",
+                                    "cost": 1.5
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Prądy",
+                                    "cost": 2.9
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Dąbrówka",
+                                    "cost": 2.1
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Gogolin",
+                                    "cost": 0.8
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Olszowa",
+                                    "cost": 2.1
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nogowczyce",
+                                    "cost": 0.6
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Łany",
+                                    "cost": 0.9
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Olszowa",
+                                    "cost": 2.1
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Nogowczyce",
+                                    "cost": 0.6
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Łany",
+                                    "cost": 0.9
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Kleszczów",
+                                    "cost": 0.8
+                                },
+                                {
+                                    "location": {
+                                        "lat": 54.226803,
+                                        "lng": 18.612444
+                                    },
+                                    "name": "Ostropa",
                                     "cost": 0
                                 },
                                 {
@@ -1797,55 +1816,7 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Rzepin",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Torzym",
-                                    "cost": 15
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Jordanowo",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Trzciel",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 20
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Buk",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Zachód",
+                                    "name": "Bojków",
                                     "cost": 0
                                 },
                                 {
@@ -1853,165 +1824,139 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Poznań Komorniki",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Krzesiny",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
-                                    "cost": 13
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Słupca",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Sługocin",
+                                    "name": "Żernica Gliwice",
                                     "cost": 0
                                 }
                             ]
                         },
                         {
                             "name": "Kategoria 3",
-                            "requirePropertyValue": 3,
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 2"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.40
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 2"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.53
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 3"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.35
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 3"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.46
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 4"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.28
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 4"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.37
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3.5, lower than 12",
+                                "EURO 5"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.20
+                        },
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "capacity",
+                                "emissionLevel"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 12",
+                                "EURO 5"
+                            ],
+                            "paymentPoints": null,
+                            "costPerKm": 0.27
+                        }
+                    ]
+                }
+            },
+            {
+                "start": "Katowice",
+                "end": "Kraków",
+                "mainDirection": "East",
+                "pricingPlan": {
+                    "plans": [
+                        {
+                            "name": "Kategoria 3",
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
+                            "requirePropertyValue": [
+                                3
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Świecko",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Rzepin",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Torzym",
-                                    "cost": 15
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Jordanowo",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Trzciel",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 30
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Buk",
-                                    "cost": 17
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Zachód",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Komorniki",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Krzesiny",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
-                                    "cost": 47
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
+                                    "name": "Mysłowice",
                                     "cost": 20
                                 },
                                 {
@@ -2019,142 +1964,35 @@
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Słupca",
-                                    "cost": 47
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Sługocin",
-                                    "cost": 0
+                                    "name": "Balice",
+                                    "cost": 20
                                 }
                             ]
                         },
                         {
                             "name": "Kategoria 4",
-                            "requirePropertyValue": 4,
+                            "basedOnProperty": [
+                                "numberOfAxles"
+                            ],
+                            "requirePropertyValue": [
+                                "higher than 3"
+                            ],
                             "paymentPoints": [
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Świecko",
-                                    "cost": 0
+                                    "name": "Mysłowice",
+                                    "cost": 20
                                 },
                                 {
                                     "location": {
                                         "lat": 54.226803,
                                         "lng": 18.612444
                                     },
-                                    "name": "Rzepin",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Torzym",
-                                    "cost": 15
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Jordanowo",
-                                    "cost": 11
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Trzciel",
-                                    "cost": 7
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowy Tomyśl",
-                                    "cost": 46
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Buk",
-                                    "cost": 27
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Zachód",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Komorniki",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Dębina",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Krzesiny",
-                                    "cost": 0
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Poznań Wschód",
-                                    "cost": 73
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Września",
-                                    "cost": 31
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Słupca",
-                                    "cost": 73
-                                },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Sługocin",
-                                    "cost": 0
+                                    "name": "Balice",
+                                    "cost": 20
                                 }
                             ]
                         }
