@@ -1,11 +1,12 @@
 [
     {
         "nameOfRoad": "A1",
+        "country":"Poland",
         "route": [
             {
                 "start": "Rusocin",
                 "end": "Nowa wieś",
-                "mainDirection": "South",
+                "mainDirection": "SOUTH",
                 "pricingPlan": {
                     "plans": [
                         {
@@ -311,7 +312,7 @@
             {
                 "start": "Nowa wieś",
                 "end": "Rusocin",
-                "mainDirection": "North",
+                "mainDirection": "NORTH",
                 "pricingPlan": {
                     "plans": [
                         {
@@ -618,11 +619,12 @@
     },
     {
         "nameOfRoad": "A2",
+        "country":"Poland",
         "route": [
             {
                 "start": "Konin",
                 "end": "Świecko",
-                "mainDirection": "West",
+                "mainDirection": "WEST",
                 "pricingPlan": {
                     "plans": [
                         {
@@ -904,7 +906,7 @@
             {
                 "start": "Świecko",
                 "end": "Konin",
-                "mainDirection": "East",
+                "mainDirection": "EAST",
                 "pricingPlan": {
                     "plans": [
                         {
@@ -1195,17 +1197,18 @@
     },
     {
         "nameOfRoad": "A4",
+        "country":"Poland",
         "route": [
             {
                 "start": "Sośnica",
                 "end": "Krajków",
-                "mainDirection": "North",
+                "mainDirection": "NORTH",
                 "pricingPlan": {
                     "plans": [
                         {
                             "name": "Kategoria 2",
                             "basedOnProperty": [
-                                "capacity"
+                                "permissibleGrossWeight"
                             ],
                             "requirePropertyValue": [
                                 "lower than 3.5"
@@ -1320,7 +1323,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1333,7 +1336,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1346,7 +1349,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1359,7 +1362,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1372,7 +1375,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1385,7 +1388,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1398,7 +1401,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1411,7 +1414,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1427,13 +1430,13 @@
             {
                 "start": "Krajków",
                 "end": "Sośnica",
-                "mainDirection": "South",
+                "mainDirection": "SOUTH",
                 "pricingPlan": {
                     "plans": [
                         {
                             "name": "Kategoria 2",
                             "basedOnProperty": [
-                                "capacity"
+                                "permissibleGrossWeight"
                             ],
                             "requirePropertyValue": [
                                 "lower than 3.5"
@@ -1548,7 +1551,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1561,7 +1564,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1574,7 +1577,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1587,7 +1590,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1600,7 +1603,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1613,7 +1616,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1626,7 +1629,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1639,7 +1642,7 @@
                         {
                             "name": "Kategoria 3",
                             "basedOnProperty": [
-                                "capacity",
+                                "permissibleGrossWeight",
                                 "emissionLevel"
                             ],
                             "requirePropertyValue": [
@@ -1655,7 +1658,7 @@
             {
                 "start": "Kraków",
                 "end": "Katowice",
-                "mainDirection": "West",
+                "mainDirection": "WEST",
                 "pricingPlan": {
                     "plans": [
                         {
@@ -1745,7 +1748,7 @@
             {
                 "start": "Katowice",
                 "end": "Kraków",
-                "mainDirection": "East",
+                "mainDirection": "EAST",
                 "pricingPlan": {
                     "plans": [
                         {

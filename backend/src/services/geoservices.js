@@ -59,3 +59,19 @@ export function getCountryFromAddress(address) {
   address = address.split(",").reverse();
   return address[0].trim();
 }
+
+export function extractHtmlInstruction(htmlInstruction) {
+  while (
+    htmlInstruction.search("<") !== -1 &&
+    htmlInstruction.search(">") !== -1
+  ) {
+    let startSign = htmlInstruction.search("<");
+    let endSign = htmlInstruction.search(">");
+    htmlInstruction =
+      htmlInstruction.substring(0, startSign) +
+      " " +
+      htmlInstruction.substring(endSign + 1);
+  }
+  const roadSigns = htmlInstruction.match(/[a-z][0-9]+/gim);
+  return roadSigns;
+}

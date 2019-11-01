@@ -9,6 +9,7 @@ import Country from "../models/country";
 import Vehicle from "../models/vehicle";
 import User from "../models/user";
 import Palette from "../models/palletes";
+import TollRoad from "../models/tollRoads";
 
 export default async URI => {
   const dbOptions = {
@@ -30,7 +31,8 @@ export default async URI => {
     "default/countries.json", //2
     "default/fuels.json", // 3
     "mockData/users.json", //4
-    "default/palettes.json" //5
+    "default/palettes.json", //5
+    "default/tollRoads.json" //6
   ]);
 
   // await Promise.all([
@@ -39,7 +41,8 @@ export default async URI => {
   //   Company.deleteMany({}),
   //   CompanyBase.deleteMany({}),
   //   User.deleteMany({}),
-  //   Palette.deleteMany({})
+  //   Palette.deleteMany({}),
+  //   TollRoad.deleteMany({})
   // ]);
 
   // const nearestCountry = [
@@ -56,6 +59,7 @@ export default async URI => {
   // const nearestCountrySaved = [];
   // const [savedPalettes] = await Promise.all([Palette.create(data[5])]);
   // const [savedCountries] = await Promise.all([Country.create(data[2])]);
+  // const [savedTollRoads] = await Promise.all([TollRoad.create(data[6])]);
   // for (let h = 0; h < savedCountries.length; h++) {
   //   if (nearestCountry.includes(savedCountries[h].countryCode)) {
   //     nearestCountrySaved.push(savedCountries[h].countryCode);

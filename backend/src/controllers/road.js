@@ -1,5 +1,6 @@
 import Vehicle from "../models/vehicle";
 import Palette from "../models/palletes";
+import TollRoad from "../models/tollRoads";
 import axios from "axios";
 import googleMaps from "@google/maps";
 import "dotenv/config";
@@ -7,7 +8,8 @@ import "dotenv/config";
 import {
   createDistanceGoogleMapsRequest,
   getCountryFromAddress,
-  getCountryNameByReverseGeocoding
+  getCountryNameByReverseGeocoding,
+  extractHtmlInstruction
 } from "../services/geoservices";
 
 const googleMapsClient = googleMaps.createClient({
@@ -60,7 +62,7 @@ export async function getRoadOffers(req, res) {
     const road = await googleMapsClient
       .directions(createDistanceGoogleMapsRequest(points))
       .asPromise();
-    
+
     const waypoints = road.json.routes[0].legs;
     let distance = 0;
     let time = 0;
@@ -68,17 +70,29 @@ export async function getRoadOffers(req, res) {
     for (let i = 0; i < waypoints.length; i++) {
       distance += waypoints[i].distance.value;
       time += waypoints[i].duration.value;
-      if(!listOfCountries.includes(getCountryFromAddress(waypoints[i].start_address))) {
+      if (
+        !listOfCountries.includes(
+          getCountryFromAddress(waypoints[i].start_address)
+        )
+      ) {
         listOfCountries.push(getCountryFromAddress(waypoints[i].start_address));
       }
-      if(!listOfCountries.includes(getCountryFromAddress(waypoints[i].end_address))) {
+      if (
+        !listOfCountries.includes(
+          getCountryFromAddress(waypoints[i].end_address)
+        )
+      ) {
         listOfCountries.push(getCountryFromAddress(waypoints[i].end_address));
       }
     }
     distance = distance / 1000;
     time = Math.round(time / 60 / 60);
-    const vehicles = await getVehicles()
-    res.send({ vehicles });
+
+    const [countingOperation] = await Promise.all([
+      countTollPayments(),
+      getVehicles()
+    ]);
+    res.send({});
     async function getVehicles() {
       const vehicles = await Vehicle.aggregate([
         {
@@ -169,7 +183,69 @@ export async function getRoadOffers(req, res) {
           }
         }
       ]);
-      return vehicles
+      return vehicles;
+    }
+
+    async function countTollPayments() {
+      const roadToSearchInDB = [];
+      const tollRoad = [];
+      for (let i = 0; i < waypoints.length; i++) {
+        for (let k = 0; k < waypoints[i].steps.length; k++) {
+          const {
+            distance: { value }
+          } = waypoints[i].steps[k];
+          const htmlInstruction = waypoints[i].steps[k].html_instructions;
+          if (htmlInstruction.search("Toll road") != -1 && value > 700) {
+            const extracted = extractHtmlInstruction(htmlInstruction);
+            if (extracted && !roadToSearchInDB.includes(extracted[0])) {
+              const { start_location, end_location } = waypoints[i].steps[k];
+              console.log(start_location, end_location);
+              const mainDirections = {
+                latitudeDifference: Math.abs(
+                  end_location.lat - start_location.lat
+                ),
+                longitudeDifference: Math.abs(
+                  end_location.lng - start_location.lng
+                ),
+                latitudeDirection:
+                  start_location.lat > end_location.lat
+                    ? "SOUTH"
+                    : start_location.lat === end_location.lat
+                    ? "NONE"
+                    : "NORTH",
+                longitudeDirection:
+                  start_location.lng > end_location.lng
+                    ? "WEST"
+                    : start_location.lng === end_location.lng
+                    ? "NONE"
+                    : "EAST"
+              };
+              const tollRoad = await TollRoad.findOne({
+                nameOfRoad: extracted[0]
+              });
+              let mainDirection = null
+              for (let m = 0; m < tollRoad.route.length; m++) {
+                //check if we are moving on north or south
+                if (
+                  mainDirections.latitudeDirection ===
+                  tollRoad.route[m].mainDirection
+                ) {
+                  //console.log(`We are moving mainly in ${tollRoad.route[m].mainDirection}`)
+                  mainDirection = tollRoad.route[m]
+                } //check if we are moving on west or east
+                else if (
+                  mainDirections.longitudeDirection ===
+                  tollRoad.route[m].mainDirection
+                ) {
+                  //console.log(`We are moving mainly in ${tollRoad.route[m].mainDirection}`)
+                  mainDirection = tollRoad.route[m]
+                }
+              }
+              console.log(mainDirection)
+            }
+          }
+        }
+      }
     }
   }
 }
