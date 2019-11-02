@@ -1,1839 +1,1823 @@
 [
     {
         "nameOfRoad": "A1",
-        "country":"Poland",
+        "country": "Poland",
         "route": [
             {
                 "start": "Rusocin",
                 "end": "Nowa wieś",
                 "mainDirection": "SOUTH",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.2268207,
-                                        "lng": 18.6124493
-                                    },
-                                    "name": "PPO Rusocin",
-                                    "cost": 8.30
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.2268207,
+                                    "lng": 18.6124493
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 3.30
+                                "name": "PPO Rusocin",
+                                "cost": 8.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 5.90
+                                "name": "SPO Stanisławie",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 9.40
+                                "name": "SPO Swarożyń",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 8.10
+                                "name": "SPO Pelplin",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 6.80
+                                "name": "SPO Kopytkowo",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 3.70
+                                "name": "SPO Warlubie",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 7.40
+                                "name": "SPO Nowe Marzy",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 10.50
+                                "name": "SPO Grudziądz",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 2.90
+                                "name": "PPO Lisewo",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 4.70
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.2268207,
-                                        "lng": 18.6124493
-                                    },
-                                    "name": "PPO Rusocin",
-                                    "cost": 8.30
+                                "name": "SPO Turzno",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 3.30
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 4.70
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.2268207,
+                                    "lng": 18.6124493
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 5.90
+                                "name": "PPO Rusocin",
+                                "cost": 8.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 9.40
+                                "name": "SPO Stanisławie",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 8.10
+                                "name": "SPO Swarożyń",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 6.80
+                                "name": "SPO Pelplin",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 3.70
+                                "name": "SPO Kopytkowo",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 7.40
+                                "name": "SPO Warlubie",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 10.50
+                                "name": "SPO Nowe Marzy",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 2.90
+                                "name": "SPO Grudziądz",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 4.70
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.2268207,
-                                        "lng": 18.6124493
-                                    },
-                                    "name": "PPO Rusocin",
-                                    "cost": 8.30
+                                "name": "PPO Lisewo",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 3.30
+                                "name": "SPO Turzno",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 5.90
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 4.70
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.2268207,
+                                    "lng": 18.6124493
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 9.40
+                                "name": "PPO Rusocin",
+                                "cost": 8.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 8.10
+                                "name": "SPO Stanisławie",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 6.80
+                                "name": "SPO Swarożyń",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 3.70
+                                "name": "SPO Pelplin",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 7.40
+                                "name": "SPO Kopytkowo",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 10.50
+                                "name": "SPO Warlubie",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 2.90
+                                "name": "SPO Nowe Marzy",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 4.70
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "SPO Grudziądz",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
+                                },
+                                "name": "PPO Lisewo",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
+                                },
+                                "name": "SPO Turzno",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
+                                },
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 4.70
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "start": "Nowa wieś",
                 "end": "Rusocin",
                 "mainDirection": "NORTH",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowa Wieś",
-                                    "cost": 4.70
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 2.90
+                                "name": "Nowa Wieś",
+                                "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 10.50
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 7.40
+                                "name": "SPO Turzno",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 3.70
+                                "name": "PPO Lisewo",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 6.80
+                                "name": "SPO Grudziądz",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 8.10
+                                "name": "SPO Nowe Marzy",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 9.40
+                                "name": "SPO Warlubie",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 5.90
+                                "name": "SPO Kopytkowo",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 3.30
+                                "name": "SPO Pelplin",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 8.30
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowa Wieś",
-                                    "cost": 4.70
+                                "name": "SPO Swarożyń",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 2.90
+                                "name": "SPO Stanisławie",
+                                "cost": 8.30
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 10.50
+                                "name": "Nowa Wieś",
+                                "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 7.40
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 3.70
+                                "name": "SPO Turzno",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 6.80
+                                "name": "PPO Lisewo",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 8.10
+                                "name": "SPO Grudziądz",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 9.40
+                                "name": "SPO Nowe Marzy",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 5.90
+                                "name": "SPO Warlubie",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 3.30
+                                "name": "SPO Kopytkowo",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 8.30
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "requirePropertyValue": [
-                                4
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Nowa Wieś",
-                                    "cost": 4.70
+                                "name": "SPO Pelplin",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0355583,
-                                        "lng": 18.7372949
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 2.90
+                                "name": "SPO Swarożyń",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.0927607,
-                                        "lng": 18.7554656
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 10.50
+                                "name": "SPO Stanisławie",
+                                "cost": 8.30
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "requirePropertyValue": [
+                            4
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.2906866,
-                                        "lng": 18.7049042
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 7.40
+                                "name": "Nowa Wieś",
+                                "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0355583,
+                                    "lng": 18.7372949
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.4283273,
-                                        "lng": 18.6984705
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 3.70
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.0927607,
+                                    "lng": 18.7554656
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.46812420000001,
-                                        "lng": 18.6144716
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 6.80
+                                "name": "SPO Turzno",
+                                "cost": 10.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.2906866,
+                                    "lng": 18.7049042
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.6034404,
-                                        "lng": 18.6174819
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 8.10
+                                "name": "PPO Lisewo",
+                                "cost": 7.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.4283273,
+                                    "lng": 18.6984705
                                 },
-                                {
-                                    "location": {
-                                        "lat": 49.8740405,
-                                        "lng": 19.7796533
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 9.40
+                                "name": "SPO Grudziądz",
+                                "cost": 3.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.46812420000001,
+                                    "lng": 18.6144716
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.9301095,
-                                        "lng": 18.6429642
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 5.90
+                                "name": "SPO Nowe Marzy",
+                                "cost": 6.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.6034404,
+                                    "lng": 18.6174819
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.0349302,
-                                        "lng": 18.6744149
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 3.30
+                                "name": "SPO Warlubie",
+                                "cost": 8.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 49.8740405,
+                                    "lng": 19.7796533
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.09970329999999,
-                                        "lng": 18.6948712
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 8.30
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "SPO Kopytkowo",
+                                "cost": 9.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.9301095,
+                                    "lng": 18.6429642
+                                },
+                                "name": "SPO Pelplin",
+                                "cost": 5.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.0349302,
+                                    "lng": 18.6744149
+                                },
+                                "name": "SPO Swarożyń",
+                                "cost": 3.30
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.09970329999999,
+                                    "lng": 18.6948712
+                                },
+                                "name": "SPO Stanisławie",
+                                "cost": 8.30
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
     {
         "nameOfRoad": "A2",
-        "country":"Poland",
+        "country": "Poland",
         "route": [
             {
                 "start": "Konin",
                 "end": "Świecko",
                 "mainDirection": "WEST",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 44
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 13
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 44
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 31
+                                "name": "SPO Słupca",
+                                "cost": 13
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 11
+                                "name": "PPO Nagradowice",
+                                "cost": 31
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 20
+                                "name": "PPO Gołuski",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "SPO Buk",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 67
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 20
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 47
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 67
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 11
+                                "name": "SPO Słupca",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 20
+                                "name": "PPO Nagradowice",
+                                "cost": 47
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "PPO Gołuski",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "SPO Buk",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "requirePropertyValue": [
-                                4
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 104
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 31
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 73
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "requirePropertyValue": [
+                            4
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 11
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 104
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 46
+                                "name": "SPO Słupca",
+                                "cost": 31
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "PPO Nagradowice",
+                                "cost": 73
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "PPO Gołuski",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "SPO Buk",
+                                "cost": 46
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
+                                },
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
+                                },
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
+                                },
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "start": "Świecko",
                 "end": "Konin",
                 "mainDirection": "EAST",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 20
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 11
+                                "name": "SPO Buk",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 31
+                                "name": "PPO Gołuski",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 13
+                                "name": "PPO Nagradowice",
+                                "cost": 31
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 13
+                                "name": "SPO Słupca",
+                                "cost": 13
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 5
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
+                                "name": "SPO Słupca",
+                                "cost": 13
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 5
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 30
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 17
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 47
+                                "name": "SPO Buk",
+                                "cost": 30
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 20
+                                "name": "PPO Gołuski",
+                                "cost": 17
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 47
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "requirePropertyValue": [
-                                "higher than 4"
-                            ],
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 52.3349297,
-                                        "lng": 14.9035113
-                                    },
-                                    "name": "Punkt poboru opłat Tarnawa",
-                                    "cost": 0
+                                "name": "PPO Nagradowice",
+                                "cost": 47
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3228357,
-                                        "lng": 15.0832604
-                                    },
-                                    "name": "SPO Torzym",
-                                    "cost": 7
+                                "name": "SPO Słupca",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.321186,
-                                        "lng": 15.5460263
-                                    },
-                                    "name": "SPO Jordanowo",
-                                    "cost": 15
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 47
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "requirePropertyValue": [
+                            "higher than 4"
+                        ],
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.3349297,
+                                    "lng": 14.9035113
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3316068,
-                                        "lng": 15.8709041
-                                    },
-                                    "name": "SPO Trzciel",
-                                    "cost": 11
+                                "name": "Punkt poboru opłat Tarnawa",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3228357,
+                                    "lng": 15.0832604
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3103942,
-                                        "lng": 16.130115
-                                    },
-                                    "name": "SPO Nowy Tomyśl",
-                                    "cost": 7
+                                "name": "SPO Torzym",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.321186,
+                                    "lng": 15.5460263
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3782518,
-                                        "lng": 16.5685148
-                                    },
-                                    "name": "SPO Buk",
-                                    "cost": 46
+                                "name": "SPO Jordanowo",
+                                "cost": 15
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3316068,
+                                    "lng": 15.8709041
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3505593,
-                                        "lng": 16.7318478
-                                    },
-                                    "name": "PPO Gołuski",
-                                    "cost": 27
+                                "name": "SPO Trzciel",
+                                "cost": 11
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3103942,
+                                    "lng": 16.130115
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.3106635,
-                                        "lng": 17.1512699
-                                    },
-                                    "name": "PPO Nagradowice",
-                                    "cost": 73
+                                "name": "SPO Nowy Tomyśl",
+                                "cost": 7
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3782518,
+                                    "lng": 16.5685148
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.25552709999999,
-                                        "lng": 17.8231567
-                                    },
-                                    "name": "SPO Słupca",
-                                    "cost": 31
+                                "name": "SPO Buk",
+                                "cost": 46
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3505593,
+                                    "lng": 16.7318478
                                 },
-                                {
-                                    "location": {
-                                        "lat": 52.2217561,
-                                        "lng": 17.9514279
-                                    },
-                                    "name": "Plac Poboru Opłat w Lądku",
-                                    "cost": 73
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "PPO Gołuski",
+                                "cost": 27
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.3106635,
+                                    "lng": 17.1512699
+                                },
+                                "name": "PPO Nagradowice",
+                                "cost": 73
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.25552709999999,
+                                    "lng": 17.8231567
+                                },
+                                "name": "SPO Słupca",
+                                "cost": 31
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.2217561,
+                                    "lng": 17.9514279
+                                },
+                                "name": "Plac Poboru Opłat w Lądku",
+                                "cost": 73
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
     {
         "nameOfRoad": "A4",
-        "country":"Poland",
+        "country": "Poland",
         "route": [
             {
                 "start": "Sośnica",
                 "end": "Krajków",
                 "mainDirection": "NORTH",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight"
-                            ],
-                            "requirePropertyValue": [
-                                "lower than 3.5"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.2588806,
-                                        "lng": 18.6739147
-                                    },
-                                    "name": "Punkt Poboru Opłat Żernica",
-                                    "cost": 0
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight"
+                        ],
+                        "requirePropertyValue": [
+                            "lower than 3.5"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.2588806,
+                                    "lng": 18.6739147
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.2544616,
-                                        "lng": 18.6959166
-                                    },
-                                    "name": "PPO Bojków",
-                                    "cost": 0
+                                "name": "Punkt Poboru Opłat Żernica",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.2544616,
+                                    "lng": 18.6959166
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.2815565,
-                                        "lng": 18.574374
-                                    },
-                                    "name": "Stanowisko Poboru Opłat Ostropa",
-                                    "cost": 0
+                                "name": "PPO Bojków",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.2815565,
+                                    "lng": 18.574374
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.3455563,
-                                        "lng": 18.5457373
-                                    },
-                                    "name": "SPO Kleszczów",
-                                    "cost": 0.80
+                                "name": "Stanowisko Poboru Opłat Ostropa",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.3455563,
+                                    "lng": 18.5457373
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.3919574,
-                                        "lng": 18.4445697
-                                    },
-                                    "name": "SPO Łany",
-                                    "cost": 0.90
+                                "name": "SPO Kleszczów",
+                                "cost": 0.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.3919574,
+                                    "lng": 18.4445697
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4490539,
-                                        "lng": 18.3474523
-                                    },
-                                    "name": "SPO Nogowczyce",
-                                    "cost": 0.60
+                                "name": "SPO Łany",
+                                "cost": 0.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4490539,
+                                    "lng": 18.3474523
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4623773,
-                                        "lng": 18.272903
-                                    },
-                                    "name": "SPO Olszowa",
-                                    "cost": 2.10
+                                "name": "SPO Nogowczyce",
+                                "cost": 0.60
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4623773,
+                                    "lng": 18.272903
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4841714,
-                                        "lng": 17.9924046
-                                    },
-                                    "name": "SPO Gogolin",
-                                    "cost": 0.80
+                                "name": "SPO Olszowa",
+                                "cost": 2.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4841714,
+                                    "lng": 17.9924046
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.5322561,
-                                        "lng": 17.9180575
-                                    },
-                                    "name": "SPO Dąbrówka",
-                                    "cost": 2.10
+                                "name": "SPO Gogolin",
+                                "cost": 0.80
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.5322561,
+                                    "lng": 17.9180575
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "SPO Prądy",
-                                    "cost": 2.90
+                                "name": "SPO Dąbrówka",
+                                "cost": 2.10
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.7839095,
-                                        "lng": 17.3518646
-                                    },
-                                    "name": "SPO Przylesie",
-                                    "cost": 1.50
+                                "name": "SPO Prądy",
+                                "cost": 2.90
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.7839095,
+                                    "lng": 17.3518646
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.87653479999999,
-                                        "lng": 17.1996143
-                                    },
-                                    "name": "SPO Brzezimierz",
-                                    "cost": 1.40
+                                "name": "SPO Przylesie",
+                                "cost": 1.50
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.87653479999999,
+                                    "lng": 17.1996143
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.9703816,
-                                        "lng": 17.0690471
-                                    },
-                                    "name": "SPO Krajków",
-                                    "cost": 1.10
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 2"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.40
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 2"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.53
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 3"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.35
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 3"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.46
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 4"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.28
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 4"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.37
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 5"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.20
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 5"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.27
-                        }
-                    ]
-                }
+                                "name": "SPO Brzezimierz",
+                                "cost": 1.40
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.9703816,
+                                    "lng": 17.0690471
+                                },
+                                "name": "SPO Krajków",
+                                "cost": 1.10
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 2"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.40
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 2"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.53
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 3"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.35
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 3"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.46
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 4"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.28
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 4"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.37
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 5"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.20
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 5"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.27
+                    }
+                ]
             },
             {
                 "start": "Krajków",
                 "end": "Sośnica",
                 "mainDirection": "SOUTH",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight"
-                            ],
-                            "requirePropertyValue": [
-                                "lower than 3.5"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 51.0314714,
-                                        "lng": 17.0033357
-                                    },
-                                    "name": "Punkt Poboru Opłat Karwiany",
-                                    "cost": 1.1
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight"
+                        ],
+                        "requirePropertyValue": [
+                            "lower than 3.5"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 51.0314714,
+                                    "lng": 17.0033357
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.87653479999999,
-                                        "lng": 17.1996143
-                                    },
-                                    "name": "SPO Brzezimierz",
-                                    "cost": 1.4
+                                "name": "Punkt Poboru Opłat Karwiany",
+                                "cost": 1.1
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.87653479999999,
+                                    "lng": 17.1996143
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.7839095,
-                                        "lng": 17.3518646
-                                    },
-                                    "name": "SPO Przylesie",
-                                    "cost": 1.5
+                                "name": "SPO Brzezimierz",
+                                "cost": 1.4
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.7839095,
+                                    "lng": 17.3518646
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "SPO Prądy",
-                                    "cost": 2.9
+                                "name": "SPO Przylesie",
+                                "cost": 1.5
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.5322561,
-                                        "lng": 17.9180575
-                                    },
-                                    "name": "SPO Dąbrówka",
-                                    "cost": 2.1
+                                "name": "SPO Prądy",
+                                "cost": 2.9
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.5322561,
+                                    "lng": 17.9180575
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4841714,
-                                        "lng": 17.9924046
-                                    },
-                                    "name": "SPO Gogolin",
-                                    "cost": 0.8
+                                "name": "SPO Dąbrówka",
+                                "cost": 2.1
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4841714,
+                                    "lng": 17.9924046
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4623773,
-                                        "lng": 18.272903
-                                    },
-                                    "name": "SPO Olszowa",
-                                    "cost": 2.1
+                                "name": "SPO Gogolin",
+                                "cost": 0.8
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4623773,
+                                    "lng": 18.272903
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.4490539,
-                                        "lng": 18.3474523
-                                    },
-                                    "name": "SPO Nogowczyce",
-                                    "cost": 0.6
+                                "name": "SPO Olszowa",
+                                "cost": 2.1
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.4490539,
+                                    "lng": 18.3474523
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.3919574,
-                                        "lng": 18.4445697
-                                    },
-                                    "name": "SPO Łany",
-                                    "cost": 0.9
+                                "name": "SPO Nogowczyce",
+                                "cost": 0.6
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.3919574,
+                                    "lng": 18.4445697
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.3455563,
-                                        "lng": 18.5457373
-                                    },
-                                    "name": "SPO Kleszczów",
-                                    "cost": 0.8
+                                "name": "SPO Łany",
+                                "cost": 0.9
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.3455563,
+                                    "lng": 18.5457373
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.2815565,
-                                        "lng": 18.574374
-                                    },
-                                    "name": "Stanowisko Poboru Opłat Ostropa",
-                                    "cost": 0
+                                "name": "SPO Kleszczów",
+                                "cost": 0.8
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.2815565,
+                                    "lng": 18.574374
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.2544616,
-                                        "lng": 18.6959166
-                                    },
-                                    "name": "PPO Bojków",
-                                    "cost": 0
+                                "name": "Stanowisko Poboru Opłat Ostropa",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.2544616,
+                                    "lng": 18.6959166
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.226803,
-                                        "lng": 18.612444
-                                    },
-                                    "name": "Żernica Gliwice",
-                                    "cost": 0
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 2"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.40
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 2"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.53
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 3"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.35
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 3"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.46
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 4"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.28
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 4"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.37
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3.5, lower than 12",
-                                "EURO 5"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.20
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "permissibleGrossWeight",
-                                "emissionLevel"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 12",
-                                "EURO 5"
-                            ],
-                            "paymentPoints": null,
-                            "costPerKm": 0.27
-                        }
-                    ]
-                }
+                                "name": "PPO Bojków",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.226803,
+                                    "lng": 18.612444
+                                },
+                                "name": "Żernica Gliwice",
+                                "cost": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 2"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.40
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 2"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.53
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 3"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.35
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 3"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.46
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 4"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.28
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 4"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.37
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3.5, lower than 12",
+                            "EURO 5"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.20
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "permissibleGrossWeight",
+                            "emissionLevel"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 12",
+                            "EURO 5"
+                        ],
+                        "paymentPoints": null,
+                        "costPerKm": 0.27
+                    }
+                ]
             },
             {
                 "start": "Kraków",
                 "end": "Katowice",
                 "mainDirection": "WEST",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 20
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 20
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 20
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 20
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 35
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 20
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 35
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
+                                },
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 20
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
+                                },
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 35
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
+                                },
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 35
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "start": "Katowice",
                 "end": "Kraków",
                 "mainDirection": "EAST",
-                "pricingPlan": {
-                    "plans": [
-                        {
-                            "name": "Kategoria 2",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                2
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 20
+                "pricingPlans": [
+                    {
+                        "name": "Kategoria 2",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            2
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 20
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 3",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                3
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 20
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 20
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Kategoria 4",
-                            "basedOnProperty": [
-                                "numberOfAxles"
-                            ],
-                            "requirePropertyValue": [
-                                "higher than 3"
-                            ],
-                            "paymentPoints": [
-                                {
-                                    "location": {
-                                        "lat": 50.1967098,
-                                        "lng": 19.185937
-                                    },
-                                    "name": "Punkt Poboru Opłat Mysłowice",
-                                    "cost": 35
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 20
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 3",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            3
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
                                 },
-                                {
-                                    "location": {
-                                        "lat": 50.0831502,
-                                        "lng": 19.7913439
-                                    },
-                                    "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                    "cost": 35
-                                }
-                            ]
-                        }
-                    ]
-                }
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 20
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
+                                },
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 20
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Kategoria 4",
+                        "basedOnProperty": [
+                            "numberOfAxles"
+                        ],
+                        "requirePropertyValue": [
+                            "higher than 3"
+                        ],
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 50.1967098,
+                                    "lng": 19.185937
+                                },
+                                "name": "Punkt Poboru Opłat Mysłowice",
+                                "cost": 35
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.0831502,
+                                    "lng": 19.7913439
+                                },
+                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
+                                "cost": 35
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }

@@ -8,7 +8,7 @@ import "dotenv/config";
 import {
   createDistanceGoogleMapsRequest,
   getCountryFromAddress,
-  getCountryNameByReverseGeocoding,
+  getDistanceFromLatLonInKm,
   extractHtmlInstruction
 } from "../services/geoservices";
 
@@ -199,7 +199,6 @@ export async function getRoadOffers(req, res) {
             const extracted = extractHtmlInstruction(htmlInstruction);
             if (extracted && !roadToSearchInDB.includes(extracted[0])) {
               const { start_location, end_location } = waypoints[i].steps[k];
-              console.log(start_location, end_location);
               const mainDirections = {
                 latitudeDifference: Math.abs(
                   end_location.lat - start_location.lat
@@ -223,25 +222,258 @@ export async function getRoadOffers(req, res) {
               const tollRoad = await TollRoad.findOne({
                 nameOfRoad: extracted[0]
               });
-              let mainDirection = null
+              let mainDirection = null;
               for (let m = 0; m < tollRoad.route.length; m++) {
                 //check if we are moving on north or south
                 if (
                   mainDirections.latitudeDirection ===
                   tollRoad.route[m].mainDirection
                 ) {
-                  //console.log(`We are moving mainly in ${tollRoad.route[m].mainDirection}`)
-                  mainDirection = tollRoad.route[m]
+                  //get info about direction
+                  mainDirection = tollRoad.route[m];
+                  //get info about start
+                  for (let g = 0; g < mainDirection.pricingPlans.length; g++) {
+                    if (mainDirection.pricingPlans[g].paymentPoints) {
+                      const { paymentPoints } = mainDirection.pricingPlans[g];
+                      let startPoint = null;
+                      //przed pierwszym punktem poboru opłat
+                      if (
+                        paymentPoints[0].location.lat > start_location.lat &&
+                        tollRoad.route[m].mainDirection === "NORTH" &&
+                        end_location.lat > paymentPoints[0].location.lat
+                      ) {
+                        startPoint = paymentPoints[0];
+                      } else if (
+                        paymentPoints[paymentPoints.length - 1].location.lat <
+                          start_location.lat &&
+                        tollRoad.route[m].mainDirection === "NORTH"
+                      ) {
+                        //za ostatnim punktem poboru opłat
+                        startPoint = null;
+                      } else if (tollRoad.route[m].mainDirection === "NORTH") {
+                        //pomiędzy jakimiś punktami
+                        for (let mk = 0; mk < paymentPoints.length; mk++) {
+                          if (
+                            paymentPoints[mk].location.lat >
+                              start_location.lat &&
+                            paymentPoints[mk + 1] &&
+                            paymentPoints[mk + 1].location.lat <
+                              start_location.lat
+                          ) {
+                            startPoint = paymentPoints[mk];
+                          }
+                        }
+                      } else if (
+                        paymentPoints[0].location.lat < start_location.lat &&
+                        tollRoad.route[m].mainDirection === "SOUTH" &&
+                        end_location.lat < paymentPoints[0].location.lat
+                      ) {
+                        startPoint = paymentPoints[0];
+                      } else if (
+                        paymentPoints[paymentPoints.length - 1].location.lat <
+                          start_location.lat &&
+                        tollRoad.route[m].mainDirection === "SOUTH"
+                      ) {
+                        startPoint = null;
+                      } else if (tollRoad.route[m].mainDirection === "SOUTH") {
+                        for (let mk = 0; mk < paymentPoints.length; mk++) {
+                          if (
+                            paymentPoints[mk].location.lat <
+                              start_location.lat &&
+                            paymentPoints[mk + 1] &&
+                            paymentPoints[mk + 1].location.lat >
+                              start_location.lat
+                          ) {
+                            startPoint = paymentPoints[mk];
+                          }
+                        }
+                      }
+                    } else {
+                      //policz kilometrowo cenę
+                    }
+                  }
                 } //check if we are moving on west or east
                 else if (
                   mainDirections.longitudeDirection ===
                   tollRoad.route[m].mainDirection
                 ) {
-                  //console.log(`We are moving mainly in ${tollRoad.route[m].mainDirection}`)
-                  mainDirection = tollRoad.route[m]
+                  //get info about direction
+                  mainDirection = tollRoad.route[m];
+
+                  //get information about start
+                  for (let g = 0; g < mainDirection.pricingPlans.length; g++) {
+                    if (mainDirection.pricingPlans[g].paymentPoints) {
+                      const { paymentPoints } = mainDirection.pricingPlans[g];
+                      let startPoint = null;
+                      let endPoint = null;
+                      //przed pierwszym punktem poboru opłat
+                      if (
+                        paymentPoints[0].location.lng > start_location.lng &&
+                        tollRoad.route[m].mainDirection === "EAST" &&
+                        end_location.lng > paymentPoints[0].location.lng
+                      ) {
+                        startPoint = 0;
+                        for (let ko = 0; ko < paymentPoints.length; ko++) {
+                          if (
+                            (paymentPoints[mk].location.lng >
+                              end_location.lng &&
+                              paymentPoints[mk + 1] &&
+                              paymentPoints[mk + 1].location.lng <
+                                end_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: end_location.lat,
+                                lng: end_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            endPoint = mk;
+                          }
+                        }
+                      } else if (
+                        paymentPoints[paymentPoints.length - 1].location.lng <
+                          start_location.lng &&
+                        tollRoad.route[m].mainDirection === "EAST"
+                      ) {
+                        //za ostatnim punktem poboru opłat
+                        startPoint = null;
+                        endPoint = null;
+                      } else if (tollRoad.route[m].mainDirection === "EAST") {
+                        //pomiędzy jakimiś punktami
+                        for (let mk = 0; mk < paymentPoints.length; mk++) {
+                          if (
+                            (paymentPoints[mk].location.lng <
+                              start_location.lng &&
+                              paymentPoints[mk + 1] != undefined &&
+                              paymentPoints[mk + 1].location.lng >
+                                start_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: start_location.lat,
+                                lng: start_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            startPoint = mk;
+                          }
+                          if (
+                            (paymentPoints[mk].location.lng >
+                              end_location.lng &&
+                              paymentPoints[mk + 1] &&
+                              paymentPoints[mk + 1].location.lng <
+                                end_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: end_location.lat,
+                                lng: end_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            endPoint = mk;
+                          }
+                        }
+                      } else if (
+                        paymentPoints[0].location.lng < start_location.lng &&
+                        tollRoad.route[m].mainDirection === "WEST" &&
+                        end_location.lng < paymentPoints[0].location.lng
+                      ) {
+                        startPoint = 0;
+                        for (let ko = 0; ko < paymentPoints.length; ko++) {
+                          if (
+                            (paymentPoints[mk].location.lng >
+                              end_location.lng &&
+                              paymentPoints[mk + 1] &&
+                              paymentPoints[mk + 1].location.lng <
+                                end_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: end_location.lat,
+                                lng: end_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            endPoint = mk;
+                          }
+                        }
+                      } else if (
+                        paymentPoints[paymentPoints.length - 1].location.lng <
+                          start_location.lng &&
+                        tollRoad.route[m].mainDirection === "WEST"
+                      ) {
+                        startPoint = null;
+                      } else if (tollRoad.route[m].mainDirection === "WEST") {
+                        for (let mk = 0; mk < paymentPoints.length; mk++) {
+                          if (
+                            (paymentPoints[mk].location.lng >
+                              start_location.lng &&
+                              paymentPoints[mk + 1] &&
+                              paymentPoints[mk + 1].location.lng <
+                                start_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: start_location.lat,
+                                lng: start_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            startPoint = mk;
+                          }
+                          if (
+                            (paymentPoints[mk].location.lng <
+                              end_location.lng &&
+                              paymentPoints[mk + 1] &&
+                              paymentPoints[mk + 1].location.lng >
+                                end_location.lng) ||
+                            getDistanceFromLatLonInKm(
+                              {
+                                lat: paymentPoints[mk].location.lat,
+                                lng: paymentPoints[mk].location.lng
+                              },
+                              {
+                                lat: end_location.lat,
+                                lng: end_location.lng
+                              }
+                            ) < 0.7
+                          ) {
+                            endPoint = mk;
+                          }
+                        }
+                      }
+                      console.log("Punkt początkowy trasy: ", paymentPoints[startPoint]);
+                      console.log("Punkt końcowy trasy: ", paymentPoints[endPoint]);
+                      console.log(
+                        mainDirection.start +
+                          "-" +
+                          mainDirection.end +
+                          "-" +
+                          mainDirection.mainDirection
+                      );
+                    } else {
+                      //policz kilometrowo cenę
+                    }
+                  }
                 }
               }
-              console.log(mainDirection)
             }
           }
         }
