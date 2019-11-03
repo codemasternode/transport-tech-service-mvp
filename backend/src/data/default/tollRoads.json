@@ -123,7 +123,7 @@
                         "basedOnProperty": [
                             "numberOfAxles"
                         ],
-                        "paymentPoints": [
+                        "paymentPoints": 
                             [
                                 {
                                     "location": {
@@ -222,7 +222,7 @@
                                     "cost": 8.3
                                 }
                             ]
-                        ]
+                        
                     },
                     {
                         "name": "Kategoria 4",

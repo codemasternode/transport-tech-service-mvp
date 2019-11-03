@@ -244,19 +244,11 @@ export async function getRoadOffers(req, res) {
                         let startPoint = null;
                         let endPoint = null;
                         //przed pierwszym punktem poboru opłat
-                        console.log(paymentPoints[0].location.lat > start_location.lat &&
-                          tollRoad.route[m].mainDirection === "NORTH" &&
-                          end_location.lat > paymentPoints[0].location.lat,
-                          paymentPoints[paymentPoints.length - 1].location.lat <
-                            start_location.lat &&
-                          tollRoad.route[m].mainDirection === "NORTH")
                         if (
                           paymentPoints[0].location.lat > start_location.lat &&
                           tollRoad.route[m].mainDirection === "NORTH" &&
                           end_location.lat > paymentPoints[0].location.lat
                         ) {
-                          console.log(mainDirection.pricingPlans[0])
-                          console.log("tu")
                           startPoint = 0;
                           let nearestDistance = {
                             number: 0,
@@ -288,7 +280,6 @@ export async function getRoadOffers(req, res) {
                           tollRoad.route[m].mainDirection === "NORTH"
                         ) {
                           //za ostatnim punktem poboru opłat
-                          console.log("tutajasd")
                           startPoint = null;
                           endPoint = null;
                         } else if (
@@ -329,7 +320,6 @@ export async function getRoadOffers(req, res) {
                           startPoint = null;
                           endPoint = null;
                         } else {
-                          console.log("tutaj")
                           let nearestDistance = {
                             number: 0,
                             value: getDistanceFromLatLonInKm(
