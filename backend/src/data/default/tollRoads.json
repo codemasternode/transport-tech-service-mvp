@@ -19,6 +19,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 53.009721,
                                     "lng": 18.734373
                                 },
@@ -112,6 +120,14 @@
                                 },
                                 "name": "PPO Rusocin",
                                 "cost": 8.3
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
                             }
                         ]
                     },
@@ -126,6 +142,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 53.009721,
                                     "lng": 18.734373
                                 },
@@ -219,6 +243,14 @@
                                 },
                                 "name": "PPO Rusocin",
                                 "cost": 8.3
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
                             }
                         ]
                     },
@@ -233,6 +265,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 53.009721,
                                     "lng": 18.734373
                                 },
@@ -326,6 +366,14 @@
                                 },
                                 "name": "PPO Rusocin",
                                 "cost": 8.3
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
                             }
                         ]
                     }
@@ -347,6 +395,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 54.226818,
                                     "lng": 18.612412
                                 },
@@ -440,6 +496,14 @@
                                 },
                                 "name": "PPO Nowa Wieś",
                                 "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
                             }
                         ]
                     },
@@ -454,6 +518,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 54.226818,
                                     "lng": 18.612412
                                 },
@@ -547,6 +619,14 @@
                                 },
                                 "name": "PPO Nowa Wieś",
                                 "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
                             }
                         ]
                     },
@@ -561,6 +641,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 54.232325,
+                                    "lng": 18.609826
+                                },
+                                "name": "Węzeł Rusocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 54.226818,
                                     "lng": 18.612412
                                 },
@@ -654,6 +742,14 @@
                                 },
                                 "name": "PPO Nowa Wieś",
                                 "cost": 4.70
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.963313,
+                                    "lng": 18.677404
+                                },
+                                "name": "Węzeł Brzoza",
+                                "cost": 0
                             }
                         ]
                     }
@@ -2175,8 +2271,8 @@
                             },
                             {
                                 "location": {
-                                    "lat": 50.260759,
-                                    "lng": 18.719687
+                                    "lat":50.260004,
+                                    "lng": 18.714932
                                 },
                                 "name": "Węzeł Gliwice Sośnica",
                                 "cost": 0
@@ -2545,8 +2641,8 @@
                             },
                             {
                                 "location": {
-                                    "lat": 50.260759,
-                                    "lng": 18.719687
+                                    "lat": 50.260004,
+                                    "lng": 18.714932
                                 },
                                 "name": "Węzeł Gliwice Sośnica",
                                 "cost": 0
