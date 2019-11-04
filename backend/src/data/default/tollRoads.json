@@ -123,106 +123,104 @@
                         "basedOnProperty": [
                             "numberOfAxles"
                         ],
-                        "paymentPoints": 
-                            [
-                                {
-                                    "location": {
-                                        "lat": 53.009721,
-                                        "lng": 18.734373
-                                    },
-                                    "name": "PPO Nowa Wieś",
-                                    "cost": 4.7
+                        "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 53.009721,
+                                    "lng": 18.734373
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.035634,
-                                        "lng": 18.737348
-                                    },
-                                    "name": "PPO Lubicz Dolny",
-                                    "cost": 2.9
+                                "name": "PPO Nowa Wieś",
+                                "cost": 4.7
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.035634,
+                                    "lng": 18.737348
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.092798,
-                                        "lng": 18.755429
-                                    },
-                                    "name": "SPO Turzno",
-                                    "cost": 10.5
+                                "name": "PPO Lubicz Dolny",
+                                "cost": 2.9
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.092798,
+                                    "lng": 18.755429
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.290685,
-                                        "lng": 18.704816
-                                    },
-                                    "name": "PPO Lisewo",
-                                    "cost": 7.4
+                                "name": "SPO Turzno",
+                                "cost": 10.5
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.290685,
+                                    "lng": 18.704816
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.428381,
-                                        "lng": 18.698434
-                                    },
-                                    "name": "SPO Grudziądz",
-                                    "cost": 3.7
+                                "name": "PPO Lisewo",
+                                "cost": 7.4
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.428381,
+                                    "lng": 18.698434
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.468146,
-                                        "lng": 18.614549
-                                    },
-                                    "name": "SPO Nowe Marzy",
-                                    "cost": 6.8
+                                "name": "SPO Grudziądz",
+                                "cost": 3.7
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.468146,
+                                    "lng": 18.614549
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.60344,
-                                        "lng": 18.617487
-                                    },
-                                    "name": "SPO Warlubie",
-                                    "cost": 8.1
+                                "name": "SPO Nowe Marzy",
+                                "cost": 6.8
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.60344,
+                                    "lng": 18.617487
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.738745,
-                                        "lng": 18.633271
-                                    },
-                                    "name": "SPO Kopytkowo",
-                                    "cost": 9.4
+                                "name": "SPO Warlubie",
+                                "cost": 8.1
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.738745,
+                                    "lng": 18.633271
                                 },
-                                {
-                                    "location": {
-                                        "lat": 53.930101,
-                                        "lng": 18.642958
-                                    },
-                                    "name": "SPO Pelplin",
-                                    "cost": 5.9
+                                "name": "SPO Kopytkowo",
+                                "cost": 9.4
+                            },
+                            {
+                                "location": {
+                                    "lat": 53.930101,
+                                    "lng": 18.642958
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.034905,
-                                        "lng": 18.674423
-                                    },
-                                    "name": "SPO Swarożyń",
-                                    "cost": 3.3
+                                "name": "SPO Pelplin",
+                                "cost": 5.9
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.034905,
+                                    "lng": 18.674423
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.099693,
-                                        "lng": 18.695028
-                                    },
-                                    "name": "SPO Stanisławie",
-                                    "cost": 8.3
+                                "name": "SPO Swarożyń",
+                                "cost": 3.3
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.099693,
+                                    "lng": 18.695028
                                 },
-                                {
-                                    "location": {
-                                        "lat": 54.226818,
-                                        "lng": 18.612412
-                                    },
-                                    "name": "PPO Rusocin",
-                                    "cost": 8.3
-                                }
-                            ]
-                        
+                                "name": "SPO Stanisławie",
+                                "cost": 8.3
+                            },
+                            {
+                                "location": {
+                                    "lat": 54.226818,
+                                    "lng": 18.612412
+                                },
+                                "name": "PPO Rusocin",
+                                "cost": 8.3
+                            }
+                        ]
                     },
                     {
                         "name": "Kategoria 4",
@@ -683,6 +681,86 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205164,
+                                    "lng": 18.020949
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.2217561,
                                     "lng": 17.9514279
                                 },
@@ -699,11 +777,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
+                                },
+                                "name": "Węzeł Września",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
                                 "name": "PPO Nagradowice",
                                 "cost": 31
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -760,6 +886,14 @@
                                 },
                                 "name": "Punkt poboru opłat Tarnawa",
                                 "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
                             }
                         ]
                     },
@@ -772,6 +906,86 @@
                             "numberOfAxles"
                         ],
                         "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205164,
+                                    "lng": 18.020949
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
                             {
                                 "location": {
                                     "lat": 52.2217561,
@@ -790,11 +1004,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
+                                },
+                                "name": "Węzeł Września",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
                                 "name": "PPO Nagradowice",
                                 "cost": 47
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -851,6 +1113,14 @@
                                 },
                                 "name": "Punkt poboru opłat Tarnawa",
                                 "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
                             }
                         ]
                     },
@@ -863,6 +1133,86 @@
                             "numberOfAxles"
                         ],
                         "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205164,
+                                    "lng": 18.020949
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
                             {
                                 "location": {
                                     "lat": 52.2217561,
@@ -881,11 +1231,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
+                                },
+                                "name": "Węzeł Września",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
                                 "name": "PPO Nagradowice",
                                 "cost": 73
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -942,6 +1340,14 @@
                                 },
                                 "name": "Punkt poboru opłat Tarnawa",
                                 "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
                             }
                         ]
                     }
@@ -961,6 +1367,14 @@
                             "numberOfAxles"
                         ],
                         "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
+                            },
                             {
                                 "location": {
                                     "lat": 52.3349297,
@@ -1019,6 +1433,46 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
@@ -1027,11 +1481,11 @@
                             },
                             {
                                 "location": {
-                                    "lat": 52.25552709999999,
-                                    "lng": 17.8231567
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
                                 },
-                                "name": "SPO Słupca",
-                                "cost": 13
+                                "name": "Węzeł Września",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -1048,6 +1502,86 @@
                                 },
                                 "name": "Plac Poboru Opłat w Lądku",
                                 "cost": 5
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
                             }
                         ]
                     },
@@ -1060,6 +1594,14 @@
                             "numberOfAxles"
                         ],
                         "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
+                            },
                             {
                                 "location": {
                                     "lat": 52.3349297,
@@ -1118,11 +1660,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
                                 "name": "PPO Nagradowice",
                                 "cost": 47
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
+                                },
+                                "name": "Węzeł Września",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -1139,6 +1729,86 @@
                                 },
                                 "name": "Plac Poboru Opłat w Lądku",
                                 "cost": 47
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
                             }
                         ]
                     },
@@ -1151,6 +1821,14 @@
                             "numberOfAxles"
                         ],
                         "paymentPoints": [
+                            {
+                                "location": {
+                                    "lat": 52.333946,
+                                    "lng": 14.880518
+                                },
+                                "name": "Węzeł Rzepin",
+                                "cost": 0
+                            },
                             {
                                 "location": {
                                     "lat": 52.3349297,
@@ -1209,11 +1887,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 52.350453,
+                                    "lng": 16.766587
+                                },
+                                "name": "Węzeł Poznań Zachód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.353649,
+                                    "lng": 16.905014
+                                },
+                                "name": "Węzeł Poznań Komorniki",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.350327,
+                                    "lng": 16.837009
+                                },
+                                "name": "Węzeł Poznań Luboń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.346063,
+                                    "lng": 16.999176
+                                },
+                                "name": "Węzeł Krzesiny",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.317446,
+                                    "lng": 17.129225
+                                },
+                                "name": "Węzeł Poznań Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 52.3106635,
                                     "lng": 17.1512699
                                 },
                                 "name": "PPO Nagradowice",
                                 "cost": 73
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.315122,
+                                    "lng": 17.534463
+                                },
+                                "name": "Węzeł Września",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -1230,6 +1956,86 @@
                                 },
                                 "name": "Plac Poboru Opłat w Lądku",
                                 "cost": 73
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Sługocin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Węzeł Modła",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.155762,
+                                    "lng": 18.267295
+                                },
+                                "name": "Węzeł Konin Wschód",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "PPO Żdżary",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.140651,
+                                    "lng": 18.607279
+                                },
+                                "name": "Węzeł Koło",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 52.205031,
+                                    "lng": 18.021519
+                                },
+                                "name": "Stacja Poboru Opłat Dąbie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.994686,
+                                    "lng": 19.039686
+                                },
+                                "name": "SPO Wartkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.922009,
+                                    "lng": 19.353404
+                                },
+                                "name": "SPO Emilia",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.909924,
+                                    "lng": 19.439039
+                                },
+                                "name": "SPO Zgierz",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 51.888718,
+                                    "lng": 19.586704
+                                },
+                                "name": "Węzeł Stryków",
+                                "cost": 0
                             }
                         ]
                     }
@@ -1257,6 +2063,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 50.085074,
+                                    "lng": 19.799925
+                                },
+                                "name": "Węzeł Balice I",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 50.0831502,
                                     "lng": 19.7913439
                                 },
@@ -1265,11 +2079,107 @@
                             },
                             {
                                 "location": {
+                                    "lat": 50.100431,
+                                    "lng": 19.549191
+                                },
+                                "name": "Węzeł Rudno",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.147786,
+                                    "lng": 19.428785
+                                },
+                                "name": "Węzeł Chrzanów",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.151822,
+                                    "lng": 19.397907
+                                },
+                                "name": "Węzeł Balin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.151856,
+                                    "lng": 19.347047
+                                },
+                                "name": "Węzeł Byczyna",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.150056,
+                                    "lng": 19.263785
+                                },
+                                "name": "Węzeł Jeleń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 50.1967098,
                                     "lng": 19.185937
                                 },
                                 "name": "Punkt Poboru Opłat Mysłowice",
                                 "cost": 35
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.207856,
+                                    "lng": 19.166326
+                                },
+                                "name": "Węzeł Brzęczkowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.216354,
+                                    "lng": 19.128396
+                                },
+                                "name": "Węzeł Mysłowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.241664,
+                                    "lng": 19.052096
+                                },
+                                "name": "Węzeł Murckowska",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.247671,
+                                    "lng": 19.004598
+                                },
+                                "name": "Mikołowska",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.255777,
+                                    "lng": 18.855566
+                                },
+                                "name": "Węzeł Chorzów Batory",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.255777,
+                                    "lng": 18.855566
+                                },
+                                "name": "Węzeł Wirek",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.260759,
+                                    "lng": 18.719687
+                                },
+                                "name": "Węzeł Gliwice Sośnica",
+                                "cost": 0
                             },
                             {
                                 "location": {
@@ -1377,19 +2287,19 @@
                             },
                             {
                                 "location": {
-                                    "lat": 50.1967098,
-                                    "lng": 19.185937
+                                    "lat": 51.0314714,
+                                    "lng": 17.0033357
                                 },
-                                "name": "Punkt Poboru Opłat Mysłowice",
-                                "cost": 35
+                                "name": "Punkt Poboru Opłat Karwiany",
+                                "cost": 1.1
                             },
                             {
                                 "location": {
-                                    "lat": 50.0831502,
-                                    "lng": 19.7913439
+                                    "lat": 51.048959,
+                                    "lng": 16.974558
                                 },
-                                "name": "Plac Poboru Opłat w Balicach Autostrada A4",
-                                "cost": 35
+                                "name": "Węzeł Bielany Wrocławskie",
+                                "cost": 0
                             }
                         ]
                     },
@@ -1515,6 +2425,14 @@
                         "paymentPoints": [
                             {
                                 "location": {
+                                    "lat": 51.048959,
+                                    "lng": 16.974558
+                                },
+                                "name": "Węzeł Bielany Wrocławskie",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 51.0314714,
                                     "lng": 17.0033357
                                 },
@@ -1619,10 +2537,67 @@
                             },
                             {
                                 "location": {
-                                    "lat": 54.226803,
-                                    "lng": 18.612444
+                                    "lat": 50.2588806,
+                                    "lng": 18.6739147
                                 },
-                                "name": "Żernica Gliwice",
+                                "name": "Punkt Poboru Opłat Żernica",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.260759,
+                                    "lng": 18.719687
+                                },
+                                "name": "Węzeł Gliwice Sośnica",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.255777,
+                                    "lng": 18.855566
+                                },
+                                "name": "Węzeł Wirek",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.255777,
+                                    "lng": 18.855566
+                                },
+                                "name": "Węzeł Chorzów Batory",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.247671,
+                                    "lng": 19.004598
+                                },
+                                "name": "Mikołowska",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.241664,
+                                    "lng": 19.052096
+                                },
+                                "name": "Węzeł Murckowska",
+                                "cost": 0
+                            },
+                            
+                            {
+                                "location": {
+                                    "lat": 50.216354,
+                                    "lng": 19.128396
+                                },
+                                "name": "Węzeł Mysłowice",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.207856,
+                                    "lng": 19.166326
+                                },
+                                "name": "Węzeł Brzęczkowice",
                                 "cost": 0
                             },
                             {
@@ -1635,11 +2610,59 @@
                             },
                             {
                                 "location": {
+                                    "lat": 50.150056,
+                                    "lng": 19.263785
+                                },
+                                "name": "Węzeł Jeleń",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.151856,
+                                    "lng": 19.347047
+                                },
+                                "name": "Węzeł Byczyna",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.151822,
+                                    "lng": 19.397907
+                                },
+                                "name": "Węzeł Balin",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.147786,
+                                    "lng": 19.428785
+                                },
+                                "name": "Węzeł Chrzanów",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.100431,
+                                    "lng": 19.549191
+                                },
+                                "name": "Węzeł Rudno",
+                                "cost": 0
+                            },
+                            {
+                                "location": {
                                     "lat": 50.0831502,
                                     "lng": 19.7913439
                                 },
                                 "name": "Plac Poboru Opłat w Balicach Autostrada A4",
                                 "cost": 35
+                            },
+                            {
+                                "location": {
+                                    "lat": 50.085074,
+                                    "lng": 19.799925
+                                },
+                                "name": "Węzeł Balice I",
+                                "cost": 0
                             }
                         ]
                     },
