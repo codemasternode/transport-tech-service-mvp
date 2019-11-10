@@ -431,6 +431,7 @@ export async function getRoadOffers(req, res) {
               counter += dietsAbove24Hours[dietsAbove24Hours.length - 1].to;
             }
           }
+          sumDiets += Math.floor(numberOfDays) * country.nightLimitValueInPLN
         }
         console.log(sumDiets, "Suma diet");
       }
