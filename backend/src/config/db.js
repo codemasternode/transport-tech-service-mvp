@@ -10,7 +10,7 @@ import Vehicle from "../models/vehicle";
 import User from "../models/user";
 import Palette from "../models/palletes";
 import TollRoad from "../models/tollRoads";
-import Diets from '../models/diets'
+import Diets from "../models/diets";
 import Axios from "axios";
 
 export default async URI => {
@@ -63,20 +63,27 @@ export default async URI => {
   //     ratesCallback.map(call => call.catch(e => e))
   //   );
   //   for (let g = 0; g < diets.length; g++) {
-  //     let isIniside = false
+  //     let isIniside = false;
   //     for (let i = 0; i < rates.length; i++) {
-  //       if (rates[i].status === 200 && rates[i].data.base === diets[g].currency) {
-  //         diets[g].dietValueInPLN = Math.ceil(rates[i].data.rates.PLN * diets[g].dietValue)
-  //         diets[g].nightLimitValueInPLN = Math.ceil(rates[i].data.rates.PLN * diets[g].nightLimitValue)
-  //         isIniside = true
+  //       if (
+  //         rates[i].status === 200 &&
+  //         rates[i].data.base === diets[g].currency
+  //       ) {
+  //         diets[g].dietValueInPLN = Math.ceil(
+  //           rates[i].data.rates.PLN * diets[g].dietValue
+  //         );
+  //         diets[g].nightLimitValueInPLN = Math.ceil(
+  //           rates[i].data.rates.PLN * diets[g].nightLimitValue
+  //         );
+  //         isIniside = true;
   //       }
   //     }
-  //     if(!isIniside) {
-  //       diets[g].dietValueInPLN = 0
-  //       diets[g].nightLimitValueInPLN = 0
+  //     if (!isIniside) {
+  //       diets[g].dietValueInPLN = 0;
+  //       diets[g].nightLimitValueInPLN = 0;
   //     }
   //   }
-  //   Diets.create(diets)
+  //   Diets.create(diets);
   // } catch (err) {
   //   console.log(err);
   // }
@@ -100,8 +107,11 @@ export default async URI => {
   //     nearestCountrySaved.push(savedCountries[h].countryCode);
   //   }
   // }
+  // const emissionsLevel = ["EURO 2", "EURO 3", "EURO 4", "EURO 5"];
   // const vehiclesTypes = [
   //   () => {
+  //     const grossWeightRange = [15, 18, 22, 24];
+  //     const numberOfAxles = [5,6,7]
   //     return {
   //       type: "Mega",
   //       combustion: Math.floor(Math.random() * 6 + 30),
@@ -116,16 +126,22 @@ export default async URI => {
   //       valueOfTruck: Math.floor(Math.random() * 150000 + 100000),
   //       range: {
   //         maxRange: Math.floor(Math.random() * 1000 + 2400),
-  //         minRange: Math.floor(Math.random() * 25)
+  //         minRange: Math.floor(Math.random() * 25),
+  //         operationRange: Math.floor(Math.random() * 300 + 400)
   //       },
   //       margin: Math.floor(Math.random() * 20 + 10),
   //       averageDistancePerMonth: Math.floor(Math.random() * 2500 + 9000),
   //       monthCosts: 15000,
   //       salary: Math.floor(Math.random() * 2000 + 5000),
-  //       countries: nearestCountry
+  //       countries: nearestCountry,
+  //       permissibleGrossWeight: grossWeightRange[Math.floor(Math.random() * 4)],
+  //       emissionLevel: emissionsLevel[Math.floor(Math.random() * 4)],
+  //       numberOfAxles: numberOfAxles[Math.floor(Math.random() * 3)]
   //     };
   //   },
   //   () => {
+  //     const grossWeightRange = [2, 3.5, 8, 12];
+  //     const numberOfAxles = [2, 3, 4];
   //     return {
   //       type: "Plandeka",
   //       countries: nearestCountry,
@@ -141,15 +157,21 @@ export default async URI => {
   //       valueOfTruck: Math.floor(Math.random() * 80000 + 30000),
   //       range: {
   //         maxRange: Math.floor(Math.random() * 1000 + 2400),
-  //         minRange: Math.floor(Math.random() * 10)
+  //         minRange: Math.floor(Math.random() * 10),
+  //         operationRange: Math.floor(Math.random() * 200 + 300)
   //       },
   //       margin: Math.floor(Math.random() * 25 + 10),
   //       averageDistancePerMonth: Math.floor(Math.random() * 2000 + 6000),
   //       monthCosts: 8000,
-  //       salary: Math.floor(Math.random() * 1000 + 3500)
+  //       salary: Math.floor(Math.random() * 1000 + 3500),
+  //       permissibleGrossWeight: grossWeightRange[Math.floor(Math.random() * 4)],
+  //       emissionLevel: emissionsLevel[Math.floor(Math.random() * 4)],
+  //       numberOfAxles: numberOfAxles[Math.floor(Math.random() * 3)]
   //     };
   //   },
   //   () => {
+  //     const grossWeightRange = [15, 18, 22, 24];
+  //     const numberOfAxles = [5,6,7]
   //     return {
   //       type: "Coilmulde",
   //       countries: nearestCountry,
@@ -165,12 +187,16 @@ export default async URI => {
   //       valueOfTruck: Math.floor(Math.random() * 150000 + 100000),
   //       range: {
   //         maxRange: Math.floor(Math.random() * 1000 + 2400),
-  //         minRange: Math.floor(Math.random() * 25)
+  //         minRange: Math.floor(Math.random() * 25),
+  //         operationRange: Math.floor(Math.random() * 300 + 400)
   //       },
   //       margin: Math.floor(Math.random() * 20 + 10),
   //       averageDistancePerMonth: Math.floor(Math.random() * 2500 + 9000),
   //       monthCosts: 17000,
-  //       salary: Math.floor(Math.random() * 2000 + 5500)
+  //       salary: Math.floor(Math.random() * 2000 + 5500),
+  //       permissibleGrossWeight: grossWeightRange[Math.floor(Math.random() * 4)],
+  //       emissionLevel: emissionsLevel[Math.floor(Math.random() * 4)],
+  //       numberOfAxles: numberOfAxles[Math.floor(Math.random() * 3)]
   //     };
   //   }
   // ];

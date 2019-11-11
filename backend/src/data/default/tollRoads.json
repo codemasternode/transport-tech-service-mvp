@@ -11,10 +11,10 @@
                     {
                         "name": "Kategoria 2",
                         "requirePropertyValue": [
-                            2
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "value": 2,
+                                "name": "numberOfAxles"
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -134,10 +134,10 @@
                     {
                         "name": "Kategoria 3",
                         "requirePropertyValue": [
-                            3
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "value": 3,
+                                "name": "numberOfAxles"
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -257,10 +257,11 @@
                     {
                         "name": "Kategoria 4",
                         "requirePropertyValue": [
-                            3
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "from": 4,
+                                "to": 20,
+                                "name": "numberOfAxles"
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -387,10 +388,10 @@
                     {
                         "name": "Kategoria 2",
                         "requirePropertyValue": [
-                            2
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "value": 2
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -510,10 +511,10 @@
                     {
                         "name": "Kategoria 3",
                         "requirePropertyValue": [
-                            3
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                               "value": 3
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -633,10 +634,11 @@
                     {
                         "name": "Kategoria 4",
                         "requirePropertyValue": [
-                            4
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "from": 4,
+                                "to": 20
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -769,10 +771,10 @@
                     {
                         "name": "Kategoria 2",
                         "requirePropertyValue": [
-                            2
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "value": 2
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -1004,10 +1006,10 @@
                     {
                         "name": "Kategoria 3",
                         "requirePropertyValue": [
-                            3
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "value": 3
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -1239,10 +1241,11 @@
                     {
                         "name": "Kategoria 4",
                         "requirePropertyValue": [
-                            4
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "from": 4,
+                                "to": 20
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -1481,10 +1484,10 @@
                     {
                         "name": "Kategoria 2",
                         "requirePropertyValue": [
-                            2
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "value": 2,
+                                "name": "numberOfAxles"
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -1716,10 +1719,10 @@
                     {
                         "name": "Kategoria 3",
                         "requirePropertyValue": [
-                            3
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "value": 3
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -1951,10 +1954,11 @@
                     {
                         "name": "Kategoria 4",
                         "requirePropertyValue": [
-                            "higher than 4"
-                        ],
-                        "basedOnProperty": [
-                            "numberOfAxles"
+                            {
+                                "name": "numberOfAxles",
+                                "from": 4,
+                                "to": 20
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -2198,11 +2202,12 @@
                 "pricingPlans": [
                     {
                         "name": "Kategoria 2",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight"
-                        ],
                         "requirePropertyValue": [
-                            "lower than 3.5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 0,
+                                "to": 3.5
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -2319,7 +2324,7 @@
                             },
                             {
                                 "location": {
-                                    "lat":50.260004,
+                                    "lat": 50.260004,
                                     "lng": 18.714932
                                 },
                                 "name": "Węzeł Gliwice Sośnica",
@@ -2449,104 +2454,128 @@
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 2"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 2"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.40
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 2"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 2"
+                            }                            
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.53
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 3"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 3"
+                            } 
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.35
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 3"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 3"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.46
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 4"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 4"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.28
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 4"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 4"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.37
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 5"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.20
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 5"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.27
@@ -2560,11 +2589,12 @@
                 "pricingPlans": [
                     {
                         "name": "Kategoria 2",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight"
-                        ],
                         "requirePropertyValue": [
-                            "lower than 3.5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 0,
+                                "to": 3.5
+                            }
                         ],
                         "paymentPoints": [
                             {
@@ -2727,7 +2757,6 @@
                                 "name": "Węzeł Murckowska",
                                 "cost": 0
                             },
-                            
                             {
                                 "location": {
                                     "lat": 50.216354,
@@ -2812,104 +2841,128 @@
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 2"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 2"
+                            }                            
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.40
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 2"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 2"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.53
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 3"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 3"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.35
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 3"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 3"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.46
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 4"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 4"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.28
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 4"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 4"
+                            } 
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.37
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 3.5, lower than 12",
-                            "EURO 5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 3.5,
+                                "to": 12
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 5"
+                            }
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.20
                     },
                     {
                         "name": "Kategoria 3",
-                        "basedOnProperty": [
-                            "permissibleGrossWeight",
-                            "emissionLevel"
-                        ],
                         "requirePropertyValue": [
-                            "higher than 12",
-                            "EURO 5"
+                            {
+                                "name": "permissibleGrossWeight",
+                                "from": 12,
+                                "to": 100
+                            },
+                            {
+                                "name": "emissionLevel",
+                                "value": "EURO 5"
+                            }                            
                         ],
                         "paymentPoints": null,
                         "costPerKm": 0.27
