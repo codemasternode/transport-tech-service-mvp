@@ -79,6 +79,7 @@ export async function getRoadOffers(req, res) {
     for (let i = 0; i < companies.length; i++) {
       for (let k = 0; k < companies[i].vehicles.length; k++) {
         for (let m = 0; m < tollPayment.length; m++) {
+          
           for (let l = 0; l < tollPayment[m].pricingPlans.length; l++) {
             const isIt = [];
             for (
@@ -113,8 +114,13 @@ export async function getRoadOffers(req, res) {
             ) {
               companies[i].vehicles[k].fullCost +=
                 tollPayment[m].pricingPlans[l].costsForWholeDistance;
-              companies[i].vehicles[k].toll =
-                tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              if (companies[i].vehicles[k].toll === undefined) {
+                companies[i].vehicles[k].toll =
+                  tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              } else {
+                companies[i].vehicles[k].toll +=
+                  tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              }
             }
           }
         }
@@ -126,7 +132,14 @@ export async function getRoadOffers(req, res) {
           (diets.fullNumberOfDays - Math.floor(diets.fullNumberOfDays) > 0.5
             ? companies[i].vehicles[k].salary / 30
             : companies[i].vehicles[k].salary / 60);
-        //companies[i].vehicles[k].fullCost = companies[i].vehicles[k].fullCost * companies[i].vehicles[k].margin / 100
+        companies[i].vehicles[k] = {
+          _id: companies[i].vehicles[k]._id,
+          name: companies[i].vehicles[k].name,
+          fullCost:
+            (companies[i].vehicles[k].fullCost *
+              (100 + companies[i].vehicles[k].margin)) /
+            100
+        };
       }
     }
     res.send({ companies });
@@ -263,7 +276,9 @@ export async function getRoadOffers(req, res) {
                   com.vehicles[g] = {
                     ...companies[i].companyBases[k].vehicles[m],
                     diffDistance,
-                    backDistance
+                    backDistance,
+                    fullCost: 0,
+                    toll: 0
                   };
                   isInside = true;
                 }
@@ -306,10 +321,10 @@ export async function getRoadOffers(req, res) {
         }
       }
       for (let i = 0; i < formattedCompanies.length; i++) {
-        for(let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-          if(formattedCompanies[i].vehicles[k].isInside === undefined) {
-            formattedCompanies[i].vehicles.splice(k, 1)
-            k--
+        for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
+          if (formattedCompanies[i].vehicles[k].isInside === undefined) {
+            formattedCompanies[i].vehicles.splice(k, 1);
+            k--;
           }
         }
         let currentPallete = 0;
@@ -383,7 +398,6 @@ export async function getRoadOffers(req, res) {
     }
 
     async function countTollPayments() {
-      const roadToSearchInDB = [];
       const tollRoads = [];
       for (let i = 0; i < waypoints.length; i++) {
         for (let k = 0; k < waypoints[i].steps.length; k++) {
@@ -391,131 +405,140 @@ export async function getRoadOffers(req, res) {
             distance: { value }
           } = waypoints[i].steps[k];
           const htmlInstruction = waypoints[i].steps[k].html_instructions;
-          if (htmlInstruction.search("Toll road") != -1 && value > 700) {
+          const extracted = extractHtmlInstruction(htmlInstruction);
+          if (
+            (htmlInstruction.search("Toll road") != -1 ||
+              extracted !== undefined) &&
+            value > 1000
+          ) {
             const extracted = extractHtmlInstruction(htmlInstruction);
-            if (extracted && !roadToSearchInDB.includes(extracted[0])) {
-              const { start_location, end_location } = waypoints[i].steps[k];
-              const mainDirections = {
-                latitudeDifference: Math.abs(
-                  end_location.lat - start_location.lat
-                ),
-                longitudeDifference: Math.abs(
-                  end_location.lng - start_location.lng
-                ),
-                latitudeDirection:
-                  start_location.lat > end_location.lat
-                    ? "SOUTH"
-                    : start_location.lat === end_location.lat
-                    ? "NONE"
-                    : "NORTH",
-                longitudeDirection:
-                  start_location.lng > end_location.lng
-                    ? "WEST"
-                    : start_location.lng === end_location.lng
-                    ? "NONE"
-                    : "EAST"
-              };
-              const tollRoad = await TollRoad.findOne({
-                nameOfRoad: extracted[0]
-              });
-              let mainDirection = null;
-              if (tollRoad) {
-                let tollRoadPrepare = {
-                  name: extracted[0],
-                  pricingPlans: []
+            if (extracted) {
+              for (let ex = 0; ex < extracted.length; ex++) {
+                const { start_location, end_location } = waypoints[i].steps[k];
+                const mainDirections = {
+                  latitudeDifference: Math.abs(
+                    end_location.lat - start_location.lat
+                  ),
+                  longitudeDifference: Math.abs(
+                    end_location.lng - start_location.lng
+                  ),
+                  latitudeDirection:
+                    start_location.lat > end_location.lat
+                      ? "SOUTH"
+                      : start_location.lat === end_location.lat
+                      ? "NONE"
+                      : "NORTH",
+                  longitudeDirection:
+                    start_location.lng > end_location.lng
+                      ? "WEST"
+                      : start_location.lng === end_location.lng
+                      ? "NONE"
+                      : "EAST"
                 };
-                for (let m = 0; m < tollRoad.route.length; m++) {
-                  if (
-                    mainDirections.latitudeDirection ===
-                      tollRoad.route[m].mainDirection ||
-                    mainDirections.longitudeDirection ===
-                      tollRoad.route[m].mainDirection
-                  ) {
-                    mainDirection = tollRoad.route[m];
-                    for (
-                      let g = 0;
-                      g < mainDirection.pricingPlans.length;
-                      g++
+                const tollRoad = await TollRoad.findOne({
+                  nameOfRoad: extracted[ex]
+                });
+                let mainDirection = null;
+                
+                if (tollRoad != null) {
+                  let tollRoadPrepare = {
+                    name: extracted[ex],
+                    pricingPlans: []
+                  };
+                  for (let m = 0; m < tollRoad.route.length; m++) {
+                    if (
+                      mainDirections.latitudeDirection ===
+                        tollRoad.route[m].mainDirection ||
+                      mainDirections.longitudeDirection ===
+                        tollRoad.route[m].mainDirection
                     ) {
-                      if (mainDirection.pricingPlans[g].paymentPoints) {
-                        const { paymentPoints } = mainDirection.pricingPlans[g];
-                        let startPoint = null;
-                        let endPoint = null;
-                        let nearestDistance = {
-                          number: 0,
-                          value: getDistanceFromLatLonInKm(
-                            paymentPoints[0].location,
-                            end_location
-                          )
-                        };
-                        for (let mg = 0; mg < paymentPoints.length; mg++) {
-                          if (
-                            getDistanceFromLatLonInKm(
-                              paymentPoints[mg].location,
-                              start_location
-                            ) < nearestDistance.value
-                          ) {
-                            nearestDistance = {
-                              number: mg,
-                              value: getDistanceFromLatLonInKm(
+                      mainDirection = tollRoad.route[m];
+                      for (
+                        let g = 0;
+                        g < mainDirection.pricingPlans.length;
+                        g++
+                      ) {
+                        if (mainDirection.pricingPlans[g].paymentPoints) {
+                          const { paymentPoints } = mainDirection.pricingPlans[
+                            g
+                          ];
+                          let startPoint = null;
+                          let endPoint = null;
+                          let nearestDistance = {
+                            number: 0,
+                            value: getDistanceFromLatLonInKm(
+                              paymentPoints[0].location,
+                              end_location
+                            )
+                          };
+                          for (let mg = 0; mg < paymentPoints.length; mg++) {
+                            if (
+                              getDistanceFromLatLonInKm(
                                 paymentPoints[mg].location,
                                 start_location
-                              )
-                            };
+                              ) < nearestDistance.value
+                            ) {
+                              nearestDistance = {
+                                number: mg,
+                                value: getDistanceFromLatLonInKm(
+                                  paymentPoints[mg].location,
+                                  start_location
+                                )
+                              };
+                            }
                           }
-                        }
-                        startPoint = nearestDistance.number;
-                        nearestDistance = {
-                          number: 0,
-                          value: getDistanceFromLatLonInKm(
-                            paymentPoints[0].location,
-                            end_location
-                          )
-                        };
-                        for (let mg = 0; mg < paymentPoints.length; mg++) {
-                          if (
-                            getDistanceFromLatLonInKm(
-                              paymentPoints[mg].location,
+                          startPoint = nearestDistance.number;
+                          nearestDistance = {
+                            number: 0,
+                            value: getDistanceFromLatLonInKm(
+                              paymentPoints[0].location,
                               end_location
-                            ) < nearestDistance.value
-                          ) {
-                            nearestDistance = {
-                              number: mg,
-                              value: getDistanceFromLatLonInKm(
+                            )
+                          };
+                          for (let mg = 0; mg < paymentPoints.length; mg++) {
+                            if (
+                              getDistanceFromLatLonInKm(
                                 paymentPoints[mg].location,
                                 end_location
-                              )
-                            };
+                              ) < nearestDistance.value
+                            ) {
+                              nearestDistance = {
+                                number: mg,
+                                value: getDistanceFromLatLonInKm(
+                                  paymentPoints[mg].location,
+                                  end_location
+                                )
+                              };
+                            }
                           }
+                          endPoint = nearestDistance.number;
+                          let costsForWholeDistance = 0;
+                          for (let kl = startPoint; kl <= endPoint; kl++) {
+                            costsForWholeDistance += paymentPoints[kl].cost;
+                          }
+                          tollRoadPrepare.pricingPlans.push({
+                            requirePropertyValue:
+                              mainDirection.pricingPlans[g]
+                                .requirePropertyValue,
+                            costsForWholeDistance
+                          });
+                        } else {
+                          //policz kilometrowo cenę
+                          tollRoadPrepare.pricingPlans.push({
+                            requirePropertyValue:
+                              mainDirection.pricingPlans[g]
+                                .requirePropertyValue,
+                            costsForWholeDistance:
+                              (value *
+                                mainDirection.pricingPlans[g].costPerKm) /
+                              1000
+                          });
                         }
-                        endPoint = nearestDistance.number;
-                        let costsForWholeDistance = 0;
-                        for (let kl = startPoint; kl <= endPoint; kl++) {
-                          costsForWholeDistance += paymentPoints[kl].cost;
-                        }
-                        tollRoadPrepare.pricingPlans.push({
-                          basedOnProperty:
-                            mainDirection.pricingPlans[g].basedOnProperty,
-                          requirePropertyValue:
-                            mainDirection.pricingPlans[g].requirePropertyValue,
-                          costsForWholeDistance
-                        });
-                      } else {
-                        //policz kilometrowo cenę
-                        tollRoadPrepare.pricingPlans.push({
-                          basedOnProperty:
-                            mainDirection.pricingPlans[g].basedOnProperty,
-                          requirePropertyValue:
-                            mainDirection.pricingPlans[g].requirePropertyValue,
-                          costsForWholeDistance:
-                            (value * mainDirection.pricingPlans[g].costPerKm) /
-                            1000
-                        });
                       }
                     }
                   }
+                  tollRoads.push(tollRoadPrepare);
                 }
-                tollRoads.push(tollRoadPrepare);
               }
             }
           }
@@ -639,12 +662,8 @@ export async function getRoadOffers(req, res) {
       }
       return { sumDiets, fullNumberOfDays };
     }
-  } else if(req.body.typeOfSearch === "Dimensions") {
-    const requireKeys = [
-      "volume",
-      "points",
-      "weight"
-    ];
+  } else if (req.body.typeOfSearch === "Dimensions") {
+    const requireKeys = ["volume", "points", "weight"];
     for (let i = 0; i < requireKeys.length; i++) {
       let isInside = false;
       for (let key in req.body) {
@@ -686,6 +705,7 @@ export async function getRoadOffers(req, res) {
       getVehicles(),
       countRoadDiets()
     ]);
+
     for (let i = 0; i < companies.length; i++) {
       for (let k = 0; k < companies[i].vehicles.length; k++) {
         for (let m = 0; m < tollPayment.length; m++) {
@@ -698,6 +718,7 @@ export async function getRoadOffers(req, res) {
             ) {
               const currentRequireProperty =
                 tollPayment[m].pricingPlans[l].requirePropertyValue[o];
+
               if (
                 currentRequireProperty.value != undefined &&
                 companies[i].vehicles[k][currentRequireProperty.name] ===
@@ -715,19 +736,26 @@ export async function getRoadOffers(req, res) {
                 isIt.push(true);
               }
             }
+
             if (
               isIt.length ===
                 tollPayment[m].pricingPlans[l].requirePropertyValue.length &&
               isIt.includes(true) &&
               !isIt.includes(false)
             ) {
-              companies[i].vehicles[k].fullCost +=
-                tollPayment[m].pricingPlans[l].costsForWholeDistance;
-              companies[i].vehicles[k].toll =
-                tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              // companies[i].vehicles[k].fullCost +=
+              //   tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              if (companies[i].vehicles[k].toll === undefined) {
+                companies[i].vehicles[k].toll =
+                  tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              } else {
+                companies[i].vehicles[k].toll +=
+                  tollPayment[m].pricingPlans[l].costsForWholeDistance;
+              }
             }
           }
         }
+
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -736,7 +764,14 @@ export async function getRoadOffers(req, res) {
           (diets.fullNumberOfDays - Math.floor(diets.fullNumberOfDays) > 0.5
             ? companies[i].vehicles[k].salary / 30
             : companies[i].vehicles[k].salary / 60);
-        //companies[i].vehicles[k].fullCost = companies[i].vehicles[k].fullCost * companies[i].vehicles[k].margin / 100
+        companies[i].vehicles[k] = {
+          _id: companies[i].vehicles[k]._id,
+          name: companies[i].vehicles[k].name,
+          fullCost:
+            (companies[i].vehicles[k].fullCost *
+              (100 + companies[i].vehicles[k].margin)) /
+            100
+        };
       }
     }
     res.send({ companies });
@@ -760,19 +795,42 @@ export async function getRoadOffers(req, res) {
                 $multiply: [
                   "$dimensions.height",
                   {
+                    $multiply: ["$dimensions.width", "$dimensions.length"]
+                  }
+                ]
+              },
+              costPerKm: {
+                $sum: [
+                  {
                     $multiply: [
-                      "$dimensions.width",
-                      "$dimensions.length"
+                      {
+                        $divide: [1, "$averageDistancePerMonth"]
+                      },
+                      "$monthCosts"
+                    ]
+                  },
+                  {
+                    $divide: [
+                      {
+                        $divide: [
+                          {
+                            $multiply: ["$valueOfTruck", "$deprecationPerYear"]
+                          },
+                          12
+                        ]
+                      },
+                      "$averageDistancePerMonth"
                     ]
                   }
                 ]
-              }
+              },
+              toll: 0
             }
           }
         ]),
         operateOnCompanies()
       ]);
-      
+
       async function operateOnCompanies() {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
@@ -808,7 +866,9 @@ export async function getRoadOffers(req, res) {
                   com.vehicles[g] = {
                     ...companies[i].companyBases[k].vehicles[m],
                     diffDistance,
-                    backDistance
+                    backDistance,
+                    fullCost: 0,
+                    toll: 0
                   };
                   isInside = true;
                 }
@@ -850,12 +910,13 @@ export async function getRoadOffers(req, res) {
         }
       }
       for (let i = 0; i < formattedCompanies.length; i++) {
-        for(let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-          if(formattedCompanies[i].vehicles[k].isInside === undefined) {
-            formattedCompanies[i].vehicles.splice(k, 1)
-            k--
+        for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
+          if (formattedCompanies[i].vehicles[k].isInside === undefined) {
+            formattedCompanies[i].vehicles.splice(k, 1);
+            k--;
           }
         }
+
         let currentVolume = 0;
         let currentWeight = 0;
         let stop = 0;
@@ -891,9 +952,7 @@ export async function getRoadOffers(req, res) {
           }
         }
         if (!isDone) {
-          formattedCompanies[i].vehicles.sort(
-            (a, b) => b.volume - a.volume
-          );
+          formattedCompanies[i].vehicles.sort((a, b) => b.volume - a.volume);
           loopV2: for (
             let k = 0;
             k < formattedCompanies[i].vehicles.length;
@@ -913,15 +972,16 @@ export async function getRoadOffers(req, res) {
             formattedCompanies[i].vehicles.splice(stop + 1);
             for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
               const additionalDistance =
-              formattedCompanies[i].vehicles[k].backDistance *
-              formattedCompanies[i].vehicles[k].costPerKm;
+                formattedCompanies[i].vehicles[k].backDistance *
+                formattedCompanies[i].vehicles[k].costPerKm;
               formattedCompanies[i].vehicles[k] = {
                 ...formattedCompanies[i].vehicles[k],
                 fullCost:
-                  distance * formattedCompanies[i].vehicles[k].costPerKm + (additionalDistance >
-                    formattedCompanies[i].vehicles[k].range.operationRange
-                      ? additionalDistance
-                      : 0)
+                  distance * formattedCompanies[i].vehicles[k].costPerKm +
+                  (additionalDistance >
+                  formattedCompanies[i].vehicles[k].range.operationRange
+                    ? additionalDistance
+                    : 0)
               };
             }
           }
@@ -931,7 +991,6 @@ export async function getRoadOffers(req, res) {
     }
 
     async function countTollPayments() {
-      const roadToSearchInDB = [];
       const tollRoads = [];
       for (let i = 0; i < waypoints.length; i++) {
         for (let k = 0; k < waypoints[i].steps.length; k++) {
@@ -939,131 +998,139 @@ export async function getRoadOffers(req, res) {
             distance: { value }
           } = waypoints[i].steps[k];
           const htmlInstruction = waypoints[i].steps[k].html_instructions;
-          if (htmlInstruction.search("Toll road") != -1 && value > 700) {
+          const extracted = extractHtmlInstruction(htmlInstruction);
+          if (
+            (htmlInstruction.search("Toll road") != -1 ||
+              extracted !== undefined) &&
+            value > 1000
+          ) {
             const extracted = extractHtmlInstruction(htmlInstruction);
-            if (extracted && !roadToSearchInDB.includes(extracted[0])) {
-              const { start_location, end_location } = waypoints[i].steps[k];
-              const mainDirections = {
-                latitudeDifference: Math.abs(
-                  end_location.lat - start_location.lat
-                ),
-                longitudeDifference: Math.abs(
-                  end_location.lng - start_location.lng
-                ),
-                latitudeDirection:
-                  start_location.lat > end_location.lat
-                    ? "SOUTH"
-                    : start_location.lat === end_location.lat
-                    ? "NONE"
-                    : "NORTH",
-                longitudeDirection:
-                  start_location.lng > end_location.lng
-                    ? "WEST"
-                    : start_location.lng === end_location.lng
-                    ? "NONE"
-                    : "EAST"
-              };
-              const tollRoad = await TollRoad.findOne({
-                nameOfRoad: extracted[0]
-              });
-              let mainDirection = null;
-              if (tollRoad) {
-                let tollRoadPrepare = {
-                  name: extracted[0],
-                  pricingPlans: []
+            if (extracted) {
+              for (let ex = 0; ex < extracted.length; ex++) {
+                const { start_location, end_location } = waypoints[i].steps[k];
+                const mainDirections = {
+                  latitudeDifference: Math.abs(
+                    end_location.lat - start_location.lat
+                  ),
+                  longitudeDifference: Math.abs(
+                    end_location.lng - start_location.lng
+                  ),
+                  latitudeDirection:
+                    start_location.lat > end_location.lat
+                      ? "SOUTH"
+                      : start_location.lat === end_location.lat
+                      ? "NONE"
+                      : "NORTH",
+                  longitudeDirection:
+                    start_location.lng > end_location.lng
+                      ? "WEST"
+                      : start_location.lng === end_location.lng
+                      ? "NONE"
+                      : "EAST"
                 };
-                for (let m = 0; m < tollRoad.route.length; m++) {
-                  if (
-                    mainDirections.latitudeDirection ===
-                      tollRoad.route[m].mainDirection ||
-                    mainDirections.longitudeDirection ===
-                      tollRoad.route[m].mainDirection
-                  ) {
-                    mainDirection = tollRoad.route[m];
-                    for (
-                      let g = 0;
-                      g < mainDirection.pricingPlans.length;
-                      g++
+                const tollRoad = await TollRoad.findOne({
+                  nameOfRoad: extracted[ex]
+                });
+                let mainDirection = null;
+                if (tollRoad) {
+                  let tollRoadPrepare = {
+                    name: extracted[ex],
+                    pricingPlans: []
+                  };
+                  for (let m = 0; m < tollRoad.route.length; m++) {
+                    if (
+                      mainDirections.latitudeDirection ===
+                        tollRoad.route[m].mainDirection ||
+                      mainDirections.longitudeDirection ===
+                        tollRoad.route[m].mainDirection
                     ) {
-                      if (mainDirection.pricingPlans[g].paymentPoints) {
-                        const { paymentPoints } = mainDirection.pricingPlans[g];
-                        let startPoint = null;
-                        let endPoint = null;
-                        let nearestDistance = {
-                          number: 0,
-                          value: getDistanceFromLatLonInKm(
-                            paymentPoints[0].location,
-                            end_location
-                          )
-                        };
-                        for (let mg = 0; mg < paymentPoints.length; mg++) {
-                          if (
-                            getDistanceFromLatLonInKm(
-                              paymentPoints[mg].location,
-                              start_location
-                            ) < nearestDistance.value
-                          ) {
-                            nearestDistance = {
-                              number: mg,
-                              value: getDistanceFromLatLonInKm(
+                      mainDirection = tollRoad.route[m];
+                      for (
+                        let g = 0;
+                        g < mainDirection.pricingPlans.length;
+                        g++
+                      ) {
+                        if (mainDirection.pricingPlans[g].paymentPoints) {
+                          const { paymentPoints } = mainDirection.pricingPlans[
+                            g
+                          ];
+                          let startPoint = null;
+                          let endPoint = null;
+                          let nearestDistance = {
+                            number: 0,
+                            value: getDistanceFromLatLonInKm(
+                              paymentPoints[0].location,
+                              end_location
+                            )
+                          };
+                          for (let mg = 0; mg < paymentPoints.length; mg++) {
+                            if (
+                              getDistanceFromLatLonInKm(
                                 paymentPoints[mg].location,
                                 start_location
-                              )
-                            };
+                              ) < nearestDistance.value
+                            ) {
+                              nearestDistance = {
+                                number: mg,
+                                value: getDistanceFromLatLonInKm(
+                                  paymentPoints[mg].location,
+                                  start_location
+                                )
+                              };
+                            }
                           }
-                        }
-                        startPoint = nearestDistance.number;
-                        nearestDistance = {
-                          number: 0,
-                          value: getDistanceFromLatLonInKm(
-                            paymentPoints[0].location,
-                            end_location
-                          )
-                        };
-                        for (let mg = 0; mg < paymentPoints.length; mg++) {
-                          if (
-                            getDistanceFromLatLonInKm(
-                              paymentPoints[mg].location,
+                          startPoint = nearestDistance.number;
+                          nearestDistance = {
+                            number: 0,
+                            value: getDistanceFromLatLonInKm(
+                              paymentPoints[0].location,
                               end_location
-                            ) < nearestDistance.value
-                          ) {
-                            nearestDistance = {
-                              number: mg,
-                              value: getDistanceFromLatLonInKm(
+                            )
+                          };
+                          for (let mg = 0; mg < paymentPoints.length; mg++) {
+                            if (
+                              getDistanceFromLatLonInKm(
                                 paymentPoints[mg].location,
                                 end_location
-                              )
-                            };
+                              ) < nearestDistance.value
+                            ) {
+                              nearestDistance = {
+                                number: mg,
+                                value: getDistanceFromLatLonInKm(
+                                  paymentPoints[mg].location,
+                                  end_location
+                                )
+                              };
+                            }
                           }
+                          endPoint = nearestDistance.number;
+                          let costsForWholeDistance = 0;
+                          for (let kl = startPoint; kl <= endPoint; kl++) {
+                            costsForWholeDistance += paymentPoints[kl].cost;
+                          }
+                          tollRoadPrepare.pricingPlans.push({
+                            requirePropertyValue:
+                              mainDirection.pricingPlans[g]
+                                .requirePropertyValue,
+                            costsForWholeDistance
+                          });
+                        } else {
+                          //policz kilometrowo cenę
+                          tollRoadPrepare.pricingPlans.push({
+                            requirePropertyValue:
+                              mainDirection.pricingPlans[g]
+                                .requirePropertyValue,
+                            costsForWholeDistance:
+                              (value *
+                                mainDirection.pricingPlans[g].costPerKm) /
+                              1000
+                          });
                         }
-                        endPoint = nearestDistance.number;
-                        let costsForWholeDistance = 0;
-                        for (let kl = startPoint; kl <= endPoint; kl++) {
-                          costsForWholeDistance += paymentPoints[kl].cost;
-                        }
-                        tollRoadPrepare.pricingPlans.push({
-                          basedOnProperty:
-                            mainDirection.pricingPlans[g].basedOnProperty,
-                          requirePropertyValue:
-                            mainDirection.pricingPlans[g].requirePropertyValue,
-                          costsForWholeDistance
-                        });
-                      } else {
-                        //policz kilometrowo cenę
-                        tollRoadPrepare.pricingPlans.push({
-                          basedOnProperty:
-                            mainDirection.pricingPlans[g].basedOnProperty,
-                          requirePropertyValue:
-                            mainDirection.pricingPlans[g].requirePropertyValue,
-                          costsForWholeDistance:
-                            (value * mainDirection.pricingPlans[g].costPerKm) /
-                            1000
-                        });
                       }
                     }
                   }
+                  tollRoads.push(tollRoadPrepare);
                 }
-                tollRoads.push(tollRoadPrepare);
               }
             }
           }
