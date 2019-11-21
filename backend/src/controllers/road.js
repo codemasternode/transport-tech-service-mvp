@@ -21,7 +21,6 @@ const googleMapsClient = googleMaps.createClient({
 });
 
 export async function getRoadOffers(req, res) {
-
   if (req.body.typeOfSearch === "Palette") {
     const requireKeys = [
       "numberOfPallets",
@@ -81,7 +80,6 @@ export async function getRoadOffers(req, res) {
     for (let i = 0; i < companies.length; i++) {
       for (let k = 0; k < companies[i].vehicles.length; k++) {
         for (let m = 0; m < tollPayment.length; m++) {
-
           for (let l = 0; l < tollPayment[m].pricingPlans.length; l++) {
             const isIt = [];
             for (
@@ -612,7 +610,6 @@ export async function getRoadOffers(req, res) {
       return { sumDiets, fullNumberOfDays };
     }
   } else if (req.body.typeOfSearch === "Dimensions") {
-
     const requireKeys = ["volume", "points", "weight"];
     for (let i = 0; i < requireKeys.length; i++) {
       let isInside = false;
@@ -627,7 +624,6 @@ export async function getRoadOffers(req, res) {
         });
       }
     }
-
     const { points, volume, weight } = req.body;
     if (!points || points.length < 2) {
       return res.status(400).send({
