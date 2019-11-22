@@ -3,7 +3,7 @@ import Palette from "../models/palletes";
 import TollRoad from "../models/tollRoads";
 import Diets from "../models/diets";
 import Companies from "../models/company";
-import { vehicleFilter } from '../services/vehicleFilter'
+import { vehicleFilterByPallet, vehicleFilterByVolume } from '../services/vehicleFilter'
 import googleMaps from "@google/maps";
 import { getRoadCode } from '../services/getRoadCode'
 import "dotenv/config";
@@ -12,7 +12,6 @@ import {
   createDistanceGoogleMapsRequest,
   getCountryFromAddress,
   getDistanceFromLatLonInKm,
-  extractHtmlInstruction
 } from "../services/geoservices";
 
 const googleMapsClient = googleMaps.createClient({
@@ -124,6 +123,14 @@ export async function getRoadOffers(req, res) {
             }
           }
         }
+        // setTimeout(() => {
+        //   if(isNaN(companies[i].vehicles[k].fullCost)) {
+        //     console.log(companies[i].vehicles[k], 129)
+        //   }
+        // },60)
+        // if(isNaN(companies[i].vehicles[k].fullCost)) {
+        //   console.log(companies[i].vehicles[k], 129)
+        // }
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -324,7 +331,7 @@ export async function getRoadOffers(req, res) {
         formattedCompanies[i].vehicles = formattedCompanies[i].vehicles.filter((value) => {
           return value.isInside === true
         })
-        const filtered = vehicleFilter(formattedCompanies[i].vehicles, numberOfPallets, weight)
+        const filtered = vehicleFilterByPallet(formattedCompanies[i].vehicles, numberOfPallets, weight)
         if (filtered) {
           formattedCompanies[i].vehicles = filtered.map((value, index) => {
             return value.truck
@@ -862,80 +869,22 @@ export async function getRoadOffers(req, res) {
         }
       }
       for (let i = 0; i < formattedCompanies.length; i++) {
-        for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-          if (formattedCompanies[i].vehicles[k].isInside === undefined) {
-            formattedCompanies[i].vehicles.splice(k, 1);
-            k--;
-          }
-        }
-
-        let currentVolume = 0;
-        let currentWeight = 0;
-        let stop = 0;
-        let isDone = false;
-        formattedCompanies[i].vehicles.sort(
-          (a, b) => a.costPerKm - b.costPerKm
-        );
-        loop10: for (
-          let k = 0;
-          k < formattedCompanies[i].vehicles.length;
-          k++
-        ) {
-          if (
-            formattedCompanies[i].vehicles[k].volume >= volume &&
-            formattedCompanies[i].vehicles[k].capacity >= weight
-          ) {
-            const additionalDistance =
-              formattedCompanies[i].vehicles[k].backDistance *
-              formattedCompanies[i].vehicles[k].costPerKm;
-            formattedCompanies[i].vehicles = [
-              {
-                ...formattedCompanies[i].vehicles[k],
-                fullCost:
-                  distance * formattedCompanies[i].vehicles[k].costPerKm +
-                  (additionalDistance >
-                    formattedCompanies[i].vehicles[k].range.operationRange
-                    ? additionalDistance
-                    : 0)
-              }
-            ];
-            isDone = true;
-            break loop10;
-          }
-        }
-        if (!isDone) {
-          formattedCompanies[i].vehicles.sort((a, b) => b.volume - a.volume);
-          loopV2: for (
-            let k = 0;
-            k < formattedCompanies[i].vehicles.length;
-            k++
-          ) {
-            currentVolume += formattedCompanies[i].vehicles[k].volume;
-            currentWeight += formattedCompanies[i].vehicles[k].capacity;
-            if (currentVolume >= volume && currentWeight >= weight) {
-              stop = k;
-              break loopV2;
-            }
-          }
-          if (currentVolume < volume || currentWeight < weight) {
-            formattedCompanies.splice(i, 1);
-            i--;
-          } else {
-            formattedCompanies[i].vehicles.splice(stop + 1);
-            for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-              const additionalDistance =
-                formattedCompanies[i].vehicles[k].backDistance *
-                formattedCompanies[i].vehicles[k].costPerKm;
-              formattedCompanies[i].vehicles[k] = {
-                ...formattedCompanies[i].vehicles[k],
-                fullCost:
-                  distance * formattedCompanies[i].vehicles[k].costPerKm +
-                  (additionalDistance >
-                    formattedCompanies[i].vehicles[k].range.operationRange
-                    ? additionalDistance
-                    : 0)
-              };
-            }
+        formattedCompanies[i].vehicles = formattedCompanies[i].vehicles.filter((value) => {
+          return value.isInside === true
+        })
+        const filtered = vehicleFilterByVolume(formattedCompanies[i].vehicles, volume, weight)
+        if (filtered) {
+          formattedCompanies[i].vehicles = filtered.map((value, index) => {
+            return value.truck
+          })
+          for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
+            formattedCompanies[i].vehicles[k] = {
+              ...formattedCompanies[i].vehicles[k],
+              fullCost:
+                formattedCompanies[i].vehicles[k].diffDistance *
+                formattedCompanies[i].vehicles[k].costPerKm +
+                distance * formattedCompanies[i].vehicles[k].costPerKm
+            };
           }
         }
       }
