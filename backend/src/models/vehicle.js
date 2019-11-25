@@ -79,7 +79,8 @@ const VehicleSchema = new mongoose.Schema(
     fuel: {
       name: {
         type: String,
-        required: true
+        required: true,
+        enum: ["Olej napędowy", "Olej napędowy +", "Benzyna Pb95", "Benzyna Pb98"]
       },
       price: {
         type: Number,

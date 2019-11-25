@@ -21,8 +21,8 @@ const CompanyBaseSchema = new mongoose.Schema({
     required: true
   },
   country: {
-    type: Schema.Types.ObjectId,
-    ref: "country"
+    type: "String",
+    required: true
   },
   location: {
     lng: {

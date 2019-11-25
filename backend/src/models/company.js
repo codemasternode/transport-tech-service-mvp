@@ -33,18 +33,6 @@ const CompanySchema = new mongoose.Schema(
       maxlength: 20,
       trim: true
     },
-    margin: {
-      type: Schema.Types.Number,
-      required: [true, "the company name can not be empty"],
-      default: 10,
-      min: 1
-    },
-    defaultDeprication: {
-      type: Schema.Types.Number,
-      required: [true, "the default deprication can not be empty"],
-      default: 10,
-      min: 1
-    },
     isSuspended: {
       type: Schema.Types.Boolean,
       required: [true, "suspended can not be empty"],
@@ -95,8 +83,7 @@ const CompanySchema = new mongoose.Schema(
     workers: [WorkerSchema],
     companyBases: {
       type: Array,
-      default: [],
-      required: true
+      default: []
     },
     isConfirmed: {
       type: Boolean,

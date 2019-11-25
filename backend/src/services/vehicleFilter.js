@@ -10,20 +10,13 @@ function costVolume(truck, volume, capacity) {
 
 export function vehicleFilterByPallet(trucks, palettes, weight) {
     var w = weight / palettes;
-
-    // To begin, we can carry nothing for no weight.
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {
         var max_palettes = Math.min(truck.palettes, truck.capacity / w);
-        // i is the number of pallets other trucks carry.
-        // We count down so that there is no chance the solution there
-        // has already used this truck.
+
         for (var i = max_palettes - 1; 0 <= i; i--) {
-            // j is the number of pallets that truck carries
             for (var j = 1; j <= Math.min(max_palettes, palettes - i); j++) {
-                // Do we improve on i+j pallets by having truck carry i?
                 if (best_path[i] == null) {
-                    // Other trucks can't carry i
                     continue;
                 }
                 let prev_node = best_path[i];
@@ -42,9 +35,6 @@ export function vehicleFilterByPallet(trucks, palettes, weight) {
             }
         }
     });
-
-
-    // The answer is a linked list.  Let's decode it for convenience.
     if (best_path[palettes] == null) {
         return null;
     }
@@ -63,19 +53,21 @@ export function vehicleFilterByPallet(trucks, palettes, weight) {
 }
 
 export function vehicleFilterByVolume(trucks, volume, weight) {
-    var w = weight / volume;
-
+    volume = volume * 100
+    var w = weight / volume;    
     // To begin, we can carry nothing for no weight.
+    console.log(trucks)
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {
+        truck.volume = Math.floor(truck.volume * 100)
         var max_volume = Math.min(truck.volume, truck.capacity / w);
-        // i is the number of pallets other trucks carry.
+        // i is the number of volume other trucks carry.
         // We count down so that there is no chance the solution there
         // has already used this truck.
         for (var i = max_volume - 1; 0 <= i; i--) {
-            // j is the number of pallets that truck carries
+            // j is the number of volume that truck carries
             for (var j = 1; j <= Math.min(max_volume, volume - i); j++) {
-                // Do we improve on i+j pallets by having truck carry i?
+                // Do we improve on i+j volume by having truck carry i?33
                 if (best_path[i] == null) {
                     // Other trucks can't carry i
                     continue;
@@ -111,7 +103,7 @@ export function vehicleFilterByVolume(trucks, volume, weight) {
                 volume: best.volume
             });
             best = best.prev_node;
-        }
+        }        
         return answer;
     }
 }

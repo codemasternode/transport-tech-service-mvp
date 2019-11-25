@@ -123,14 +123,6 @@ export async function getRoadOffers(req, res) {
             }
           }
         }
-        // setTimeout(() => {
-        //   if(isNaN(companies[i].vehicles[k].fullCost)) {
-        //     console.log(companies[i].vehicles[k], 129)
-        //   }
-        // },60)
-        // if(isNaN(companies[i].vehicles[k].fullCost)) {
-        //   console.log(companies[i].vehicles[k], 129)
-        // }
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -232,7 +224,7 @@ export async function getRoadOffers(req, res) {
                       {
                         $divide: [
                           {
-                            $multiply: ["$valueOfTruck", "$deprecationPerYear"]
+                            $multiply: ["$valueOfTruck", { $divide: ["$deprecationPerYear", 100] }]
                           },
                           12
                         ]
@@ -247,7 +239,6 @@ export async function getRoadOffers(req, res) {
         ]),
         operateOnCompanies()
       ]);
-
       async function operateOnCompanies() {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
@@ -327,6 +318,7 @@ export async function getRoadOffers(req, res) {
           }
         }
       }
+
       for (let i = 0; i < formattedCompanies.length; i++) {
         formattedCompanies[i].vehicles = formattedCompanies[i].vehicles.filter((value) => {
           return value.isInside === true
@@ -337,13 +329,23 @@ export async function getRoadOffers(req, res) {
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-            formattedCompanies[i].vehicles[k] = {
-              ...formattedCompanies[i].vehicles[k],
-              fullCost:
-                formattedCompanies[i].vehicles[k].diffDistance *
-                formattedCompanies[i].vehicles[k].costPerKm +
-                distance * formattedCompanies[i].vehicles[k].costPerKm
-            };
+            if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  formattedCompanies[i].vehicles[k].diffDistance *
+                  formattedCompanies[i].vehicles[k].costPerKm +
+                  distance * formattedCompanies[i].vehicles[k].costPerKm +
+                  formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+              }
+            } else {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  distance * formattedCompanies[i].vehicles[k].costPerKm
+              };
+            }
+
           }
         }
       }
@@ -702,8 +704,6 @@ export async function getRoadOffers(req, res) {
               isIt.includes(true) &&
               !isIt.includes(false)
             ) {
-              // companies[i].vehicles[k].fullCost +=
-              //   tollPayment[m].pricingPlans[l].costsForWholeDistance;
               if (companies[i].vehicles[k].toll === undefined) {
                 companies[i].vehicles[k].toll =
                   tollPayment[m].pricingPlans[l].costsForWholeDistance;
@@ -773,7 +773,7 @@ export async function getRoadOffers(req, res) {
                       {
                         $divide: [
                           {
-                            $multiply: ["$valueOfTruck", "$deprecationPerYear"]
+                            $multiply: ["$valueOfTruck", { $divide: ["$deprecationPerYear", 100] }]
                           },
                           12
                         ]
@@ -789,7 +789,6 @@ export async function getRoadOffers(req, res) {
         ]),
         operateOnCompanies()
       ]);
-
       async function operateOnCompanies() {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
@@ -875,23 +874,34 @@ export async function getRoadOffers(req, res) {
         const filtered = vehicleFilterByVolume(formattedCompanies[i].vehicles, volume, weight)
         if (filtered) {
           formattedCompanies[i].vehicles = filtered.map((value, index) => {
+            value.volume /= 100
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-            formattedCompanies[i].vehicles[k] = {
-              ...formattedCompanies[i].vehicles[k],
-              fullCost:
-                formattedCompanies[i].vehicles[k].diffDistance *
-                formattedCompanies[i].vehicles[k].costPerKm +
-                distance * formattedCompanies[i].vehicles[k].costPerKm
-            };
+            if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  formattedCompanies[i].vehicles[k].diffDistance *
+                  formattedCompanies[i].vehicles[k].costPerKm +
+                  distance * formattedCompanies[i].vehicles[k].costPerKm +
+                  formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+              }
+            } else {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  distance * formattedCompanies[i].vehicles[k].costPerKm
+              };
+            }
           }
+        } else {
+          formattedCompanies.splice(i, 1)
+          i--
         }
       }
       return formattedCompanies;
     }
-
-
 
     async function countTollPayments() {
       const tollRoads = [];
@@ -1033,6 +1043,7 @@ export async function getRoadOffers(req, res) {
             if (
               extracted
             ) {
+
               for (let ex = 0; ex < extracted.length; ex++) {
                 tollCounts.push(countOneTollRoad(i, k, ex, value, waypoints, extracted))
               }
