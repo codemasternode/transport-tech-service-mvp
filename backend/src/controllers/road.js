@@ -318,7 +318,7 @@ export async function getRoadOffers(req, res) {
           }
         }
       }
-      
+
       for (let i = 0; i < formattedCompanies.length; i++) {
         formattedCompanies[i].vehicles = formattedCompanies[i].vehicles.filter((value) => {
           return value.isInside === true
@@ -329,13 +329,23 @@ export async function getRoadOffers(req, res) {
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-            formattedCompanies[i].vehicles[k] = {
-              ...formattedCompanies[i].vehicles[k],
-              fullCost:
-                formattedCompanies[i].vehicles[k].diffDistance *
-                formattedCompanies[i].vehicles[k].costPerKm +
-                distance * formattedCompanies[i].vehicles[k].costPerKm
-            };
+            if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  formattedCompanies[i].vehicles[k].diffDistance *
+                  formattedCompanies[i].vehicles[k].costPerKm +
+                  distance * formattedCompanies[i].vehicles[k].costPerKm +
+                  formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+              }
+            } else {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  distance * formattedCompanies[i].vehicles[k].costPerKm
+              };
+            }
+
           }
         }
       }
@@ -868,16 +878,25 @@ export async function getRoadOffers(req, res) {
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-            formattedCompanies[i].vehicles[k] = {
-              ...formattedCompanies[i].vehicles[k],
-              fullCost:
-                formattedCompanies[i].vehicles[k].diffDistance *
-                formattedCompanies[i].vehicles[k].costPerKm +
-                distance * formattedCompanies[i].vehicles[k].costPerKm
-            };
+            if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  formattedCompanies[i].vehicles[k].diffDistance *
+                  formattedCompanies[i].vehicles[k].costPerKm +
+                  distance * formattedCompanies[i].vehicles[k].costPerKm +
+                  formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+              }
+            } else {
+              formattedCompanies[i].vehicles[k] = {
+                ...formattedCompanies[i].vehicles[k],
+                fullCost:
+                  distance * formattedCompanies[i].vehicles[k].costPerKm
+              };
+            }
           }
         } else {
-          formattedCompanies.splice(i,1)
+          formattedCompanies.splice(i, 1)
           i--
         }
       }
@@ -1024,7 +1043,7 @@ export async function getRoadOffers(req, res) {
             if (
               extracted
             ) {
-              
+
               for (let ex = 0; ex < extracted.length; ex++) {
                 tollCounts.push(countOneTollRoad(i, k, ex, value, waypoints, extracted))
               }
