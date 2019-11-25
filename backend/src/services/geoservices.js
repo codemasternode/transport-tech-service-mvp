@@ -8,6 +8,7 @@ const googleMapsClient = googleMaps.createClient({
 });
 
 export function getDistanceFromLatLonInKm(point1, point2) {
+  console.log(point1,point2)
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(point2.lat - point1.lat); // deg2rad below
   var dLon = deg2rad(point2.lng - point1.lng);

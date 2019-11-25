@@ -123,14 +123,6 @@ export async function getRoadOffers(req, res) {
             }
           }
         }
-        // setTimeout(() => {
-        //   if(isNaN(companies[i].vehicles[k].fullCost)) {
-        //     console.log(companies[i].vehicles[k], 129)
-        //   }
-        // },60)
-        // if(isNaN(companies[i].vehicles[k].fullCost)) {
-        //   console.log(companies[i].vehicles[k], 129)
-        // }
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -247,7 +239,7 @@ export async function getRoadOffers(req, res) {
         ]),
         operateOnCompanies()
       ]);
-
+      console.log(vehicles)
       async function operateOnCompanies() {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
@@ -337,6 +329,7 @@ export async function getRoadOffers(req, res) {
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
+            console.log(formattedCompanies[i].vehicles[k].costPerKm)
             formattedCompanies[i].vehicles[k] = {
               ...formattedCompanies[i].vehicles[k],
               fullCost:

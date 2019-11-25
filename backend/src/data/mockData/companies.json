@@ -21,22 +21,22 @@
             "Slovakia",
             "Latvia"
         ],
-        "isConfirmed":true,
+        "isConfirmed": true,
         "sumCostsPerMonth": 1200,
         "companyBases": [
             {
                 "name": "Baza A",
                 "street": "Karola Łowińskiego 7E/309",
-                "postalCode":"31-752",
-                "city":"Kraków",
+                "postalCode": "31-752",
+                "city": "Kraków",
                 "country": "Poland",
                 "location": {
-                    "lng": 50.088517,
-                    "lat": 20.064220
+                    "lat": 50.088517,
+                    "lng": 20.064220
                 },
-                "vehicles":[
+                "vehicles": [
                     {
-                        "name":"Pojazd A",
+                        "name": "Pojazd A",
                         "combustion": 30,
                         "capacity": 24,
                         "dimensions": {
@@ -46,7 +46,7 @@
                         },
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 10500,
                         "range": {
                             "maxRange": 5000,
@@ -68,10 +68,37 @@
                         "monthCosts": 6000,
                         "salary": 5500,
                         "numberOfAxles": 5,
-                        "permissibleGrossWeight": 40
+                        "permissibleGrossWeight": 40,
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ]
                     },
                     {
-                        "name":"Pojazd 2",
+                        "name": "Pojazd 2",
                         "combustion": 30,
                         "capacity": 24,
                         "dimensions": {
@@ -79,9 +106,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 9800,
                         "range": {
                             "maxRange": 5000,
@@ -106,7 +160,7 @@
                         "permissibleGrossWeight": 40
                     },
                     {
-                        "name":"Pojazd 3",
+                        "name": "Pojazd 3",
                         "combustion": 32,
                         "capacity": 24,
                         "dimensions": {
@@ -114,9 +168,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 170000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 9000,
                         "range": {
                             "maxRange": 5000,
@@ -141,7 +222,7 @@
                         "permissibleGrossWeight": 40
                     },
                     {
-                        "name":"Pojazd 4",
+                        "name": "Pojazd 4",
                         "combustion": 34,
                         "capacity": 24,
                         "dimensions": {
@@ -151,13 +232,40 @@
                         },
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 10000,
                         "range": {
                             "maxRange": 5000,
                             "minRange": 100,
                             "operationRange": 100
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "margin": 25,
                         "waitingTimeParams": {
                             "maxFreeTime": 10,
@@ -168,7 +276,7 @@
                             "price": 5.12,
                             "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
                         },
-                        "sumKmPerMonth":89300,
+                        "sumKmPerMonth": 89300,
                         "sumCostPerMonth": 9000,
                         "monthCosts": 6000,
                         "salary": 5500,
@@ -177,7 +285,7 @@
                         "emissionLevel": "EURO 4"
                     },
                     {
-                        "name":"Pojazd 5",
+                        "name": "Pojazd 5",
                         "emissionLevel": "EURO 4",
                         "combustion": 35,
                         "capacity": 24,
@@ -186,9 +294,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 20,
                         "valueOfTruck": 110000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 9000,
                         "range": {
                             "maxRange": 5000,
@@ -213,7 +348,7 @@
                         "permissibleGrossWeight": 37
                     },
                     {
-                        "name":"Pojazd 6",
+                        "name": "Pojazd 6",
                         "combustion": 32,
                         "capacity": 24,
                         "dimensions": {
@@ -221,9 +356,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 10000,
                         "range": {
                             "maxRange": 5000,
@@ -248,7 +410,7 @@
                         "permissibleGrossWeight": 40
                     },
                     {
-                        "name":"Pojazd 7",
+                        "name": "Pojazd 7",
                         "combustion": 30,
                         "capacity": 24,
                         "dimensions": {
@@ -256,9 +418,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 10000,
                         "range": {
                             "maxRange": 5000,
@@ -283,7 +472,7 @@
                         "permissibleGrossWeight": 40
                     },
                     {
-                        "name":"Pojazd 8",
+                        "name": "Pojazd 8",
                         "combustion": 30,
                         "capacity": 24,
                         "dimensions": {
@@ -291,9 +480,36 @@
                             "width": 2.45,
                             "height": 2.65
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 160000,
-                        "type":"Plandeka",
+                        "type": "Plandeka",
                         "averageDistancePerMonth": 10000,
                         "range": {
                             "maxRange": 5000,
@@ -318,7 +534,7 @@
                         "permissibleGrossWeight": 40
                     },
                     {
-                        "name":"Pojazd 9",
+                        "name": "Pojazd 9",
                         "combustion": 14,
                         "capacity": 1.5,
                         "dimensions": {
@@ -326,9 +542,23 @@
                             "width": 2.2,
                             "height": 2.3
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Lithuania",
+                            "Latvia",
+                            "Germany",
+                            "Slovenia",
+                            "Hungary",
+                            "UK",
+                            "Italy",
+                            "Slovakia",
+                            "Latvia",
+                            "Romania"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 70000,
-                        "type":"Dostawczy",
+                        "type": "Dostawczy",
                         "averageDistancePerMonth": 6000,
                         "range": {
                             "maxRange": 1000,
@@ -345,7 +575,7 @@
                             "price": 5.12,
                             "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
                         },
-                        "sumKmPerMonth": 89300 ,
+                        "sumKmPerMonth": 89300,
                         "sumCostPerMonth": 9000,
                         "monthCosts": 3000,
                         "salary": 3500,
@@ -353,7 +583,7 @@
                         "permissibleGrossWeight": 3.4
                     },
                     {
-                        "name":"Pojazd 10A",
+                        "name": "Pojazd 10A",
                         "combustion": 15,
                         "capacity": 1.5,
                         "dimensions": {
@@ -361,9 +591,23 @@
                             "width": 2.2,
                             "height": 2.3
                         },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Lithuania",
+                            "Latvia",
+                            "Germany",
+                            "Slovenia",
+                            "Hungary",
+                            "UK",
+                            "Italy",
+                            "Slovakia",
+                            "Latvia",
+                            "Romania"
+                        ],
                         "deprecationPerYear": 15,
                         "valueOfTruck": 75000,
-                        "type":"Dostawczy",
+                        "type": "Dostawczy",
                         "averageDistancePerMonth": 5500,
                         "range": {
                             "maxRange": 1500,
