@@ -5,16 +5,12 @@ function cost (truck, pallets, capacity) {
 }
 
 function optimize (trucks, pallets, weight) {
-    pallets = Math.floor(pallets * 100)
     var w = weight/pallets;
-    
+
     // To begin, we can carry nothing for no weight.
     var best_path = [{cost: 0}];
     trucks.forEach(function (truck) {
-        truck.pallets *= 100
-        truck.pallets = Math.floor(truck.pallets)
-        console.log(truck.pallets)
-        var max_pallets = Math.min(truck.pallets, truck.capacity/w);
+        var max_pallets = Math.floor((Math.min(truck.pallets, truck.capacity/w)));
         // i is the number of pallets other trucks carry.
         // We count down so that there is no chance the solution there
         // has already used this truck.
@@ -43,6 +39,7 @@ function optimize (trucks, pallets, weight) {
         }
     });
 
+
     // The answer is a linked list.  Let's decode it for convenience.
     if (best_path[pallets] == null) {
         return null;
@@ -65,21 +62,21 @@ const trucks = [
     {
         name: "Truck 1",
         pallets: 1.5,
-        capacity: 5
+        capacity: 15
     },
     {
         name: "Truck 2",
-        pallets: 1.5,
-        capacity: 5
+        pallets: 1.2,
+        capacity: 10
     },
     {
         name: "Truck 3",
-        pallets: 5,
+        pallets: 20,
         capacity: 22
     },
     {
         name: "Truck 4",
-        pallets:12,
+        pallets: 24,
         capacity: 12
     }
 ]

@@ -111,8 +111,6 @@ export async function getRoadOffers(req, res) {
               isIt.includes(true) &&
               !isIt.includes(false)
             ) {
-              companies[i].vehicles[k].fullCost +=
-                tollPayment[m].pricingPlans[l].costsForWholeDistance;
               if (companies[i].vehicles[k].toll === undefined) {
                 companies[i].vehicles[k].toll =
                   tollPayment[m].pricingPlans[l].costsForWholeDistance;
@@ -132,6 +130,7 @@ export async function getRoadOffers(req, res) {
             ? companies[i].vehicles[k].salary / 30
             : companies[i].vehicles[k].salary / 60);
         companies[i].vehicles[k] = {
+          ...companies[i].vehicles[k],
           _id: companies[i].vehicles[k]._id,
           name: companies[i].vehicles[k].name,
           fullCost:
@@ -874,7 +873,6 @@ export async function getRoadOffers(req, res) {
         const filtered = vehicleFilterByVolume(formattedCompanies[i].vehicles, volume, weight)
         if (filtered) {
           formattedCompanies[i].vehicles = filtered.map((value, index) => {
-            value.volume /= 100
             return value.truck
           })
           for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {

@@ -53,14 +53,12 @@ export function vehicleFilterByPallet(trucks, palettes, weight) {
 }
 
 export function vehicleFilterByVolume(trucks, volume, weight) {
-    volume = volume * 100
     var w = weight / volume;    
     // To begin, we can carry nothing for no weight.
     console.log(trucks)
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {
-        truck.volume = Math.floor(truck.volume * 100)
-        var max_volume = Math.min(truck.volume, truck.capacity / w);
+        var max_volume = Math.floor((Math.min(truck.volume, truck.capacity/w)));
         // i is the number of volume other trucks carry.
         // We count down so that there is no chance the solution there
         // has already used this truck.
