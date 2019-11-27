@@ -1,6 +1,7 @@
 import Axios from "axios";
 import googleMaps from "@google/maps";
 import commandsPrior from '../data/default/commandsPrior'
+import "dotenv/config"
 
 const googleMapsClient = googleMaps.createClient({
   key: process.env.GOOGLE_API,

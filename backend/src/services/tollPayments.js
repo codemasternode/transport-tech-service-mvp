@@ -1,6 +1,7 @@
-import {getRoadCode} from './getRoadCode'
+import { getRoadCode } from './getRoadCode'
 import TollRoad from '../models/tollRoads'
-import {getDistanceFromLatLonInKm} from './geoservices'
+import { getDistanceFromLatLonInKm, getCountryNameByReverseGeocoding } from './geoservices'
+
 
 export async function countTollPayments(waypoints) {
     const tollRoads = [];
@@ -27,11 +28,23 @@ export async function countTollPayments(waypoints) {
                         ? "NONE"
                         : "EAST"
         };
-        const tollRoad = await TollRoad.findOne({
+        let tollRoad = await TollRoad.find({
             nameOfRoad: extracted[ex]
         });
         let mainDirection = null;
-        if (tollRoad) {
+        if (tollRoad.length !== 0) {
+            if (tollRoad.length > 1) {
+                let currentCountry = await getCountryNameByReverseGeocoding(start_location.lat, start_location.lng)
+                tollRoad = await TollRoad.findOne({
+                    nameOfRoad: extracted[ex],
+                    country: currentCountry
+                })
+                if (!tollRoad) {
+                    return
+                }
+            } else {
+                tollRoad = tollRoad[0]
+            }
             let tollRoadPrepare = {
                 name: extracted[ex],
                 pricingPlans: []
