@@ -16,12 +16,12 @@ const MapDirectionsRenderer = (props) => {
 
     useEffect(() => {
         const { places, travelMode } = props;
-        console.log(places)
+        console.log(props)
 
 
         if (places.length > 1) {
             const waypoints = places.map(p => ({
-                location: { lat: p.latitude, lng: p.longitude },
+                location: { lat: p.lat, lng: p.lng },
                 stopover: true
             }))
             console.log(waypoints)
@@ -89,7 +89,7 @@ const Map = withScriptjs(
             onClick={(e) => props.onMapClick(e)}
         >
             {props.markers.map((marker, index) => {
-                const position = { lat: marker.latitude, lng: marker.longitude };
+                const position = { lat: marker.lat, lng: marker.lng };
                 return <Marker key={index} position={position} />;
             })}
             <MapDirectionsRenderer

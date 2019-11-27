@@ -1,15 +1,17 @@
 import React from 'react';
-import { Button, TextField, FormControlLabel, FormHelperText, Checkbox, Grid, Container, Paper, FormLabel, MenuItem, CircularProgress } from '@material-ui/core';
+import { Button, TextField, Select, FormControlLabel, FormHelperText, Checkbox, Grid, Container, Paper, FormLabel, MenuItem, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import labelsOfSearchInputs from '../../constants/dataOfTransports'
 import typesOfSearch from '../../constants/typesOfSearch'
+import typesOfPallets from '../../constants/typesOfPallets'
 import Geocode from "react-geocode";
 import axios from "axios";
 import { AutoSizer, List } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import PropTypes from 'prop-types';
+import SearchContent from './SearchContent';
 
 Geocode.setApiKey("AIzaSyCbxWM2sqqiQoxXyR1maA_9dzro72-vKOw");
 Geocode.enableDebug();
@@ -26,6 +28,7 @@ const theme = createMuiTheme({
         },
     },
 });
+
 axios.defaults.withCredentials = true
 
 const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearchRequest, resultSearchedData, isVisible }) => {
@@ -34,16 +37,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     const _correctClassNameOfClickSidebar = _validNameOfSidebar ? "sidebar__left__click" : "sidebar__right__click";
     const _styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { left: 0 } : { left: "-18%" }) : isOpenSidebar[nameOfSidebar] ? { right: 0 } : { right: "-15%" }
     const [state, setState] = React.useState({
-        criteria: {
-            length: 2,
-            width: 2,
-            height: 2,
-            capacity: 12,
-            type: "Firanka",
-            waitingTime: 12,
-            volume: 32980,
-        },
-        distanceToDrive: 600,
         points: [
             {
                 "lat": 50.014703,
@@ -53,120 +46,8 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 "lat": 54.030763,
                 "lng": 20.111284
             }
-        ],
-        operation: "single",
+        ]
     })
-
-
-    const _renderInputs = () => {
-        //render inputs of criteria
-        return (
-            labelsOfSearchInputs.map((item, key) => (
-                <div key={key} className="text__field__form">
-                    <label className="text__field__label">{item.label}</label>
-                    <input type="text" className="text__field__input" />
-                </div>
-            ))
-        )
-    }
-
-    const _renderSelectOfTypes = () => {
-        // render select of types
-        return (
-            <TextField
-                id="standard-select-currency"
-                select
-                label="Waluta"
-                value={state.criteria.type}
-                // onChange={handleChange('currency')}
-                SelectProps={{
-                    MenuProps: {
-                        // className: classes.menu,
-                    },
-                }}
-                helperText="Wybierz walutę płatności"
-                margin="normal"
-                variant="outlined"
-            >
-                {typesOfSearch.map((option, key) => {
-                    return (
-                        <MenuItem value={option} key={key}>
-                            {option}
-                        </MenuItem>
-                    )
-                })}
-            </TextField>
-        )
-    }
-
-    const _viewModel = {
-        getNameFromLatLng: selectedPoint => {
-            console.log(selectedPoint)
-            const lat = selectedPoint.latitude;
-            const lng = selectedPoint.longitude;
-            Geocode.fromLatLng(lat, lng).then(
-                response => {
-                    console.log(response)
-                    const addressFull = response.results[0].formatted_address;
-                    console.log(addressFull)
-                    return addressFull
-                },
-                error => {
-                    console.error(error);
-                }
-            );
-        }
-    }
-
-    // const geocodeAddress = (address, callback) => {
-    //     const geocoder = new google.maps.Geocoder();
-    //     geocoder.geocode({
-    //         address,
-    //     }, function (results, status) {
-    //         if (status === 'OK') {
-    //             callback({
-    //                 lat: results[0].geometry.location.lat(),
-    //                 lng: results[0].geometry.location.lng(),
-    //             });
-    //         } else {
-    //             alert('Cannot find address');
-    //         }
-    //     });
-    // }
-
-    const _renderSelectedPoints = () => {
-
-    }
-
-    const styleOfSearchBlock = {
-        width: '100%', backgroundColor: '#cccccc', textAlign: 'center', height: '50px', margin: 'auto'
-    }
-
-    const _renderSearchContent = () => {
-        return (
-            <Grid container={true} direction="column" alignItems="center">
-                <Grid item xs={12} style={{ width: '100%' }}>
-                    <div style={styleOfSearchBlock}>
-                        <h4>Kryteria</h4>
-                    </div>
-                </Grid>
-                {_renderInputs()}
-                {_renderSelectOfTypes()}
-                <Button onClick={() => {
-                    handleSearchRequest()
-                }}>Szukaj</Button>
-                <Grid item xs={12} style={{ width: '100%' }}>
-                    <div style={styleOfSearchBlock}>
-                        <h4>Punkty</h4>
-                    </div>
-                    {/* <ul>
-                        {_renderSelectedPoints()}
-                    </ul> */}
-                </Grid>
-            </Grid>
-
-        )
-    }
 
     const styleOfRow = {
         margin: 5,
@@ -180,14 +61,21 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         isVisible,   // This row is visible within the List (eg it is not an overscanned row)
         style        // Style object to be applied to row (to position it)
     }) => {
+        const { vehicles } = resultSearchedData[index]
+        let summary = 0;
+        const totalCost = vehicles.reduce((sum, curr) => {
+            console.log(sum, curr)
+            return summary += curr.sumCostPerMonth;
+        })
+
         return (
             <div
                 key={key}
                 style={{ ...style }}
             >
-                <h4 style={styleOfRow}>{resultSearchedData[index].company.nameOfCompany}</h4>
-                <p style={styleOfRow}>{resultSearchedData[index].company.email}</p>
-                <p style={styleOfRow}>{resultSearchedData[index].fullCost}</p>
+                <h4 style={styleOfRow}>{resultSearchedData[index].nameOfCompany}</h4>
+                <p style={styleOfRow}>Ilość pojazdów: {resultSearchedData[index].vehicles.length}</p>
+                <p style={styleOfRow}>Całkowita kwota: {totalCost}</p>
             </div>
         )
     }
@@ -229,7 +117,8 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
             return (
                 <div className="sidebar__left__requirements">
                     <ThemeProvider theme={theme}>
-                        {_renderSearchContent()}
+                        {/* {_renderSearchContent()} */}
+                        <SearchContent handleSearchRequest={handleSearchRequest} />
                     </ThemeProvider>
                 </div>
             )
@@ -246,7 +135,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         <div className={_correctClassNameOfSidebar} style={_styleOfSidebar}>
             <span className={_correctClassNameOfClickSidebar} onClick={() => {
                 handleOpenSidebar(nameOfSidebar)
-
             }}></span>
             {_isRenderSidebar()}
         </div>

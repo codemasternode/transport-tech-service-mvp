@@ -6,7 +6,7 @@ import axios from "axios";
 import Sidebar from './Sidebar';
 import './index.scss'
 
-const googleMapsApiKey = "AIzaSyDwQl8QdFAuyJF3KGe1wcju_Ozl1_lVDuY";
+const googleMapsApiKey = "AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM";
 
 class SearchBox extends Component {
     constructor(props) {
@@ -17,18 +17,13 @@ class SearchBox extends Component {
                 openRight: true,
             },
             selectedPlaces: [
-                { latitude: 50.049683, longitude: 19.944544 },
-                // { latitude: 50.049683, longitude: 19 },
-                // { latitude: 50.049683, longitude: 19.222233 }
+                { lat: 50.049683, lng: 19.944544 },
+                // { lat: 50.049683, lng: 19 },
+                // { lat: 50.049683, lng: 19.222233 }
             ],
             criteriaToSearch: {
                 criteria: {
-                    length: 2,
-                    width: 2,
-                    height: 2,
-                    capacity: 12,
-                    type: "Firanka",
-                    waitingTime: 12,
+                    weight: 2000,
                     volume: 32980,
                 },
                 distanceToDrive: 600,
@@ -66,40 +61,35 @@ class SearchBox extends Component {
                 ...this.state,
                 selectedPlaces: [
                     ...previousState.selectedPlaces,
-                    { latitude: lat, longitude: lng }
+                    { lat, lng }
                 ]
             };
         });
     }
 
-    _handleSearchRequest = () => {
-        const { criteria, isDimensionsRequired, distanceToDrive, points, operation } = this.state.criteriaToSearch
+    _handleSearchRequest = (dataForRequest) => {
+        const { selectedPlaces } = this.state
+
+        // typeOfSearch
         const data = {
-            criteria,
-            isDimensionsRequired,
-            distanceToDrive,
-            points,
-            operation
+            ...dataForRequest,
+            points: selectedPlaces
         }
+        console.log(data)
         this.setState({
             ...this.state,
             isVisible: true
         })
         axios.post('http://localhost:5000/api/distance', { ...data }).then((response) => {
-            console.log(response.data.offers)
+            console.log(response)
             this.setState({
                 ...this.state,
-                resultSearchedData: response.data.offers,
+                resultSearchedData: response.data.companies || [],
             })
 
         }, (err) => {
             console.log("Axios error: " + err)
         })
-
-        // this.setState({
-        //     ...this.state,
-        //     resultSearchedData: [{ company: "ELO" }]
-        // })
     }
 
     _renderMap = () => {
