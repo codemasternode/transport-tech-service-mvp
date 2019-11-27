@@ -29,14 +29,14 @@ export async function countTollPayments(waypoints) {
                         : "EAST"
         };
         let tollRoad = await TollRoad.find({
-            nameOfRoad: extracted[ex]
+            nameOfRoads: { $in: extracted[ex] }
         });
         let mainDirection = null;
         if (tollRoad.length !== 0) {
             if (tollRoad.length > 1) {
                 let currentCountry = await getCountryNameByReverseGeocoding(start_location.lat, start_location.lng)
                 tollRoad = await TollRoad.findOne({
-                    nameOfRoad: extracted[ex],
+                    nameOfRoads: { $in: extracted[ex] },
                     country: currentCountry
                 })
                 if (!tollRoad) {
@@ -45,6 +45,7 @@ export async function countTollPayments(waypoints) {
             } else {
                 tollRoad = tollRoad[0]
             }
+            console.log(tollRoad)
             let tollRoadPrepare = {
                 name: extracted[ex],
                 pricingPlans: []

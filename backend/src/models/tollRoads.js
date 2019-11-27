@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const TollRoadSchema = new mongoose.Schema(
   {
-    nameOfRoad: {
+    nameOfRoads: {
       required: true,
-      type: String
+      type: Array
     },
     route: {
       type: Array,
