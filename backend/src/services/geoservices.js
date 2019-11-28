@@ -15,9 +15,9 @@ export function getDistanceFromLatLonInKm(point1, point2) {
   var a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(deg2rad(point1.lat)) *
-      Math.cos(deg2rad(point2.lat)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(deg2rad(point2.lat)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c; // Distance in km
   return d;
@@ -50,6 +50,28 @@ export function getCountryNameByReverseGeocoding(lat, lng) {
       .asPromise()
       .then(response => {
         resolve(response.json.results[0].formatted_address);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}
+
+export function getAdministrationRegionNameByReverseGeocoding(lat, lng) {
+  return new Promise((resolve, reject) => {
+    googleMapsClient
+      .reverseGeocode({ latlng: `${lat},${lng}`, result_type: "administrative_area_level_1", language: "pl" })
+      .asPromise()
+      .then(response => {
+        let name = null
+        const result = response.json.results[0]
+        for (let i = 0; i < result.address_components.length; i++) {
+          if (result.address_components[i].types.includes("administrative_area_level_1")) {
+            name = result.address_components[i].short_name
+            break
+          }
+        }
+        resolve(name);
       })
       .catch(err => {
         reject(err);
