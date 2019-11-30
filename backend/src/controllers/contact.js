@@ -5,9 +5,8 @@ export async function contactToUs(req, res) {
     "name",
     "surname",
     "email",
-    "phone",
-    "taxNumber",
-    "description"
+    "description",
+    "topic"
   ];
 
   for (let i = 0; i < requireContactProperties.length; i++) {
@@ -21,10 +20,15 @@ export async function contactToUs(req, res) {
     }
   }
 
-  const { name, surname, email, phone, taxNumber, description } = req.body;
-
+  let { name, surname, email, taxNumber, description, companyName, topic } = req.body;
+  if (!taxNumber) {
+    taxNumber = "Brak"
+  }
+  if (!companyName) {
+    companyName = "Brak"
+  }
   loadTemplate("contactToUs", [
-    { name, surname, email, phone, taxNumber, description }
+    { name, surname, email, taxNumber, description, companyName, topic }
   ])
     .then(result => {
       sendEmail({
