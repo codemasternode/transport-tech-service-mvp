@@ -127,7 +127,6 @@ export async function contactToCompany(req, res) {
       numberOfPalettes,
       typeOfPalette,
       description,
-      companyEmail,
       vehicles,
       points,
       isDimensions
@@ -135,7 +134,7 @@ export async function contactToCompany(req, res) {
   ])
     .then(result => {
       sendEmail({
-        to: "marcinwarzybok@outlook.com",
+        to: companyEmail,
         subject: `New Customer ${name} ${surname}`,
         html: result[0].email.html,
         text: result[0].email.text
