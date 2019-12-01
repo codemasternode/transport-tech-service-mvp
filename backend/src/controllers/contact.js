@@ -50,15 +50,19 @@ export async function contactToCompany(req, res) {
     "surname",
     "email",
     "phone",
-    "description",
     "startTime",
-    "points",
+    "fullCost",
+    "weight",
+    "height",
+    "description",
     "companyEmail",
-    "vehicles"
+    "vehicles",
+    "points",
+    "isDimensions"
   ];
 
   for (let i = 0; i < requireContactProperties.length; i++) {
-    if (!req.body[requireContactProperties[i]]) {
+    if (req.body[requireContactProperties[i]] === undefined) {
       return res.status(400).send({
         msg: `Missing ${requireContactProperties[i]} property`
       });
@@ -70,9 +74,21 @@ export async function contactToCompany(req, res) {
     surname,
     email,
     phone,
+    startTime,
+    companyName,
+    taxNumber,
+    fullCost,
+    weight,
+    height,
+    width,
+    length,
+    numberOfPalettes,
+    typeOfPalette,
     description,
     companyEmail,
-    points
+    vehicles,
+    points,
+    isDimensions
   } = req.body;
 
   let generatedURL = "https://www.google.com/maps/dir/?api=1&";
@@ -88,9 +104,34 @@ export async function contactToCompany(req, res) {
   }
   generatedURL += "&travelmode=driving"
   console.log(generatedURL);
-
+  if (!taxNumber) {
+    taxNumber = "-"
+  }
+  if (!companyName) {
+    companyName = "-"
+  }
   loadTemplate("contactToCompany", [
-    {  }
+    {
+      name,
+      surname,
+      email,
+      phone,
+      startTime,
+      companyName,
+      taxNumber,
+      fullCost,
+      weight,
+      height,
+      width,
+      length,
+      numberOfPalettes,
+      typeOfPalette,
+      description,
+      companyEmail,
+      vehicles,
+      points,
+      isDimensions
+    }
   ])
     .then(result => {
       sendEmail({

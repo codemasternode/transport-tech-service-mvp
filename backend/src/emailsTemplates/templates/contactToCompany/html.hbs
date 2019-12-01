@@ -32,53 +32,70 @@
             </td>
         </tr>
         <tr>
+            <td colspan="2" align="center">
+                <img src="http://d2ckak7af1omc2.cloudfront.net/collect.png" alt="" width="500">
+            </td>
+        </tr>
+        <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Imię</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Otto</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{name}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwisko</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Thornton</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{surname}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Email</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">abcdef@interia.pl</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{email}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Numer telefonu</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">123123123</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{phone}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Data zlecenia</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">4 stycznia 2020</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{startTime}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwa firmy</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">-</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{companyName}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">NIP</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">-</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{taxNumber}}</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Cena</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">1245 PLN</td>
-        </tr>
-        <tr>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Liczba palet</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">23</td>
-        </tr>
-        <tr>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Typ palety</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">EUR-EPAL</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{fullCost}} PLN</td>
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Waga</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">2.5 t</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{weight}}</td>
         </tr>
         <tr>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Maksymalna wysokość</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">1.9 m</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Wysokość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{height}}</td>
         </tr>
+        {{#if isDimensions}}
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Szerokość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{width}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Długość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{length}}</td>
+        </tr>
+        {{else}}
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Liczba palet</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{numberOfPalettes}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Typ palety</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{typeOfPalette}}</td>
+        </tr>
+        {{/if}}
+
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Trasa</td>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;max-width: 400px;word-break: break-all;
@@ -96,12 +113,16 @@
         </tr>
         <tr>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwa pojazdu</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Baza</td>
             <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Cena</td>
         </tr>
+        {{#each vehicles as |vehicle|}}
         <tr>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Pojazd A</td>
-            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">1245 PLN</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.name}}</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.companyBase}}</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.fullCost}}</td>
         </tr>
+        {{/each}}
     </table>
     <table style="color: white !important;background: rgba(51,51,51,1);padding-top: 20px;padding-bottom: 20px;"
         width="100%">
