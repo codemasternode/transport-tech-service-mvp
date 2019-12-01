@@ -50,10 +50,11 @@ export async function contactToCompany(req, res) {
     "surname",
     "email",
     "phone",
-    "taxNumber",
     "description",
+    "startTime",
     "points",
-    "companyEmail"
+    "companyEmail",
+    "vehicles"
   ];
 
   for (let i = 0; i < requireContactProperties.length; i++) {
@@ -69,7 +70,6 @@ export async function contactToCompany(req, res) {
     surname,
     email,
     phone,
-    taxNumber,
     description,
     companyEmail,
     points
@@ -89,19 +89,19 @@ export async function contactToCompany(req, res) {
   generatedURL += "&travelmode=driving"
   console.log(generatedURL);
 
-  // loadTemplate("contactToCompany", [
-  //   { name, surname, email, phone, taxNumber, description, companyEmail }
-  // ])
-  //   .then(result => {
-  //     sendEmail({
-  //       to: "marcinwarzybok@outlook.com",
-  //       subject: `New Customer ${name} ${surname}`,
-  //       html: result[0].email.html,
-  //       text: result[0].email.text
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
+  loadTemplate("contactToCompany", [
+    {  }
+  ])
+    .then(result => {
+      sendEmail({
+        to: "marcinwarzybok@outlook.com",
+        subject: `New Customer ${name} ${surname}`,
+        html: result[0].email.html,
+        text: result[0].email.text
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
   res.send({});
 }
