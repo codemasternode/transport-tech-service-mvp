@@ -1,4 +1,5 @@
 import Axios from "axios";
+import "dotenv/config";
 import googleMaps from "@google/maps";
 import commandsPrior from '../data/default/commandsPrior'
 

@@ -1,0 +1,7 @@
+const ADD_COMPANY = 'ADD_COMPANY'
+const RESET_COMPANIES = 'RESET_COMPANIES'
+
+export default {
+    ADD_COMPANY,
+    RESET_COMPANIES,
+}
