@@ -96,6 +96,7 @@ class SearchBox extends Component {
         //         ...this.state,
         //         resultSearchedData: response.data.companies || [],
         //     })
+        //     this.props.getAllCompanies(response.data.companies || [])
 
         // }, (err) => {
         //     console.log("Axios error: " + err)
@@ -162,12 +163,17 @@ class SearchBox extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    chosenCompany: state.companies
-})
+const mapStateToProps = state => {
+    const { chosenCompany, allFetchedCompanies } = state.companies
+    return ({
+        chosenCompany,
+        allFetchedCompanies
+    })
+}
 
 const mapDispatchToProps = dispatch => ({
-    selectCompany: company => dispatch(actions.add(company))
+    selectCompany: company => dispatch(actions.add(company)),
+    getAllCompanies: company => dispatch(actions.addAll(company))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBox));
