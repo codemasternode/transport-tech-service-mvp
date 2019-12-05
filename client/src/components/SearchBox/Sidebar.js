@@ -3,9 +3,6 @@ import { Button, TextField, Select, FormControlLabel, FormHelperText, Checkbox, 
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import labelsOfSearchInputs from '../../constants/dataOfTransports'
-import typesOfSearch from '../../constants/typesOfSearch'
-import typesOfPallets from '../../constants/typesOfPallets'
 import Geocode from "react-geocode";
 import axios from "axios";
 import { AutoSizer, List } from 'react-virtualized';

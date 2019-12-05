@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import SearchPage from "./pages/SearchPage";
+import MailPage from "./pages/MailPage";
 import AdminRoute from './components/routes/AdminRoute'
 import PrivateRoute from './components/routes/PrivateRoute'
 
@@ -23,6 +24,13 @@ export const routes = [
     isPrivate: false,
     isAdmin: false,
     component: SearchPage
+  },
+  {
+    name: "mail",
+    path: "/mail",
+    isPrivate: false,
+    isAdmin: false,
+    component: MailPage
   }
 ];
 
@@ -52,9 +60,7 @@ export default function App() {
           ) : value.isAdmin ? (
             <AdminRoute key={index} path={value.path} component={value.component} />
           ) : (
-
                   <Route key={index} path={value.path} component={value.component} />
-
                 )
         )}
         <Route component={NotFound} />

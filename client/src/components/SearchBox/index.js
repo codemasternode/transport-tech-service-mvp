@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Geocode from "react-geocode";
 import Map from './Map';
 import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 import axios from "axios";
 import Sidebar from './Sidebar';
 import './index.scss'
+import actions from '../../reducers/companies/duck/actions';
 
 const googleMapsApiKey = "AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM";
 
@@ -45,6 +47,10 @@ class SearchBox extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log(this.props)
+    }
+
     _handleOpenSidebar = name => {
         const { isOpenSidebar } = this.state;
         isOpenSidebar[name] = !isOpenSidebar[name]
@@ -80,16 +86,21 @@ class SearchBox extends Component {
             ...this.state,
             isVisible: true
         })
-        axios.post('http://localhost:5000/api/distance', { ...data }).then((response) => {
-            console.log(response)
-            this.setState({
-                ...this.state,
-                resultSearchedData: response.data.companies || [],
-            })
 
-        }, (err) => {
-            console.log("Axios error: " + err)
-        })
+        console.log(this.props)
+        this.props.selectCompany(data)
+        this.props.history.push('/mail')
+        // axios.post('http://localhost:5000/api/distance', { ...data }).then((response) => {
+        //     console.log(response)
+        //     this.setState({
+        //         ...this.state,
+        //         resultSearchedData: response.data.companies || [],
+        //     })
+        //     this.props.getAllCompanies(response.data.companies || [])
+
+        // }, (err) => {
+        //     console.log("Axios error: " + err)
+        // })
     }
 
     _renderMap = () => {
@@ -152,6 +163,17 @@ class SearchBox extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    const { chosenCompany, allFetchedCompanies } = state.companies
+    return ({
+        chosenCompany,
+        allFetchedCompanies
+    })
+}
 
+const mapDispatchToProps = dispatch => ({
+    selectCompany: company => dispatch(actions.add(company)),
+    getAllCompanies: company => dispatch(actions.addAll(company))
+})
 
-export default SearchBox;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBox));
