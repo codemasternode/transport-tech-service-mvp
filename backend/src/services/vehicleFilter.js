@@ -9,6 +9,7 @@ function costVolume(truck, volume, capacity) {
 }
 
 export function vehicleFilterByPallet(trucks, palettes, weight) {
+    console.log(weight)
     var w = weight / palettes;
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {

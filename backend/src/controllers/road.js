@@ -323,6 +323,7 @@ export async function getRoadOffers(req, res) {
           return value.isInside === true
         })
         const filtered = vehicleFilterByPallet(formattedCompanies[i].vehicles, numberOfPallets, weight)
+        console.log(filtered)
         if (filtered) {
           formattedCompanies[i].vehicles = filtered.map((value, index) => {
             return value.truck
