@@ -81,26 +81,50 @@ class SearchBox extends Component {
             ...dataForRequest,
             points: selectedPlaces
         }
-        console.log(data)
+        // console.log(data)
+        this.props.getSearchedCriteria(data)
+
         this.setState({
             ...this.state,
             isVisible: true
         })
 
-        console.log(this.props)
-        this.props.selectCompany(data)
-        this.props.history.push('/mail')
-        // axios.post('http://localhost:5000/api/distance', { ...data }).then((response) => {
-        //     console.log(response)
-        //     this.setState({
-        //         ...this.state,
-        //         resultSearchedData: response.data.companies || [],
-        //     })
-        //     this.props.getAllCompanies(response.data.companies || [])
+        // console.log(this.props)
 
-        // }, (err) => {
-        //     console.log("Axios error: " + err)
-        // })
+        const dane = {
+            "points": [
+                {
+                    "lat": 50.038012,
+                    "lng": 20.031036
+                },
+                {
+                    "lat": 52.237094,
+                    "lng": 18.252975
+                }
+            ],
+            "numberOfPallets": 30,
+            "typeOfPallet": "EUR-3",
+            "height": 2,
+            "typeOfSearch": "Palette",
+            "weight": 2
+        }
+
+        console.log(dane, data)
+
+        // this.props.selectCompany(data)
+        axios.post('http://localhost:5000/api/distance', data).then((response) => {
+            console.log(response)
+            this.setState({
+                ...this.state,
+                resultSearchedData: response.data.companies || [],
+            })
+            this.props.getAllCompanies(response.data.companies || [])
+
+        }, (err) => {
+            console.log("Axios error: " + err)
+        })
+        // this.props.history.push('/mail')
+
     }
 
     _renderMap = () => {
@@ -164,14 +188,16 @@ class SearchBox extends Component {
 }
 
 const mapStateToProps = state => {
-    const { chosenCompany, allFetchedCompanies } = state.companies
+    const { chosenCompany, allFetchedCompanies, searchedCriterial } = state.companies
     return ({
+        searchedCriterial,
         chosenCompany,
-        allFetchedCompanies
+        allFetchedCompanies,
     })
 }
 
 const mapDispatchToProps = dispatch => ({
+    getSearchedCriteria: criteria => dispatch(actions.addCriteria(criteria)),
     selectCompany: company => dispatch(actions.add(company)),
     getAllCompanies: company => dispatch(actions.addAll(company))
 })

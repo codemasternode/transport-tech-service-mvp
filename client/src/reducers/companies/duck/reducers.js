@@ -2,6 +2,7 @@ import types from './types';
 import produce from 'immer'
 
 const INITIAL_STATE = {
+    searchedCriterial: {},
     chosenCompany: {},
     allFetchedCompanies: []
 }
@@ -12,6 +13,10 @@ const companiesReducer = (state = INITIAL_STATE, action) => {
             console.log(action.item)
             return produce(state, draftState => {
                 draftState.chosenCompany = action.item
+            })
+        case types.ADD_CRITERIA:
+            return produce(state, draftState => {
+                draftState.searchedCriterial = action.item
             })
         case types.ADD_ALL_COMPANIES:
             return produce(state, draftState => {

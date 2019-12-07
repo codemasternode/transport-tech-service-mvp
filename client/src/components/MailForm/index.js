@@ -178,7 +178,7 @@ const MailForm = (props) => {
                     />
                 </Grid>
                 {/* <Grid item xs={12}> */}
-                {/* {_returnCompanyData()} */}
+                {_returnCompanyData()}
                 {/* </Grid> */}
                 <Grid item xs={12}>
                     <Button variant="contained" color="primary">Wyślij</Button>
