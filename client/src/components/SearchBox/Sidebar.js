@@ -93,7 +93,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
 
     const _renderResultContent = () => {
         // const {isVisible} = state;
-        // const heightPerRow = 
         const { heightPerRow } = state;
         if (isVisible) {
             if (allFetchedCompanies.length === 0) {
