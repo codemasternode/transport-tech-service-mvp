@@ -241,7 +241,6 @@ export async function getRoadOffers(req, res) {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
         for (let i = 0; i < companies.length; i++) {
-          console.log(companies[i].logo)
           let com = {
             nameOfCompany: companies[i].nameOfCompany,
             _id: companies[i]._id,
@@ -321,34 +320,43 @@ export async function getRoadOffers(req, res) {
       }
 
       for (let i = 0; i < formattedCompanies.length; i++) {
+        let isNo = false
         formattedCompanies[i].vehicles = formattedCompanies[i].vehicles.filter((value) => {
           return value.isInside === true
         })
-        const filtered = vehicleFilterByPallet(formattedCompanies[i].vehicles, numberOfPallets, weight)
-        if (filtered) {
-          formattedCompanies[i].vehicles = filtered.map((value, index) => {
-            return value.truck
-          })
-          for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
-            if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
-              formattedCompanies[i].vehicles[k] = {
-                ...formattedCompanies[i].vehicles[k],
-                fullCost:
-                  formattedCompanies[i].vehicles[k].diffDistance *
-                  formattedCompanies[i].vehicles[k].costPerKm +
-                  distance * formattedCompanies[i].vehicles[k].costPerKm +
-                  formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+        if (formattedCompanies[i].vehicles.length === 0) {
+          formattedCompanies.splice(i, 1)
+          i--
+          isNo = true
+        }
+        if (!isNo) {
+          const filtered = vehicleFilterByPallet(formattedCompanies[i].vehicles, numberOfPallets, weight)
+          if (filtered) {
+            formattedCompanies[i].vehicles = filtered.map((value, index) => {
+              return value.truck
+            })
+            for (let k = 0; k < formattedCompanies[i].vehicles.length; k++) {
+              if (formattedCompanies[i].vehicles[k].diffDistance + formattedCompanies[i].vehicles[k].backDistance > formattedCompanies[i].vehicles[k].range.operationRange) {
+                formattedCompanies[i].vehicles[k] = {
+                  ...formattedCompanies[i].vehicles[k],
+                  fullCost:
+                    formattedCompanies[i].vehicles[k].diffDistance *
+                    formattedCompanies[i].vehicles[k].costPerKm +
+                    distance * formattedCompanies[i].vehicles[k].costPerKm +
+                    formattedCompanies[i].vehicles[k].backDistance * formattedCompanies[i].vehicles[k].costPerKm
+                }
+              } else {
+                formattedCompanies[i].vehicles[k] = {
+                  ...formattedCompanies[i].vehicles[k],
+                  fullCost:
+                    distance * formattedCompanies[i].vehicles[k].costPerKm
+                };
               }
-            } else {
-              formattedCompanies[i].vehicles[k] = {
-                ...formattedCompanies[i].vehicles[k],
-                fullCost:
-                  distance * formattedCompanies[i].vehicles[k].costPerKm
-              };
-            }
 
+            }
           }
         }
+
       }
       return formattedCompanies;
     }
@@ -449,7 +457,6 @@ export async function getRoadOffers(req, res) {
             }
           }
         }
-        console.log(diets.sumDiets, companies[i].vehicles[k], 452)
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -466,7 +473,6 @@ export async function getRoadOffers(req, res) {
               (100 + companies[i].vehicles[k].margin)) /
             100
         };
-        console.log(companies[i].vehicles[k].fullCost, 452)
       }
     }
     res.send({ companies });
@@ -582,6 +588,7 @@ export async function getRoadOffers(req, res) {
         }
         return distinctVehiclesInCompanies;
       }
+      console.log(vehicles.length)
 
       for (let i = 0; i < vehicles.length; i++) {
         for (let k = 0; k < formattedCompanies.length; k++) {
