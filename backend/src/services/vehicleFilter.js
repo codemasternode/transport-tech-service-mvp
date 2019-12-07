@@ -9,7 +9,6 @@ function costVolume(truck, volume, capacity) {
 }
 
 export function vehicleFilterByPallet(trucks, palettes, weight) {
-    console.log(weight)
     var w = weight / palettes;
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {
@@ -54,12 +53,14 @@ export function vehicleFilterByPallet(trucks, palettes, weight) {
 }
 
 export function vehicleFilterByVolume(trucks, volume, weight) {
-    var w = weight / volume;    
+    volume = Math.floor(volume * 10)
+    var w = weight / volume;
     // To begin, we can carry nothing for no weight.
     console.log(trucks)
     var best_path = [{ cost: 0 }];
     trucks.forEach(function (truck) {
-        var max_volume = Math.floor((Math.min(truck.volume, truck.capacity/w)));
+        truck.volume = Math.floor(truck.volume * 10)
+        var max_volume = Math.floor((Math.min(truck.volume, truck.capacity / w)));
         // i is the number of volume other trucks carry.
         // We count down so that there is no chance the solution there
         // has already used this truck.
@@ -88,7 +89,6 @@ export function vehicleFilterByVolume(trucks, volume, weight) {
         }
     });
 
-
     // The answer is a linked list.  Let's decode it for convenience.
     if (best_path[volume] == null) {
         return null;
@@ -102,7 +102,7 @@ export function vehicleFilterByVolume(trucks, volume, weight) {
                 volume: best.volume
             });
             best = best.prev_node;
-        }        
+        }
         return answer;
     }
 }

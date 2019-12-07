@@ -5,6 +5,7 @@
         "surname": "Kowalski",
         "taxNumber": "6793184304",
         "email": "admin@teachtechservice.com",
+        "logo": "logo1.png",
         "plan": {
             "name": "Basic",
             "vehicles": 10,

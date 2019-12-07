@@ -130,14 +130,13 @@ export async function getRoadOffers(req, res) {
             ? companies[i].vehicles[k].salary / 30
             : companies[i].vehicles[k].salary / 60);
         companies[i].vehicles[k] = {
-          ...companies[i].vehicles[k],
           _id: companies[i].vehicles[k]._id,
           name: companies[i].vehicles[k].name,
           fullCost:
             (companies[i].vehicles[k].fullCost *
               (100 + companies[i].vehicles[k].margin)) /
             100
-        };
+        }
       }
     }
     res.send({ companies });
@@ -242,9 +241,12 @@ export async function getRoadOffers(req, res) {
         const companies = await Companies.find({});
         const distinctVehiclesInCompanies = [];
         for (let i = 0; i < companies.length; i++) {
+          console.log(companies[i].logo)
           let com = {
             nameOfCompany: companies[i].nameOfCompany,
             _id: companies[i]._id,
+            email: companies[i].email,
+            logo: companies[i].logo,
             vehicles: []
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {
@@ -323,7 +325,6 @@ export async function getRoadOffers(req, res) {
           return value.isInside === true
         })
         const filtered = vehicleFilterByPallet(formattedCompanies[i].vehicles, numberOfPallets, weight)
-        console.log(filtered)
         if (filtered) {
           formattedCompanies[i].vehicles = filtered.map((value, index) => {
             return value.truck
@@ -448,7 +449,7 @@ export async function getRoadOffers(req, res) {
             }
           }
         }
-
+        console.log(diets.sumDiets, companies[i].vehicles[k], 452)
         companies[i].vehicles[k].fullCost +=
           diets.sumDiets +
           (Math.floor(diets.fullNumberOfDays) *
@@ -465,6 +466,7 @@ export async function getRoadOffers(req, res) {
               (100 + companies[i].vehicles[k].margin)) /
             100
         };
+        console.log(companies[i].vehicles[k].fullCost, 452)
       }
     }
     res.send({ companies });
@@ -530,6 +532,8 @@ export async function getRoadOffers(req, res) {
           let com = {
             nameOfCompany: companies[i].nameOfCompany,
             _id: companies[i]._id,
+            email: companies[i].email,
+            logo: companies[i].logo,
             vehicles: []
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {

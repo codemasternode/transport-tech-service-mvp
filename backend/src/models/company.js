@@ -7,7 +7,7 @@ import CountryModel from "./country";
 
 const CompanySchema = new mongoose.Schema(
   {
-    companyLogo: {
+    logo: {
       type: String
     },
     nameOfCompany: {
