@@ -69,7 +69,6 @@ const MailForm = (props) => {
         const { value, name } = e.target;
         const { userData } = state;
         userData[name] = value;
-
         setState({
             ...state,
             userData
@@ -79,22 +78,22 @@ const MailForm = (props) => {
 
     const _handleCheckbox = e => {
         setState({
+            ...state,
             companyData: e.target.checked
         })
     }
 
     const _handleSendEmail = () => {
+        const { userData } = state;
         const data = {
-            ...searchedCriterial
+            ...userData,
+            ...searchedCriterial,
+            startTime: selectedDate,
+
         }
 
         axios.post('http://localhost:5000/api/contact/contact-to-company', data).then((response) => {
             console.log(response)
-            // this.setState({
-            //     ...this.state,
-            //     resultSearchedData: response.data.companies || [],
-            // })
-            // this.props.getAllCompanies(response.data.companies || [])
 
         }, (err) => {
             console.log("Axios error: " + err)
@@ -167,9 +166,7 @@ const MailForm = (props) => {
             surname,
             email,
             taxNumber,
-            additionalNotes,
-            companyName,
-            companyNIP } } = state;
+            additionalNotes } } = state;
         return (
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>

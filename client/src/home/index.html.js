@@ -35,7 +35,7 @@ module.exports = `<!DOCTYPE html>
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
         <div class="container">
             <!-- LOGO -->
-            <a class="navbar-brand logo text-uppercase" href="index.html">
+            <a class="navbar-brand logo text-uppercase" href="/search">
                 <img src="images/1.png" class="logo-light" alt="" height="90">
                 <img src="images/1.png" class="logo-dark" alt="" height="60">
             </a>
@@ -81,7 +81,7 @@ module.exports = `<!DOCTYPE html>
                                 <p class="home-desc line-height_1_8 mt-4 text-white-50">Nowoczesne narzędzie
                                     umożliwiające łatwe i szybkie porównanie ofert firm z branży transportowej</p>
                                 <div class="mt-5">
-                                    <a href="" class="btn btn-white btn-round">Wyceń fracht<i
+                                    <a href="/search" class="btn btn-white btn-round">Wyceń fracht<i
                                             class="mdi mdi-arrow-right"></i></a>
                                 </div>
                             </div>

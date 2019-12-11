@@ -74,7 +74,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         let summary = 0;
         const totalCost = vehicles.reduce((sum, curr) => {
             console.log(sum, curr)
-            return summary += curr.sumCostPerMonth;
+            return summary += curr.fullCost;
         })
 
         return (

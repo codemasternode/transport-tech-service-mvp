@@ -19,7 +19,7 @@ class SearchBox extends Component {
                 openRight: true,
             },
             selectedPlaces: [
-                { lat: 50.049683, lng: 19.944544 },
+                // { lat: 50.049683, lng: 19.944544 },
                 // { lat: 50.049683, lng: 19 },
                 // { lat: 50.049683, lng: 19.222233 }
             ],
@@ -46,6 +46,10 @@ class SearchBox extends Component {
 
         }
     }
+
+    // componentDidCatch(err){
+
+    // }
 
     componentDidMount() {
         console.log(this.props)
