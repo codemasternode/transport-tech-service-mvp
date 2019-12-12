@@ -49,19 +49,18 @@ const SearchContent = ({ handleSearchRequest }) => {
             length: 2,
             width: 2,
             height: 2,
-            capacity: 12,
-            type: "Firanka",
-            volume: 32980,
+            weight: 1000,
         },
         selectedOperation: "Palette",
         selectedPallets: "EUR-EPAL",
         numberOfPallets: 1,
-        totalWeightOfPallet: 1400,
-        heightOfPallet: 0.144,
+        totalWeightOfPallets: 1400,
+        heightOfPallets: 0.144,
         selectToSearching: [
             { name: "Palette", label: "Palety" },
             { name: "dimensions", label: "Wymiary" }
         ],
+
 
 
     })
@@ -69,41 +68,43 @@ const SearchContent = ({ handleSearchRequest }) => {
     // handle change of select value
 
     const _handleChangeSelectValue = (e, type) => {
-        let { selectedOperation, selectedPallets, totalWeightOfPallet, heightOfPallet } = state;
+        let { selectedOperation, selectedPallets } = state;
         const { value } = e.target;
         if (type === "selectedOperation") {
             selectedOperation = value;
         } else {
             selectedPallets = value
-            // typesOfPallets.map((option, key) => {
-            //     const { name,
-            //         length,
-            //         width,
-            //         height,
-            //         totalWeight
-            //     } = option
-            //     if (name === selectedPallets && selectedOperation === "Palette") {
-            //         totalWeightOfPallet = totalWeight;
-            //         heightOfPallet = height
-            //     }
-            // })
         }
 
         setState({
             ...state,
             selectedOperation,
             selectedPallets,
-            // totalWeightOfPallet,
-            // heightOfPallet
+            // totalWeightOfPallets,
+            // heightOfPallets
         })
     }
 
-    const _handelChangeNumberOfPallets = e => {
-        const { value } = e.target;
+    const _handelChangeDimensionsOfPallets = e => {
+        const { value, name } = e.target;
+
         setState({
             ...state,
-            numberOfPallets: value
+            [name]: parseInt(value)
         })
+    }
+
+    const _handelChangeDimensions = e => {
+        const { value, name } = e.target;
+        const { criteria } = state;
+        criteria[name] = value
+        console.log(value)
+        setState({
+            ...state,
+            criteria
+        })
+
+
     }
 
     /// render select to choose option of searching
@@ -147,19 +148,38 @@ const SearchContent = ({ handleSearchRequest }) => {
 
     const _renderInputs = () => {
         //render inputs of criteria
+        const { criteria: { length,
+            width,
+            height,
+            weight } } = state;
+
         return (
-            labelsOfSearchInputs.map((item, key) => (
-                <div key={key} className="text__field__form">
-                    <label className="text__field__label">{item.label}</label>
-                    <input type="text" className="text__field__input" />
+            // labelsOfSearchInputs.map((item, key) => (
+            <React.Fragment>
+                <div className="text__field__form">
+                    <label className="text__field__label">Waga (kg)</label>
+                    <input type="text" className="text__field__input" name="weight" value={weight} onChange={e => _handelChangeDimensions(e)} />
                 </div>
-            ))
+                <div className="text__field__form">
+                    <label className="text__field__label">Długość (m)</label>
+                    <input type="text" className="text__field__input" name="length" value={length} onChange={e => _handelChangeDimensions(e)} />
+                </div>
+                <div className="text__field__form">
+                    <label className="text__field__label">Szerokość (m)</label>
+                    <input type="text" className="text__field__input" name="width" value={width} onChange={e => _handelChangeDimensions(e)} />
+                </div>
+                <div className="text__field__form">
+                    <label className="text__field__label">Wysokość (m)</label>
+                    <input type="text" className="text__field__input" name="height" value={height} onChange={e => _handelChangeDimensions(e)} />
+                </div>
+            </React.Fragment>
+            // ))
         )
     }
 
     const _renderPalletSelect = () => {
         // typesOfPallets
-        const { selectedPallets, numberOfPallets } = state;
+        const { selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets } = state;
         return (
             <React.Fragment>
                 <StyledDiv>
@@ -182,7 +202,19 @@ const SearchContent = ({ handleSearchRequest }) => {
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Ilość palet:</StyledDimensionsTitle> </label>
-                        <input value={numberOfPallets} type="number" className="text__field__input" onChange={e => _handelChangeNumberOfPallets(e)} />
+                        <input value={numberOfPallets} name="numberOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                    </div>
+                </StyledDiv>
+                <StyledDiv>
+                    <div className="text__field__form" style={{ padding: 0 }}>
+                        <label className="text__field__label"><StyledDimensionsTitle>Całkowita waga:</StyledDimensionsTitle> </label>
+                        <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                    </div>
+                </StyledDiv>
+                <StyledDiv>
+                    <div className="text__field__form" style={{ padding: 0 }}>
+                        <label className="text__field__label"><StyledDimensionsTitle>Wysokość:</StyledDimensionsTitle> </label>
+                        <input value={heightOfPallets} name="heightOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
             </React.Fragment>
@@ -255,7 +287,7 @@ const SearchContent = ({ handleSearchRequest }) => {
     }
 
     const _renderSearchContent = () => {
-        const { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallet, heightOfPallet, criteria } = state;
+        const { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets, criteria } = state;
         // search content of left sidebar
         return (
             <Grid container={true} direction="column" alignItems="center">
@@ -274,19 +306,17 @@ const SearchContent = ({ handleSearchRequest }) => {
                     if (selectedOperation === "Palette") {
                         dataForRequest = {
                             numberOfPallets,
-                            weight: totalWeightOfPallet,
-                            height: heightOfPallet,
+                            weight: totalWeightOfPallets / 1000,
+                            height: heightOfPallets,
                             typeOfSearch: selectedOperation,
                             typeOfPallet: selectedPallets
                         }
 
                     } else {
-                        const { volume, weight } = criteria;
-                        dataForRequest["volume"] = volume
+                        const { length, weight, height, width } = criteria;
+                        dataForRequest["volume"] = length * height * width
                         dataForRequest["weight"] = weight
                         dataForRequest["typeOfSearch"] = selectedOperation
-
-
                     }
                     handleSearchRequest(dataForRequest)
 
@@ -315,7 +345,6 @@ SearchContent.defaultProps = {
         console.warn("Props handleSearchRequest doesn't work")
     }
 };
-
 
 SearchContent.propTypes = {
     handleSearchRequest: PropTypes.func

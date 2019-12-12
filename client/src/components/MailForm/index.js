@@ -1,8 +1,16 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
+import "moment/locale/pl";
+
+moment.locale("pl");
 
 const Container = styled.div`
     // width: 100%;
@@ -34,48 +42,83 @@ const StyledImg = styled.img`
 
 
 const MailForm = (props) => {
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         companyData: true,
-
+        userData: {
+            name: "",
+            surname: "",
+            email: "",
+            taxNumber: "",
+            additionalNotes: "",
+            companyName: "",
+            companyNIP: "",
+        }
     })
-
-    useEffect(() => {
-        // console.log(props)
-    }, [])
+    const [selectedDate, handleDateChange] = useState(new Date());
+    // useEffect(() => {
+    //     // console.log(props)
+    // }, [])
 
     const { chosenCompany } = useSelector(state => state.companies)
+    const { searchedCriterial } = useSelector(state => state.companies)
 
     console.log(chosenCompany)
 
     const _handleInputChange = e => {
         //handle input value
+        const { value, name } = e.target;
+        const { userData } = state;
+        userData[name] = value;
+        setState({
+            ...state,
+            userData
+        })
 
     }
 
-    const handleCheckbox = e => {
+    const _handleCheckbox = e => {
         setState({
+            ...state,
             companyData: e.target.checked
+        })
+    }
+
+    const _handleSendEmail = () => {
+        const { userData } = state;
+        const data = {
+            ...userData,
+            ...searchedCriterial,
+            startTime: selectedDate,
+
+        }
+
+        axios.post('http://localhost:5000/api/contact/contact-to-company', data).then((response) => {
+            console.log(response)
+
+        }, (err) => {
+            console.log("Axios error: " + err)
         })
     }
 
     const _renderHeaderOfMailer = () => {
         return (
-
-            <Grid container>
-                <Grid item xs={5}>
-                    <Link to="/search">Powrót do wyszukiwania</Link>
-                    <StyledImg src="" alt="company" />
+            <React.Fragment>
+                <Link to="/search">Powrót do wyszukiwania</Link>
+                <Grid container>
+                    <Grid item xs={5}>
+                        <StyledImg src="http://d2ckak7af1omc2.cloudfront.net/company_logos/logo1.png" alt="company" />
+                    </Grid>
+                    <Grid item xs={7}>
+                        <h2>Firma Transportowa X</h2>
+                        <h4>Dane firmy</h4>
+                        <StylexText>Nip: XXX-xxx-xxx</StylexText>
+                        <StylexText>VAT: TAK/NIE</StylexText>
+                        <StylexText>Siedziba firmy</StylexText>
+                        <StylexText>Telefon</StylexText>
+                        <StylexText>{chosenCompany.typeOfSearch}</StylexText>
+                    </Grid>
                 </Grid>
-                <Grid item xs={7}>
-                    <h2>Firma Transportowa X</h2>
-                    <h4>Dane firmy</h4>
-                    <StylexText>Nip: XXX-xxx-xxx</StylexText>
-                    <StylexText>VAT: TAK/NIE</StylexText>
-                    <StylexText>Siedziba firmy</StylexText>
-                    <StylexText>Telefon</StylexText>
-                    <StylexText>{chosenCompany.typeOfSearch}</StylexText>
-                </Grid>
-            </Grid>
+            </React.Fragment>
 
 
         )
@@ -119,7 +162,11 @@ const MailForm = (props) => {
     }
 
     const _renderFormContent = () => {
-        const { companyData } = state;
+        const { companyData, userData: { name,
+            surname,
+            email,
+            taxNumber,
+            additionalNotes } } = state;
         return (
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -131,10 +178,12 @@ const MailForm = (props) => {
                         label="Imie"
                         fullWidth
                         autoComplete="name"
+                        value={name}
+                        onChange={e => _handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField variant="outlined" id="surname" name="surname" label="Nazwisko" fullWidth />
+                    <TextField variant="outlined" id="surname" name="surname" label="Nazwisko" fullWidth value={surname} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -146,18 +195,34 @@ const MailForm = (props) => {
                         label="Email"
                         fullWidth
                         autoComplete="email"
+                        value={email}
+                        onChange={e => _handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         variant="outlined"
                         required
-                        id="phoneNumber"
-                        name="phoneNumber"
+                        id="taxNumber"
+                        name="taxNumber"
                         label="Numer telefonu"
                         fullWidth
-                        autoComplete="phoneNumber"
+                        autoComplete="taxNumber"
+                        value={taxNumber}
+                        onChange={e => _handleInputChange(e)}
                     />
+                </Grid>
+                <Grid item xs={12}>
+                    <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale='pl'>
+                        <KeyboardDatePicker
+                            clearable
+                            value={selectedDate}
+                            placeholder="10/10/2019"
+                            onChange={date => handleDateChange(date)}
+                            minDate={new Date()}
+                            format="MM/dd/yyyy"
+                        />
+                    </MuiPickersUtilsProvider>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
@@ -169,26 +234,30 @@ const MailForm = (props) => {
                         defaultValue="Opis..."
                         margin="normal"
                         variant="outlined"
+                        value={additionalNotes}
+                        onChange={e => _handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <FormControlLabel
-                        control={<Checkbox onChange={e => handleCheckbox(e)} color="primary" name="companyData" checked={companyData} value={true} />}
+                        control={<Checkbox onChange={e => _handleCheckbox(e)} color="primary" name="companyData" checked={companyData} value={true} />}
                         label="Dane firmy"
                     />
                 </Grid>
                 {/* <Grid item xs={12}> */}
-                {/* {_returnCompanyData()} */}
+                {_returnCompanyData()}
                 {/* </Grid> */}
                 <Grid item xs={12}>
-                    <Button variant="contained" color="primary">Wyślij</Button>
+                    <Button variant="contained" color="primary" onClick={_handleSendEmail}>Wyślij</Button>
                 </Grid>
             </Grid>
         )
     }
 
     const _returnCompanyData = () => {
-        const { companyData } = state;
+        const { companyData, userData: {
+            companyName,
+            companyNIP } } = state;
         return (
             <React.Fragment>
                 <Grid item xs={12} sm={6}>
@@ -202,10 +271,11 @@ const MailForm = (props) => {
                         placeholder="Nazwa firmy"
                         fullWidth
                         autoComplete="companyName"
+                        value={companyName}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField variant="outlined" disabled={!companyData} id="nip" name="nip" placeholder="Numer identyfikacji podatkowej" label="NIP" fullWidth />
+                    <TextField variant="outlined" disabled={!companyData} id="nip" name="nip" placeholder="Numer identyfikacji podatkowej" label="NIP" fullWidth value={companyNIP} />
                 </Grid>
             </React.Fragment>
         )

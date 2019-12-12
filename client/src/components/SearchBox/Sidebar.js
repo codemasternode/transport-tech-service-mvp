@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, TextField, Select, FormControlLabel, FormHelperText, Checkbox, Grid, Container, Paper, FormLabel, MenuItem, CircularProgress } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Button, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -7,6 +7,7 @@ import Geocode from "react-geocode";
 import axios from "axios";
 import { AutoSizer, List } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchContent from './SearchContent';
 
@@ -43,13 +44,23 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 "lat": 54.030763,
                 "lng": 20.111284
             }
-        ]
+        ],
+        heightPerRow: 0,
     })
 
     const styleOfRow = {
         margin: 5,
         // pargin: 1
     }
+
+    useEffect(() => {
+        // const height = this.divElement.clientHeight;
+
+        // setState({ heightPerRow: height / allFetchedCompanies.length });
+    }, [])
+
+    // get all companies from redux
+    const { allFetchedCompanies } = useSelector(state => state.companies)
 
     const _rowRenderer = ({
         key,         // Unique key within array of rows
@@ -58,11 +69,12 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         isVisible,   // This row is visible within the List (eg it is not an overscanned row)
         style        // Style object to be applied to row (to position it)
     }) => {
-        const { vehicles } = resultSearchedData[index]
+
+        const { vehicles } = allFetchedCompanies[index]
         let summary = 0;
         const totalCost = vehicles.reduce((sum, curr) => {
             console.log(sum, curr)
-            return summary += curr.sumCostPerMonth;
+            return summary += curr.fullCost;
         })
 
         return (
@@ -70,9 +82,10 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 key={key}
                 style={{ ...style }}
             >
-                <h4 style={styleOfRow}>{resultSearchedData[index].nameOfCompany}</h4>
-                <p style={styleOfRow}>Ilość pojazdów: {resultSearchedData[index].vehicles.length}</p>
+                <h4 style={styleOfRow}>{allFetchedCompanies[index].nameOfCompany}</h4>
+                <p style={styleOfRow}>Ilość pojazdów: {allFetchedCompanies[index].vehicles.length}</p>
                 <p style={styleOfRow}>Całkowita kwota: {totalCost}</p>
+                <Button>Skontaktuj się</Button>
             </div>
         )
     }
@@ -80,8 +93,9 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
 
     const _renderResultContent = () => {
         // const {isVisible} = state;
+        const { heightPerRow } = state;
         if (isVisible) {
-            if (resultSearchedData.length === 0) {
+            if (allFetchedCompanies.length === 0) {
                 return (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <CircularProgress />
@@ -96,7 +110,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                                 width={width}
                                 height={height}
                                 rowCount={resultSearchedData.length}
-                                rowHeight={100}
+                                rowHeight={150}
                                 rowRenderer={_rowRenderer}
                             />
                         )}
@@ -129,7 +143,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     }
 
     return (
-        <div className={_correctClassNameOfSidebar} style={_styleOfSidebar}>
+        <div className={_correctClassNameOfSidebar} style={_styleOfSidebar} >
             <span className={_correctClassNameOfClickSidebar} onClick={() => {
                 handleOpenSidebar(nameOfSidebar)
             }}></span>
