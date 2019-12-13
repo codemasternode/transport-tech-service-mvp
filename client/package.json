@@ -25,6 +25,7 @@
     "react-google-autocomplete": "^1.1.2",
     "react-google-maps": "^9.4.5",
     "react-material-ui-form-validator": "^2.0.9",
+    "react-numeric-input": "^2.2.3",
     "react-phone-input-mui": "^2.9.4",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.0.1",

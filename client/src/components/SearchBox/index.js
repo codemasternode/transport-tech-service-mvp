@@ -42,7 +42,8 @@ class SearchBox extends Component {
                 operation: "single",
             },
             resultSearchedData: [],
-            isVisible: false
+            isVisible: false,
+            isLoading: false,
 
         }
     }
@@ -90,10 +91,10 @@ class SearchBox extends Component {
 
         this.setState({
             ...this.state,
-            isVisible: true
+            isVisible: true,
+            isLoading: true,
         })
 
-        // console.log(this.props)
 
         const dane = {
             "points": [
@@ -106,11 +107,9 @@ class SearchBox extends Component {
                     "lng": 18.252975
                 }
             ],
-            "numberOfPallets": 30,
-            "typeOfPallet": "EUR-3",
-            "height": 2,
-            "typeOfSearch": "Palette",
-            "weight": 2
+            "typeOfSearch": "Dimensions",
+            "weight": 2,
+            "volume": 10
         }
 
         console.log(dane, data)
@@ -120,9 +119,10 @@ class SearchBox extends Component {
             console.log(response)
             this.setState({
                 ...this.state,
+                isLoading: false,
                 resultSearchedData: response.data.companies || [],
             })
-            this.props.getAllCompanies(response.data.companies || [])
+            this.props.getAllCompanies(response.data.companies)
 
         }, (err) => {
             console.log("Axios error: " + err)
@@ -166,7 +166,7 @@ class SearchBox extends Component {
     }
 
     render() {
-        const { selectedPlaces, isOpenSidebar, criteriaToSearch, resultSearchedData, isVisible } = this.state;
+        const { selectedPlaces, isOpenSidebar, criteriaToSearch, resultSearchedData, isVisible, isLoading } = this.state;
         return (
             <div className="search">
                 <Sidebar
@@ -177,7 +177,8 @@ class SearchBox extends Component {
                     criteriaToSearch={criteriaToSearch}
                     handleSearchRequest={this._handleSearchRequest}
                     resultSearchedData={resultSearchedData}
-                    isVisible={isVisible} />
+                    isVisible={isVisible}
+                    isLoading={isLoading} />
                 {this._renderMap()}
                 <Sidebar
                     handleOpenSidebar={this._handleOpenSidebar}
@@ -185,7 +186,8 @@ class SearchBox extends Component {
                     nameOfSidebar="openRight"
                     criteriaToSearch={criteriaToSearch}
                     resultSearchedData={resultSearchedData}
-                    isVisible={isVisible} />
+                    isVisible={isVisible}
+                    isLoading={isLoading} />
             </div>
         );
     }
@@ -204,6 +206,7 @@ const mapDispatchToProps = dispatch => ({
     getSearchedCriteria: criteria => dispatch(actions.addCriteria(criteria)),
     selectCompany: company => dispatch(actions.add(company)),
     getAllCompanies: company => dispatch(actions.addAll(company))
+
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBox));

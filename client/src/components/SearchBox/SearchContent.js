@@ -5,6 +5,9 @@ import typesOfPallets from '../../constants/typesOfPallets'
 import Geocode from "react-geocode";
 import styled from 'styled-components'
 import 'react-virtualized/styles.css'; // only needs to be imported once
+import NumericInput from 'react-numeric-input';
+import { useDispatch } from 'react-redux';
+import actions from '../../reducers/companies/duck/actions';
 import PropTypes from 'prop-types';
 
 const StyledDiv = styled.div`
@@ -58,13 +61,14 @@ const SearchContent = ({ handleSearchRequest }) => {
         heightOfPallets: 0.144,
         selectToSearching: [
             { name: "Palette", label: "Palety" },
-            { name: "dimensions", label: "Wymiary" }
+            { name: "Dimensions", label: "Wymiary" }
         ],
 
 
 
     })
-
+    const dispatch = useDispatch();
+    const floatRegExp = new RegExp('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$');
     // handle change of select value
 
     const _handleChangeSelectValue = (e, type) => {
@@ -90,7 +94,7 @@ const SearchContent = ({ handleSearchRequest }) => {
 
         setState({
             ...state,
-            [name]: parseInt(value)
+            [name]: (value)
         })
     }
 
@@ -139,7 +143,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         switch (selectedOperation) {
             case "Palette":
                 return _renderPalletSelect();
-            case "dimensions":
+            case "Dimensions":
                 return _renderInputs();
             default:
                 return _renderPalletSelect();
@@ -202,19 +206,19 @@ const SearchContent = ({ handleSearchRequest }) => {
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Ilość palet:</StyledDimensionsTitle> </label>
-                        <input value={numberOfPallets} name="numberOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={numberOfPallets} name="numberOfPallets" type="text" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Całkowita waga:</StyledDimensionsTitle> </label>
-                        <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="text" step="0.1" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Wysokość:</StyledDimensionsTitle> </label>
-                        <input value={heightOfPallets} name="heightOfPallets" type="number" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={heightOfPallets} name="heightOfPallets" type="text" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
             </React.Fragment>
@@ -305,21 +309,24 @@ const SearchContent = ({ handleSearchRequest }) => {
                     let dataForRequest = {}
                     if (selectedOperation === "Palette") {
                         dataForRequest = {
-                            numberOfPallets,
-                            weight: totalWeightOfPallets / 1000,
-                            height: heightOfPallets,
+                            numberOfPallets: parseInt(numberOfPallets),
+                            weight: parseFloat(totalWeightOfPallets / 1000),
+                            height: parseFloat(heightOfPallets),
                             typeOfSearch: selectedOperation,
                             typeOfPallet: selectedPallets
                         }
 
                     } else {
                         const { length, weight, height, width } = criteria;
-                        dataForRequest["volume"] = length * height * width
-                        dataForRequest["weight"] = weight
+                        dataForRequest["length"] = parseFloat(length)
+                        dataForRequest["height"] = parseFloat(height)
+                        dataForRequest["width"] = parseFloat(width)
+                        dataForRequest["volume"] = parseFloat(length * height * width)
+                        dataForRequest["weight"] = parseFloat(weight / 1000)
                         dataForRequest["typeOfSearch"] = selectedOperation
+                        dispatch(actions.addDimCriteria(dataForRequest))
                     }
                     handleSearchRequest(dataForRequest)
-
                 }}>Szukaj</Button>
 
                 <Grid item xs={12} style={{ width: '100%' }}>

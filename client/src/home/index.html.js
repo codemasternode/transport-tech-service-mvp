@@ -60,7 +60,7 @@ module.exports = `<!DOCTYPE html>
                 </ul>
 
                 <div class="navbar-button">
-                    <a href="" class="btn btn-sm btn-custom btn-round">Spróbuj za darmo</a>
+                    <a href="/search" class="btn btn-sm btn-custom btn-round">Spróbuj za darmo</a>
                 </div>
             </div>
         </div>

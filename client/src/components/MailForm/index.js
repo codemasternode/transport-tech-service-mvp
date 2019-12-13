@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { Grid, TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import Geocode from "react-geocode";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -11,7 +12,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import "moment/locale/pl";
 
 moment.locale("pl");
-
+Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
+Geocode.enableDebug();
 const Container = styled.div`
     // width: 100%;
     display: flex;
@@ -52,15 +54,27 @@ const MailForm = (props) => {
             additionalNotes: "",
             companyName: "",
             companyNIP: "",
-        }
+        },
+        from: "",
+        to: ""
     })
     const [selectedDate, handleDateChange] = useState(new Date());
-    // useEffect(() => {
-    //     // console.log(props)
-    // }, [])
-
     const { chosenCompany } = useSelector(state => state.companies)
     const { searchedCriterial } = useSelector(state => state.companies)
+    const { searchedCriterialDimensions } = useSelector(state => state.companies)
+
+    useEffect(() => {
+        // if (chosenCompany === {} || searchedCriterial === {}) {
+        console.log(chosenCompany)
+        // props.history.push('/search')
+        // }
+        // console.log(props)
+        _getAddress()
+    }, [])
+
+
+
+
 
     console.log(chosenCompany)
 
@@ -100,7 +114,28 @@ const MailForm = (props) => {
         })
     }
 
+    const _viewModel = {
+        getNameFromLatLng: async (selectedPoint, callback) => {
+            console.log(selectedPoint)
+            const { lat, lng } = selectedPoint;
+            Geocode.fromLatLng(lat, lng).then(
+                response => {
+                    console.log(response)
+                    let addressFull = response.results[0].formatted_address;
+                    console.log(addressFull)
+                    callback(addressFull)
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+            // console.log(res)
+            // return res;
+        }
+    }
+
     const _renderHeaderOfMailer = () => {
+        const { nameOfCompany } = chosenCompany;
         return (
             <React.Fragment>
                 <Link to="/search">Powrót do wyszukiwania</Link>
@@ -109,13 +144,12 @@ const MailForm = (props) => {
                         <StyledImg src="http://d2ckak7af1omc2.cloudfront.net/company_logos/logo1.png" alt="company" />
                     </Grid>
                     <Grid item xs={7}>
-                        <h2>Firma Transportowa X</h2>
+                        <h2>Firma Transportowa: {nameOfCompany}</h2>
                         <h4>Dane firmy</h4>
                         <StylexText>Nip: XXX-xxx-xxx</StylexText>
                         <StylexText>VAT: TAK/NIE</StylexText>
                         <StylexText>Siedziba firmy</StylexText>
                         <StylexText>Telefon</StylexText>
-                        <StylexText>{chosenCompany.typeOfSearch}</StylexText>
                     </Grid>
                 </Grid>
             </React.Fragment>
@@ -124,34 +158,51 @@ const MailForm = (props) => {
         )
     }
 
+    const _getAddress = () => {
+        const { points } = searchedCriterial;
+        _viewModel.getNameFromLatLng("first", points[0], (choice, val) => {
+            console.log(choice, val)
+
+            setState({ ...state, from: val })
+        })
+        _viewModel.getNameFromLatLng("sec", points[1], (choice, val) => {
+            console.log(choice, val)
+            setState({ ...state, to: val })
+        })
+    }
+
     const _renderOrderDetails = () => {
+        const { weight, height } = searchedCriterial;
+        const { vehicles } = chosenCompany;
+        const { from, to } = state;
+
+        let totalCost = 0;
+        console.log(from, to)
+        for (let vehicle of vehicles) {
+            console.log(vehicle)
+            totalCost += vehicle.fullCost
+        }
+        console.log(totalCost)
         return (
             <Grid container direction="column" alignItems="center">
                 <Grid item xs={12} style={{ width: '100%' }}>
-                    <StylexText >Transport z:</StylexText>
-                    <StylexText>Transport do:</StylexText>
-                    <h5>Cena: 2334 PLN</h5>
+                    {/* <StylexText >Transport z: {from}</StylexText>
+                    <StylexText>Transport do: {to}</StylexText> */}
+                    <h5>Cena: {totalCost.toFixed(2)} PLN</h5>
                     <h5>Szczegóły</h5>
                 </Grid>
                 <Grid item xs={12} style={{ width: '100%' }}>
                     <Grid container justify="flex-start">
                         <Grid item xs={12}>
-                            <Grid container>
-                                <Grid item xs={6}>
-                                    <StylexText>Liczba palet 1:</StylexText>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <StylexText>Liczba palet 2:</StylexText>
-                                </Grid>
-                            </Grid>
+                            {_renderSearchCriteria()}
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container>
                                 <Grid item xs={6}>
-                                    <StylexText>Liczba palet 3:</StylexText>
+                                    <StylexText>Wysokość: {height} (m)</StylexText>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <StylexText>Liczba palet 4:</StylexText>
+                                    <StylexText>Waga: {weight} (t)</StylexText>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -159,6 +210,36 @@ const MailForm = (props) => {
                 </Grid>
             </Grid>
         )
+    }
+
+    const _renderSearchCriteria = () => {
+        const { typeOfSearch } = searchedCriterial;
+        if (typeOfSearch === "Palette") {
+            const { numberOfPallets, typeOfPallet } = searchedCriterial
+            return (
+                <Grid container>
+                    <Grid item xs={6}>
+                        <StylexText>Liczba palet: {numberOfPallets}</StylexText>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <StylexText>Rodzaj palety: {typeOfPallet}</StylexText>
+                    </Grid>
+                </Grid>
+            )
+        } else {
+            const { length, width } = searchedCriterialDimensions
+            return (
+                <Grid container>
+                    <Grid item xs={6}>
+                        <StylexText>Długość: {length} (m)</StylexText>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <StylexText>Szerokość: {width} (m)</StylexText>
+                    </Grid>
+                </Grid>
+            )
+        }
+
     }
 
     const _renderFormContent = () => {
@@ -231,7 +312,7 @@ const MailForm = (props) => {
                         multiline
                         fullWidth
                         rows="4"
-                        defaultValue="Opis..."
+                        // defaultValue="Opis..."
                         margin="normal"
                         variant="outlined"
                         value={additionalNotes}
@@ -294,7 +375,7 @@ const MailForm = (props) => {
         )
     }
 
-    return _renderFormComponent()
+    return (Object.entries(chosenCompany).length === 0 && chosenCompany.constructor === Object || Object.entries(searchedCriterial).length === 0 && searchedCriterial.constructor === Object) ? <Redirect to="/search" /> : _renderFormComponent()
 }
 
-export default MailForm;
+export default withRouter(MailForm);

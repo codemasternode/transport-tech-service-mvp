@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Button, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from "react-router-dom";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Geocode from "react-geocode";
 import axios from "axios";
 import { AutoSizer, List } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../reducers/companies/duck/actions';
 import PropTypes from 'prop-types';
 import SearchContent from './SearchContent';
 
-Geocode.setApiKey("AIzaSyCbxWM2sqqiQoxXyR1maA_9dzro72-vKOw");
+Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
 Geocode.enableDebug();
 
 const theme = createMuiTheme({
@@ -29,7 +31,7 @@ const theme = createMuiTheme({
 
 axios.defaults.withCredentials = true
 
-const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearchRequest, resultSearchedData, isVisible }) => {
+const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearchRequest, resultSearchedData, isVisible, isLoading, ...props }) => {
     const _validNameOfSidebar = nameOfSidebar === "openLeft" ? true : false;
     const _correctClassNameOfSidebar = _validNameOfSidebar ? "sidebar sidebar__left" : "sidebar sidebar__right";
     const _correctClassNameOfClickSidebar = _validNameOfSidebar ? "sidebar__left__click" : "sidebar__right__click";
@@ -55,12 +57,20 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
 
     useEffect(() => {
         // const height = this.divElement.clientHeight;
-
+        // console.log(props)
         // setState({ heightPerRow: height / allFetchedCompanies.length });
     }, [])
 
     // get all companies from redux
     const { allFetchedCompanies } = useSelector(state => state.companies)
+    const dispatch = useDispatch();
+
+    const _handleSelectCompany = key => {
+        console.log(key)
+        const selectedCompany = allFetchedCompanies[key]
+        dispatch(actions.add(selectedCompany))
+        props.history.push('/mail')
+    }
 
     const _rowRenderer = ({
         key,         // Unique key within array of rows
@@ -71,21 +81,22 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     }) => {
 
         const { vehicles } = allFetchedCompanies[index]
-        let summary = 0;
-        const totalCost = vehicles.reduce((sum, curr) => {
-            console.log(sum, curr)
-            return summary += curr.fullCost;
-        })
-
+        let totalCost = 0;
+        console.log(vehicles)
+        for (const vehicle of vehicles) {
+            const { fullCost } = vehicle || 0
+            totalCost += fullCost
+        }
+        console.log(totalCost)
         return (
             <div
                 key={key}
                 style={{ ...style }}
             >
                 <h4 style={styleOfRow}>{allFetchedCompanies[index].nameOfCompany}</h4>
-                <p style={styleOfRow}>Ilość pojazdów: {allFetchedCompanies[index].vehicles.length}</p>
-                <p style={styleOfRow}>Całkowita kwota: {totalCost}</p>
-                <Button>Skontaktuj się</Button>
+                <p style={styleOfRow}>Ilość pojazdów: {vehicles.length}</p>
+                <p style={styleOfRow}>Całkowita kwota: {totalCost.toFixed(3)}</p>
+                <Button onClick={() => _handleSelectCompany(index)}>Skontaktuj się</Button>
             </div>
         )
     }
@@ -95,7 +106,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         // const {isVisible} = state;
         const { heightPerRow } = state;
         if (isVisible) {
-            if (allFetchedCompanies.length === 0) {
+            if (allFetchedCompanies.length === 0 || isLoading) {
                 return (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <CircularProgress />
@@ -152,7 +163,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     )
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
 
 Sidebar.defaultProps = {
     isOpenSidebar: {
