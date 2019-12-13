@@ -26,6 +26,10 @@ const CompanySchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 50
     },
+    phone: {
+      type: Schema.Types.String,
+      required: true
+    },
     taxNumber: {
       type: Schema.Types.String,
       required: [true, "unique tax number can not be empty"],
@@ -38,11 +42,20 @@ const CompanySchema = new mongoose.Schema(
       required: [true, "suspended can not be empty"],
       default: false
     },
+    place: {
+      type: Schema.Types.String,
+      required: true
+    },
+    isVat: {
+      type: Schema.Types.Boolean,
+      required: true,
+      default: true
+    },
     email: {
       type: Schema.Types.String,
       required: [true, "email can not be empty"],
       validate: {
-        validator: function(value) {
+        validator: function (value) {
           const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
           return emailRegex.test(value);
         },

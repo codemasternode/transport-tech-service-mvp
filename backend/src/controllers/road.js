@@ -246,6 +246,9 @@ export async function getRoadOffers(req, res) {
             _id: companies[i]._id,
             email: companies[i].email,
             logo: companies[i].logo,
+            isVat: companies[i].isVat,
+            place: companies[i].place,
+            phone: companies[i].phone,
             vehicles: []
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {
@@ -540,6 +543,9 @@ export async function getRoadOffers(req, res) {
             _id: companies[i]._id,
             email: companies[i].email,
             logo: companies[i].logo,
+            isVat: companies[i].isVat,
+            place: companies[i].place,
+            phone: companies[i].phone,
             vehicles: []
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {
@@ -588,7 +594,6 @@ export async function getRoadOffers(req, res) {
         }
         return distinctVehiclesInCompanies;
       }
-      console.log(vehicles.length)
 
       for (let i = 0; i < vehicles.length; i++) {
         for (let k = 0; k < formattedCompanies.length; k++) {

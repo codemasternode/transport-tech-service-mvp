@@ -4,6 +4,8 @@
         "name": "Andrzej",
         "surname": "Kowalski",
         "taxNumber": "6793184304",
+        "phone":"12 123 12 34",
+        "place":"ul. Bronowicka 12a, Kraków",
         "email": "admin@teachtechservice.com",
         "logo": "logo1.png",
         "plan": {
@@ -634,6 +636,7 @@
                     }
                 ]
             }
-        ]
+        ],
+        "isVat": true
     }
 ]
