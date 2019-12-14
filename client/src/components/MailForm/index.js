@@ -56,7 +56,7 @@ const MailForm = (props) => {
             companyNIP: "",
         },
         from: "",
-        to: ""
+        toDest: ""
     })
     const [selectedDate, handleDateChange] = useState(new Date());
     const { chosenCompany } = useSelector(state => state.companies)
@@ -69,7 +69,9 @@ const MailForm = (props) => {
         // props.history.push('/search')
         // }
         // console.log(props)
-        _getAddress()
+        if (Object.entries(searchedCriterial).length === 0 && searchedCriterial.constructor === Object) {
+            _getAddress()
+        }
     }, [])
 
 
@@ -115,7 +117,7 @@ const MailForm = (props) => {
     }
 
     const _viewModel = {
-        getNameFromLatLng: async (selectedPoint, callback) => {
+        getNameFromLatLng: (selectedPoint, callback) => {
             console.log(selectedPoint)
             const { lat, lng } = selectedPoint;
             Geocode.fromLatLng(lat, lng).then(
@@ -160,24 +162,24 @@ const MailForm = (props) => {
 
     const _getAddress = () => {
         const { points } = searchedCriterial;
-        _viewModel.getNameFromLatLng("first", points[0], (choice, val) => {
-            console.log(choice, val)
+        _viewModel.getNameFromLatLng(points[0], (val) => {
+            console.log(val)
 
-            setState({ ...state, from: val })
+            // setState({ ...state, from: val })
         })
-        _viewModel.getNameFromLatLng("sec", points[1], (choice, val) => {
-            console.log(choice, val)
-            setState({ ...state, to: val })
+        _viewModel.getNameFromLatLng(points[1], (val) => {
+            console.log(val)
+            // setState({ ...state, toDest: val })
         })
     }
 
     const _renderOrderDetails = () => {
         const { weight, height } = searchedCriterial;
         const { vehicles } = chosenCompany;
-        const { from, to } = state;
+        const { from, toDest } = state;
 
         let totalCost = 0;
-        console.log(from, to)
+        console.log(from, toDest)
         for (let vehicle of vehicles) {
             console.log(vehicle)
             totalCost += vehicle.fullCost
@@ -187,7 +189,7 @@ const MailForm = (props) => {
             <Grid container direction="column" alignItems="center">
                 <Grid item xs={12} style={{ width: '100%' }}>
                     {/* <StylexText >Transport z: {from}</StylexText>
-                    <StylexText>Transport do: {to}</StylexText> */}
+                    <StylexText>Transport do: {toDest}</StylexText> */}
                     <h5>Cena: {totalCost.toFixed(2)} PLN</h5>
                     <h5>Szczegóły</h5>
                 </Grid>

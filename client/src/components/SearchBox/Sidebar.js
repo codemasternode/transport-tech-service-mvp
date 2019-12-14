@@ -87,7 +87,9 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
             const { fullCost } = vehicle || 0
             totalCost += fullCost
         }
-        console.log(totalCost)
+
+        console.log(allFetchedCompanies, 91)
+        // console.log(totalCost)
         return (
             <div
                 key={key}
@@ -105,32 +107,38 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     const _renderResultContent = () => {
         // const {isVisible} = state;
         const { heightPerRow } = state;
-        if (isVisible) {
-            if (allFetchedCompanies.length === 0 || isLoading) {
+        console.log(isVisible, isLoading, allFetchedCompanies)
+        // if (allFetchedCompanies.length !== 0) {
+            if (isLoading) {
                 return (
                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <CircularProgress />
                     </div>
                 )
             } else {
-                // console.log("GIT")
-                return (
-                    <AutoSizer>
-                        {({ height, width }) => (
-                            <List
-                                width={width}
-                                height={height}
-                                rowCount={resultSearchedData.length}
-                                rowHeight={150}
-                                rowRenderer={_rowRenderer}
-                            />
-                        )}
-                    </AutoSizer>
-                )
+        // console.log("GIT")
+                if (allFetchedCompanies.length > 0) {
+                    console.log(allFetchedCompanies)
+                    return (
+                        <AutoSizer>
+                            {({ height, width }) => (
+                                <List
+                                    width={width}
+                                    height={height}
+                                    rowCount={allFetchedCompanies.length}
+                                    rowHeight={150}
+                                    rowRenderer={_rowRenderer}
+                                />
+                            )}
+                        </AutoSizer>
+                    )
+                }else{
+                    return null
+                }
             }
-        } else {
-            return null
-        }
+        // } else {
+        //     return null
+        // }
 
     }
 
