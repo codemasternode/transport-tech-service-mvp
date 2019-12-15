@@ -10,6 +10,7 @@ import MomentUtils from '@date-io/moment';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
 import "moment/locale/pl";
+import { values } from 'regenerator-runtime';
 
 moment.locale("pl");
 Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
@@ -81,10 +82,11 @@ const MailForm = (props) => {
     console.log(chosenCompany)
 
     const _handleInputChange = e => {
-        //handle input value
+        //handle value
         const { value, name } = e.target;
         const { userData } = state;
         userData[name] = value;
+        console.log(value)
         setState({
             ...state,
             userData
@@ -137,7 +139,7 @@ const MailForm = (props) => {
     }
 
     const _renderHeaderOfMailer = () => {
-        const { nameOfCompany } = chosenCompany;
+        const { nameOfCompany, email, isVat, place, phone, taxNumber } = chosenCompany;
         return (
             <React.Fragment>
                 <Link to="/search">Powrót do wyszukiwania</Link>
@@ -148,10 +150,11 @@ const MailForm = (props) => {
                     <Grid item xs={7}>
                         <h2>Firma Transportowa: {nameOfCompany}</h2>
                         <h4>Dane firmy</h4>
-                        <StylexText>Nip: XXX-xxx-xxx</StylexText>
-                        <StylexText>VAT: TAK/NIE</StylexText>
-                        <StylexText>Siedziba firmy</StylexText>
-                        <StylexText>Telefon</StylexText>
+                        <StylexText>Nip:{taxNumber || null}</StylexText>
+                        <StylexText>VAT: {isVat ? "TAK" : "NIE"}</StylexText>
+                        <StylexText>Siedziba firmy: {place || null}</StylexText>
+                        <StylexText>Email: {email || null}</StylexText>
+                        <StylexText>Telefon: {phone || null}</StylexText>
                     </Grid>
                 </Grid>
             </React.Fragment>
@@ -162,15 +165,18 @@ const MailForm = (props) => {
 
     const _getAddress = () => {
         const { points } = searchedCriterial;
-        _viewModel.getNameFromLatLng(points[0], (val) => {
-            console.log(val)
+        if (points !== undefined) {
+            _viewModel.getNameFromLatLng(points[0], (val) => {
+                console.log(val)
 
-            // setState({ ...state, from: val })
-        })
-        _viewModel.getNameFromLatLng(points[1], (val) => {
-            console.log(val)
-            // setState({ ...state, toDest: val })
-        })
+                // setState({ ...state, from: val })
+            })
+            _viewModel.getNameFromLatLng(points[1], (val) => {
+                console.log(val)
+                // setState({ ...state, toDest: val })
+            })
+        }
+
     }
 
     const _renderOrderDetails = () => {
@@ -250,6 +256,7 @@ const MailForm = (props) => {
             email,
             taxNumber,
             additionalNotes } } = state;
+        console.log(additionalNotes)
         return (
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -266,7 +273,7 @@ const MailForm = (props) => {
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField variant="outlined" id="surname" name="surname" label="Nazwisko" fullWidth value={surname} />
+                    <TextField variant="outlined" id="surname" name="surname" label="Nazwisko" fullWidth value={surname} onChange={e => _handleInputChange(e)} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -296,14 +303,31 @@ const MailForm = (props) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale='pl'>
-                        <KeyboardDatePicker
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        {/* <KeyboardDatePicker
                             clearable
                             value={selectedDate}
-                            placeholder="10/10/2019"
-                            onChange={date => handleDateChange(date)}
+                            // placeholder="10/10/2019"
+                            onChange={date => {
+                                console.log(date)
+                                handleDateChange(date)
+                            }}
                             minDate={new Date()}
                             format="MM/dd/yyyy"
+                        /> */}
+
+                        <KeyboardDatePicker
+                            autoOk
+                            variant="inline"
+                            inputVariant="outlined"
+                            label="Data rozpoczęcia zlecenia"
+                            format="MM/dd/yyyy"
+                            value={selectedDate}
+                            InputAdornmentProps={{ position: "start" }}
+                            onChange={date => {
+                                console.log(date);
+                                handleDateChange(date)
+                            }}
                         />
                     </MuiPickersUtilsProvider>
                 </Grid>
@@ -314,9 +338,10 @@ const MailForm = (props) => {
                         multiline
                         fullWidth
                         rows="4"
-                        // defaultValue="Opis..."
+                        defaultValue="Opis..."
                         margin="normal"
                         variant="outlined"
+                        name="additionalNotes"
                         value={additionalNotes}
                         onChange={e => _handleInputChange(e)}
                     />
@@ -355,10 +380,12 @@ const MailForm = (props) => {
                         fullWidth
                         autoComplete="companyName"
                         value={companyName}
+                        onChange={e => _handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField variant="outlined" disabled={!companyData} id="nip" name="nip" placeholder="Numer identyfikacji podatkowej" label="NIP" fullWidth value={companyNIP} />
+                    <TextField variant="outlined" disabled={!companyData} id="nip" name="companyNIP" placeholder="Numer identyfikacji podatkowej" label="NIP" fullWidth value={companyNIP} onChange={e => _handleInputChange(e)}
+                    />
                 </Grid>
             </React.Fragment>
         )

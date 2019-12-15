@@ -249,6 +249,7 @@ export async function getRoadOffers(req, res) {
             isVat: companies[i].isVat,
             place: companies[i].place,
             phone: companies[i].phone,
+            taxNumber: companies[i].taxNumber,
             vehicles: []
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {
@@ -546,7 +547,8 @@ export async function getRoadOffers(req, res) {
             isVat: companies[i].isVat,
             place: companies[i].place,
             phone: companies[i].phone,
-            vehicles: []
+            taxNumber: companies[i].taxNumber,
+            vehicles: [],
           };
           for (let k = 0; k < companies[i].companyBases.length; k++) {
             const diffDistance =

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Geocode from "react-geocode";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import Map from './Map';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -18,6 +19,7 @@ class SearchBox extends Component {
                 openLeft: true,
                 openRight: true,
             },
+            openDialog: false,
             selectedPlaces: [
                 // { lat: 50.049683, lng: 19.944544 },
                 // { lat: 50.049683, lng: 19 },
@@ -44,7 +46,6 @@ class SearchBox extends Component {
             resultSearchedData: [],
             isVisible: false,
             isLoading: false,
-
         }
     }
 
@@ -78,6 +79,13 @@ class SearchBox extends Component {
         });
     }
 
+    _handleClickOnDialog = (value) => {
+        this.setState({
+            ...this.state,
+            openDialog: value
+        })
+    }
+
     _handleSearchRequest = (dataForRequest) => {
         const { selectedPlaces } = this.state
 
@@ -89,44 +97,31 @@ class SearchBox extends Component {
         // console.log(data)
         this.props.getSearchedCriteria(data)
 
-        this.setState({
-            ...this.state,
-            isVisible: true,
-            isLoading: true,
-        })
+        
 
-
-        const dane = {
-            "points": [
-                {
-                    "lat": 50.038012,
-                    "lng": 20.031036
-                },
-                {
-                    "lat": 52.237094,
-                    "lng": 18.252975
-                }
-            ],
-            "typeOfSearch": "Dimensions",
-            "weight": 2,
-            "volume": 10
-        }
-
-        console.log(dane, data)
-
-        // this.props.selectCompany(data)
-        axios.post('http://localhost:5000/api/distance', data).then((response) => {
-            console.log(response)
+        if (selectedPlaces.length > 1) {
             this.setState({
                 ...this.state,
-                isLoading: false,
-                resultSearchedData: response.data.companies || [],
+                isVisible: true,
+                isLoading: true,
             })
-            this.props.getAllCompanies(response.data.companies)
+            axios.post('http://localhost:5000/api/distance', data).then((response) => {
+                console.log(response)
+                this.setState({
+                    ...this.state,
+                    isLoading: false,
+                    resultSearchedData: response.data.companies || [],
+                })
+                this.props.getAllCompanies(response.data.companies)
 
-        }, (err) => {
-            console.log("Axios error: " + err)
-        })
+            }, (err) => {
+                console.log("Axios error: " + err)
+            })
+        } else {
+            this._handleClickOnDialog(true)
+        }
+        // this.props.selectCompany(data)
+
         // this.props.history.push('/mail')
 
     }
@@ -165,10 +160,41 @@ class SearchBox extends Component {
         )
     }
 
+    _renderAlertModal = () => {
+        const { openDialog } = this.state;
+
+        return (
+            <div>
+                <Dialog
+                    open={openDialog}
+                    onClose={() => this._handleClickOnDialog(false)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Proszę podać punkty"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            W celu wyszukania firmy, proszę wyznaczyć punkty na mapie
+          </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => this._handleClickOnDialog(false)} color="primary">
+                            Anuluj
+                        </Button>
+                        <Button onClick={() => this._handleClickOnDialog(false)} color="primary" autoFocus>
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        )
+    }
+
     render() {
         const { selectedPlaces, isOpenSidebar, criteriaToSearch, resultSearchedData, isVisible, isLoading } = this.state;
         return (
             <div className="search">
+            {this._renderAlertModal()}
                 <Sidebar
                     handleOpenSidebar={this._handleOpenSidebar}
                     isOpenSidebar={isOpenSidebar}
