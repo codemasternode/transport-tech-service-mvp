@@ -69,7 +69,7 @@ export async function contactToCompany(req, res) {
     }
   }
 
-  const {
+  let {
     name,
     surname,
     email,
