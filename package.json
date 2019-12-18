@@ -1,0 +1,19 @@
+{
+  "name": "cloudtrans",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "postinstall": "npm install --prefix client && npm run build --prefix client && npm install --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "12.13.1",
+    "npm": "6.12.1"
+  }
+}
