@@ -11,7 +11,7 @@ import dotenv from "dotenv/config";
 let PORT = process.env.PORT || 5000,
   MONGO_DB_URL =
     process.env.MONGO_DB_URL
-if (process.env.mode === "DEV") {
+if (process.env.MODE === "DEV") {
   PORT = 5000
   MONGO_DB_URL = `mongodb://localhost:27017/tts`
 }
