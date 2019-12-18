@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { Grid, TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import { Grid, TextField, FormControlLabel, Checkbox, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import Geocode from "react-geocode";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -51,7 +51,6 @@ const MailForm = (props) => {
             name: "",
             surname: "",
             email: "",
-            taxNumber: "",
             additionalNotes: "",
             companyName: "",
             companyNIP: "",
@@ -60,26 +59,16 @@ const MailForm = (props) => {
         toDest: ""
     })
     const [selectedDate, handleDateChange] = useState(new Date());
+    const [open, setOpen] = React.useState(false);
     const { chosenCompany } = useSelector(state => state.companies)
     const { searchedCriterial } = useSelector(state => state.companies)
     const { searchedCriterialDimensions } = useSelector(state => state.companies)
 
     useEffect(() => {
-        // if (chosenCompany === {} || searchedCriterial === {}) {
-        console.log(chosenCompany)
-        // props.history.push('/search')
-        // }
-        // console.log(props)
         if (Object.entries(searchedCriterial).length === 0 && searchedCriterial.constructor === Object) {
             _getAddress()
         }
     }, [])
-
-
-
-
-
-    console.log(chosenCompany)
 
     const _handleInputChange = e => {
         //handle value
@@ -102,17 +91,44 @@ const MailForm = (props) => {
     }
 
     const _handleSendEmail = () => {
-        const { userData } = state;
-        const data = {
-            ...userData,
-            ...searchedCriterial,
-            startTime: selectedDate,
+        const { name, surname, email, additionalNotes, companyName, companyNIP } = state.userData;
+        const { vehicles } = chosenCompany;
+        const { typeOfSearch } = searchedCriterial;
+        let data;
+        let fullCost = 0;
+        for (let vehicle of vehicles) {
+            console.log(vehicle)
+            fullCost += vehicle.fullCost
+        }
+        console.log(fullCost)
 
+        data = {
+            name, surname, email,
+            description: additionalNotes,
+            companyEmail: chosenCompany["email"],
+            taxNumber: chosenCompany["taxNumber"],
+            companyName,
+            companyNIP,
+            phone: chosenCompany["phone"],
+            vehicles,
+            fullCost: fullCost,
+            startTime: "30.11.2019 15:00",
+        }
+
+        if (typeOfSearch === "Pallete") {
+            data["isDimensions"] = false;
+            data = { ...data, ...searchedCriterial }
+        } else {
+            data["isDimensions"] = true;
+            data = { ...data, ...searchedCriterial }
         }
 
         axios.post('http://localhost:5000/api/contact/contact-to-company', data).then((response) => {
             console.log(response)
-
+            const { status } = response;
+            if (status === 200) {
+                setOpen(true)
+            }
         }, (err) => {
             console.log("Axios error: " + err)
         })
@@ -133,8 +149,6 @@ const MailForm = (props) => {
                     console.error(error);
                 }
             );
-            // console.log(res)
-            // return res;
         }
     }
 
@@ -177,6 +191,35 @@ const MailForm = (props) => {
             })
         }
 
+    }
+
+    const _renderAlertModal = () => {
+
+        return (
+            <div>
+                <Dialog
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Wiadomość została wysłana"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Twoja wiadomość została wysłana, zostaniesz przeniesiony do strony wyszukiwania.
+          </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={() => {
+                            setOpen(false)
+                            props.history.push("/search")
+                        }} color="primary" autoFocus>
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
+        )
     }
 
     const _renderOrderDetails = () => {
@@ -304,18 +347,6 @@ const MailForm = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        {/* <KeyboardDatePicker
-                            clearable
-                            value={selectedDate}
-                            // placeholder="10/10/2019"
-                            onChange={date => {
-                                console.log(date)
-                                handleDateChange(date)
-                            }}
-                            minDate={new Date()}
-                            format="MM/dd/yyyy"
-                        /> */}
-
                         <KeyboardDatePicker
                             autoOk
                             variant="inline"
@@ -396,6 +427,7 @@ const MailForm = (props) => {
         return (
             <Container>
                 <Container style={{ width: '60%' }}>
+                    {_renderAlertModal()}
                     {_renderHeaderOfMailer()}
                     {_renderOrderDetails()}
                     {_renderFormContent()}
