@@ -129,7 +129,8 @@ export async function contactToCompany(req, res) {
       description,
       vehicles,
       points,
-      isDimensions
+      isDimensions,
+      urlRoute: generatedURL
     }
   ])
     .then(result => {

@@ -137,6 +137,7 @@ export async function getRoadOffers(req, res) {
               (100 + companies[i].vehicles[k].margin)) /
             100
         }
+        companies[i].vehicles[k].fullCost = Math.floor(companies[i].vehicles[k].fullCost * 100) / 100
       }
     }
     res.send({ companies });
@@ -477,6 +478,7 @@ export async function getRoadOffers(req, res) {
               (100 + companies[i].vehicles[k].margin)) /
             100
         };
+        companies[i].vehicles[k].fullCost = Math.floor(companies[i].vehicles[k].fullCost * 100) / 100
       }
     }
     res.send({ companies });

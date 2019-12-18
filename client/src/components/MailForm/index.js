@@ -11,6 +11,7 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 import "moment/locale/pl";
 import { values } from 'regenerator-runtime';
+import {API_URL} from '../../utils/urls'
 
 moment.locale("pl");
 Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
@@ -123,7 +124,7 @@ const MailForm = (props) => {
             data = { ...data, ...searchedCriterial }
         }
 
-        axios.post('http://localhost:5000/api/contact/contact-to-company', data).then((response) => {
+        axios.post(`${API_URL}/api/contact/contact-to-company`, data).then((response) => {
             console.log(response)
             const { status } = response;
             if (status === 200) {

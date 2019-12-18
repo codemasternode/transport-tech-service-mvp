@@ -8,6 +8,7 @@ import axios from "axios";
 import Sidebar from './Sidebar';
 import './index.scss'
 import actions from '../../reducers/companies/duck/actions';
+import {API_URL} from '../../utils/urls'
 
 const googleMapsApiKey = "AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM";
 
@@ -105,7 +106,7 @@ class SearchBox extends Component {
                 isVisible: true,
                 isLoading: true,
             })
-            axios.post('http://localhost:5000/api/distance', data).then((response) => {
+            axios.post(`${API_URL}/api/distance`, data).then((response) => {
                 console.log(response)
                 this.setState({
                     ...this.state,
