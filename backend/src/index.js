@@ -16,6 +16,7 @@ if (process.env.mode === "DEV") {
   MONGO_DB_URL = `mongodb://localhost:27017/tts`
 }
 
+
 //`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@localhost:27018,localhost:27019,localhost:27017/transporttechservice?replicaSet=rs0`,
 const app = express();
 mongodbConnection(MONGO_DB_URL);
