@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/enums/putCompanyInfoAllowModifiers.js"],"names":[],"mappings":";;;;;;eAAe,CACb,QADa,EAEb,oBAFa,EAGb,sBAHa,EAIb,MAJa,EAKb,SALa,EAMb,SANa,C","sourcesContent":["export default [\n  \"margin\",\n  \"defaultDeprication\",\n  \"defaultBlankJourneys\",\n  \"name\",\n  \"surname\",\n  \"country\"\n];\n"],"file":"putCompanyInfoAllowModifiers.js"}
