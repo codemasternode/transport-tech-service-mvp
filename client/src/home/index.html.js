@@ -117,7 +117,7 @@ module.exports = `<!DOCTYPE html>
                         <p class="text-muted mt-3 line-height_1_8 f-15">Łączymy przewoźników z załadowcami, chcącymi
                             przewieźć ładunek</p>
                         <div class="mt-5">
-                            <a href="" class="btn btn-custom btn-round">Dowiedz się więcej<i
+                            <a href="https://www.facebook.com/LogisticCalc-106321854209260" class="btn btn-custom btn-round">Dowiedz się więcej<i
                                     class="mdi mdi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -262,7 +262,7 @@ module.exports = `<!DOCTYPE html>
                             <p><b>Nie</b> wymaga potwierdzenia firmy</p>
                         </div>
                         <div class="mt-5">
-                            <a href="" class="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
+                            <a href="/search" class="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
                         </div>
                     </div>
                 </div>
@@ -281,7 +281,7 @@ module.exports = `<!DOCTYPE html>
                             <p><b>5 e-maili</b> kontaktowych</p>
                         </div>
                         <div class="mt-5">
-                            <a href="" class="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
+                            <a href="#contact" class="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
                         </div>
                     </div>
                 </div>
