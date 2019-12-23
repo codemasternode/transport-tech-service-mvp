@@ -80,7 +80,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         style        // Style object to be applied to row (to position it)
     }) => {
 
-        const { vehicles } = allFetchedCompanies[index]
+        const { vehicles, logo } = allFetchedCompanies[index]
         let totalCost = 0;
         console.log(vehicles)
         for (const vehicle of vehicles) {
@@ -96,6 +96,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 style={{ ...style }}
             >
                 <h4 style={styleOfRow}>{allFetchedCompanies[index].nameOfCompany}</h4>
+                <img src={`http://dq1dsixf6z9ds.cloudfront.net/company_logos/${logo}`} alt="company" width="150" height="auto" />
                 <p style={styleOfRow}>Ilość pojazdów: {vehicles.length}</p>
                 <p style={styleOfRow}>Całkowita kwota: {totalCost.toFixed(3)}</p>
                 <Button onClick={() => _handleSelectCompany(index)}>Skontaktuj się</Button>
@@ -109,33 +110,33 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         const { heightPerRow } = state;
         console.log(isVisible, isLoading, allFetchedCompanies)
         // if (allFetchedCompanies.length !== 0) {
-            if (isLoading) {
+        if (isLoading) {
+            return (
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <CircularProgress />
+                </div>
+            )
+        } else {
+            // console.log("GIT")
+            if (allFetchedCompanies.length > 0) {
+                console.log(allFetchedCompanies)
                 return (
-                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <CircularProgress />
-                    </div>
+                    <AutoSizer>
+                        {({ height, width }) => (
+                            <List
+                                width={width}
+                                height={height}
+                                rowCount={allFetchedCompanies.length}
+                                rowHeight={350}
+                                rowRenderer={_rowRenderer}
+                            />
+                        )}
+                    </AutoSizer>
                 )
             } else {
-        // console.log("GIT")
-                if (allFetchedCompanies.length > 0) {
-                    console.log(allFetchedCompanies)
-                    return (
-                        <AutoSizer>
-                            {({ height, width }) => (
-                                <List
-                                    width={width}
-                                    height={height}
-                                    rowCount={allFetchedCompanies.length}
-                                    rowHeight={150}
-                                    rowRenderer={_rowRenderer}
-                                />
-                            )}
-                        </AutoSizer>
-                    )
-                }else{
-                    return null
-                }
+                return null
             }
+        }
         // } else {
         //     return null
         // }
