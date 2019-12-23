@@ -46,11 +46,15 @@ function Home() {
             name, surname, email, topic, description
         }
         axios.post(`${API_URL}/api/contact/contact-to-us`, data).then((response) => {
-            console.log(response)
-            const { status } = response;
-            if (status === 200) {
-                 
-            }
+            alert("Email został wysłany")
+            setState({
+                ...state,
+                name: "",
+                email: "",
+                surname: "",
+                topic: "",
+                description: ""
+            })
         }, (err) => {
             console.log("Axios error: " + err)
         })
@@ -139,7 +143,7 @@ function Home() {
                                     <p className="text-muted mt-3 line-height_1_8 f-15">Łączymy przewoźników z załadowcami, chcącymi
                             przewieźć ładunek</p>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-custom btn-round">Dowiedz się więcej<i
+                                        <a href="https://www.facebook.com/LogiCalc-106321854209260" className="btn btn-custom btn-round">Dowiedz się więcej<i
                                             className="mdi mdi-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -195,7 +199,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                <section className="section counter">
+                {/* <section className="section counter">
                     <div className="container">
 
                         <div className="row">
@@ -249,7 +253,7 @@ function Home() {
                         </div>
 
                     </div>
-                </section>
+                </section> */}
                 <section className="section bg-light" id="pricing">
                     <div className="container">
                         <div className="row">
@@ -275,7 +279,7 @@ function Home() {
                                         <p><b>Nie</b> wymaga potwierdzenia firmy</p>
                                     </div>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
+                                        <a href="/search" className="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +298,7 @@ function Home() {
                                         <p><b>5 e-maili</b> kontaktowych</p>
                                     </div>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
+                                        <a href="https://www.facebook.com/LogiCalc-106321854209260" className="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
                                     </div>
                                 </div>
                             </div>
@@ -302,7 +306,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                <section className="section bg-client" id="clients">
+                {/* <section className="section bg-client" id="clients">
                     <div className="container">
 
                         <div className="row">
@@ -351,7 +355,7 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <section className="section" id="contact">
                     <div className="container">
                         <div className="row">

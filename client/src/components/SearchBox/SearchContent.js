@@ -330,9 +330,7 @@ const SearchContent = ({ handleSearchRequest }) => {
                 }}>Szukaj</Button>
 
                 <Grid item xs={12} style={{ width: '100%' }}>
-                    <SearchBlock>
-                        <h4>Punkty</h4>
-                    </SearchBlock>
+                    
                     {/* <ul>
                         {_renderSelectedPoints()}
                     </ul> */}
