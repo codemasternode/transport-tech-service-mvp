@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+
+        }
+    </style>
+</head>
+
+<body style="margin: 0;padding: 0;">
+    <table width="540px" style="margin-left: auto;margin-right: auto;margin-bottom: 50px;" cellpadding="0"
+        cellspacing="0">
+        <tr>
+            <td colspan="2" align="center" style="padding: 40px 0 30px 0;">
+                <img src="https://dq1dsixf6z9ds.cloudfront.net/1.png" width="300" height="101" style="display: block;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h2
+                    style="max-width: 540px;text-align: center;padding: 0;margin-bottom: 40px;margin-left: auto;margin-right: auto;font-size: 34px;color: #000851;">
+                    Gratulacje, Udało Ci się pozyskać nowego konsumenta!
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <img src="https://dq1dsixf6z9ds.cloudfront.net/collect.png" alt="" width="500">
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Imię</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{name}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwisko</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{surname}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Email</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{email}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Numer telefonu</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{phone}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Data zlecenia</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{startTime}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwa firmy</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{companyName}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">NIP</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{taxNumber}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Cena</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{fullCost}} PLN</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Waga</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{weight}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Wysokość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{height}}</td>
+        </tr>
+        {{#if isDimensions}}
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Szerokość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{width}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Długość</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{length}}</td>
+        </tr>
+        {{else}}
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Liczba palet</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{numberOfPalettes}}</td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Typ palety</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{typeOfPalette}}</td>
+        </tr>
+        {{/if}}
+
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Trasa</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;max-width: 400px;word-break: break-all;
+            word-break: break-word;">
+                {{urlRoute}}
+            </td>
+        </tr>
+    </table>
+    <table width="540px" style="margin-left: auto;margin-right: auto;margin-bottom: 50px;" cellpadding="0"
+        cellspacing="0">
+        <tr>
+            <td colspan="2">
+                <h3 style="width: 300px;text-align: left;">Pojazdy</h3>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Nazwa pojazdu</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Baza</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">Cena</td>
+        </tr>
+        {{#each vehicles as |vehicle|}}
+        <tr>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.name}}</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.companyBase}}</td>
+            <td style="border-top:1px solid #dee2e6;padding: 12px;color: #000851;">{{vehicle.fullCost}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    <table style="color: white !important;background: rgba(51,51,51,1);padding-top: 20px;padding-bottom: 20px;"
+        width="100%">
+        <tr>
+            <td align="center">
+                <h3 style="width: 300px;text-align: left;">Kontakt</h3>
+                <ul style="list-style-type: none; width: 300px;text-align: left; font-size: 14px;">
+                    <li>(+48) 608 624 531</li>
+                    <li>admin@teachtechservice.com</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <h3 style="width: 300px;text-align: left;">Dane firmy</h3>
+                <ul style="list-style-type: none; width: 300px;text-align: left; font-size: 14px;">
+                    <li>Teach Tech Service Marcin Warzybok</li>
+                    <li>NIP: 6793184304</li>
+                    <li>REGON: 383274960</li>
+                    <li>ul. Bieżanowska 258B, 30-856, Kraków</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

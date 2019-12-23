@@ -1,0 +1,222 @@
+[
+    {
+        "name": "Base 1",
+        "street": "Zielona 3",
+        "postalCode": "30-623",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.964805,
+            "lat": 50.026747
+        },
+        "nameOfCompany": "Usługi transportowe, przeprowadzki, taxi bagażowe A"
+    },
+    {
+        "nameOfCompany": "P. Wł. Usługi transportowe",
+        "name": "Base 2",
+        "street": "Pańska 43",
+        "postalCode": "30-565",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.086752,
+            "lat": 50.036017
+        }
+    },
+    {
+        "nameOfCompany": "MTS",
+        "name": "Base 3",
+        "street": "św. Jacka 22",
+        "postalCode": "30-364",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.916503,
+            "lat": 50.034528
+        }
+    },
+    {
+        "nameOfCompany": "Usługi Transportowe Kraków-Polska-Europa",
+        "name": "Base 4",
+        "street": "Powstańców 127",
+        "postalCode": "31-670",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.002047,
+            "lat": 50.105619
+        }
+    },
+    {
+        "nameOfCompany": "Krajowe Usługi Transportowe Krzysztof M.",
+        "name": "Base 5",
+        "street": "Daniela Chodowieckiego 3",
+        "postalCode": "32-015",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.906449,
+            "lat": 50.064207
+        }
+    },
+    {
+        "nameOfCompany": "MTS",
+        "name": "Base 6",
+        "street": "Praska 19",
+        "postalCode": "30-328",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.033522,
+            "lat": 50.017440
+        }
+    },
+    {
+        "nameOfCompany": "Antrans",
+        "name": "Base 7",
+        "street": "Wodna 6",
+        "postalCode": "30-556",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.969446,
+            "lat": 50.036742
+        }
+    },
+    {
+        "nameOfCompany": "Transport Międzynarodowy i Krajowy TLKM",
+        "name": "Base 11",
+        "street": "Wspólna 1C",
+        "postalCode": " 32-300",
+        "city": "Olkusz",
+        "location": {
+            "lng": 19.952991,
+            "lat": 50.021614
+        }
+    },
+    {
+        "nameOfCompany": "Firma Transportowa Kazimierz R",
+        "name": "Base 12",
+        "street": "Tadeusza Kościuszki 119",
+        "postalCode": "32-087",
+        "city": "Bibice",
+        "location": {
+            "lng": 19.960801,
+            "lat": 50.121234
+        }
+    },
+    {
+        "nameOfCompany": "Usługi Transportowe Polska-Kazachstan",
+        "name": "Base 13",
+        "street": "Wąwozowa 34",
+        "postalCode": "31-752",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.059372,
+            "lat": 50.086255
+        }
+    },
+    {
+        "nameOfCompany": "Firma Transportowo-Handlowa",
+        "name": "Base 16",
+        "street": "Wołowice",
+        "postalCode": "32-070",
+        "city": "Wołowice",
+        "location": {
+            "lng": 19.701197,
+            "lat": 50.002091
+        }
+    },
+    {
+        "nameOfCompany": "BEJOT",
+        "name": "Base 17",
+        "street": "Sieraków, Dobczyce 216",
+        "postalCode": "32-410",
+        "city": "Dobczyce",
+        "location": {
+            "lng": 20.090230,
+            "lat": 49.915697
+        }
+    },
+    {
+        "nameOfCompany": "Mak Transport Service",
+        "name": "Base 18",
+        "street": "Łososina Dolna 155",
+        "postalCode": "33-314",
+        "city": "Łososina Dolna",
+        "location": {
+            "lng": 20.633856,
+            "lat": 49.761268
+        }
+    },
+    {
+        "nameOfCompany": "Riviera Transport Międzynarodowy",
+        "name": "Base 19",
+        "street": "Ogrodowa 6",
+        "postalCode": "05-555",
+        "city": "Tarczyn",
+        "location": {
+            "lng": 20.835195,
+            "lat": 51.985098
+        }
+    },
+    {
+        "nameOfCompany": "Pitek Trans",
+        "name": "Base 20",
+        "street": "Królowej Jadwigi 120A",
+        "postalCode": "30-210",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.898678,
+            "lat": 50.058200
+        }
+    },
+    {
+        "nameOfCompany": "Transyt, spedycja, transport",
+        "name": "Base 21",
+        "street": "Skośna 12",
+        "postalCode": "30-383",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.902674,
+            "lat": 50.010001
+        }
+    },
+    {
+        "nameOfCompany": "Usługi transportowe wschodnia Europa",
+        "name": "Base 22",
+        "street": "Profesora Tadeusza Seweryna 5",
+        "postalCode": "30-632",
+        "city": "Kraków",
+        "location": {
+            "lng": 19.982288,
+            "lat": 50.020943
+        }
+    },
+    {
+        "nameOfCompany": "National Transport Services",
+        "name": "Base 23",
+        "street": "Zielona 3",
+        "postalCode": "30-623",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.051646,
+            "lat": 50.029204
+        }
+    },
+    {
+        "nameOfCompany": "National Transport Services",
+        "name": "Base 24",
+        "street": "Zielona 3",
+        "postalCode": "30-623",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.045874,
+            "lat": 50.033160
+        }
+    },
+    {
+        "nameOfCompany": "MTS",
+        "name": "Base 25",
+        "street": "Christo Botewa 4",
+        "postalCode": "30-798",
+        "city": "Kraków",
+        "location": {
+            "lng": 20.028773,
+            "lat": 50.037263
+        }
+    }
+]
