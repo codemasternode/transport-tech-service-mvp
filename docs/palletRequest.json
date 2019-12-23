@@ -1,0 +1,17 @@
+{
+    "points": [
+        {
+            "lat": 50.038012,
+            "lng": 20.031036
+        },
+        {
+            "lat": 52.237094,
+            "lng": 18.252975
+        }
+    ],
+    "numberOfPallets": 30,
+    "typeOfPallet": "EUR-3",
+    "height": 2,
+    "typeOfSearch": "Palette",
+    "weight": 2
+}

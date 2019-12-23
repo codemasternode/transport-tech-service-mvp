@@ -1,0 +1,13 @@
+.grid__contentCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.grid__labelContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
