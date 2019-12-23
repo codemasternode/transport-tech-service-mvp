@@ -14,13 +14,30 @@ let PORT = process.env.PORT || 5000,
 if (process.env.MODE === "DEV") {
   PORT = 5000
   MONGO_DB_URL = `mongodb://localhost:27017/tts`
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+  app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
+} 
+=======
+}
+>>>>>>> f6d12355bc1092180bdcebb1bad58f2ed53213ec
+>>>>>>> 1f49afa607da2e3babf06e98073a19e68ade65fa
 console.log(process.env)
 
 const app = express();
 mongodbConnection(MONGO_DB_URL);
 app.use(express.static(path.join(__dirname, '../client/build')));
+<<<<<<< HEAD
 app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
+=======
+<<<<<<< HEAD
+
+=======
+app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
+>>>>>>> f6d12355bc1092180bdcebb1bad58f2ed53213ec
+>>>>>>> 1f49afa607da2e3babf06e98073a19e68ade65fa
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/distance", roadRoutes());
