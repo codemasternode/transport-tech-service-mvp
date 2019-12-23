@@ -1,0 +1,43 @@
+{
+    "name": "marcin",
+    "surname": "testowy",
+    "email": "mwa@tin.pl",
+    "description": "Witam chciałbym przetransportować ten towar",
+    "taxNumber": "129343981",
+    "companyName": "AALLLLA",
+    "phone": "676123123",
+    "points": [
+        {
+            "lat": 54.162133,
+            "lng": 17.488343
+        },
+        {
+            "lat": 51.355172,
+            "lng": 12.394919
+        },
+        {
+            "lat": 50.111546,
+            "lng": 8.688002
+        }
+    ],
+    "startTime": "30.11.2019 15:00",
+    "companyEmail": "admin@teachtechservice.com",
+    "vehicles": [
+        {
+            "name": "Pojazd A",
+            "companyBase": "Baza 1",
+            "fullCost": 150
+        },
+        {
+            "name": "Pojazd B",
+            "companyBase": "Baza 1",
+            "fullCost": 170
+        }
+    ],
+    "isDimensions": true,
+    "height": 1.9,
+    "width": 2.8,
+    "length": 7,
+    "weight": 10,
+    "fullCost": 320
+}

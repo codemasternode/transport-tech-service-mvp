@@ -1,0 +1,189 @@
+import React, { useEffect, useCallback } from 'react';
+import { Button, CircularProgress } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from "react-router-dom";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import Geocode from "react-geocode";
+import axios from "axios";
+import { AutoSizer, List } from 'react-virtualized';
+import 'react-virtualized/styles.css'; // only needs to be imported once
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../../reducers/companies/duck/actions';
+import PropTypes from 'prop-types';
+import SearchContent from './SearchContent';
+
+Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
+Geocode.enableDebug();
+
+const theme = createMuiTheme({
+    overrides: {
+        // Name of the component ⚛️
+        MuiOutlinedInput: {
+            // The default props to change
+            // padding: '12px 10px', // No more ripple, on the whole application 💣!
+            input: {
+                padding: '12px 10px',
+            }
+        },
+    },
+});
+
+axios.defaults.withCredentials = true
+
+const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearchRequest, resultSearchedData, isVisible, isLoading, ...props }) => {
+    const _validNameOfSidebar = nameOfSidebar === "openLeft" ? true : false;
+    const _correctClassNameOfSidebar = _validNameOfSidebar ? "sidebar sidebar__left" : "sidebar sidebar__right";
+    const _correctClassNameOfClickSidebar = _validNameOfSidebar ? "sidebar__left__click" : "sidebar__right__click";
+    const _styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { left: 0 } : { left: "-18%" }) : isOpenSidebar[nameOfSidebar] ? { right: 0 } : { right: "-15%" }
+    const [state, setState] = React.useState({
+        points: [
+            {
+                "lat": 50.014703,
+                "lng": 19.880671
+            },
+            {
+                "lat": 54.030763,
+                "lng": 20.111284
+            }
+        ],
+        heightPerRow: 0,
+    })
+
+    const styleOfRow = {
+        margin: 5,
+        // pargin: 1
+    }
+
+    useEffect(() => {
+        // const height = this.divElement.clientHeight;
+        // console.log(props)
+        // setState({ heightPerRow: height / allFetchedCompanies.length });
+    }, [])
+
+    // get all companies from redux
+    const { allFetchedCompanies } = useSelector(state => state.companies)
+    const dispatch = useDispatch();
+
+    const _handleSelectCompany = key => {
+        console.log(key)
+        const selectedCompany = allFetchedCompanies[key]
+        dispatch(actions.add(selectedCompany))
+        props.history.push('/mail')
+    }
+
+    const _rowRenderer = ({
+        key,         // Unique key within array of rows
+        index,       // Index of row within collection
+        isScrolling, // The List is currently being scrolled
+        isVisible,   // This row is visible within the List (eg it is not an overscanned row)
+        style        // Style object to be applied to row (to position it)
+    }) => {
+
+        const { vehicles } = allFetchedCompanies[index]
+        let totalCost = 0;
+        console.log(vehicles)
+        for (const vehicle of vehicles) {
+            const { fullCost } = vehicle || 0
+            totalCost += fullCost
+        }
+
+        console.log(allFetchedCompanies, 91)
+        // console.log(totalCost)
+        return (
+            <div
+                key={key}
+                style={{ ...style }}
+            >
+                <h4 style={styleOfRow}>{allFetchedCompanies[index].nameOfCompany}</h4>
+                <p style={styleOfRow}>Ilość pojazdów: {vehicles.length}</p>
+                <p style={styleOfRow}>Całkowita kwota: {totalCost.toFixed(3)}</p>
+                <Button onClick={() => _handleSelectCompany(index)}>Skontaktuj się</Button>
+            </div>
+        )
+    }
+
+
+    const _renderResultContent = () => {
+        // const {isVisible} = state;
+        const { heightPerRow } = state;
+        console.log(isVisible, isLoading, allFetchedCompanies)
+        // if (allFetchedCompanies.length !== 0) {
+            if (isLoading) {
+                return (
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <CircularProgress />
+                    </div>
+                )
+            } else {
+        // console.log("GIT")
+                if (allFetchedCompanies.length > 0) {
+                    console.log(allFetchedCompanies)
+                    return (
+                        <AutoSizer>
+                            {({ height, width }) => (
+                                <List
+                                    width={width}
+                                    height={height}
+                                    rowCount={allFetchedCompanies.length}
+                                    rowHeight={150}
+                                    rowRenderer={_rowRenderer}
+                                />
+                            )}
+                        </AutoSizer>
+                    )
+                }else{
+                    return null
+                }
+            }
+        // } else {
+        //     return null
+        // }
+
+    }
+
+    const _isRenderSidebar = () => {
+        if (_validNameOfSidebar) {
+            return (
+                <div className="sidebar__left__requirements">
+                    <ThemeProvider theme={theme}>
+                        {/* {_renderSearchContent()} */}
+                        <SearchContent handleSearchRequest={handleSearchRequest} />
+                    </ThemeProvider>
+                </div>
+            )
+        } else {
+            return (
+                <React.Fragment>
+                    {_renderResultContent()}
+                </React.Fragment>
+            )
+        }
+    }
+
+    return (
+        <div className={_correctClassNameOfSidebar} style={_styleOfSidebar} >
+            <span className={_correctClassNameOfClickSidebar} onClick={() => {
+                handleOpenSidebar(nameOfSidebar)
+            }}></span>
+            {_isRenderSidebar()}
+        </div>
+    )
+}
+
+export default withRouter(Sidebar);
+
+Sidebar.defaultProps = {
+    isOpenSidebar: {
+        openLeft: true,
+        openRight: true,
+    },
+    selectedPoints: [],
+};
+
+
+Sidebar.propTypes = {
+    isOpenSidebar: PropTypes.object,
+    nameOfSidebar: PropTypes.string,
+    selectedPoints: PropTypes.array
+}
