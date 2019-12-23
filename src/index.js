@@ -10,18 +10,17 @@ import dotenv from "dotenv/config";
 
 let PORT = process.env.PORT || 5000,
   MONGO_DB_URL = process.env.MONGO_DB_URL
+const app = express();
+app.use(express.static(path.join(__dirname, '../client/build')));
 if (process.env.MODE === "DEV") {
   PORT = 5000
   MONGO_DB_URL = `mongodb://localhost:27017/tt111`
+  app.use(cors())
+} else {
+  app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
 }
 
-
-console.log(process.env)
-
-const app = express();
 mongodbConnection(MONGO_DB_URL);
-app.use(express.static(path.join(__dirname, '../client/build')));
-app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/distance", roadRoutes());
