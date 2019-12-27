@@ -198,6 +198,16 @@ function Home() {
 
                         </div>
                     </div>
+                    <div className="container" style={{marginTop: "5rem"}}>
+                        <div className="row vertical-content">
+                            <div className="col-lg-12">
+                                <h3 className="text-center">Jak szukać przewoźników przy użyciu naszego narzędzia ?</h3>
+                            </div>
+                            <div className="col-lg-9 embed-responsive embed-responsive-16by9" style={{marginTop: "2rem"}}>
+                                <iframe src="https://www.youtube.com/embed/UoY7V5vmjMw" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 {/* <section className="section counter">
                     <div className="container">
@@ -287,15 +297,12 @@ function Home() {
                             <div className="col-lg-4">
                                 <div className="pricing-box-active text-center bg-white p-5 mt-5">
                                     <h4 className="pricing-plan text-uppercase">Dla przewoźnika/spedycji</h4>
-                                    <h2 className="pricing-price mt-5 mb-0">150PLN/1 pojazd</h2>
+                                    <h2 className="pricing-price mt-5 mb-0">50PLN/1 pojazd</h2>
                                     <p className="pricing-month mt-1">za miesiąc</p>
                                     <div className="plan-features mt-5">
                                         <p><b>Brak</b> ukrytych opłat</p>
                                         <p><b>Brak</b> prowizji od zleceń</p>
                                         <p><b>Własny</b> branding (logo, nazwa firmy)</p>
-                                        <p><b>Nieograniczona</b> liczba pojazdów</p>
-                                        <p>Do <b>20</b> zmian na miesiąc</p>
-                                        <p><b>5 e-maili</b> kontaktowych</p>
                                     </div>
                                     <div className="mt-5">
                                         <a href="https://www.facebook.com/LogiCalc-106321854209260" className="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
