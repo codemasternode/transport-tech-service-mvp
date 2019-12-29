@@ -101,6 +101,10 @@
         height: 70%;
         position: fixed;
 
+        &__requirements {
+            width: 100%;
+        }
+
         &__click {
             position: absolute;
             background-color: #ffffff;
@@ -110,7 +114,6 @@
             right: -15px;
             top: 50%;
             cursor: pointer;
-
         }
     }
 
@@ -129,7 +132,6 @@
             left: -15px;
             top: 50%;
             cursor: pointer;
-
         }
     }
 }

@@ -4,6 +4,7 @@ import produce from 'immer'
 const INITIAL_STATE = {
     searchedCriterial: {},
     searchedCriterialDimensions: {},
+    dataForRequest: {},
     chosenCompany: {},
     allFetchedCompanies: []
 }
@@ -18,6 +19,10 @@ const companiesReducer = (state = INITIAL_STATE, action) => {
         case types.ADD_CRITERIA:
             return produce(state, draftState => {
                 draftState.searchedCriterial = action.item
+            })
+        case types.ADD_DATA_REQUEST:
+            return produce(state, draftState => {
+                draftState.dataForRequest = action.item
             })
         case types.ADD_CRITERIA_DIMENSIONS:
             return produce(state, draftState => {

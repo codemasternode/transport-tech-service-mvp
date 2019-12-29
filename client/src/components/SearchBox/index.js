@@ -119,6 +119,38 @@ class SearchBox extends Component {
         }
     }
 
+    _sendData = () => {
+        const { selectedPlaces } = this.state
+
+        const { dataForRequest } = this.props
+
+        const data = {
+            ...dataForRequest,
+            points: selectedPlaces
+        }
+        this.props.getSearchedCriteria(data)
+        if (selectedPlaces.length > 1) {
+            this.setState({
+                ...this.state,
+                isVisible: true,
+                isLoading: true,
+            })
+            axios.post(`${API_URL}/api/distance`, data).then((response) => {
+                this.setState({
+                    ...this.state,
+                    isLoading: false,
+                    resultSearchedData: response.data.companies || [],
+                })
+                this.props.getAllCompanies(response.data.companies)
+
+            }, (err) => {
+                console.log("Axios error: " + err)
+            })
+        } else {
+            this._handleClickOnDialog(true)
+        }
+    }
+
     _renderMap = () => {
         const {
             loadingElement,
@@ -218,9 +250,9 @@ class SearchBox extends Component {
                     resultSearchedData={resultSearchedData}
                     isVisible={isVisible}
                     isLoading={isLoading} />
-                {/* <button className="search__btn_search">
-                    <h2 onClick={}>Szukaj</h2>
-                </button> */}
+                <button className="search__btn_search">
+                    <h2 onClick={this._sendData}>Szukaj</h2>
+                </button>
                 <button className="search__btn_results" onClick={() => this._handleOpenSidebar("openRight")}>
                     <h2 className="search__btn_title">Pokaż wyniki</h2>
                 </button>
@@ -241,8 +273,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     getSearchedCriteria: criteria => dispatch(actions.addCriteria(criteria)),
     selectCompany: company => dispatch(actions.add(company)),
-    getAllCompanies: company => dispatch(actions.addAll(company))
-
+    getAllCompanies: company => dispatch(actions.addAll(company)),
+    getRequestData: data => dispatch(actions.addRequestData(data))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBox));

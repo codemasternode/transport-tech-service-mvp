@@ -28,14 +28,9 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         classNamesOfSidebar: ""
     })
 
-    const lastProps = React.useRef({
-        isOpenSidebar
-    });
-    // console.log(lastProps.current.isOpenSidebar)
-    // console.log(state.isOpen)
     useEffect(() => {
         _updateWindowDimensions()
-    })
+    }, [isOpenSidebar.openLeft, isOpenSidebar.openRight])
 
     const styleOfRow = {
         margin: 5,
@@ -60,13 +55,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         } else {
             styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { display: "flex" } : { display: "none" }) : isOpenSidebar[nameOfSidebar] ? { display: "flex" } : { display: "none" }
         }
-        // if( window.innerWidth <= 768 && isOpen){
-
-        // }
-
         setState({ ...state, width: window.innerWidth, height: window.innerHeight, styleOfSidebar });
-
-        // console.log(window.innerWidth)
     }
 
     const _rowRenderer = ({
@@ -79,14 +68,10 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
 
         const { vehicles, logo } = allFetchedCompanies[index]
         let totalCost = 0;
-        console.log(vehicles)
         for (const vehicle of vehicles) {
             const { fullCost } = vehicle || 0
             totalCost += fullCost
         }
-
-        console.log(allFetchedCompanies, 91)
-        // console.log(totalCost)
         return (
             <div
                 key={key}
@@ -111,7 +96,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
             )
         } else {
             if (allFetchedCompanies.length > 0) {
-                console.log(allFetchedCompanies)
                 return (
                     <AutoSizer>
                         {({ height, width }) => (
@@ -132,10 +116,11 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
     }
 
     const _isRenderSidebar = () => {
+        const { width } = state;
         if (_validNameOfSidebar) {
             return (
                 <div className="sidebar__left__requirements">
-                    <SearchContent handleSearchRequest={handleSearchRequest} />
+                    <SearchContent handleSearchRequest={handleSearchRequest} deviceWidth={width} />
                 </div>
             )
         } else {

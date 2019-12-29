@@ -50,7 +50,7 @@ const StyledDimensionsTitle = styled.h5`
     font-size: 1.2em;
 `
 
-const SearchContent = ({ handleSearchRequest }) => {
+const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
     const [state, setState] = React.useState({
         criteria: {
             length: 2,
@@ -92,7 +92,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         })
     }
 
-    const _handelChangeDimensionsOfPallets = e => {
+    const _handleChangeDimensionsOfPallets = e => {
         const { value, name } = e.target;
 
         setState({
@@ -101,7 +101,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         })
     }
 
-    const _handelChangeDimensions = e => {
+    const _handleChangeDimensions = e => {
         const { value, name } = e.target;
         const { criteria } = state;
         criteria[name] = value
@@ -110,8 +110,34 @@ const SearchContent = ({ handleSearchRequest }) => {
             ...state,
             criteria
         })
+    }
 
+    const _handleSendData = () => {
+        const { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets, criteria } = state;
+        let dataForRequest = {}
+        if (selectedOperation === "Palette") {
+            dataForRequest = {
+                numberOfPallets: parseInt(numberOfPallets),
+                weight: parseFloat(totalWeightOfPallets / 1000),
+                height: parseFloat(heightOfPallets),
+                typeOfSearch: selectedOperation,
+                typeOfPallet: selectedPallets
+            }
 
+        } else {
+            const { length, weight, height, width } = criteria;
+            dataForRequest["length"] = parseFloat(length)
+            dataForRequest["height"] = parseFloat(height)
+            dataForRequest["width"] = parseFloat(width)
+            dataForRequest["volume"] = parseFloat(length * height * width)
+            dataForRequest["weight"] = parseFloat(weight / 1000)
+            dataForRequest["typeOfSearch"] = selectedOperation
+            dispatch(actions.addDimCriteria(dataForRequest))
+        }
+        if(deviceWidth > 678){
+            handleSearchRequest(dataForRequest)
+        }
+        dispatch(actions.addRequestData(dataForRequest))
     }
 
     /// render select to choose option of searching
@@ -165,19 +191,19 @@ const SearchContent = ({ handleSearchRequest }) => {
             <React.Fragment>
                 <div className="text__field__form">
                     <label className="text__field__label">Waga (kg)</label>
-                    <input type="text" className="text__field__input" name="weight" value={weight} onChange={e => _handelChangeDimensions(e)} />
+                    <input type="text" className="text__field__input" name="weight" value={weight} onChange={e => _handleChangeDimensions(e)} />
                 </div>
                 <div className="text__field__form">
                     <label className="text__field__label">Długość (m)</label>
-                    <input type="text" className="text__field__input" name="length" value={length} onChange={e => _handelChangeDimensions(e)} />
+                    <input type="text" className="text__field__input" name="length" value={length} onChange={e => _handleChangeDimensions(e)} />
                 </div>
                 <div className="text__field__form">
                     <label className="text__field__label">Szerokość (m)</label>
-                    <input type="text" className="text__field__input" name="width" value={width} onChange={e => _handelChangeDimensions(e)} />
+                    <input type="text" className="text__field__input" name="width" value={width} onChange={e => _handleChangeDimensions(e)} />
                 </div>
                 <div className="text__field__form">
                     <label className="text__field__label">Wysokość (m)</label>
-                    <input type="text" className="text__field__input" name="height" value={height} onChange={e => _handelChangeDimensions(e)} />
+                    <input type="text" className="text__field__input" name="height" value={height} onChange={e => _handleChangeDimensions(e)} />
                 </div>
             </React.Fragment>
             // ))
@@ -209,19 +235,19 @@ const SearchContent = ({ handleSearchRequest }) => {
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Ilość palet:</StyledDimensionsTitle> </label>
-                        <input value={numberOfPallets} name="numberOfPallets" type="text" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={numberOfPallets} name="numberOfPallets" type="text" className="text__field__input" onChange={e => _handleChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Całkowita waga:</StyledDimensionsTitle> </label>
-                        <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="text" step="0.1" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="text" step="0.1" className="text__field__input" onChange={e => _handleChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
                         <label className="text__field__label"><StyledDimensionsTitle>Wysokość:</StyledDimensionsTitle> </label>
-                        <input value={heightOfPallets} name="heightOfPallets" type="text" className="text__field__input" onChange={e => _handelChangeDimensionsOfPallets(e)} />
+                        <input value={heightOfPallets} name="heightOfPallets" type="text" className="text__field__input" onChange={e => _handleChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
             </React.Fragment>
@@ -294,7 +320,7 @@ const SearchContent = ({ handleSearchRequest }) => {
     }
 
     const _renderSearchContent = () => {
-        const { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets, criteria } = state;
+
         // search content of left sidebar
         return (
             <Grid container={true} direction="column" alignItems="center">
@@ -309,28 +335,8 @@ const SearchContent = ({ handleSearchRequest }) => {
                     {_renderlistOfPalletsDimensions()}
                 </StyledList>
                 <Button onClick={() => {
-                    let dataForRequest = {}
-                    if (selectedOperation === "Palette") {
-                        dataForRequest = {
-                            numberOfPallets: parseInt(numberOfPallets),
-                            weight: parseFloat(totalWeightOfPallets / 1000),
-                            height: parseFloat(heightOfPallets),
-                            typeOfSearch: selectedOperation,
-                            typeOfPallet: selectedPallets
-                        }
-
-                    } else {
-                        const { length, weight, height, width } = criteria;
-                        dataForRequest["length"] = parseFloat(length)
-                        dataForRequest["height"] = parseFloat(height)
-                        dataForRequest["width"] = parseFloat(width)
-                        dataForRequest["volume"] = parseFloat(length * height * width)
-                        dataForRequest["weight"] = parseFloat(weight / 1000)
-                        dataForRequest["typeOfSearch"] = selectedOperation
-                        dispatch(actions.addDimCriteria(dataForRequest))
-                    }
-                    handleSearchRequest(dataForRequest)
-                }}>Szukaj</Button>
+                    _handleSendData()
+                }}>{deviceWidth > 678 ? "Szukaj" : "Gotowe"}</Button>
 
                 {/* <Grid item xs={12} style={{ width: '100%' }}>
                     <SearchBlock>
