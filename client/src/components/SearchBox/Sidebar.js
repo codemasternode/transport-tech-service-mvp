@@ -1,9 +1,6 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { Button, CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import Geocode from "react-geocode";
 import axios from "axios";
 import { AutoSizer, List } from 'react-virtualized';
@@ -16,60 +13,60 @@ import SearchContent from './SearchContent';
 Geocode.setApiKey("AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM");
 Geocode.enableDebug();
 
-const theme = createMuiTheme({
-    overrides: {
-        // Name of the component ⚛️
-        MuiOutlinedInput: {
-            // The default props to change
-            // padding: '12px 10px', // No more ripple, on the whole application 💣!
-            input: {
-                padding: '12px 10px',
-            }
-        },
-    },
-});
-
 axios.defaults.withCredentials = true
 
 const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearchRequest, resultSearchedData, isVisible, isLoading, ...props }) => {
     const _validNameOfSidebar = nameOfSidebar === "openLeft" ? true : false;
     const _correctClassNameOfSidebar = _validNameOfSidebar ? "sidebar sidebar__left" : "sidebar sidebar__right";
     const _correctClassNameOfClickSidebar = _validNameOfSidebar ? "sidebar__left__click" : "sidebar__right__click";
-    const _styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { left: 0 } : { left: "-18%" }) : isOpenSidebar[nameOfSidebar] ? { right: 0 } : { right: "-15%" }
+
     const [state, setState] = React.useState({
-        points: [
-            {
-                "lat": 50.014703,
-                "lng": 19.880671
-            },
-            {
-                "lat": 54.030763,
-                "lng": 20.111284
-            }
-        ],
-        heightPerRow: 0,
+        width: 0,
+        height: 0,
+        styleOfSidebar: {},
+        isOpen: isOpenSidebar,
+        classNamesOfSidebar: ""
+    })
+
+    const lastProps = React.useRef({
+        isOpenSidebar
+    });
+    // console.log(lastProps.current.isOpenSidebar)
+    // console.log(state.isOpen)
+    useEffect(() => {
+        _updateWindowDimensions()
     })
 
     const styleOfRow = {
         margin: 5,
-        // pargin: 1
     }
-
-    useEffect(() => {
-        // const height = this.divElement.clientHeight;
-        // console.log(props)
-        // setState({ heightPerRow: height / allFetchedCompanies.length });
-    }, [])
 
     // get all companies from redux
     const { allFetchedCompanies } = useSelector(state => state.companies)
     const dispatch = useDispatch();
 
     const _handleSelectCompany = key => {
-        console.log(key)
         const selectedCompany = allFetchedCompanies[key]
         dispatch(actions.add(selectedCompany))
         props.history.push('/mail')
+    }
+
+    const _updateWindowDimensions = () => {
+        let { styleOfSidebar } = state;
+        // console.log(isOpenSidebar)
+
+        if (window.innerWidth > 768) {
+            styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { left: 0 } : { left: "-300px" }) : isOpenSidebar[nameOfSidebar] ? { right: 0 } : { right: "-300px" }
+        } else {
+            styleOfSidebar = _validNameOfSidebar ? (isOpenSidebar[nameOfSidebar] ? { display: "flex" } : { display: "none" }) : isOpenSidebar[nameOfSidebar] ? { display: "flex" } : { display: "none" }
+        }
+        // if( window.innerWidth <= 768 && isOpen){
+
+        // }
+
+        setState({ ...state, width: window.innerWidth, height: window.innerHeight, styleOfSidebar });
+
+        // console.log(window.innerWidth)
     }
 
     const _rowRenderer = ({
@@ -106,10 +103,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
 
 
     const _renderResultContent = () => {
-        // const {isVisible} = state;
-        const { heightPerRow } = state;
-        console.log(isVisible, isLoading, allFetchedCompanies)
-        // if (allFetchedCompanies.length !== 0) {
         if (isLoading) {
             return (
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -117,7 +110,6 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 </div>
             )
         } else {
-            // console.log("GIT")
             if (allFetchedCompanies.length > 0) {
                 console.log(allFetchedCompanies)
                 return (
@@ -137,20 +129,13 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 return null
             }
         }
-        // } else {
-        //     return null
-        // }
-
     }
 
     const _isRenderSidebar = () => {
         if (_validNameOfSidebar) {
             return (
                 <div className="sidebar__left__requirements">
-                    <ThemeProvider theme={theme}>
-                        {/* {_renderSearchContent()} */}
-                        <SearchContent handleSearchRequest={handleSearchRequest} />
-                    </ThemeProvider>
+                    <SearchContent handleSearchRequest={handleSearchRequest} />
                 </div>
             )
         } else {
@@ -162,8 +147,10 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
         }
     }
 
+    const { styleOfSidebar } = state;
+
     return (
-        <div className={_correctClassNameOfSidebar} style={_styleOfSidebar} >
+        <div className={_correctClassNameOfSidebar} style={styleOfSidebar} >
             <span className={_correctClassNameOfClickSidebar} onClick={() => {
                 handleOpenSidebar(nameOfSidebar)
             }}></span>

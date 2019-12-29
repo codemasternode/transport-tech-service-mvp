@@ -21,10 +21,13 @@ const StyledDiv = styled.div`
 
 const SearchBlock = styled.div`
     width: '100%';
-    background-color: #cccccc;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     margin: auto;
+    font-size: 1.3em;
 `
 
 const StyledList = styled.ul`
@@ -44,6 +47,7 @@ const StyledItem = styled.li`
 `
 const StyledDimensionsTitle = styled.h5`
     margin: 0;
+    font-size: 1.2em;
 `
 
 const SearchContent = ({ handleSearchRequest }) => {
@@ -84,8 +88,7 @@ const SearchContent = ({ handleSearchRequest }) => {
             ...state,
             selectedOperation,
             selectedPallets,
-            // totalWeightOfPallets,
-            // heightOfPallets
+
         })
     }
 
@@ -118,7 +121,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         const { selectToSearching, selectedOperation } = state;
         return (
             <StyledDiv>
-                <h4>Wybierz sposób szukania:</h4>
+                <h4 style={{fontSize: '1.1em'}}>Wybierz sposób szukania:</h4>
                 <Select
                     id="selectedOperation"
                     value={selectedOperation}
@@ -187,7 +190,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         return (
             <React.Fragment>
                 <StyledDiv>
-                    <h4>Wybrano paletę typu:</h4>
+                    <h4 style={{fontSize: '1.1em'}}>Wybrano paletę typu:</h4>
                     <Select
                         id="selectedPallets"
                         value={selectedPallets}
@@ -329,14 +332,14 @@ const SearchContent = ({ handleSearchRequest }) => {
                     handleSearchRequest(dataForRequest)
                 }}>Szukaj</Button>
 
-                <Grid item xs={12} style={{ width: '100%' }}>
+                {/* <Grid item xs={12} style={{ width: '100%' }}>
                     <SearchBlock>
                         <h4>Punkty</h4>
-                    </SearchBlock>
-                    {/* <ul>
+                    </SearchBlock> */}
+                {/* <ul>
                         {_renderSelectedPoints()}
                     </ul> */}
-                </Grid>
+                {/* </Grid> */}
             </Grid>
 
         )

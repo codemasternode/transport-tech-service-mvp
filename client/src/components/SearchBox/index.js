@@ -8,7 +8,7 @@ import axios from "axios";
 import Sidebar from './Sidebar';
 import './index.scss'
 import actions from '../../reducers/companies/duck/actions';
-import {API_URL} from '../../utils/urls'
+import { API_URL } from '../../utils/urls'
 
 const googleMapsApiKey = "AIzaSyDgO5BkgVU-0CXP104-6qKWUEPTT4emUZM";
 
@@ -17,8 +17,8 @@ class SearchBox extends Component {
         super(props);
         this.state = {
             isOpenSidebar: {
-                openLeft: true,
-                openRight: true,
+                openLeft: false,
+                openRight: false,
             },
             openDialog: false,
             selectedPlaces: [
@@ -55,7 +55,7 @@ class SearchBox extends Component {
     // }
 
     componentDidMount() {
-        console.log(this.props)
+        // console.log(this.props)
     }
 
     _handleOpenSidebar = name => {
@@ -95,10 +95,7 @@ class SearchBox extends Component {
             ...dataForRequest,
             points: selectedPlaces
         }
-        // console.log(data)
         this.props.getSearchedCriteria(data)
-
-        
 
         if (selectedPlaces.length > 1) {
             this.setState({
@@ -107,7 +104,6 @@ class SearchBox extends Component {
                 isLoading: true,
             })
             axios.post(`${API_URL}/api/distance`, data).then((response) => {
-                console.log(response)
                 this.setState({
                     ...this.state,
                     isLoading: false,
@@ -121,10 +117,6 @@ class SearchBox extends Component {
         } else {
             this._handleClickOnDialog(true)
         }
-        // this.props.selectCompany(data)
-
-        // this.props.history.push('/mail')
-
     }
 
     _renderMap = () => {
@@ -146,17 +138,11 @@ class SearchBox extends Component {
                 }
                 onMapClick={this._handleOnMapClick}
                 markers={selectedPlaces}
-                fullscreenControl={false}
-                streetViewControl={false}
-                disableDefaultUI={true}
                 loadingElement={loadingElement || <div style={{ height: `100%` }} />}
                 containerElement={containerElement || <div style={{ height: "100vh" }} />}
                 mapElement={mapElement || <div style={{ height: `100%` }} />}
                 defaultCenter={defaultCenter || { lat: 50.049683, lng: 19.944544 }}
                 defaultZoom={defaultZoom || 11}
-                defaultStreetView={false}
-                defaultOptions={{ mapTypeControl: false }}
-
             />
         )
     }
@@ -191,11 +177,28 @@ class SearchBox extends Component {
         )
     }
 
+    _renderCustomButton = () => {
+        const { isOpenSidebar } = this.state;
+        if (isOpenSidebar["openRight"]) {
+            return (
+                <button className="search__btn_move" onClick={() => this._handleOpenSidebar("openRight")}>
+                    <h2 className="search__btn_title">Ukryj wyniki</h2>
+                </button>
+            )
+        }
+        return (
+            <button className="search__btn_move" onClick={() => this._handleOpenSidebar("openLeft")}>
+                <h2 className="search__btn_title">{isOpenSidebar["openLeft"] ? "Ukryj formularz" : "Wysuń formularz"}</h2>
+            </button>
+        )
+    }
+
     render() {
         const { selectedPlaces, isOpenSidebar, criteriaToSearch, resultSearchedData, isVisible, isLoading } = this.state;
         return (
             <div className="search">
-            {this._renderAlertModal()}
+                {this._renderAlertModal()}
+                {this._renderCustomButton()}
                 <Sidebar
                     handleOpenSidebar={this._handleOpenSidebar}
                     isOpenSidebar={isOpenSidebar}
@@ -215,6 +218,12 @@ class SearchBox extends Component {
                     resultSearchedData={resultSearchedData}
                     isVisible={isVisible}
                     isLoading={isLoading} />
+                {/* <button className="search__btn_search">
+                    <h2 onClick={}>Szukaj</h2>
+                </button> */}
+                <button className="search__btn_results" onClick={() => this._handleOpenSidebar("openRight")}>
+                    <h2 className="search__btn_title">Pokaż wyniki</h2>
+                </button>
             </div>
         );
     }

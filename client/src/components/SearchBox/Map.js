@@ -16,16 +16,11 @@ const MapDirectionsRenderer = (props) => {
 
     useEffect(() => {
         const { places, travelMode } = props;
-        console.log(props)
-
-
         if (places.length > 1) {
             const waypoints = places.map(p => ({
                 location: { lat: p.lat, lng: p.lng },
                 stopover: true
             }))
-            console.log(waypoints)
-
 
             const origin = waypoints[0].location;
             const destination = waypoints[waypoints.length - 1].location;
@@ -51,7 +46,6 @@ const MapDirectionsRenderer = (props) => {
                 }
             );
             //////
-            console.log(origin)
             var origin1 = new google.maps.LatLng(55.930385, -3.118425);
             var origin2 = 'Greenwich, England';
             var destinationA = 'Stockholm, Sweden';
@@ -87,6 +81,8 @@ const Map = withScriptjs(
             defaultCenter={props.defaultCenter}
             defaultZoom={props.defaultZoom}
             onClick={(e) => props.onMapClick(e)}
+            options={{ streetViewControl: false, fullscreenControl: false, disableDefaultUI: true }}
+
         >
             {props.markers.map((marker, index) => {
                 const position = { lat: marker.lat, lng: marker.lng };
