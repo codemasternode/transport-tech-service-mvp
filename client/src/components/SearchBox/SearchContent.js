@@ -121,7 +121,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         const { selectToSearching, selectedOperation } = state;
         return (
             <StyledDiv>
-                <h4 style={{fontSize: '1.1em'}}>Wybierz sposób szukania:</h4>
+                <h4 style={{ fontSize: '1.1em' }}>Wybierz sposób szukania:</h4>
                 <Select
                     id="selectedOperation"
                     value={selectedOperation}
@@ -190,7 +190,7 @@ const SearchContent = ({ handleSearchRequest }) => {
         return (
             <React.Fragment>
                 <StyledDiv>
-                    <h4 style={{fontSize: '1.1em'}}>Wybrano paletę typu:</h4>
+                    <h4 style={{ fontSize: '1.1em' }}>Wybrano paletę typu:</h4>
                     <Select
                         id="selectedPallets"
                         value={selectedPallets}

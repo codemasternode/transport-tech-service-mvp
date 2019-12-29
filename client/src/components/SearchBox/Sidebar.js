@@ -93,7 +93,7 @@ const Sidebar = ({ handleOpenSidebar, isOpenSidebar, nameOfSidebar, handleSearch
                 style={{ ...style }}
             >
                 <h4 style={styleOfRow}>{allFetchedCompanies[index].nameOfCompany}</h4>
-                <img src={`http://dq1dsixf6z9ds.cloudfront.net/company_logos/${logo}`} alt="company" width="150" height="auto" />
+                <img src={`http://dq1dsixf6z9ds.cloudfront.net/company_logos/${logo}`} alt="company" width="150" height="auto" style={{ display: "block", marginLeft: "auto", marginRight: "auto" }} />
                 <p style={styleOfRow}>Ilość pojazdów: {vehicles.length}</p>
                 <p style={styleOfRow}>Całkowita kwota: {totalCost.toFixed(3)}</p>
                 <Button onClick={() => _handleSelectCompany(index)}>Skontaktuj się</Button>

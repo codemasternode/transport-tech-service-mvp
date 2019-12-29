@@ -46,11 +46,15 @@ function Home() {
             name, surname, email, topic, description
         }
         axios.post(`${API_URL}/api/contact/contact-to-us`, data).then((response) => {
-            console.log(response)
-            const { status } = response;
-            if (status === 200) {
-                 
-            }
+            alert("Email został wysłany")
+            setState({
+                ...state,
+                name: "",
+                email: "",
+                surname: "",
+                topic: "",
+                description: ""
+            })
         }, (err) => {
             console.log("Axios error: " + err)
         })
@@ -139,7 +143,7 @@ function Home() {
                                     <p className="text-muted mt-3 line-height_1_8 f-15">Łączymy przewoźników z załadowcami, chcącymi
                             przewieźć ładunek</p>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-custom btn-round">Dowiedz się więcej<i
+                                        <a href="https://www.facebook.com/LogiCalc-106321854209260" className="btn btn-custom btn-round">Dowiedz się więcej<i
                                             className="mdi mdi-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -194,8 +198,18 @@ function Home() {
 
                         </div>
                     </div>
+                    <div className="container" style={{marginTop: "5rem"}}>
+                        <div className="row vertical-content">
+                            <div className="col-lg-12">
+                                <h3 className="text-center">Jak szukać przewoźników przy użyciu naszego narzędzia ?</h3>
+                            </div>
+                            <div className="col-lg-9 embed-responsive embed-responsive-16by9" style={{marginTop: "2rem"}}>
+                                <iframe src="https://www.youtube.com/embed/UoY7V5vmjMw" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </section>
-                <section className="section counter">
+                {/* <section className="section counter">
                     <div className="container">
 
                         <div className="row">
@@ -249,7 +263,7 @@ function Home() {
                         </div>
 
                     </div>
-                </section>
+                </section> */}
                 <section className="section bg-light" id="pricing">
                     <div className="container">
                         <div className="row">
@@ -275,7 +289,7 @@ function Home() {
                                         <p><b>Nie</b> wymaga potwierdzenia firmy</p>
                                     </div>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
+                                        <a href="/search" className="btn btn-secondary btn-sm btn-round">Sprawdź już teraz</a>
                                     </div>
                                 </div>
                             </div>
@@ -283,18 +297,15 @@ function Home() {
                             <div className="col-lg-4">
                                 <div className="pricing-box-active text-center bg-white p-5 mt-5">
                                     <h4 className="pricing-plan text-uppercase">Dla przewoźnika/spedycji</h4>
-                                    <h2 className="pricing-price mt-5 mb-0">150PLN/1 pojazd</h2>
+                                    <h2 className="pricing-price mt-5 mb-0">50PLN/1 pojazd</h2>
                                     <p className="pricing-month mt-1">za miesiąc</p>
                                     <div className="plan-features mt-5">
                                         <p><b>Brak</b> ukrytych opłat</p>
                                         <p><b>Brak</b> prowizji od zleceń</p>
                                         <p><b>Własny</b> branding (logo, nazwa firmy)</p>
-                                        <p><b>Nieograniczona</b> liczba pojazdów</p>
-                                        <p>Do <b>20</b> zmian na miesiąc</p>
-                                        <p><b>5 e-maili</b> kontaktowych</p>
                                     </div>
                                     <div className="mt-5">
-                                        <a href="" className="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
+                                        <a href="https://www.facebook.com/LogiCalc-106321854209260" className="btn btn-custom btn-sm btn-round">Dołącz do nas</a>
                                     </div>
                                 </div>
                             </div>
@@ -302,7 +313,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                <section className="section bg-client" id="clients">
+                {/* <section className="section bg-client" id="clients">
                     <div className="container">
 
                         <div className="row">
@@ -351,7 +362,7 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <section className="section" id="contact">
                     <div className="container">
                         <div className="row">
