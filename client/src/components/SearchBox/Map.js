@@ -72,9 +72,6 @@ const MapDirectionsRenderer = (props) => {
     return (state.directions && <DirectionsRenderer directions={state.directions} />)
 }
 
-
-
-
 const Map = withScriptjs(
     withGoogleMap(React.memo((props) => (
         <GoogleMap

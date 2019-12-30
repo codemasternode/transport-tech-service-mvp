@@ -20,6 +20,7 @@ const googleMapsClient = googleMaps.createClient({
 });
 
 export async function getRoadOffers(req, res) {
+  console.log(req.body)
   if (req.body.typeOfSearch === "Palette") {
     const requireKeys = [
       "numberOfPallets",

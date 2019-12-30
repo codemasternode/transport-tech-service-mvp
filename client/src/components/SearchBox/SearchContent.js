@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Select, Grid, MenuItem } from '@material-ui/core';
 import labelsOfSearchInputs from '../../constants/dataOfTransports'
 import typesOfPallets from '../../constants/typesOfPallets'
@@ -75,6 +75,13 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
     const floatRegExp = new RegExp('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$');
     // handle change of select value
 
+    useEffect(() => {
+        if (deviceWidth <= 678) {
+            _handleSendData()
+        }
+    }, [state])
+
+
     const _handleChangeSelectValue = (e, type) => {
         let { selectedOperation, selectedPallets } = state;
         const { value } = e.target;
@@ -88,9 +95,8 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             ...state,
             selectedOperation,
             selectedPallets,
-
         })
-
+        // _handleSendData()
     }
 
     const _handleChangeDimensionsOfPallets = e => {
@@ -99,7 +105,6 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             ...state,
             [name]: (value)
         })
-        _handleSendData()
     }
 
     const _handleChangeDimensions = e => {
@@ -110,7 +115,6 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             ...state,
             criteria
         })
-        _handleSendData()
     }
 
     const _handleSendData = () => {
@@ -120,13 +124,17 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             dataForRequest = {
                 numberOfPallets: parseInt(numberOfPallets),
                 weight: parseFloat(totalWeightOfPallets / 1000),
-                height: parseFloat(heightOfPallets),
+                height: _validNumber(heightOfPallets),
                 typeOfSearch: selectedOperation,
                 typeOfPallet: selectedPallets
             }
 
         } else {
-            const { length, weight, height, width } = criteria;
+            let { length, weight, height, width } = criteria;
+            length = _validNumber(length)
+            weight = _validNumber(weight)
+            height = _validNumber(height)
+            width = _validNumber(width)
             dataForRequest["length"] = parseFloat(length)
             dataForRequest["height"] = parseFloat(height)
             dataForRequest["width"] = parseFloat(width)
@@ -135,9 +143,9 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             dataForRequest["typeOfSearch"] = selectedOperation
             dispatch(actions.addDimCriteria(dataForRequest))
         }
-        if (deviceWidth > 678) {
-            handleSearchRequest(dataForRequest)
-        }
+        // if (deviceWidth > 678) {
+        //     handleSearchRequest(dataForRequest)
+        // }
         dispatch(actions.addRequestData(dataForRequest))
     }
 
@@ -279,6 +287,15 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
         return listOfDimensions;
     }
 
+    const _validNumber = value => {
+        let str = value.toString();
+        if (str.includes(",")) {
+            str = str.replace(",", ".")
+            return parseFloat(str)
+        } else {
+            return value;
+        }
+    }
 
 
     const _viewModel = {
@@ -335,18 +352,39 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
                 <StyledList>
                     {_renderlistOfPalletsDimensions()}
                 </StyledList>
-                <Button onClick={() => {
+                {/* <Button onClick={() => {
                     _handleSendData()
-                }}>{deviceWidth > 678 ? "Szukaj" : "Gotowe"}</Button>
+                }}>{deviceWidth > 678 ? "Szukaj" : "Gotowe"}</Button> */}
+                {deviceWidth <= 678 ? <Button onClick={() => {
+                    _handleSendData()
+                }}>Gotowe</Button> : <Button onClick={() => {
+                    let { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets, criteria } = state;
+                    let dataForRequest = {}
+                    if (selectedOperation === "Palette") {
+                        dataForRequest = {
+                            numberOfPallets: parseInt(numberOfPallets),
+                            weight: parseFloat(totalWeightOfPallets / 1000),
+                            height: _validNumber(heightOfPallets),
+                            typeOfSearch: selectedOperation,
+                            typeOfPallet: selectedPallets
+                        }
 
-                {/* <Grid item xs={12} style={{ width: '100%' }}>
-                    <SearchBlock>
-                        <h4>Punkty</h4>
-                    </SearchBlock> */}
-                {/* <ul>
-                        {_renderSelectedPoints()}
-                    </ul> */}
-                {/* </Grid> */}
+                    } else {
+                        let { length, weight, height, width } = criteria;
+                        length = _validNumber(length)
+                        weight = _validNumber(weight)
+                        height = _validNumber(height)
+                        width = _validNumber(width)
+                        dataForRequest["length"] = parseFloat(length)
+                        dataForRequest["height"] = parseFloat(height)
+                        dataForRequest["width"] = parseFloat(width)
+                        dataForRequest["volume"] = parseFloat(length * height * width)
+                        dataForRequest["weight"] = parseFloat(weight / 1000)
+                        dataForRequest["typeOfSearch"] = selectedOperation
+                        dispatch(actions.addDimCriteria(dataForRequest))
+                    }
+                    handleSearchRequest(dataForRequest)
+                }}>Szukaj</Button>}
             </Grid>
 
         )

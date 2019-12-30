@@ -4,7 +4,13 @@ import produce from 'immer'
 const INITIAL_STATE = {
     searchedCriterial: {},
     searchedCriterialDimensions: {},
-    dataForRequest: {},
+    dataForRequest: {
+        numberOfPallets: 1,
+        weight: 2,
+        height: 2,
+        typeOfSearch: "Palette",
+        typeOfPallet: "EUR-EPAL",
+    },
     chosenCompany: {},
     allFetchedCompanies: []
 }

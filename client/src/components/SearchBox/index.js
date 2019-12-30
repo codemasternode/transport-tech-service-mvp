@@ -17,8 +17,8 @@ class SearchBox extends Component {
         super(props);
         this.state = {
             isOpenSidebar: {
-                openLeft: false,
-                openRight: false,
+                openLeft: window.innerHeight > 678 ? true : false,
+                openRight: window.innerHeight > 678 ? true : false,
             },
             openDialog: false,
             selectedPlaces: [
