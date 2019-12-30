@@ -123,11 +123,12 @@ class SearchBox extends Component {
         const { selectedPlaces } = this.state
 
         const { dataForRequest } = this.props
-
+        // console.log(this.props)
         const data = {
             ...dataForRequest,
             points: selectedPlaces
         }
+        console.log(data)
         this.props.getSearchedCriteria(data)
         if (selectedPlaces.length > 1) {
             this.setState({
@@ -262,11 +263,12 @@ class SearchBox extends Component {
 }
 
 const mapStateToProps = state => {
-    const { chosenCompany, allFetchedCompanies, searchedCriterial } = state.companies
+    const { chosenCompany, allFetchedCompanies, searchedCriterial, dataForRequest } = state.companies
     return ({
         searchedCriterial,
         chosenCompany,
         allFetchedCompanies,
+        dataForRequest
     })
 }
 

@@ -90,26 +90,27 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             selectedPallets,
 
         })
+
     }
 
     const _handleChangeDimensionsOfPallets = e => {
         const { value, name } = e.target;
-
         setState({
             ...state,
             [name]: (value)
         })
+        _handleSendData()
     }
 
     const _handleChangeDimensions = e => {
         const { value, name } = e.target;
         const { criteria } = state;
         criteria[name] = value
-        console.log(value)
         setState({
             ...state,
             criteria
         })
+        _handleSendData()
     }
 
     const _handleSendData = () => {
@@ -134,7 +135,7 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
             dataForRequest["typeOfSearch"] = selectedOperation
             dispatch(actions.addDimCriteria(dataForRequest))
         }
-        if(deviceWidth > 678){
+        if (deviceWidth > 678) {
             handleSearchRequest(dataForRequest)
         }
         dispatch(actions.addRequestData(dataForRequest))
