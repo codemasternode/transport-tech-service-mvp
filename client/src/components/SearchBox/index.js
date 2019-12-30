@@ -124,13 +124,16 @@ class SearchBox extends Component {
 
         const { dataForRequest } = this.props
         // console.log(this.props)
+        console.log(dataForRequest)
         const data = {
             ...dataForRequest,
             points: selectedPlaces
         }
         console.log(data)
         this.props.getSearchedCriteria(data)
-        if (selectedPlaces.length > 1) {
+        if (selectedPlaces.length <= 1 || Object.entries(dataForRequest).length === 0 && dataForRequest.constructor === Object) {
+            this._handleClickOnDialog(true)
+        } else {
             this.setState({
                 ...this.state,
                 isVisible: true,
@@ -147,8 +150,6 @@ class SearchBox extends Component {
             }, (err) => {
                 console.log("Axios error: " + err)
             })
-        } else {
-            this._handleClickOnDialog(true)
         }
     }
 
@@ -194,7 +195,7 @@ class SearchBox extends Component {
                     <DialogTitle id="alert-dialog-title">{"Proszę podać punkty"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            W celu wyszukania firmy, proszę wyznaczyć punkty na mapie
+                            W celu wyszukania firmy, proszę wyznaczyć punkty na mapie oraz uzupełnić wszystkie pola w formularzu.
           </DialogContentText>
                     </DialogContent>
                     <DialogActions>
