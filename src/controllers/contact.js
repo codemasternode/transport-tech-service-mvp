@@ -45,7 +45,6 @@ export async function contactToUs(req, res) {
 }
 
 export async function contactToCompany(req, res) {
-  console.log(req.body.description)
   const requireContactProperties = [
     "name",
     "surname",
