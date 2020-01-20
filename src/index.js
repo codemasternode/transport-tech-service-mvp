@@ -29,7 +29,7 @@ app.use(fileUpload({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/distance", roadRoutes());
-app.use("/api/webStatsRoutes", webStatsRoutes());
+app.use("/api/web-stats", webStatsRoutes());
 app.use("/api/contact", contactRoutes())
 app.use("/api/company", companyRoutes())
 app.get('*', (req, res) => {
