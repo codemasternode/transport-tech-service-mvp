@@ -2,6 +2,7 @@ import Company from '../models/company'
 import uuid from 'uuid/v1'
 import AWS from 'aws-sdk'
 import { loadTemplate, sendEmail } from "../config/mailer";
+import Invite from '../models/invites'
 
 const s3bucket = new AWS.S3({
     accessKeyId: 'AKIAJRX2IPJP7MB7ER7A',
@@ -20,10 +21,11 @@ export function createCompany(req, res) {
         "isVat",
         "email",
         "country",
-        "countries"
+        "countries",
+        "password"
     ];
 
-    const { nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country } = req.body
+
     for (let i = 0; i < requireKeys.length; i++) {
         let isInside = false;
         for (let key in req.body) {
@@ -37,7 +39,7 @@ export function createCompany(req, res) {
             });
         }
     }
-
+    const { nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country, password } = req.body
 
     if (!req.files || !req.files.logo) {
         return res.status(400).send({
@@ -69,7 +71,7 @@ export function createCompany(req, res) {
             return res.status(500).send({ msg: "Can not upload file to S3" })
         }
         const company = {
-            nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country, logo: data.key
+            nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country, logo: data.key, password
         }
 
         let countries = req.body.countries.split(",")
@@ -85,14 +87,27 @@ export function createCompany(req, res) {
             loadTemplate("confirmCreate", [
                 { name, url }
             ])
-                .then(result => {
+                .then(async result => {
                     sendEmail({
                         to: doc.email,
                         subject: `Calc-Logistic Potwierdzenie założenia konta`,
                         html: result[0].email.html,
                         text: result[0].email.text
                     });
-                    return res.status(201).send({ msg: "Company created successfuly" })
+
+                    res.status(201).send({ msg: "Company created successfuly" })
+                    try {
+                        const { inviteCode } = req.body
+                        if (inviteCode) {
+                            const invite = await Invite.findOne({ to: doc.email })
+                            if (invite) {
+                                Invite.updateOne({ to: doc.email }, { visited: true })
+                            }
+                        }
+                    } catch (err) {
+                        console.log(err)
+                    }
+
                 })
                 .catch(err => {
                     console.log(err)
@@ -118,13 +133,31 @@ export async function confirmCompany(req, res) {
 
     const { confirmCode } = req.body
 
-    const company = await Company.findOne({ confirmCode })
-    if (!company) {
+    const companyToConfirm = await Company.findOne({ confirmCode })
+    if (!companyToConfirm) {
         return res.status(404).send({ msg: "Confirmation code doesn't exists" })
     }
 
-    Company.updateOne({ confirmCode }, { isConfirmed: true }).then(() => {
-        return res.status(201).send({ msg: "Company confirmed" })
+    Company.updateOne({ confirmCode }, { isConfirmed: true }).then(async () => {
+        res.status(201).send({ msg: "Company confirmed" })
+        //check is new customer was invited
+        try {
+            const invite = await Invite.findOne({ to: companyToConfirm.email })
+            if (invite) {
+                const company = await Company.findOne({ _id: invite.from })
+                if (company) {
+                    const date = new Date(company.freeUseToDate.getTime())
+                    if (company.isFreeSpaceUsed === false) {
+                        date.setDate(date.getDate() + 14)
+                    }
+                    await Company.updateOne({ _id: invite.from }, { freeUseToDate: date, isFreeSpaceUsed: true })
+                    await Invite.updateOne({ to: companyToConfirm.email }, { registered: true, visited: true })
+                }
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
     }).catch(err => {
         console.log(err)
         return res.status(500).send({ msg: "Unhandled Error" })

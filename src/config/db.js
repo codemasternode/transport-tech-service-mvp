@@ -11,9 +11,10 @@ import User from "../models/user";
 import Palette from "../models/palletes";
 import TollRoad from "../models/tollRoads";
 import Diets from "../models/diets";
+import Invite from '../models/invites'
 import Axios from "axios";
 
-export default  URI => {
+export default URI => {
   const dbOptions = {
     poolSize: 4,
     useNewUrlParser: true,
@@ -43,7 +44,8 @@ export default  URI => {
       User.deleteMany({}),
       Palette.deleteMany({}),
       TollRoad.deleteMany({}),
-      Diets.deleteMany({})
+      Diets.deleteMany({}),
+      Invite.deleteMany({})
     ]);
 
     const diets = data[4];
@@ -136,7 +138,9 @@ export default  URI => {
           }
         }
       }
-      await Company.create(companies[i]);
+      const company = await Company.create(companies[i]);
+      Invite.create({ code: "fff90210", from: company._id, to: "marcinwarzybok@outlook.com" })
+      Invite.create({ code: "fff90211", from: company._id, to: "marcinwarzybok17@gmail.com" })
     }
   });
 
