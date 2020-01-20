@@ -98,10 +98,10 @@ export function createCompany(req, res) {
                     res.status(201).send({ msg: "Company created successfuly" })
                     try {
                         const { inviteCode } = req.body
-                        if (inviteCode) {
-                            const invite = await Invite.findOne({ to: doc.email })
-                            if (invite) {
-                                Invite.updateOne({ to: doc.email }, { visited: true })
+                        if (inviteCode !== undefined) {
+                            const invite = await Invite.findOne({ code: inviteCode, to: doc.email })
+                            if (invite !== undefined) {
+                                await Invite.updateOne({ code: inviteCode, to: doc.email }, { visited: true })
                             }
                         }
                     } catch (err) {
