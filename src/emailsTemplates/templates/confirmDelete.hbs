@@ -1,0 +1,156 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		meta(http-equiv='X-UA-Compatible', content='ie=edge')
+		title Email template
+		link(href='https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap', rel='stylesheet')
+		style.
+			* {
+			font-family: "Roboto", sans-serif;
+			box-sizing: border-box;
+			}
+			body {
+			overflow-y: hidden;
+			background: lightgray;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background: -moz-linear-gradient(
+			top,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 60%,
+			rgba(35, 47, 62, 1) 60.1%,
+			rgba(35, 47, 62, 1) 100%
+			);
+			background: -webkit-gradient(
+			left top,
+			left bottom,
+			color-stop(0%, rgba(242, 242, 242, 1)),
+			color-stop(0%, rgba(242, 242, 242, 1)),
+			color-stop(60%, rgba(242, 242, 242, 1)),
+			color-stop(60.1%, rgba(35, 47, 62, 1)),
+			color-stop(100%, rgba(35, 47, 62, 1))
+			);
+			background: -webkit-linear-gradient(
+			top,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 60%,
+			rgba(35, 47, 62, 1) 60.1%,
+			rgba(35, 47, 62, 1) 100%
+			);
+			background: -o-linear-gradient(
+			top,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 60%,
+			rgba(35, 47, 62, 1) 60.1%,
+			rgba(35, 47, 62, 1) 100%
+			);
+			background: -ms-linear-gradient(
+			top,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 60%,
+			rgba(35, 47, 62, 1) 60.1%,
+			rgba(35, 47, 62, 1) 100%
+			);
+			background: linear-gradient(
+			to bottom,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 0%,
+			rgba(242, 242, 242, 1) 60%,
+			rgba(35, 47, 62, 1) 60.1%,
+			rgba(35, 47, 62, 1) 100%
+			);
+			}
+			.email-body {
+			width: 100%;
+			max-width: 600px;
+			border-radius: 10px;
+			padding-top: 3rem;
+			height: auto;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			margin-top: -50px;
+			background: white;
+			overflow: hidden;
+			}
+			.company-logo {
+			max-width: 70px;
+			width: 100%;
+			height: auto;
+			}
+			.company-name {
+			font-weight: 900;
+			}
+			h4 {
+			max-width: 450px;
+			text-align: center;
+			font-weight: 400;
+			}
+			a {
+			text-decoration: none;
+			}
+			.button-panel {
+			margin-top: 2rem;
+			margin-bottom: 4rem;
+			}
+			.button-panel a {
+			color: black;
+			padding: 0.7rem 1.5rem;
+			border-radius: 10px;
+			margin-right: 10px;
+			margin-left: 10px;
+			background: white;
+			font-weight: 700;
+			}
+			.button-panel a:hover {
+			color: white;
+			}
+			.button-panel a:first-of-type {
+			border: 3px solid #ff9900;
+			}
+			.button-panel a:first-of-type:hover {
+			background: #ff9900;
+			}
+			.button-panel a:last-of-type {
+			border: 3px solid red;
+			}
+			.button-panel a:last-of-type:hover {
+			background: red;
+			}
+			.email-footer {
+			color: white;
+			font-size: 12px;
+			width: 100%;
+			background: #146eb4;
+			padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+			display: flex;
+			justify-content: center;
+			}
+	body
+		.email-body
+			img.company-logo(src='../logo.png')
+			h2.company-name Transport Tech Service
+			h4
+				| Potwierdzenie usunięcia konta na platformie
+				br
+				|         https://transport-tech-service.com
+			.button-panel
+				a(href='#')
+					| Tak
+				a(href='#')
+					| Nie
+			.email-footer
+				p
+					| Jesli usuniesz konto, aktywacja będzie możliwa przez następne 6
+					| miesięcy
