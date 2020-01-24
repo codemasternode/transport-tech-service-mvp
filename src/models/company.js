@@ -67,7 +67,9 @@ const CompanySchema = new mongoose.Schema(
       required: true
     },
     endDateSubscription: {
-      type: Date
+      type: Date,
+      default: new Date(),
+      required: true
     },
     isPaid: {
       type: Schema.Types.Boolean,
@@ -137,26 +139,25 @@ const CompanySchema = new mongoose.Schema(
   { strict: false }
 );
 
-CompanySchema.pre('save', function(next){
+CompanySchema.pre('save', function (next) {
   var company = this;
   company.updated_at = Date.now();
-  if(company.isModified('password'))
-  {
-      bcrypt.genSalt(10,function(err,salt){
-          if(err) return next(err);
-          bcrypt.hash(company.password,salt,function(err,hash){
-              if(err) return next(err);
-              company.password = hash;
-              next();
-          });
+  if (company.isModified('password')) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) return next(err);
+      bcrypt.hash(company.password, salt, function (err, hash) {
+        if (err) return next(err);
+        company.password = hash;
+        next();
       });
+    });
   }
 });
 
-CompanySchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
+CompanySchema.methods.comparePassword = function (candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
   });
 };
 

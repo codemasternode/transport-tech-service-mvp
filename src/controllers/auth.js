@@ -21,7 +21,21 @@ export async function loginAuth(req, res) {
         }
     }
     const company = await Company.findOne({
-        email: req.body.email
+        email: req.body.email,
+        isSuspended: false,
+        $or: [
+            {
+                endDateSubscription: {
+                    $lt: new Date()
+                }
+            },
+            {
+                freeUseToDate: {
+                    $lt: new Date()
+                }
+            }
+        ],
+        isConfirmed: true
     })
 
     if (!company) {
