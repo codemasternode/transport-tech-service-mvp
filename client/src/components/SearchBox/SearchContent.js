@@ -289,11 +289,12 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
 
     const _validNumber = value => {
         let str = value.toString();
+        console.log(value)
         if (str.includes(",")) {
             str = str.replace(",", ".")
             return parseFloat(str)
         } else {
-            return value;
+            return parseFloat(value);
         }
     }
 
