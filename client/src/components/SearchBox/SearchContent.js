@@ -249,13 +249,13 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
-                        <label className="text__field__label"><StyledDimensionsTitle>Całkowita waga:</StyledDimensionsTitle> </label>
+                        <label className="text__field__label"><StyledDimensionsTitle>Całkowita waga (kg):</StyledDimensionsTitle> </label>
                         <input value={totalWeightOfPallets} name="totalWeightOfPallets" type="text" step="0.1" className="text__field__input" onChange={e => _handleChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
                 <StyledDiv>
                     <div className="text__field__form" style={{ padding: 0 }}>
-                        <label className="text__field__label"><StyledDimensionsTitle>Wysokość:</StyledDimensionsTitle> </label>
+                        <label className="text__field__label"><StyledDimensionsTitle>Wysokość ładunku (m):</StyledDimensionsTitle> </label>
                         <input value={heightOfPallets} name="heightOfPallets" type="text" className="text__field__input" onChange={e => _handleChangeDimensionsOfPallets(e)} />
                     </div>
                 </StyledDiv>
@@ -356,9 +356,7 @@ const SearchContent = ({ handleSearchRequest, deviceWidth }) => {
                 {/* <Button onClick={() => {
                     _handleSendData()
                 }}>{deviceWidth > 678 ? "Szukaj" : "Gotowe"}</Button> */}
-                {deviceWidth <= 678 ? <Button onClick={() => {
-                    _handleSendData()
-                }}>Gotowe</Button> : <Button onClick={() => {
+                {deviceWidth <= 678 ? "" : <Button onClick={() => {
                     let { selectedOperation, selectedPallets, numberOfPallets, totalWeightOfPallets, heightOfPallets, criteria } = state;
                     let dataForRequest = {}
                     if (selectedOperation === "Palette") {

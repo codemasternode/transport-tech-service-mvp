@@ -7,8 +7,7 @@ const WebsiteStatsSchema = new Schema({
   },
   visits: [
     {
-      type: Date,
-      required: true
+      type: Date
     }
   ]
 });

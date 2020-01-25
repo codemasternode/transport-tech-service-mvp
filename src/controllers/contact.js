@@ -110,6 +110,10 @@ export async function contactToCompany(req, res) {
   if (!companyName) {
     companyName = "-"
   }
+
+  if(!description) {
+    description = ""
+  }
   loadTemplate("contactToCompany", [
     {
       name,

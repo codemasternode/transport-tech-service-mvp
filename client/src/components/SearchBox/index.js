@@ -17,8 +17,8 @@ class SearchBox extends Component {
         super(props);
         this.state = {
             isOpenSidebar: {
-                openLeft: window.innerHeight > 678 ? true : false,
-                openRight: window.innerHeight > 678 ? true : false,
+                openLeft: window.screen.width > 678 ? true : false,
+                openRight: window.screen.width > 678 ? true : false,
             },
             openDialog: false,
             selectedPlaces: [
@@ -142,6 +142,10 @@ class SearchBox extends Component {
                 this.setState({
                     ...this.state,
                     isLoading: false,
+                    isOpenSidebar: {
+                        ...this.state.isOpenSidebar,
+                        openRight: true
+                    },
                     resultSearchedData: response.data.companies || [],
                 })
                 this.props.getAllCompanies(response.data.companies)

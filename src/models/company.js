@@ -1,9 +1,7 @@
 import mongoose, { Schema } from "mongoose";
-import planTypes from "../enums/planTypes";
 import StaticCostSchema from "./staticCost";
-import CompanyBaseSchema from "./companyBase";
 import WorkerSchema from "./worker";
-import CountryModel from "./country";
+import bcrypt from 'bcryptjs'
 
 const CompanySchema = new mongoose.Schema(
   {
@@ -64,8 +62,14 @@ const CompanySchema = new mongoose.Schema(
       maxlength: 50,
       unique: true
     },
+    password: {
+      type: String,
+      required: true
+    },
     endDateSubscription: {
-      type: Date
+      type: Date,
+      default: new Date(),
+      required: true
     },
     isPaid: {
       type: Schema.Types.Boolean,
@@ -76,10 +80,12 @@ const CompanySchema = new mongoose.Schema(
       type: Date,
       default: Date.now()
     },
+    updated_at: {
+      type: Date,
+      default: Date.now()
+    },
     country: {
-      type: Schema.Types.ObjectId,
-      ref: "country",
-      required: true
+      type: String
     },
     countries: [
       {
@@ -100,8 +106,7 @@ const CompanySchema = new mongoose.Schema(
     },
     isConfirmed: {
       type: Boolean,
-      default: false,
-      required: true
+      default: false
     },
     plan: {
       type: Object
@@ -114,9 +119,46 @@ const CompanySchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    statistics: [Date]
+    statistics: [Date],
+    confirmCode: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    freeUseToDate: {
+      type: Date,
+      default: new Date(new Date().getTime() + 1209600000),
+      required: true
+    },
+    isFreeSpaceUsed: {
+      type: Boolean,
+      default: false,
+      required: true
+    }
   },
   { strict: false }
 );
+
+CompanySchema.pre('save', function (next) {
+  var company = this;
+  company.updated_at = Date.now();
+  if (company.isModified('password')) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) return next(err);
+      bcrypt.hash(company.password, salt, function (err, hash) {
+        if (err) return next(err);
+        company.password = hash;
+        next();
+      });
+    });
+  }
+});
+
+CompanySchema.methods.comparePassword = function (candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
 
 export default mongoose.model("company", CompanySchema);

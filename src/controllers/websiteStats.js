@@ -6,7 +6,7 @@ export async function postWebsiteStats(req, res) {
     { name: req.body.name },
     {
       $push: {
-        visits: Date.parse(req.body.date)
+        visits: new Date(req.body.date)
       }
     },
     {
