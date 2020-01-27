@@ -8,6 +8,7 @@ import contactRoutes from './routes/contact'
 import companyRoutes from './routes/company'
 import invitesRoutes from './routes/invites'
 import authRoutes from './routes/auth'
+import companyDashboardRoutes from './routes/companyDashboard'
 import fileUpload from 'express-fileupload'
 import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
@@ -38,7 +39,10 @@ app.use("/api/web-stats", webStatsRoutes());
 app.use("/api/contact", contactRoutes())
 app.use("/api/company", companyRoutes())
 app.use("/api/invites", invitesRoutes())
+app.use("/api/company-dashboard", companyDashboardRoutes())
 app.use("/api/auth", authRoutes())
+
+
 app.get('*', (req, res) => {
   console.log(path.join(__dirname, '../client/build/index.html'))
   res.sendFile(path.join(__dirname, '../client/build/index.html'));

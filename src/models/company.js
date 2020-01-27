@@ -62,6 +62,16 @@ const CompanySchema = new mongoose.Schema(
       maxlength: 50,
       unique: true
     },
+    plan: {
+      vehicles: {
+        type: Number,
+        default: 5
+      },
+      companyBases: {
+        type: Number,
+        default: 1
+      }
+    },
     password: {
       type: String,
       required: true
@@ -107,9 +117,6 @@ const CompanySchema = new mongoose.Schema(
     isConfirmed: {
       type: Boolean,
       default: false
-    },
-    plan: {
-      type: Object
     },
     sumKmPerMonth: {
       type: Number,

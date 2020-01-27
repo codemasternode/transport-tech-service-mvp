@@ -163,3 +163,5 @@ export async function confirmCompany(req, res) {
         return res.status(500).send({ msg: "Unhandled Error" })
     })
 }
+
+

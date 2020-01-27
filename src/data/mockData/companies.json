@@ -9,11 +9,6 @@
         "email": "admin@teachtechservice.com",
         "logo": "logo1.png",
         "password": "Pracownia16!",
-        "plan": {
-            "name": "Basic",
-            "vehicles": 10,
-            "companyBases": 1
-        },
         "countries": [
             "Poland",
             "Germany",
