@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import SearchPage from "./pages/SearchPage";
+import Register from "./pages/Register";
 import MailPage from "./pages/MailPage";
 import AdminRoute from './components/routes/AdminRoute'
 import PrivateRoute from './components/routes/PrivateRoute'
@@ -31,6 +32,21 @@ export const routes = [
     isPrivate: false,
     isAdmin: false,
     component: MailPage
+  },
+  {
+    name: "register",
+    path: "/register",
+    isPrivate: false,
+    isAdmin: false,
+    isExact: true,
+    component: Register
+  },
+  {
+    name: "register",
+    path: "/register/:id",
+    isPrivate: false,
+    isAdmin: false,
+    component: Register
   }
 ];
 

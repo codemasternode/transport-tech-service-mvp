@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import 'loader.js';
 import $ from 'jquery';
 import "./css/bootstrap.min.css";
@@ -26,12 +26,27 @@ function Home() {
         hasError: ""
     })
 
+    useEffect(() => {
+        _sendRequest("onload")
+    }, [])
+
     const _handleChangeValue = e => {
         const { name, value } = e.target;
         setState({
             ...state,
             [name]: [value]
         })
+    }
+
+    const _sendRequest = type => {
+        if (type === "onload") {
+            const date = new Date().toISOString()
+            axios.post(`${API_URL}/api/distance`, { name: "home", date }).then((response) => {
+                // console.logr
+            }, (err) => {
+                console.log("Axios error: " + err)
+            })
+        }
     }
 
     const _handleSendMail = () => {
@@ -198,12 +213,12 @@ function Home() {
 
                         </div>
                     </div>
-                    <div className="container" style={{marginTop: "5rem"}}>
+                    <div className="container" style={{ marginTop: "5rem" }}>
                         <div className="row vertical-content">
                             <div className="col-lg-12">
                                 <h3 className="text-center">Jak szukać przewoźników przy użyciu naszego narzędzia ?</h3>
                             </div>
-                            <div className="col-lg-9 embed-responsive embed-responsive-16by9" style={{marginTop: "2rem"}}>
+                            <div className="col-lg-9 embed-responsive embed-responsive-16by9" style={{ marginTop: "2rem" }}>
                                 <iframe src="https://www.youtube.com/embed/UoY7V5vmjMw" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>

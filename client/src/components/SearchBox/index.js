@@ -110,7 +110,6 @@ class SearchBox extends Component {
                     resultSearchedData: response.data.companies || [],
                 })
                 this.props.getAllCompanies(response.data.companies)
-
             }, (err) => {
                 console.log("Axios error: " + err)
             })
