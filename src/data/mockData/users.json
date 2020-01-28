@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Marcin",
+        "lastname":"Warzybok",
+        "password":"Pracownia16!",
+        "email": "mw@interia.pol"
+    },
+    {
+        "name": "Jan",
+        "lastname":"Kowalski",
+        "password":"janeczek123!",
+        "email": "mw@interia2.pol"
+    },
+    {
+        "name": "Marrin",
+        "lastname":"Schweiz",
+        "password":"abcdef!!!123",
+        "email": "mw@interia3.pol"
+    },
+    {
+        "name": "Sam",
+        "lastname":"Niewiem",
+        "password":"abcdef1!!!!",
+        "email": "mw@interia4.pol"
+    }
+]
