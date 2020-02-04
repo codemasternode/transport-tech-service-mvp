@@ -369,7 +369,96 @@ export async function deleteVehicle(req, res) {
 
 }
 
-export async function deleteCompanyBase(req, res) { }
+export async function deleteCompanyBase(req, res) {
+    const requireKeys = [
+        "name"
+    ];
+
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
+    }
+
+    const company = await Company.findOne({
+        email: req.user.email
+    })
+
+    if (!company) {
+        return res.status(400).send({
+            msg: "Firma nie istnieje"
+        })
+    }
+
+    const copyCompany = JSON.parse(JSON.stringify(company))
+    let vehiclesToDelete = []
+
+    let isInside = false
+    for (let i = 0; i < copyCompany.companyBases.length; i++) {
+        if (copyCompany.companyBases[i].name === req.body.name) {
+            vehiclesToDelete = copyCompany.companyBases[i].vehicles
+            copyCompany.companyBases.splice(i, 1)
+            isInside = true
+        }
+    }
+    for (let m = 0; m < vehiclesToDelete.length; m++) {
+        for (let i = 0; i < copyCompany.companyBases.length; i++) {
+            for (let k = 0; k < copyCompany.companyBases[i].vehicles.length; k++) {
+                if (vehiclesToDelete[m]._id.toString() === copyCompany.companyBases[i].vehicles._id.toString()) {
+                    vehiclesToDelete.splice(m, 1)
+                    i--
+                }
+            }
+        }
+    }
+    console.log(vehiclesToDelete)
+    vehiclesToDelete = vehiclesToDelete.map((value) => {
+        return value._id.toString()
+    })
+
+    const session = await Vehicle.startSession()
+    session.startTransaction()
+    try {
+
+        const updated = await Company.updateOne({
+            email: req.user.email
+        },
+            copyCompany, { session }
+        )
+        console.log(updated)
+
+        if (updated.nModified === 0) {
+            throw new Error("Nie udało się zmodyfikować, odśwież stronę")
+        }
+        console.log(vehiclesToDelete)
+        const deleted = await Vehicle.deleteMany({
+            _id: {
+                $in: vehiclesToDelete
+            }
+        })
+        if(deleted.deletedCount !== vehiclesToDelete.length) {
+            throw new Error("Nie udało się zmodyfikować, odśwież stronę")
+        }
+        console.log(deleted)
+        res.send({})
+        await session.commitTransaction();
+        session.endSession();
+    } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).send({
+            msg: err.toString().substring(7)
+        })
+    }
+}
 
 export async function updateVehicle(req, res) {
     const allowProperties = [
