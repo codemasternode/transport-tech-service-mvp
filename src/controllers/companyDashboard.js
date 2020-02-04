@@ -287,10 +287,131 @@ export async function createCompanyBase(req, res) {
     res.send({})
 }
 
-export async function deleteVehicle(req, res) { }
+export async function deleteVehicle(req, res) {
+    const requireKeys = [
+        "companyBase",
+        "name"
+    ]
+
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
+    }
+
+    const company = await Company.findOne({
+        email: req.user.email
+    })
+
+    if (!company) {
+        return res.status(401).send({
+            msg: "Firma nie istnieje lub została zbanowana"
+        })
+    }
+    const { name, companyBase } = req.body
+    const copyCompany = JSON.parse(JSON.stringify(company))
+    let numberOfExisting = 0
+    let vehicleId = null
+    for (let i = 0; i < copyCompany.companyBases.length; i++) {
+        for (let k = 0; k < copyCompany.companyBases[i].vehicles.length; k++) {
+            if (copyCompany.companyBases[i].vehicles[k].name === name) {
+                numberOfExisting++
+                vehicleId = copyCompany.companyBases[i].vehicles[k]._id.toString()
+            }
+            if (copyCompany.companyBases[i].name === companyBase && copyCompany.companyBases[i].vehicles[k].name === name) {
+                copyCompany.companyBases[i].vehicles.splice(k, 1)
+            }
+        }
+    }
+
+    if (numberOfExisting === 0) {
+        return res.status(404).send({
+            msg: "Pojazd nie istnieje, odśwież stronę"
+        })
+    }
+
+    const session = await Company.startSession()
+    session.startTransaction()
+    try {
+
+        const updated = await Company.updateOne({
+            email: req.user.email
+        }, copyCompany, { session })
+
+        if (updated.nModified === 0) {
+            throw new Error("Nic nie zmodyfikowano, odśwież stronę")
+        }
+
+        if (numberOfExisting === 1) {
+            const deleted = await Vehicle.deleteMany({
+                _id: vehicleId
+            }, { session })
+
+        }
+        res.send({})
+        await session.commitTransaction();
+        session.endSession();
+    } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).send({
+            msg: err.toString().substring(7)
+        })
+    }
+
+}
 
 export async function deleteCompanyBase(req, res) { }
 
-export async function updateVehicle(req, res) { }
+export async function updateVehicle(req, res) {
+    const allowProperties = [
+        "minRange",
+        "operationRange",
+        "maxRange",
+        "fuel",
+        "combustion",
+        "countries",
+        "monthCosts",
+        "salary",
+        "numberOfAxles",
+        "emissionLevel",
+        "name",
+        "capacity",
+        "length",
+        "width",
+        "height",
+        "deprecationPerYear",
+        "valueOfTruck",
+        "averageDistancePerMonth",
+        "margin",
+        "maxFreeTime",
+        "pricePerHourWaiting",
+        "permissibleGrossWeight",
+        "companyBases"
+    ];
+
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
+    }
+
+}
 
 export async function updateCompanyBase(req, res) { }
