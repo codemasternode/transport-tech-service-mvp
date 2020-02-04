@@ -174,39 +174,6 @@ export async function getRoadOffers(req, res) {
                       }
                     ]
                   }
-                },
-                secondRow: {
-                  $cond: {
-                    if: {
-                      $gt: [
-                        {
-                          $subtract: [
-                            //odjęcie wysokości pojazdu od tego co zajmuje pierwszy rząd = wysokość która pozostałą
-                            "$dimensions.height",
-                            height + palette.height
-                          ]
-                        },
-                        height + palette.height
-                      ]
-                    },
-                    then: {
-                      $floor: {
-                        $divide: [
-                          {
-                            $multiply: [
-                              "$dimensions.length",
-                              "$dimensions.width"
-                            ]
-                          },
-                          //rozmiary palety EUR-EPAL
-                          {
-                            $multiply: [palette.length, palette.width]
-                          }
-                        ]
-                      }
-                    },
-                    else: 0
-                  }
                 }
               },
               costPerKm: {
@@ -316,7 +283,7 @@ export async function getRoadOffers(req, res) {
                 ...formattedCompanies[k].vehicles[m],
                 costPerKm: vehicles[i].costPerKm,
                 palettes:
-                  vehicles[i].palettes.oneRow + vehicles[i].palettes.secondRow,
+                  vehicles[i].palettes.oneRow,
                 isInside: true
               };
               break loop1;

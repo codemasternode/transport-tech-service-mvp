@@ -222,7 +222,8 @@ export async function createCompanyBase(req, res) {
         "postalCode",
         "city",
         "country",
-        "location"
+        "lat",
+        "lng"
     ];
 
     for (let i = 0; i < requireKeys.length; i++) {
@@ -258,17 +259,23 @@ export async function createCompanyBase(req, res) {
     }
 
     for (let i = 0; i < company.companyBases.length; i++) {
-        if (company.companyBases[i].name === name) {
+        if (company.companyBases[i].name === req.body.name) {
             return res.status(400).send({
                 msg: "Nazwa bazy musi być unikatowa"
             })
         }
     }
 
+    const copyCompany = JSON.parse(JSON.stringify(company))
+    console.log(copyCompany)
+    copyCompany.companyBases.push({ ...req.body, location: { lat: req.body.lat, lng: req.body.lng }, vehicles: [] })
+
+
+
     const updateStats = await Company.updateOne({
         email: req.user.email
     }, {
-            ...req.body
+            ...copyCompany
         })
 
     if (updateStats.nModified === 0 && updateStats.ok === 0) {
@@ -276,7 +283,7 @@ export async function createCompanyBase(req, res) {
             msg: "Nic nie zmieniono"
         })
     }
-    
+
     res.send({})
 }
 
