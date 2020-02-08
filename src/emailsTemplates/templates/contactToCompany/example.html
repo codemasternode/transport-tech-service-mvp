@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hello?</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow-y: hidden;
+        height: 80vh;
+        background: linear-gradient(to bottom, #f2f2f2 70%, #232f3e 60%);
+        text-align: center;
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+        height: 100%;
+        display: table;
+        text-align: center;
+      }
+
+      .email {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .email-body {
+        width: 50% !important;
+        max-width: 600px !important;
+        border-radius: 10px;
+        padding-top: 3rem;
+        height: auto;
+        margin: auto;
+        background: white;
+        overflow: hidden;
+      }
+
+      .company-logo {
+        max-width: 70px;
+        width: 100%;
+        height: auto;
+      }
+
+      .company-name {
+        font-weight: 900;
+      }
+
+      h4 {
+        max-width: 100%;
+        text-align: center;
+        font-weight: 400;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .button-panel {
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .button-panel a {
+        color: black;
+        padding: 0.7rem 1.5rem;
+        border-radius: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        background: white;
+        font-weight: 700;
+      }
+
+      .button-panel a:hover {
+        color: white;
+      }
+
+      .button-panel a:first-of-type {
+        border: 3px solid #ff9900;
+      }
+
+      .button-panel a:first-of-type:hover {
+        background: #ff9900;
+      }
+
+      .email-footer {
+        color: white;
+        font-size: 12px;
+        width: 100%;
+        background: #ff9900;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      }
+
+      .email-footer p:first-of-type {
+        margin-bottom: 10px;
+      }
+
+      .email-footer p:last-of-type {
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .hiperlink {
+        text-decoration: underline;
+        color: #ff9900;
+      }
+      .table {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      td {
+        border-top: 1px solid #232f3e;
+        width: 150px;
+        text-align: left;
+        left: -20px;
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="email">
+        <div class="email-body">
+          <img
+            src="http://d2ckak7af1omc2.cloudfront.net/logo.png"
+            class="company-logo"
+          />
+          <h2 class="company-name">Transport Tech Service</h2>
+          <p>Otrzymałeś nową ofertę współpracy</p>
+          <div class="table">
+            <div class="row">
+                <div class="col">Imię:</div>
+                <div class="col">Jank</div>
+            </div>
+            <div class="row">
+                <div class="col">Nazwisko:</div>
+                <div class="col">Wokolski</div>
+            </div>
+            <div class="row">
+                <div class="col">Email:</div>
+                <div class="col">jan@kowalksi.pl</div>
+            </div>
+            <div class="row">
+                <div class="col">Telefon:</div>
+                <div class="col">Jank</div>
+            </div>
+            <div class="row">
+                <div class="col">Numer podatkowy:</div>
+                <div class="col">123456789</div>
+            </div>
+          </table>
+
+          <div class="email-footer">
+            <p>
+              <b>Tel: +48 608 624 531</b>
+            </p>
+            <p>
+              <b>Email: admin@teachtechservice.com</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

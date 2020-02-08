@@ -1,0 +1,242 @@
+[
+    {
+        "dietValue": 30,
+        "nightLimitValue": 45,
+        "currency": "PLN",
+        "countryName": "Poland"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 120,
+        "currency": "EUR",
+        "countryName": "Albania"
+    },
+    {
+        "dietValue": 50,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Andorra"
+    },
+    {
+        "dietValue": 52,
+        "nightLimitValue": 130,
+        "currency": "EUR",
+        "countryName": "Austria"
+    },
+    {
+        "dietValue": 48,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Belgium"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 100,
+        "currency": "EUR",
+        "countryName": "Bosnia and Herzegovina"
+    },
+    {
+        "dietValue": 40,
+        "nightLimitValue": 120,
+        "currency": "EUR",
+        "countryName": "Bulgaria"
+    },
+    {
+        "dietValue": 43,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Cyprus"
+    },
+    {
+        "dietValue": 42,
+        "nightLimitValue": 125,
+        "currency": "EUR",
+        "countryName": "Croatia"
+    },
+    {
+        "dietValue": 0,
+        "nightLimitValue": 0,
+        "currency": "NONE",
+        "countryName": "Montenegro"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 120,
+        "currency": "EUR",
+        "countryName": "Czechia"
+    },
+    {
+        "dietValue": 60,
+        "nightLimitValue": 200,
+        "currency": "EUR",
+        "countryName": "Denmark"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 100,
+        "currency": "EUR",
+        "countryName": "Estonia"
+    },
+    {
+        "dietValue": 48,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Finland"
+    },
+    {
+        "dietValue": 50,
+        "nightLimitValue": 180,
+        "currency": "EUR",
+        "countryName": "France"
+    },
+    {
+        "dietValue": 35,
+        "nightLimitValue": 200,
+        "currency": "GBP",
+        "countryName": "Gibraltar"
+    },
+    {
+        "dietValue": 50,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Spain"
+    },
+    {
+        "dietValue": 50,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Netherlands"
+    },
+    {
+        "dietValue": 52,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Ireland"
+    },
+    {
+        "dietValue": 88,
+        "nightLimitValue": 200,
+        "currency": "CHF",
+        "countryName": "Liechtenstein"
+    },
+    {
+        "dietValue": 39,
+        "nightLimitValue": 130,
+        "currency": "EUR",
+        "countryName": "Lithuania"
+    },
+    {
+        "dietValue": 48,
+        "nightLimitValue": 160,
+        "currency": "EUR",
+        "countryName": "Luxembourg"
+    },
+    {
+        "dietValue": 57,
+        "nightLimitValue": 132,
+        "currency": "EUR",
+        "countryName": "Latvia"
+    },
+    {
+        "dietValue": 39,
+        "nightLimitValue": 125,
+        "currency": "EUR",
+        "countryName": "North Macedonia"
+    },
+    {
+        "dietValue": 43,
+        "nightLimitValue": 180,
+        "currency": "EUR",
+        "countryName": "Malta"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 85,
+        "currency": "EUR",
+        "countryName": "Moldova"
+    },
+    {
+        "dietValue": 49,
+        "nightLimitValue": 150,
+        "currency": "EUR",
+        "countryName": "Germany"
+    },
+    {
+        "dietValue": 451,
+        "nightLimitValue": 1500,
+        "currency": "NOK",
+        "countryName": "Norway"
+    },
+    {
+        "dietValue": 49,
+        "nightLimitValue": 150,
+        "currency": "EUR",
+        "countryName": "Portugal"
+    },
+    {
+        "dietValue": 38,
+        "nightLimitValue": 100,
+        "currency": "EUR",
+        "countryName": "Romania"
+    },
+    {
+        "dietValue": 48,
+        "nightLimitValue": 174,
+        "currency": "EUR",
+        "countryName": "San Marino"
+    },
+    {
+        "dietValue": 459,
+        "nightLimitValue": 1800,
+        "currency": "SEK",
+        "countryName": "Sweden"
+    },
+    {
+        "dietValue": 43,
+        "nightLimitValue": 120,
+        "currency": "EUR",
+        "countryName": "Slovakia"
+    },
+    {
+        "dietValue": 41,
+        "nightLimitValue": 130,
+        "currency": "EUR",
+        "countryName": "Slovenia"
+    },
+    {
+        "dietValue": 88,
+        "nightLimitValue": 200,
+        "currency": "CHF",
+        "countryName": "Switzerland"
+    },
+    {
+        "dietValue": 0,
+        "nightLimitValue": 0,
+        "currency": "NONE",
+        "countryName": "Vatican City"
+    },
+    {
+        "dietValue": 44,
+        "nightLimitValue": 130,
+        "currency": "EUR",
+        "countryName": "Hungary"
+    },
+    {
+        "dietValue": 35,
+        "nightLimitValue": 200,
+        "currency": "GBP",
+        "countryName": "UK"
+    },
+    {
+        "dietValue": 48,
+        "nightLimitValue": 174,
+        "currency": "EUR",
+        "countryName": "Italy"
+    },
+    {
+        "dietValue": 53,
+        "nightLimitValue": 173,
+        "currency": "USD",
+        "countryName": "Turkey"
+    }
+]

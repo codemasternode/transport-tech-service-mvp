@@ -1,0 +1,643 @@
+[
+    {
+        "nameOfCompany": "Usługi transportowe",
+        "name": "Andrzej",
+        "surname": "Kowalski",
+        "taxNumber": "6793184304",
+        "phone": "12 123 12 34",
+        "place": "ul. Bronowicka 12a, Kraków",
+        "email": "admin@teachtechservice.com",
+        "logo": "logo1.png",
+        "password": "Pracownia16!",
+        "countries": [
+            "Poland",
+            "Germany",
+            "France",
+            "UK",
+            "Czechia",
+            "Switzerland",
+            "Slovenia",
+            "Slovakia",
+            "Latvia"
+        ],
+        "isConfirmed": true,
+        "sumCostsPerMonth": 1200,
+        "companyBases": [
+            {
+                "name": "Baza A",
+                "street": "Karola Łowińskiego 7E/309",
+                "postalCode": "31-752",
+                "city": "Kraków",
+                "country": "Poland",
+                "location": {
+                    "lat": 50.088517,
+                    "lng": 20.064220
+                },
+                "vehicles": [
+                    {
+                        "name": "Pojazd A",
+                        "combustion": 30,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 10500,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 16000,
+                        "salary": 7000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40,
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ]
+                    },
+                    {
+                        "name": "Pojazd 2",
+                        "combustion": 30,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 9800,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 16000,
+                        "salary": 7200,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40
+                    },
+                    {
+                        "name": "Pojazd 3",
+                        "combustion": 32,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 170000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 9000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 15000,
+                        "salary": 7000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40
+                    },
+                    {
+                        "name": "Pojazd 4",
+                        "combustion": 34,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 10000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 15000,
+                        "salary": 8000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40,
+                        "emissionLevel": "EURO 4"
+                    },
+                    {
+                        "name": "Pojazd 5",
+                        "emissionLevel": "EURO 4",
+                        "combustion": 35,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 20,
+                        "valueOfTruck": 110000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 9000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 18,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 15000,
+                        "salary": 7000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 37
+                    },
+                    {
+                        "name": "Pojazd 6",
+                        "combustion": 32,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 10000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 16000,
+                        "salary": 7000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40
+                    },
+                    {
+                        "name": "Pojazd 7",
+                        "combustion": 30,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 10000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 16000,
+                        "salary": 6500,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40
+                    },
+                    {
+                        "name": "Pojazd 8",
+                        "combustion": 30,
+                        "capacity": 24,
+                        "dimensions": {
+                            "length": 13.6,
+                            "width": 2.45,
+                            "height": 2.65
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Austria",
+                            "Belgium",
+                            "Bulgaria",
+                            "Bosnia and Herzegovina",
+                            "Croatia",
+                            "Denmark",
+                            "Estonia",
+                            "France",
+                            "Spain",
+                            "Netherlands",
+                            "Ireland",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Latvia",
+                            "North Macedonia",
+                            "Moldova",
+                            "Germany",
+                            "Slovenia",
+                            "Switzerland",
+                            "Hungary",
+                            "UK",
+                            "Italy"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 160000,
+                        "type": "Plandeka",
+                        "averageDistancePerMonth": 10000,
+                        "range": {
+                            "maxRange": 5000,
+                            "minRange": 100,
+                            "operationRange": 100
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 10,
+                            "pricePerHourWaiting": 50
+                        },
+                        "fuel": {
+                            "name": "Olej napędowy",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 18000,
+                        "salary": 7000,
+                        "numberOfAxles": 5,
+                        "permissibleGrossWeight": 40
+                    },
+                    {
+                        "name": "Pojazd 9",
+                        "combustion": 14,
+                        "capacity": 1.5,
+                        "dimensions": {
+                            "length": 4.85,
+                            "width": 2.2,
+                            "height": 2.3
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Lithuania",
+                            "Latvia",
+                            "Germany",
+                            "Slovenia",
+                            "Hungary",
+                            "UK",
+                            "Italy",
+                            "Slovakia",
+                            "Latvia",
+                            "Romania"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 70000,
+                        "type": "Dostawczy",
+                        "averageDistancePerMonth": 6000,
+                        "range": {
+                            "maxRange": 1000,
+                            "minRange": 0,
+                            "operationRange": 10
+                        },
+                        "margin": 20,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 1,
+                            "pricePerHourWaiting": 70
+                        },
+                        "fuel": {
+                            "name": "Benzyna Pb95",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 6000,
+                        "salary": 5000,
+                        "numberOfAxles": 2,
+                        "permissibleGrossWeight": 3.4
+                    },
+                    {
+                        "name": "Pojazd 10A",
+                        "combustion": 15,
+                        "capacity": 1.5,
+                        "dimensions": {
+                            "length": 4.85,
+                            "width": 2.2,
+                            "height": 2.3
+                        },
+                        "countries": [
+                            "Poland",
+                            "Czechia",
+                            "Lithuania",
+                            "Latvia",
+                            "Germany",
+                            "Slovenia",
+                            "Hungary",
+                            "UK",
+                            "Italy",
+                            "Slovakia",
+                            "Latvia",
+                            "Romania"
+                        ],
+                        "deprecationPerYear": 15,
+                        "valueOfTruck": 75000,
+                        "type": "Dostawczy",
+                        "averageDistancePerMonth": 5500,
+                        "range": {
+                            "maxRange": 1500,
+                            "minRange": 0,
+                            "operationRange": 10
+                        },
+                        "margin": 25,
+                        "waitingTimeParams": {
+                            "maxFreeTime": 1,
+                            "pricePerHourWaiting": 70
+                        },
+                        "fuel": {
+                            "name": "Benzyna Pb95",
+                            "price": 5.12,
+                            "date": "Sun Nov 24 2019 22:56:34 GMT+0100 (czas środkowoeuropejski standardowy)"
+                        },
+                        "sumKmPerMonth": 89300,
+                        "sumCostPerMonth": 9000,
+                        "monthCosts": 6000,
+                        "salary": 5000,
+                        "numberOfAxles": 2,
+                        "permissibleGrossWeight": 3.4
+                    }
+                ]
+            }
+        ],
+        "isVat": true,
+        "sumCostPerMonth": 9000,
+        "plan": {
+            "vehicles": 12,
+            "companyBases": 2
+        }
+    }
+]
