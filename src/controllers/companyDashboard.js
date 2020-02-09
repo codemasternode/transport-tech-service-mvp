@@ -606,4 +606,79 @@ export async function updateVehicle(req, res) {
 
 }
 
-export async function updateCompanyBase(req, res) { }
+export async function updateCompanyBase(req, res) {
+    const requireKeys = ["name"]
+    const allowProperties = [
+        "name", "street", "postalCode", "city", "country", "lat", "lng"
+    ];
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
+    }
+
+    for (let key in req.body) {
+        if (allowProperties.includes(key) === false) {
+            return res.status(400).send({
+                msg: `This property is banned ${key}`
+            })
+        }
+    }
+
+    const properitesToupdate = {}
+    for (let key in req.body) {
+        properitesToupdate[key] = req.body[key]
+    }
+
+    const company = await Company.findOne({
+        email: req.user.email
+    })
+
+    if (!company) {
+        return res.status(401).send({
+            msg: "Konto nie istnieje lub zostało zawieszone"
+        })
+    }
+
+    const copyCompany = JSON.parse(JSON.stringify(company))
+
+    const session = await Company.startSession()
+    session.startTransaction()
+    try {
+
+        for (let i = 0; i < copyCompany.companyBases.length; i++) {
+            if (req.body.name === copyCompany.companyBases[i].name) {
+                copyCompany.companyBases[i] = {
+                    ...copyCompany.companyBases[i],
+                    ...properitesToupdate
+                }
+            }
+        }
+
+        const updated = await Company.updateOne({
+            email: req.user.email
+        }, copyCompany).session(session)
+
+        if (updated.nModified === 0) {
+            throw new Error("Nic nie zmieniono, odśwież stronę")
+        }
+        res.send({})
+        await session.commitTransaction();
+        session.endSession();
+    } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).send({
+            msg: err.toString().substring(7)
+        })
+    }
+
+}
