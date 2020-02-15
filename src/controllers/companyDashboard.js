@@ -200,7 +200,7 @@ export async function createVehicle(req, res) {
             throw new Error("Nic nie zmieniono")
         }
 
-        res.send({})
+        res.send({ vehicle })
         await session.commitTransaction();
         session.endSession();
 

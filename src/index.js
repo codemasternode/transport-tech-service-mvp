@@ -8,6 +8,7 @@ import contactRoutes from './routes/contact'
 import companyRoutes from './routes/company'
 import invitesRoutes from './routes/invites'
 import authRoutes from './routes/auth'
+import paymentRoutes from './routes/payments'
 import companyDashboardRoutes from './routes/companyDashboard'
 import fileUpload from 'express-fileupload'
 import mailer from "./config/mailer";
@@ -41,6 +42,7 @@ app.use("/api/company", companyRoutes())
 app.use("/api/invites", invitesRoutes())
 app.use("/api/company-dashboard", companyDashboardRoutes())
 app.use("/api/auth", authRoutes())
+app.use("/api/payments", paymentRoutes())
 
 
 app.get('*', (req, res) => {
