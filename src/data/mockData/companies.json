@@ -638,6 +638,10 @@
         "plan": {
             "vehicles": 12,
             "companyBases": 2
+        },
+        "maxMonthUsage": {
+            "vehicles": 12,
+            "companyBases": 2
         }
     }
 ]

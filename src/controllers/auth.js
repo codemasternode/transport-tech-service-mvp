@@ -1,5 +1,6 @@
 import Company from '../models/company'
 import jwt from 'jsonwebtoken'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function loginAuth(req, res) {
     const requireKeys = [
@@ -7,19 +8,14 @@ export async function loginAuth(req, res) {
         "password"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
+
     const company = await Company.findOne({
         email: req.body.email,
         isSuspended: false,
@@ -53,11 +49,19 @@ export async function loginAuth(req, res) {
         const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN
         })
+        const expiresAt = new Date(Date.now() + 604800000)
         return res.cookie("token", token, {
-            expires: new Date(Date.now() + 604800000),
+            expires: expiresAt,
             secure: false,
             httpOnly: true
-        }).send()
+        }).send({ expiresAt })
+    })
+}
+
+export async function logout(req, res) {
+    res.clearCookie("token")
+    res.send({
+        msg: "Wylogowano"
     })
 }
 

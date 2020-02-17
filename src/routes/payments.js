@@ -1,10 +1,11 @@
 import express from "express";
-import { startSubscription, updateSubscription } from '../controllers/payments'
+import { getPaymentPlan, modifyPaymentPlan } from '../controllers/payments'
+import { verifyToken } from '../middlewares/verifyToken'
 
 const router = express.Router();
 
 export default () => {
-    router.post("/subscribe", startSubscription);
-    router.post("/update-payment", updateSubscription)
+    router.get("/get-payment-plan", verifyToken, getPaymentPlan);
+    router.post("/modify-payment-plan", verifyToken, modifyPaymentPlan)
     return router;
 };

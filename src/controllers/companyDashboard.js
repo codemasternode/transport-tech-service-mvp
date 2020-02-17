@@ -59,7 +59,7 @@ export async function createVehicle(req, res) {
         }
     }
 
-    const company = await Company.findOne({
+    let company = await Company.findOne({
         email: req.user.email,
         isSuspended: false,
         $or: [
@@ -82,6 +82,8 @@ export async function createVehicle(req, res) {
             msg: "Twoje konto nie istnieje lub zostało usunięte "
         })
     }
+
+    company = JSON.parse(JSON.stringify(company))
 
     const {
         minRange,
@@ -132,7 +134,7 @@ export async function createVehicle(req, res) {
             }
             if (numberOfVehicles >= company.plan.vehicles) {
                 return res.status(409).send({
-                    msg: "Liczba pojazdów jest zbyt duża, w celu poszerzenia planu skontaktuj się z administracją "
+                    msg: "Liczba pojazdów jest zbyt duża, poszerz swój plan"
                 })
             }
         }
@@ -191,6 +193,8 @@ export async function createVehicle(req, res) {
         if (!isInside) {
             throw new Error("Baza nie istnieje")
         }
+
+        company.maxMonthUsage.vehicles++
 
         const updateStats = await Company.updateOne({
             email: req.user.email

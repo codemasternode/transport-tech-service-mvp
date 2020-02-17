@@ -3,6 +3,9 @@ import uuid from 'uuid/v1'
 import AWS from 'aws-sdk'
 import { loadTemplate, sendEmail } from "../config/mailer";
 import Invite from '../models/invites'
+import stripe from 'stripe'
+
+const stripePayments = stripe("sk_test_lq06lpS4lhnxZgQ0y5uh3tnT002ozlMvyE")
 
 const s3bucket = new AWS.S3({
     accessKeyId: 'AKIAJRX2IPJP7MB7ER7A',
@@ -24,7 +27,6 @@ export function createCompany(req, res) {
         "countries",
         "password"
     ];
-
 
     for (let i = 0; i < requireKeys.length; i++) {
         let isInside = false;
@@ -127,18 +129,38 @@ export function createCompany(req, res) {
 }
 
 export async function confirmCompany(req, res) {
-    if (!req.body.confirmCode) {
-        return res.status(400).send({ msg: "Missing parameter confirmCode" })
+    const requireKeys = [
+        "confirmCode",
+        "cardNumber",
+        "firstnameOnCard",
+        "lastnameOnCard",
+        "postalCodeOnCard",
+        "ccv"
+    ];
+
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
     }
 
     const { confirmCode } = req.body
-
+    
     const companyToConfirm = await Company.findOne({ confirmCode })
     if (!companyToConfirm) {
         return res.status(404).send({ msg: "Confirmation code doesn't exists" })
     }
-
+    
     Company.updateOne({ confirmCode }, { isConfirmed: true }).then(async () => {
+        
         res.status(201).send({ msg: "Company confirmed" })
         //check is new customer was invited
         try {
@@ -204,63 +226,16 @@ export async function resetPassword(req, res) {
         Company.updateOne({
             email: req.user.email
         }, {
-                password: resetPassword
-            }).then((res) => {
-                res.send({
-                    msg: "Password changed"
-                })
-            }).catch(err => {
-                res.status(400).send({
-                    msg: "Can not change password"
-                })
+            password: resetPassword
+        }).then((res) => {
+            res.send({
+                msg: "Password changed"
             })
+        }).catch(err => {
+            res.status(400).send({
+                msg: "Can not change password"
+            })
+        })
     })
 
 }
-
-export async function updateCompany(req, res) {
-
-    const allowPropertiesToUpdate = [
-        "logo",
-        "nameOfCompany",
-        "name",
-        "surname",
-        "phone",
-        "taxNumber",
-        "place",
-        "country",
-        "sumCostPerMonth",
-        "isVat"
-    ]
-
-    for (let key in req.body) {
-        if (allowPropertiesToUpdate.includes(key) === false) {
-            return res.status(400).send({
-                msg: "You can update only this properties: " + allowPropertiesToUpdate.join(", ")
-            })
-        }
-    }
-
-    Company.updateOne({
-        email: req.user.email
-    }, {
-            ...req.body
-        }).then((res) => {
-            res.send({
-                msg: "Updated"
-            })
-        }).catch(err => {
-            console.log(err)
-            res.status(500).send({
-                msg: "Can't updated"
-            })
-        })
-
-}
-
-export async function updateEmail(req, res) {
-
-}
-
-export async function getInfoAboutPayments(req, res) { }
-
