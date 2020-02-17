@@ -3,9 +3,8 @@ import uuid from 'uuid/v1'
 import AWS from 'aws-sdk'
 import { loadTemplate, sendEmail } from "../config/mailer";
 import Invite from '../models/invites'
-import stripe from 'stripe'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
-const stripePayments = stripe("sk_test_lq06lpS4lhnxZgQ0y5uh3tnT002ozlMvyE")
 
 const s3bucket = new AWS.S3({
     accessKeyId: 'AKIAJRX2IPJP7MB7ER7A',
@@ -28,18 +27,12 @@ export function createCompany(req, res) {
         "password"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
     const { nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country, password } = req.body
 
@@ -138,18 +131,12 @@ export async function confirmCompany(req, res) {
         "ccv"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
     const { confirmCode } = req.body
@@ -193,18 +180,12 @@ export async function resetPassword(req, res) {
     ];
 
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
 

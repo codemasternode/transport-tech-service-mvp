@@ -1,4 +1,5 @@
 import Invite from '../models/invites'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function confirmInvitation(req, res) {
     res.send({})

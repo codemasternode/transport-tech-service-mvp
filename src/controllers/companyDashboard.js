@@ -2,6 +2,7 @@ import Company from '../models/company'
 import Vehicle from '../models/vehicle'
 import Fuel from '../models/fuel'
 import { Types } from 'mongoose'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function getCompany(req, res) {
     const company = await Company.findOne({
@@ -45,18 +46,12 @@ export async function createVehicle(req, res) {
         "companyBase"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
     let company = await Company.findOne({

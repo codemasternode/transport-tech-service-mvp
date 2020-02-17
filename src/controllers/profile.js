@@ -1,4 +1,5 @@
 import Company from '../models/company'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function getProfileInfo(req, res) {
     const company = await Company.findOne({
@@ -30,7 +31,7 @@ export async function getProfileInfo(req, res) {
 }
 
 export async function updateProfileInfo(req, res) {
-    const allowPropertiesToUpdate = [
+    const allowKeys = [
         "logo",
         "nameOfCompany",
         "name",
@@ -43,12 +44,12 @@ export async function updateProfileInfo(req, res) {
         "isVat"
     ]
 
-    for (let key in req.body) {
-        if (allowPropertiesToUpdate.includes(key) === false) {
-            return res.status(400).send({
-                msg: "You can update only this properties: " + allowPropertiesToUpdate.join(", ")
-            })
-        }
+    const isAllow = checkIsObjectHasOnlyAllowProperties(allowKeys, req.body)
+
+    if (!isAllow) {
+        return res.status(400).send({
+            msg: "Allow properties: " + allowKeys.join(", ")
+        })
     }
 
     try {

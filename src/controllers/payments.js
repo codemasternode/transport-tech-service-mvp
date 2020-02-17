@@ -1,5 +1,5 @@
 import Company from '../models/company'
-
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function getPaymentPlan(req, res) {
 
