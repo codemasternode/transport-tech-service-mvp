@@ -642,6 +642,8 @@
         "maxMonthUsage": {
             "vehicles": 12,
             "companyBases": 2
-        }
+        },
+        "freeUseToDate": 1581462000000,
+        "dayToPay": 1581462000000
     }
 ]

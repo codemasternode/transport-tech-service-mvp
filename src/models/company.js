@@ -91,11 +91,6 @@ const CompanySchema = new mongoose.Schema(
       default: new Date(),
       required: true
     },
-    isPaid: {
-      type: Schema.Types.Boolean,
-      default: false,
-      required: true
-    },
     createdAt: {
       type: Date,
       default: Date.now()
@@ -166,7 +161,16 @@ const CompanySchema = new mongoose.Schema(
           default: new Date()
         }
       }
-    ]
+    ],
+    dayToPay: {
+      type: Date,
+      required: true
+    },
+    isPaid: {
+      type: Schema.Types.Boolean,
+      default: false,
+      required: true
+    },
   },
   { strict: false }
 );
