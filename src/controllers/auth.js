@@ -53,11 +53,12 @@ export async function loginAuth(req, res) {
         const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN
         })
+        const date = new Date(Date.now() + 3600000)
         return res.cookie("token", token, {
-            expires: new Date(Date.now() + 604800000),
+            expires: date,
             secure: false,
             httpOnly: true
-        }).send()
+        }).send({ expireAt: date.getTime() })
     })
 }
 

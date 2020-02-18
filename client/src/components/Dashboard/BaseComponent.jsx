@@ -10,7 +10,7 @@ const BaseComponent = ({ vehicles }) => {
             return (
                 <ItemDiv key={key}>
                     <div className="accordion__title">
-                        <h4 style={{ margin: 0 }}>{key + 1} {name}</h4>
+                        <h4 style={{ margin: 0 }}>{name}</h4>
                         <div>
                             <Button onClick={e => {
                                 e.preventDefault();

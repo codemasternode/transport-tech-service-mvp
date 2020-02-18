@@ -15,7 +15,8 @@ const VehicleSchema = new mongoose.Schema(
       min: 1
     },
     capacity: {
-      type: Number
+      type: Number,
+      required: true
     },
     dimensions: {
       length: {
@@ -37,10 +38,6 @@ const VehicleSchema = new mongoose.Schema(
     },
     valueOfTruck: {
       type: Number,
-      required: true
-    },
-    type: {
-      type: String,
       required: true
     },
     averageDistancePerMonth: {
@@ -124,7 +121,8 @@ const VehicleSchema = new mongoose.Schema(
     },
     emissionLevel: {
       type: String,
-      default: "EURO 5"
+      default: "EURO 5",
+      enum: ["EURO 6", "EURO 5", "EURO 4", "EURO 3", "EURO 2", "EURO"]
     },
     permissibleGrossWeight: {
       type: Number,

@@ -65,9 +65,9 @@ export const routes = [
     component: ConfirmPage
   },
   {
-    name: "confirm",
+    name: "dashboard",
     path: "/dashboard",
-    isPrivate: false,
+    isPrivate: true,
     isAdmin: false,
     component: DashboardPage
   },
@@ -82,7 +82,6 @@ export default function App() {
         {routes.map((value, index) =>
           value.isExact ? (
             value.isPrivate ? (
-
               <PrivateRoute
                 key={index}
                 path={value.path}

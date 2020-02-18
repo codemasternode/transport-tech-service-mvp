@@ -80,7 +80,7 @@ export default (props) => {
                 countries,
                 password,
                 file } = data
-                console.log("submit")
+            console.log("submit")
             const bodyFormData = new FormData();
             bodyFormData.set('name', name);
             bodyFormData.set('surname', surname);
@@ -100,19 +100,15 @@ export default (props) => {
                 data: bodyFormData,
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
-                .then(response =>{
+                .then(function (response) {
                     //handle success
-                    console.log(response)
-                    if(response.statusText === "Created" || response.status === 201){
-                        props.history.push('/login');
-                    }
+                    console.log(response);
                 })
-                .catch((response)=> {
+                .catch(function (response) {
                     //handle error
                     console.log(response);
                 });
         }
-
     }
 
     const _validParams = () => {
@@ -130,7 +126,7 @@ export default (props) => {
                     <CssBaseline />
                     <div className={classes.paper}>
                         <img src={Logo} alt="logo" className={classes.tts_logo} />
-                        <RegisterForm sendRequest={_sendRequest} registerValues={state.registerValues} validateEmail={validateEmail}/>
+                        <RegisterForm sendRequest={_sendRequest} registerValues={state.registerValues} validateEmail={validateEmail} />
                     </div>
                 </Container>
             </div>

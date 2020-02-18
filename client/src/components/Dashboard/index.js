@@ -3,9 +3,14 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { DialogContent, DialogTitle, DialogContentText } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import { useStyles } from '../../utils/styles';
-import { Container, Button, Headings } from '../../utils/theme'
+import { Container, Button, Headings, RootElement } from '../../utils/theme'
 import { Accordion } from '../shared/AnimateAccordion/Accordion'
-import { DashboardModel } from './DashboardModel'
+import { fetchCustomerData, createNewBase, dropCustomerBase } from '../../reducers/dashboard/duck/operations';
+import Header from '../shared/Header/Header.jsx'
+import NewVehicleContent from './NewVehicleContent.jsx'
+import AuthService from '../../services/AuthService'
+import { useDispatch, useSelector } from 'react-redux'
+import NewBaseContent from './NewBaseContent.jsx'
 import BaseComponent from './BaseComponent.jsx'
 import DialogAlert from './DialogAlert.jsx'
 
@@ -42,27 +47,55 @@ const Dashboard = () => {
         selectedBase: "",
         selectedVehicle: "",
     })
+    const dispatch = useDispatch()
+    const { customerData } = useSelector(state => state.dashboard)
+    // console.log(customerData)
 
     useEffect(() => {
         // fetch user data
         _fetchUserData();
+        _validAuthCustomer();
+        // dispatch(fetchCustomerData());
+
     }, [])
 
     const _fetchUserData = () => {
         // get user data from api
-
+        dispatch(fetchCustomerData());
     }
 
-    const _setStatus = (e, baseName) => {
+    const _validAuthCustomer = () => {
+        setInterval(() => {
+            AuthService.isLoggedIn()
+        }, 1000)
+    }
+
+    const _setStatus = (e, value, baseName) => {
         const { name } = e.target;
+        // console.log(name, value, baseName)
+        if (baseName === "base") {
+            setState({
+                ...state,
+                selectedBase: value
+            })
+        } else if (baseName === "vehicle") {
+            setState({
+                ...state,
+                selectedVehicle: value
+            })
+        }
         setStatus(name)
         setOpen(true)
     }
 
-    const _confirmAction = () => {
+    const _confirmAction = data => {
+        const { selectedBase } = state;
         switch (status) {
+            case "create_base":
+                dispatch(createNewBase(data));
+                break;
             case "drop_base":
-                // DashboardModel.dropUserBase()
+                dispatch(dropCustomerBase(selectedBase));
                 return;
             case "drop_vehicle":
                 break;
@@ -77,9 +110,7 @@ const Dashboard = () => {
         }
     }
 
-    const _dropUserBase = () => {
-        // allow customers to drop their bases;
-        // setStatus("drop_base")
+    const _createNewBase = () => {
 
     }
 
@@ -108,13 +139,23 @@ const Dashboard = () => {
 
     const _renderDialogAlert = () => {
         let info, title = "";
-        console.log(status)
+        const { selectedBase } = state;
+        console.log(state)
         switch (status) {
+            case "create_base":
+                title = "Dodawanie bazy"
+                info = <NewBaseContent />
+                break;
+            case "create_vehicle":
+                title = "Dodawanie pojazdu"
+                info = <NewVehicleContent />
+                break;
             case "drop_base":
                 title = "Czy na pewno chcesz usunąć tą bazę?"
+                info = selectedBase;
                 break;
             case "drop_vehicle":
-                title = "Czy na pewno chcesz usunąć ten pojazd?"
+                title = "Czy na pewno chcesz usunąć ten pojazd? "
                 break;
             case "info_base":
                 // get info 
@@ -138,26 +179,35 @@ const Dashboard = () => {
 
     const _vehiclesList = () => {
         // render accordion width list of available vehicles
-        return (mock.map((item, key) => (
-            <Accordion key={key} i={key} expanded={expanded} setExpanded={setExpanded} name={item.name} dropUserBase={_dropUserBase} setStatus={_setStatus}>
-                <BaseComponent vehicles={item.vehicles} dropUserVehicle={_dropUserVehicle} getVehicleInfo={_getVehicleInfo} />
-            </Accordion>
-        )));
+        console.log(customerData)
+        if (customerData.company !== undefined) {
+            const { companyBases } = customerData.company;
+            console.log(companyBases)
+            return (companyBases.map((item, key) => (
+                <Accordion key={key} i={key} expanded={expanded} setExpanded={setExpanded} name={item.name} setStatus={_setStatus}>
+                    <BaseComponent vehicles={item.vehicles} dropUserVehicle={_dropUserVehicle} getVehicleInfo={_getVehicleInfo} />
+                </Accordion>
+            )));
+        } else {
+            // return <h2> :/</h2>
+        }
     }
 
     const _init = () => {
         return (
             // <Nav />
             <ThemeProvider theme={themes}>
-                <div className={classes.root}>
+                {/* <div className={classes.root}> */}
+                <RootElement>
+                    <Header />
                     <Container>
                         <Headings>
                             <h3>Lista pojazdów</h3>
                             <div>
-                                <Button bColor="#ff9900">
+                                <Button name="create_base" bColor="#ff9900" onClick={e => _setStatus(e)}>
                                     Dodaj bazę
                                 </Button>
-                                <Button bColor="#000000">
+                                <Button name="create_vehicle" bColor="#000000" onClick={e => _setStatus(e)}>
                                     Dodaj pojazd
                                 </Button>
                             </div>
@@ -165,7 +215,8 @@ const Dashboard = () => {
                         {_vehiclesList()}
                         {_renderDialogAlert()}
                     </Container>
-                </div>
+                </RootElement>
+                {/* </div> */}
             </ThemeProvider>
         )
     }

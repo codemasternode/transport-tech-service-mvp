@@ -1,6 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import StaticCostSchema from "./staticCost";
-import WorkerSchema from "./worker";
 import bcrypt from 'bcryptjs'
 
 const CompanySchema = new mongoose.Schema(
@@ -62,6 +60,16 @@ const CompanySchema = new mongoose.Schema(
       maxlength: 50,
       unique: true
     },
+    plan: {
+      vehicles: {
+        type: Number,
+        default: 5
+      },
+      companyBases: {
+        type: Number,
+        default: 1
+      }
+    },
     password: {
       type: String,
       required: true
@@ -92,14 +100,6 @@ const CompanySchema = new mongoose.Schema(
         type: String
       }
     ],
-    users: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "user"
-      }
-    ],
-    staticCosts: [StaticCostSchema],
-    workers: [WorkerSchema],
     companyBases: {
       type: Array,
       default: []
@@ -107,9 +107,6 @@ const CompanySchema = new mongoose.Schema(
     isConfirmed: {
       type: Boolean,
       default: false
-    },
-    plan: {
-      type: Object
     },
     sumKmPerMonth: {
       type: Number,

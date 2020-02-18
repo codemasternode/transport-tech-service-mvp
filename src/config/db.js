@@ -13,13 +13,15 @@ import TollRoad from "../models/tollRoads";
 import Diets from "../models/diets";
 import Invite from '../models/invites'
 import Axios from "axios";
+import Fuel from "../models/fuel";
 
 export default URI => {
   const dbOptions = {
     poolSize: 4,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    replicaSet: "rs0"
   };
   mongoose.promise = global.promise
   mongoose.connect(URI, dbOptions, async err => {
@@ -45,10 +47,13 @@ export default URI => {
       Palette.deleteMany({}),
       TollRoad.deleteMany({}),
       Diets.deleteMany({}),
-      Invite.deleteMany({})
+      Invite.deleteMany({}),
+      Fuel.deleteMany({})
     ]);
 
     const diets = data[4];
+    const fuels = data[1]
+    await Fuel.create(fuels)
     const ratesCallback = [];
     for (let i = 0; i < diets.length; i++) {
       ratesCallback.push(

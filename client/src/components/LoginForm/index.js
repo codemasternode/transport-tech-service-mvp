@@ -6,6 +6,7 @@ import { useStyles } from '../../utils/styles'
 import axios from "axios";
 import { Formik } from 'formik'
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { API_URL } from '../../utils/urls'
 import Logo from './1.png'
@@ -21,7 +22,7 @@ const themes = createMuiTheme({
 const LoginForm = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-
+    const history = useHistory();
 
     useEffect(() => {
         _sendRequest("onload", "")
@@ -56,6 +57,11 @@ const LoginForm = () => {
                 console.log(res.status)
                 if (res.status === 401) {
                     setOpen(true);
+                } else if (res.status === 200) {
+                    console.log(res.data);
+                    const { expireAt } = res.data;
+                    localStorage.setItem("token_expire", expireAt);
+                    history.push('/dashboard')
                 }
 
                 // axios({

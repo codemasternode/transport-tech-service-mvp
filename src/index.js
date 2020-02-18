@@ -8,6 +8,7 @@ import contactRoutes from './routes/contact'
 import companyRoutes from './routes/company'
 import invitesRoutes from './routes/invites'
 import authRoutes from './routes/auth'
+import companyDashboardRoutes from './routes/companyDashboard'
 import fileUpload from 'express-fileupload'
 import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
@@ -19,7 +20,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../client/build')));
 if (process.env.MODE === "DEV") {
   PORT = 5000
-  MONGO_DB_URL = `mongodb://localhost:27017/tt111`
+  // MONGO_DB_URL = `mongodb://localhost:27017.localhost:27018,localhost:27019/tt111`
+  MONGO_DB_URL = `mongodb+srv://arturgarlacz:Arturro123!@dev-calc-logi-uda2y.mongodb.net/calclogics?retryWrites=true&w=majority&replSet=rs0`
   app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'http://localhost:5000'] }));
 } else {
   app.use(cors({ credentials: true, origin: ['http://localhost:5000', 'http://localhost:3000'] }));
@@ -38,7 +40,10 @@ app.use("/api/web-stats", webStatsRoutes());
 app.use("/api/contact", contactRoutes())
 app.use("/api/company", companyRoutes())
 app.use("/api/invites", invitesRoutes())
+app.use("/api/company-dashboard", companyDashboardRoutes())
 app.use("/api/auth", authRoutes())
+
+
 app.get('*', (req, res) => {
   console.log(path.join(__dirname, '../client/build/index.html'))
   res.sendFile(path.join(__dirname, '../client/build/index.html'));

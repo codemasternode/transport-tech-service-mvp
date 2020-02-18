@@ -24,7 +24,6 @@ export function createCompany(req, res) {
         "countries",
         "password"
     ];
-    console.log(req.body, req.files)
 
     for (let i = 0; i < requireKeys.length; i++) {
         let isInside = false;
@@ -118,7 +117,6 @@ export function createCompany(req, res) {
             if (err.name === 'MongoError' && err.code === 11000) {
                 return res.status(400).send({ msg: "Email has to be unique" })
             }
-            console.log(err)
             return res.status(422).send({})
         })
 
@@ -164,3 +162,104 @@ export async function confirmCompany(req, res) {
         return res.status(500).send({ msg: "Unhandled Error" })
     })
 }
+
+export async function resetPassword(req, res) {
+    const requireKeys = [
+        "resetPassword",
+        "password"
+    ];
+
+
+    for (let i = 0; i < requireKeys.length; i++) {
+        let isInside = false;
+        for (let key in req.body) {
+            if (requireKeys[i] === key) {
+                isInside = true;
+            }
+        }
+        if (!isInside) {
+            return res.status(400).send({
+                msg: `Missing Parameter ${requireKeys[i]}`
+            });
+        }
+    }
+
+
+    const company = await Company.findOne({
+        email: req.user.email
+    })
+    if (!company) {
+        return res.status(404).send({
+            msg: "This company doesnt' exists"
+        })
+    }
+    const { password, resetPassword } = req.body
+    company.comparePassword(password, (err, isMatch) => {
+        if (err || isMatch === false) {
+            return res.status(400).send({
+                msg: "Incorrect email or password"
+            })
+        }
+        Company.updateOne({
+            email: req.user.email
+        }, {
+                password: resetPassword
+            }).then((res) => {
+                res.send({
+                    msg: "Password changed"
+                })
+            }).catch(err => {
+                res.status(400).send({
+                    msg: "Can not change password"
+                })
+            })
+    })
+
+}
+
+export async function updateCompany(req, res) {
+
+    const allowPropertiesToUpdate = [
+        "logo",
+        "nameOfCompany",
+        "name",
+        "surname",
+        "phone",
+        "taxNumber",
+        "place",
+        "country",
+        "sumCostPerMonth",
+        "isVat"
+    ]
+
+    for (let key in req.body) {
+        if (allowPropertiesToUpdate.includes(key) === false) {
+            return res.status(400).send({
+                msg: "You can update only this properties: " + allowPropertiesToUpdate.join(", ")
+            })
+        }
+    }
+
+    Company.updateOne({
+        email: req.user.email
+    }, {
+            ...req.body
+        }).then((res) => {
+            res.send({
+                msg: "Updated"
+            })
+        }).catch(err => {
+            console.log(err)
+            res.status(500).send({
+                msg: "Can't updated"
+            })
+        })
+
+}
+
+export async function updateEmail(req, res) {
+
+}
+
+export async function getInfoAboutPayments(req, res) { }
+

@@ -9,11 +9,6 @@
         "email": "admin@teachtechservice.com",
         "logo": "logo1.png",
         "password": "Pracownia16!",
-        "plan": {
-            "name": "Basic",
-            "vehicles": 10,
-            "companyBases": 1
-        },
         "countries": [
             "Poland",
             "Germany",
@@ -638,6 +633,11 @@
                 ]
             }
         ],
-        "isVat": true
+        "isVat": true,
+        "sumCostPerMonth": 9000,
+        "plan": {
+            "vehicles": 12,
+            "companyBases": 2
+        }
     }
 ]
