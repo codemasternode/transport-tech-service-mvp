@@ -1,7 +1,8 @@
 import { loadTemplate, sendEmail } from "../config/mailer";
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function contactToUs(req, res) {
-  const requireContactProperties = [
+  const requireKeys = [
     "name",
     "surname",
     "email",
@@ -9,15 +10,12 @@ export async function contactToUs(req, res) {
     "topic"
   ];
 
-  for (let i = 0; i < requireContactProperties.length; i++) {
-    if (
-      !req.body[requireContactProperties[i]] ||
-      req.body[requireContactProperties[i]].length === 0
-    ) {
-      return res.status(400).send({
-        msg: `Missing ${requireContactProperties[i]} property`
-      });
-    }
+  const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+  if (!checkRequire) {
+    return res.status(400).send({
+      msg: "One of property is missing, required: " + requireKeys.join(", ")
+    })
   }
 
   let { name, surname, email, taxNumber, description, companyName, topic } = req.body;
@@ -45,7 +43,7 @@ export async function contactToUs(req, res) {
 }
 
 export async function contactToCompany(req, res) {
-  const requireContactProperties = [
+  const requireKeys = [
     "name",
     "surname",
     "email",
@@ -61,13 +59,13 @@ export async function contactToCompany(req, res) {
     "isDimensions"
   ];
 
-  for (let i = 0; i < requireContactProperties.length; i++) {
-    if (req.body[requireContactProperties[i]] === undefined) {
-      return res.status(400).send({
-        msg: `Missing ${requireContactProperties[i]} property`
-      });
+  const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
-  }
 
   let {
     name,
@@ -111,7 +109,7 @@ export async function contactToCompany(req, res) {
     companyName = "-"
   }
 
-  if(!description) {
+  if (!description) {
     description = ""
   }
   loadTemplate("contactToCompany", [

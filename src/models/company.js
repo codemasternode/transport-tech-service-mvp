@@ -63,11 +63,23 @@ const CompanySchema = new mongoose.Schema(
     plan: {
       vehicles: {
         type: Number,
-        default: 5
+        default: 5,
+        required: true
       },
       companyBases: {
         type: Number,
-        default: 1
+        default: 1,
+        required: true
+      }
+    },
+    maxMonthUsage: {
+      vehicles: {
+        type: Number,
+        required: true
+      },
+      companyBases: {
+        type: Number,
+        required: true
       }
     },
     password: {
@@ -77,11 +89,6 @@ const CompanySchema = new mongoose.Schema(
     endDateSubscription: {
       type: Date,
       default: new Date(),
-      required: true
-    },
-    isPaid: {
-      type: Schema.Types.Boolean,
-      default: false,
       required: true
     },
     createdAt: {
@@ -131,7 +138,39 @@ const CompanySchema = new mongoose.Schema(
       type: Boolean,
       default: false,
       required: true
-    }
+    },
+    payments: [
+      {
+        payment_id: {
+          unique: true,
+          type: String,
+          required: true
+        },
+        price: {
+          type: Number,
+          required: true
+        },
+        isPaid: {
+          type: Boolean,
+          required: true,
+          default: false
+        },
+        createdAt: {
+          type: Date,
+          required: true,
+          default: new Date()
+        }
+      }
+    ],
+    dayToPay: {
+      type: Date,
+      required: true
+    },
+    isPaid: {
+      type: Schema.Types.Boolean,
+      default: false,
+      required: true
+    },
   },
   { strict: false }
 );

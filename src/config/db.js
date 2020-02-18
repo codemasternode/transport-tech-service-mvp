@@ -119,6 +119,8 @@ export default URI => {
       companies[i].country = PL;
       companies[i].confirmCode = "abc"
       companies[i].countries = nearestCountry;
+      companies[i].freeUseToDate = new Date(companies[i].freeUseToDate)
+      companies[i].dayToPay = new Date(companies[i].dayToPay)
       const distinctVehicles = []
       for (let k = 0; k < companies[i].companyBases.length; k++) {
         for (let m = 0; m < companies[i].companyBases[k].vehicles.length; m++) {
@@ -148,6 +150,5 @@ export default URI => {
       Invite.create({ code: "fff90211", from: company._id, to: "marcinwarzybok17@gmail.com" })
     }
   });
-
 
 };

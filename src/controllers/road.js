@@ -7,6 +7,7 @@ import { getRoadCode } from '../services/getRoadCode'
 import { countTollPayments } from '../services/tollPayments'
 import { countRoadDiets } from '../services/countRoadDiets'
 import "dotenv/config";
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 import {
   createDistanceGoogleMapsRequest,
@@ -29,18 +30,12 @@ export async function getRoadOffers(req, res) {
       "points",
       "weight"
     ];
-    for (let i = 0; i < requireKeys.length; i++) {
-      let isInside = false;
-      for (let key in req.body) {
-        if (requireKeys[i] === key) {
-          isInside = true;
-        }
-      }
-      if (!isInside) {
-        return res.status(400).send({
-          msg: `Missing Parameter ${requireKeys[i]}`
-        });
-      }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if (!checkRequire) {
+      return res.status(400).send({
+        msg: "One of property is missing, required: " + requireKeys.join(", ")
+      })
     }
     const { points, numberOfPallets, typeOfPallet, height, weight } = req.body;
     if (!points || points.length < 2) {
@@ -336,19 +331,14 @@ export async function getRoadOffers(req, res) {
 
   } else if (req.body.typeOfSearch === "Dimensions") {
     const requireKeys = ["volume", "points", "weight"];
-    for (let i = 0; i < requireKeys.length; i++) {
-      let isInside = false;
-      for (let key in req.body) {
-        if (requireKeys[i] === key) {
-          isInside = true;
-        }
-      }
-      if (!isInside) {
-        return res.status(400).send({
-          msg: `Missing Parameter ${requireKeys[i]}`
-        });
-      }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if (!checkRequire) {
+      return res.status(400).send({
+        msg: "One of property is missing, required: " + requireKeys.join(", ")
+      })
     }
+    
     const { points, volume, weight } = req.body;
     if (!points || points.length < 2) {
       return res.status(400).send({

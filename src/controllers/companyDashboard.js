@@ -2,6 +2,7 @@ import Company from '../models/company'
 import Vehicle from '../models/vehicle'
 import Fuel from '../models/fuel'
 import { Types } from 'mongoose'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
 
 export async function getCompany(req, res) {
     const company = await Company.findOne({
@@ -45,21 +46,15 @@ export async function createVehicle(req, res) {
         "companyBase"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if(!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
-    const company = await Company.findOne({
+    let company = await Company.findOne({
         email: req.user.email,
         isSuspended: false,
         $or: [
@@ -82,6 +77,8 @@ export async function createVehicle(req, res) {
             msg: "Twoje konto nie istnieje lub zostało usunięte "
         })
     }
+
+    company = JSON.parse(JSON.stringify(company))
 
     const {
         minRange,
@@ -132,7 +129,7 @@ export async function createVehicle(req, res) {
             }
             if (numberOfVehicles >= company.plan.vehicles) {
                 return res.status(409).send({
-                    msg: "Liczba pojazdów jest zbyt duża, w celu poszerzenia planu skontaktuj się z administracją "
+                    msg: "Liczba pojazdów jest zbyt duża, poszerz swój plan"
                 })
             }
         }
@@ -192,6 +189,8 @@ export async function createVehicle(req, res) {
             throw new Error("Baza nie istnieje")
         }
 
+        company.maxMonthUsage.vehicles++
+
         const updateStats = await Company.updateOne({
             email: req.user.email
         }, company).session(session)
@@ -200,7 +199,7 @@ export async function createVehicle(req, res) {
             throw new Error("Nic nie zmieniono")
         }
 
-        res.send({})
+        res.send({ vehicle })
         await session.commitTransaction();
         session.endSession();
 

@@ -3,6 +3,8 @@ import uuid from 'uuid/v1'
 import AWS from 'aws-sdk'
 import { loadTemplate, sendEmail } from "../config/mailer";
 import Invite from '../models/invites'
+import { checkIsObjectHasOnlyAllowProperties, checkIsObjectHasRequiredProperties } from '../services/propertiesHelper'
+
 
 const s3bucket = new AWS.S3({
     accessKeyId: 'AKIAJRX2IPJP7MB7ER7A',
@@ -25,18 +27,12 @@ export function createCompany(req, res) {
         "password"
     ];
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if (!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
     const { nameOfCompany, name, surname, phone, taxNumber, place, isVat, email, country, password } = req.body
 
@@ -126,8 +122,21 @@ export function createCompany(req, res) {
 }
 
 export async function confirmCompany(req, res) {
-    if (!req.body.confirmCode) {
-        return res.status(400).send({ msg: "Missing parameter confirmCode" })
+    const requireKeys = [
+        "confirmCode",
+        "cardNumber",
+        "firstnameOnCard",
+        "lastnameOnCard",
+        "postalCodeOnCard",
+        "ccv"
+    ];
+
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if (!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
     const { confirmCode } = req.body
@@ -138,6 +147,7 @@ export async function confirmCompany(req, res) {
     }
 
     Company.updateOne({ confirmCode }, { isConfirmed: true }).then(async () => {
+
         res.status(201).send({ msg: "Company confirmed" })
         //check is new customer was invited
         try {
@@ -170,18 +180,12 @@ export async function resetPassword(req, res) {
     ];
 
 
-    for (let i = 0; i < requireKeys.length; i++) {
-        let isInside = false;
-        for (let key in req.body) {
-            if (requireKeys[i] === key) {
-                isInside = true;
-            }
-        }
-        if (!isInside) {
-            return res.status(400).send({
-                msg: `Missing Parameter ${requireKeys[i]}`
-            });
-        }
+    const checkRequire = checkIsObjectHasRequiredProperties(requireKeys, req.body)
+
+    if (!checkRequire) {
+        return res.status(400).send({
+            msg: "One of property is missing, required: " + requireKeys.join(", ")
+        })
     }
 
 
@@ -216,50 +220,3 @@ export async function resetPassword(req, res) {
     })
 
 }
-
-export async function updateCompany(req, res) {
-
-    const allowPropertiesToUpdate = [
-        "logo",
-        "nameOfCompany",
-        "name",
-        "surname",
-        "phone",
-        "taxNumber",
-        "place",
-        "country",
-        "sumCostPerMonth",
-        "isVat"
-    ]
-
-    for (let key in req.body) {
-        if (allowPropertiesToUpdate.includes(key) === false) {
-            return res.status(400).send({
-                msg: "You can update only this properties: " + allowPropertiesToUpdate.join(", ")
-            })
-        }
-    }
-
-    Company.updateOne({
-        email: req.user.email
-    }, {
-            ...req.body
-        }).then((res) => {
-            res.send({
-                msg: "Updated"
-            })
-        }).catch(err => {
-            console.log(err)
-            res.status(500).send({
-                msg: "Can't updated"
-            })
-        })
-
-}
-
-export async function updateEmail(req, res) {
-
-}
-
-export async function getInfoAboutPayments(req, res) { }
-

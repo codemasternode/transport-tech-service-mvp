@@ -8,11 +8,13 @@ import contactRoutes from './routes/contact'
 import companyRoutes from './routes/company'
 import invitesRoutes from './routes/invites'
 import authRoutes from './routes/auth'
+import paymentRoutes from './routes/payments'
 import companyDashboardRoutes from './routes/companyDashboard'
 import fileUpload from 'express-fileupload'
 import mailer from "./config/mailer";
 import dotenv from "dotenv/config";
 import cookieParser from 'cookie-parser'
+import croneTasks from './events/index'
 
 let PORT = process.env.PORT || 5000,
   MONGO_DB_URL = process.env.MONGO_DB_URL
@@ -42,6 +44,7 @@ app.use("/api/company", companyRoutes())
 app.use("/api/invites", invitesRoutes())
 app.use("/api/company-dashboard", companyDashboardRoutes())
 app.use("/api/auth", authRoutes())
+app.use("/api/payments", paymentRoutes())
 
 
 app.get('*', (req, res) => {
@@ -52,6 +55,8 @@ app.get('*', (req, res) => {
 const server = app.listen(PORT, () => {
   console.log(`Application is running on port ${PORT}`);
 });
+
+croneTasks()
 
 process.on("exit", () => {
   server.close();
