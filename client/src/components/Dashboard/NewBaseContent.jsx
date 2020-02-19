@@ -197,7 +197,7 @@ const NewBaseContent = (props) => {
                                     // onClick={()=> sendRequest("submit")}
                                     className={classes.submit}
                                 >
-                                    Utwórz
+                                    Dodaj bazę
                             </Button>
                             </Grid>
                         </form>

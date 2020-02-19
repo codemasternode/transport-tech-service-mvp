@@ -5,12 +5,13 @@ import { ThemeProvider } from '@material-ui/styles';
 import { useStyles } from '../../utils/styles';
 import { Container, Button, Headings, RootElement } from '../../utils/theme'
 import { Accordion } from '../shared/AnimateAccordion/Accordion'
-import { fetchCustomerData, createNewBase, dropCustomerBase } from '../../reducers/dashboard/duck/operations';
+import { fetchCustomerData, createNewBase, createNewVehicle, dropCustomerBase } from '../../reducers/dashboard/duck/operations';
 import Header from '../shared/Header/Header.jsx'
 import NewVehicleContent from './NewVehicleContent.jsx'
 import AuthService from '../../services/AuthService'
 import { useDispatch, useSelector } from 'react-redux'
 import NewBaseContent from './NewBaseContent.jsx'
+import DetailsBaseContent from './DetailBaseContent.jsx'
 import BaseComponent from './BaseComponent.jsx'
 import DialogAlert from './DialogAlert.jsx'
 
@@ -21,22 +22,6 @@ const themes = createMuiTheme({
         }
     },
 })
-
-const mock = [
-    {
-        id: 0, name: "BAZA 1", vehicles: [
-            { name: "WWW" },
-            { name: "EEE" },
-            { name: "HEEHE" },
-        ]
-    },
-    {
-        id: 1, name: "BAZA 2", vehicles: [
-            { name: "EEE" },
-            { name: "HEEHE" },
-        ]
-    },
-]
 
 const Dashboard = () => {
     const classes = useStyles();
@@ -94,6 +79,9 @@ const Dashboard = () => {
             case "create_base":
                 dispatch(createNewBase(data));
                 break;
+            case "create_vehicle":
+                dispatch(createNewVehicle(data));
+                break;
             case "drop_base":
                 dispatch(dropCustomerBase(selectedBase));
                 return;
@@ -144,11 +132,11 @@ const Dashboard = () => {
         switch (status) {
             case "create_base":
                 title = "Dodawanie bazy"
-                info = <NewBaseContent />
+                info = <NewBaseContent switchAlert={_switchAlert} />
                 break;
             case "create_vehicle":
                 title = "Dodawanie pojazdu"
-                info = <NewVehicleContent />
+                info = <NewVehicleContent switchAlert={_switchAlert} />
                 break;
             case "drop_base":
                 title = "Czy na pewno chcesz usunąć tą bazę?"
@@ -159,6 +147,8 @@ const Dashboard = () => {
                 break;
             case "info_base":
                 // get info 
+                title = "Informacje o bazie";
+                info = <DetailsBaseContent selectedBase={selectedBase} />
                 break;
             case "info_vehicle":
                 // get info 
@@ -168,7 +158,7 @@ const Dashboard = () => {
         }
 
         return (
-            <DialogAlert open={open} switchAlert={_switchAlert} confirmAction={_confirmAction}>
+            <DialogAlert open={open} switchAlert={_switchAlert} confirmAction={_confirmAction} status={status}>
                 <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
                 <DialogContent>
                     {info}

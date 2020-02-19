@@ -31,8 +31,10 @@ const createNewBase = (data) => async dispatch => {
     })
 }
 
-const createNewVehicle = () => async dispatch => {
-    // await useFetch("post")
+const createNewVehicle = data => async dispatch => {
+    await useFetch("post", "create-vehicle", data, res => {
+        fetchCustomerData()
+    })
 }
 
 const dropCustomerBase = name => async dispatch => {
@@ -41,4 +43,4 @@ const dropCustomerBase = name => async dispatch => {
     });
 }
 
-export { fetchCustomerData, createNewBase, dropCustomerBase }
+export { fetchCustomerData, createNewBase, createNewVehicle, dropCustomerBase }
