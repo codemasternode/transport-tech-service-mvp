@@ -15,7 +15,7 @@
     "formik": "^2.1.2",
     "framer-motion": "^1.8.4",
     "google-maps-react": "^2.0.2",
-    "immer": "^5.0.0",
+    "immer": "^8.0.1",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.1",
     "jwt-decode": "^2.2.0",
