@@ -42,7 +42,7 @@
     "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
     "nodemailer-express-handlebars": "^3.1.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "redis": "^2.8.0",
     "saslprep": "^1.0.3",
     "stripe": "^8.15.0",
